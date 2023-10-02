@@ -8,14 +8,14 @@
 - Complete Project Plan
 	- Proof-read Project Plan
 	- Complete `Section 2: Milestones`.
-	- Complete ``Section 3: Tech Stack`.
+	- Complete `Section 3: Tech Stack`.
 - Research Tech Stack
 - Create Kanban Board
 
 ## Active Tasks
 
 - Complete `Section 2: Milestones`.
-- Complete ``Section 3: Tech Stack`.
+- Complete `Section 3: Tech Stack`.
 - Research Tech Stack
 - Create Kanban Board
 
@@ -27,4 +27,4 @@
 - Create Kanban Board - `IN-PROGRESS`.
 ## Peer Review
 
-![[Satanshu_Mishra_W4.png]]
+![Satanshu_Mishra_W4.png](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-4/Satanshu_Mishra_W4.png)
