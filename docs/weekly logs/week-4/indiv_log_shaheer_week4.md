@@ -32,7 +32,6 @@
 - Create Kanban Board - `IN-PROGRESS`.
 
 ## Peer Review
-
-![image]()
+<img width="1185" alt="2023-10-01_23-17-11" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/792aa4e0-361d-4b78-948d-9bd509adb373">
 
 
