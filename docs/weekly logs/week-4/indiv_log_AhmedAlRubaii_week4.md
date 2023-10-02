@@ -26,4 +26,5 @@
 
 ## Peer Review
 
-![](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-4/Ahmed_weekly_tasks.PNG)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/05888db3-fedf-4d2a-9ccf-83ad912989cf)
+
