@@ -27,4 +27,5 @@
 - Create Kanban Board - `IN-PROGRESS`.
 ## Peer Review
 
-![Satanshu_Mishra_W4.png](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-4/Satanshu_Mishra_W4.png)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/60575c39-1d15-4dd7-acdc-3e3336ba2d85)
+
