@@ -36,12 +36,12 @@ Satanshu Mishra: `SatanshuMishra`
 	- Chat Window - `In-Progress`
 - Added Tasks on Kanban Board for Milestone 1 - `In-Progress`
 - Experiment with New Meeting Format - `Completed`
-	- **Outcome**: We had more time efficient and focused meetings.
+	- **Outcome**: We had more time-efficient and focused meetings.
 
 ## Test Report
 
 **Kanban Board**
-![[Kanban Board.png]]
+![KanbanBoard](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-5/images/Kanban%20Board.png)
 
 **Burn Up Chart**
-![[Burn-Up Chart.png]]
+![BurnUpChart](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-5/images/Burn-Up%20Chart.png)
