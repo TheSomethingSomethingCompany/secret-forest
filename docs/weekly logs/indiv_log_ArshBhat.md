@@ -34,3 +34,40 @@
 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/0fbcb6c9-eaff-4b14-9a42-4437f20c6659)
 
+# Personal Log - Arsh Bhat
+
+**Week**: 5
+**Week**: `02-10-2023` - `08-10-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Learn Tech Stack
+  - CSS
+  - HTML
+  - JavaScript
+  - Next.js
+- Design Paper Prototypes (Prototypes Available Locally for Review)
+  - Welcome Window (User without Sign-Up)
+  - Sign Up Window
+  - Sign In Window
+  - Create User Profile Window
+  - Home Page Window (User with Sign-Up)
+
+## Active Tasks
+
+- Learn Tech Stack
+  - CSS
+  - HTML
+  - JavaScript
+  - Next.js
+- Design Paper Prototypes
+
+## Status of Tasks
+
+- Learn Tech Stack - `IN-PROGRESS`
+- Design Paper Prototypes - `COMPLETED`
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/d600a2d7-80c4-4e4c-8e3d-c0ea77eb0ea4)
+
