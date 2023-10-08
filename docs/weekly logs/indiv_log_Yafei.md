@@ -34,7 +34,7 @@
 ![indiv_log_Yafei_week4](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/6baa96b1-905a-406e-b294-50b834a3463f)
 
 
-
+# Personal Log - Yafei Sedlacek
 **Week**: 5
 **Work Period**: `2-10-2023` - `8-10-2023`
 **GitHub Account**: `YaffyTaffy`
