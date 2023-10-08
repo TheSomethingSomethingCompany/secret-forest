@@ -61,6 +61,6 @@
 
 ## Peer Review
 
-![](Ahmed_weekly_tasks.png)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/8e6f33d6-9468-4988-97c6-85d14b44fb2d)
 
 
