@@ -12,4 +12,4 @@ CREATE TABLE "security_question" (
   "answer" text NOT NULL
 );
 
-ALTER TABLE "security_question" ADD FOREIGN KEY ("member") REFERENCES "member" ("email");
+ALTER TABLE "security_question" ADD FOREIGN KEY ("memberEmail") REFERENCES "member" ("email");
