@@ -7,7 +7,7 @@ CREATE TABLE member (
 
 CREATE TABLE "security_question" (
   "id" uuid PRIMARY KEY,
-  "member" text NOT NULL,
+  "memberEmail" text NOT NULL,
   "question" text NOT NULL,
   "answer" text NOT NULL
 );
