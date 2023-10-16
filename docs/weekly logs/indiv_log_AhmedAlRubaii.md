@@ -94,3 +94,4 @@
 - Assigning tasks for first sprint -- Completed
 
 ## Peer Review
+![week 6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/af0f4809-9982-44a0-adae-aded25869b4d)
