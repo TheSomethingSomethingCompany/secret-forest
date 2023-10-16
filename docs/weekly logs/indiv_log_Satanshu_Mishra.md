@@ -76,3 +76,52 @@
 ## Peer Review
 
 ![Peer Review](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-5/images/image.png)
+
+# Personal Log - Satanshu Mishra
+
+**Week**: 5
+**Week**: `02-10-2023` - `08-10-2023`
+**GitHub Account**: `SatanshuMishra`
+
+## Individual Objectives
+
+- Setup Development Evironment
+  - Install Next.js
+  - Install Express.js
+  - Install Tailwind CSS
+- Setup Docker
+  - Setup PostgreSQL Database
+  - Setup pgadmin
+- Implement User Authentication page
+  - Implement Sign-in section
+  - Implement Sign-up section
+
+## Active Tasks
+
+- Setup Development Evironment
+  - Install Next.js
+  - Install Express.js
+  - Install Tailwind CSS
+- Setup Docker
+  - Setup PostgreSQL Database
+  - Setup pgadmin
+- Implement User Authentication page
+  - Implement Sign-in section
+  - Implement Sign-up section
+
+## Status of Tasks
+
+- Setup Development Evironment
+  - Install Next.js - `COMPLETED`
+  - Install Express.js - `COMPLETED`
+  - Install Tailwind CSS - `COMPLETED`
+- Setup Docker
+  - Setup PostgreSQL Database - `COMPLETED`
+  - Setup pgadmin - `COMPLETED`
+- Implement User Authentication page
+  - Implement Sign-in section - `IN-PROGRESS`
+  - Implement Sign-up section - `IN-PROGRESS`
+
+## Peer Review
+
+![Peer Review Week 5](image.png)
