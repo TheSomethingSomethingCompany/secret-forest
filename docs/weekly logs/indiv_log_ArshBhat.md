@@ -71,3 +71,39 @@
 ## Peer Review
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/d600a2d7-80c4-4e4c-8e3d-c0ea77eb0ea4)
 
+# Personal Log - Arsh Bhat
+
+**Week**: 6
+**Week**: `09-10-2023` - `15-10-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Learn Tech Stack
+  - CSS
+  - HTML
+  - JavaScript
+  - Next.js
+- Complete Paper Protoypes
+- Design Database Schema
+  - Created table member
+  - Created table security question
+  - Create table profile
+- Update and Maintain Kanban Board
+
+## Active Tasks
+
+- Learn Tech Stack
+- Design Database Schema
+  - Created table member
+  - Created table security question
+  - Create table profile
+- Update and Maintain Kanban Board
+
+## Status of Tasks
+
+- Learn Tech Stack - `IN-PROGRESS`
+- Design Database Schema (Milestone 1) - `COMPLETED`
+- Update and Maintain Kanban Board - `COMPLETED`
+
+<img width="566" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/4151028f-d90f-49c1-af70-53536b879177">
