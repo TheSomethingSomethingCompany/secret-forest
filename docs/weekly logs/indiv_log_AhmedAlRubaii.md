@@ -63,4 +63,34 @@
 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/8e6f33d6-9468-4988-97c6-85d14b44fb2d)
 
+-----------------
 
+**Week**: 6
+
+**Work Period**: 9 October 2023 - 15 October 2023
+
+## Individual Objectives
+
+- I participated in finishing the paper prototypes and in coming up with the database schema we would use for our first milestone. We also all participated in task allocation. I have started development for the landing page.
+
+
+## Active Tasks
+
+- Maintain Kanban board
+- Design paper prototypes
+- Design database schema
+	- Memebers relation
+	- Security question relation
+	- Profile relation
+- Develop landing page
+- Assigning tasks for first sprint 
+
+## Status of Tasks
+
+- Maintain Kanban board -- In Progress
+- Design paper prototypes -- Completed
+- Design database schema -- Completed
+- Develop landing page -- In Progress
+- Assigning tasks for first sprint -- Completed
+
+## Peer Review
