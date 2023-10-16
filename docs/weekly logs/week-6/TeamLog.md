@@ -60,7 +60,11 @@ Satanshu Mishra: `SatanshuMishra`
 ## Test Report
 
 **Kanban Board**
-![KanbanBoard](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-5/images/Kanban%20Board.png)
+
+<img width="650" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/cef02033-4641-4306-ab5f-0e052e8128e8">
+
 
 **Burn Up Chart**
-![BurnUpChart](https://github.com/COSC-499-W2023/year-long-project-team-10/blob/weekly-evaluations/docs/weekly%20logs/week-5/images/Burn-Up%20Chart.png)
+
+<img width="450" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/11e93d90-8864-43a6-af77-fafb9980a1bb">
+
