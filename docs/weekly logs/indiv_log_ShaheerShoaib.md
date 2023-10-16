@@ -111,5 +111,61 @@
 ## Peer Review
 <img width="1075" alt="Peer Review Evaluation For Week 5" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/994758d8-1f39-4f01-b18e-ceaebea4ffcb">
 
+**Week**: 6
+**Work Period**: `09-15-2023` - `09-15-2023`
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Finalize Design Of Paper Prototypes For First Milestone
+    - Landing/Welcome Page
+    - Sign In Page
+    - Sign Up Page
+    - Create Profile Page 
+    - Home Page
+        - Smart Search Design
+        - Navigation Bar
+            - Link To Communication Request Page (Sent And Received)
+            - Link To Profile
+            - Link To Home
+            - Link To Chats Page
+        - Design Of Dropdown Results From Smart Search
+        - Design Of Results Shown After Entering Search Query
+    - Edit Profile Page
+- Develop Frontend For Create Profile Page
+- Learn Next.js
+- Learn Express.js
+
+## Active Tasks
+- Finalize Design Of Paper Prototypes For First Milestone
+    - Landing/Welcome Page
+    - Sign In Page
+    - Sign Up Page
+    - Create Profile Page 
+    - Home Page
+        - Smart Search Design
+        - Navigation Bar
+            - Link To Communication Request Page (Sent And Received)
+            - Link To Profile
+            - Link To Home
+            - Link To Chats Page
+        - Design Of Dropdown Results From Smart Search
+        - Design Of Results Shown After Entering Search Query
+    - Edit Profile Page
+- Develop Frontend For Create Profile Page
+- Learn Next.js
+- Learn Express.js
+
+## Status of Tasks
+
+- Finalize Design Of Paper Prototypes For First Milestone - `Completed`
+- Develop Frontend For Create Profile Page - `In-Progress`
+- Learn Next.js - `In-Progess`
+    - Currently know enough to be able to make basic designs, although will need to learn more for other parts of the project
+- Learn Express.js - `In-Progress`
+
+## Peer Review
+<img width="1075" alt="Peer Review Evaluation For Week 5" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/994758d8-1f39-4f01-b18e-ceaebea4ffcb">
+
 
 
