@@ -132,6 +132,10 @@
         - Design Of Dropdown Results From Smart Search
         - Design Of Results Shown After Entering Search Query
     - Edit Profile Page
+- Design Database Schema For Current Milestone
+    - Member Relation
+    - Security Question Relation
+    - Profile Relation 
 - Develop Frontend For Create Profile Page
 - Learn Next.js
 - Learn Express.js
@@ -152,6 +156,10 @@
         - Design Of Dropdown Results From Smart Search
         - Design Of Results Shown After Entering Search Query
     - Edit Profile Page
+- Design Database Schema For Current Milestone
+    - Member Relation
+    - Security Question Relation
+    - Profile Relation 
 - Develop Frontend For Create Profile Page
 - Learn Next.js
 - Learn Express.js
@@ -160,12 +168,15 @@
 
 - Finalize Design Of Paper Prototypes For First Milestone - `Completed`
 - Develop Frontend For Create Profile Page - `In-Progress`
+- Desgin Database Schema For Current Milestone - `Completed`
 - Learn Next.js - `In-Progess`
     - Currently know enough to be able to make basic designs, although will need to learn more for other parts of the project
 - Learn Express.js - `In-Progress`
 
 ## Peer Review
-<img width="1075" alt="Peer Review Evaluation For Week 5" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/994758d8-1f39-4f01-b18e-ceaebea4ffcb">
+<img width="1081" alt="2023-10-15_19-38-48" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/873bb386-78ca-4aaa-91e1-2fcf48eb61dc">
+
+
 
 
 
