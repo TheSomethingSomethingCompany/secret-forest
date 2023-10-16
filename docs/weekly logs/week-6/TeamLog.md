@@ -15,7 +15,7 @@ Satanshu Mishra: `SatanshuMishra`
 - Design Paper Prototypes
 	- Finalized design for mini presentation
 - Maintain Kanban Board
-    - Update with tasks for first sprint (12-10-2023 to 19-10-2023)
+    - Update with tasks for first sprint (13-10-2023 to 19-10-2023)
 - Assigning Of Tasks For Current Sprint
     - Design Landing Page - Ahmed
     - Design SignIn/SignUp Page - Satanshu
@@ -39,7 +39,7 @@ Satanshu Mishra: `SatanshuMishra`
 - Design Paper Prototypes `Completed`
     - Finalized design for mini presentation - `Completed`
 - Maintain Kanban Board - `In-Progress`
-    - Update with tasks for first sprint (12-10-2023 to 19-10-2023) - `Completed`
+    - Update with tasks for first sprint (13-10-2023 to 19-10-2023) - `Completed`
 - Assigning Of Tasks For Current Sprint - `Completed`
     - Design Landing Page - Ahmed
     - Design SignIn/SignUp Page - Satanshu
