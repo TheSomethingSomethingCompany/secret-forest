@@ -68,3 +68,38 @@
 ## Peer Review
 ![2023-10-08](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/6e5f723f-e8ff-4e38-b131-5fcacb446e74)
 
+# Personal Log - Yafei Sedlacek
+**Week**: 6
+**Work Period**: `9-10-2023` - `15-10-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Help finialize paper prototypes for milestone
+- Discuss and help design database schema for milestone
+- Learn tech stack for assigned task/feature for sprint
+- Help decide assigned tasks
+
+## Active Tasks
+
+- Research tech stack
+  - Learn HTML
+  - Learn CSS
+  - Learn Javascript
+- Work on paper prototypes for milestone
+- Work on search bar UI
+
+  
+## Status of Tasks
+
+- Database schema for milestone (completed)
+- Research tech stack for sprint (In-progress)
+  - Learn HTML (completed)
+  - Learn CSS (completed)
+  - Learn Javascript (In-progress)
+- Work on paper prototypes for milestone (completed)
+- work on search bar UI (In-progress)
+  
+## Peer Review
+![indivWeek6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/069e0fc6-b0b8-400f-836d-ce9b66ea6d27)
+
