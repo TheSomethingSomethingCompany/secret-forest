@@ -103,6 +103,10 @@
 ## Status of Tasks
 
 - Learn Tech Stack - `IN-PROGRESS`
+  - CSS `IN-PROGRESS`
+  - HTML - `COMPLETED`
+  - JavaScript - `IN-PROGRESS`
+  - Next.js - `IN-PROGRESS`
 - Design Database Schema (Milestone 1) - `COMPLETED`
 - Update and Maintain Kanban Board - `COMPLETED`
 
