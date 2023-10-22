@@ -17,9 +17,7 @@ function CreateProfileForm() {
                         <FlexLabelAndOtherInput labelVal = "Occupation Tags"> <OccupationTags/></FlexLabelAndOtherInput> 
                         <FlexLabelAndOtherInput labelVal = "Bio"> <textarea className = "text-black w-1/2 h-[18vh] resize-y" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
                     </div>
-                    <div id = "pfp" className = "w-1/2 h-full flex flex-col justify-center items-center">
-                        <ProfilePicture></ProfilePicture>
-                    </div>
+                    <ProfilePicture></ProfilePicture>
                  </div>
                 
                 <div id = "form-buttons" className = "flex justify-between w-full">
@@ -64,10 +62,10 @@ function ProfilePicture(){
         }
     };
     return(
-        <>
-        <img src={image} alt="Profile Preview" className="rounded-full w-[20vw] h-[20vw] object-cover mb-4"/>
-        <input type="file" accept="image/*" onChange={handleImageChange}/>
-        </>
+        <div id = "pfp" className = "w-1/2 h-full flex flex-col justify-center items-center">
+            <img src={image} alt="Profile Preview" className="rounded-full w-[20vw] h-[20vw] object-cover mb-4"/>
+            <input type="file" accept="image/*" onChange={handleImageChange}/>
+        </div>
     );
 }
 
