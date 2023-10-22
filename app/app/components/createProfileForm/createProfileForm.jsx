@@ -23,7 +23,7 @@ function CreateProfileForm() {
         formData.append('occupationTags', JSON.stringify(currentTags)); // Send tags as a JSON string
         
         // Collect image data
-        const imageInput = document.querySelector('input[type="file"]');
+        const imageInput = document.querySelector('#pfp');
         if (imageInput.files[0]) {
             formData.append('profileImage', imageInput.files[0]);
         }
@@ -87,9 +87,9 @@ function ProfilePicture(){
         }
     };
     return(
-        <div id = "pfp" className = "w-1/2 h-full flex flex-col justify-center items-center bg-orange-500">
+        <div id = "edit-pfp" className = "w-1/2 h-full flex flex-col justify-center items-center bg-orange-500">
             <img src={image} alt="Profile Preview" className="rounded-full w-[20vw] h-[20vw] object-cover mb-4"/>
-            <input type="file" accept="image/*" onChange={handleImageChange}/>
+            <input id = "pfp" type="file" accept="image/*" onChange={handleImageChange}/>
         </div>
     );
 }
