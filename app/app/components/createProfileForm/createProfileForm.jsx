@@ -12,12 +12,14 @@ function CreateProfileForm() {
                 <FlexLabelAndTextInput labelVal = "Country Of Residence" inputName="country"/> 
                 <FlexLabelAndTextInput labelVal = "Address" inputName = "address"/> 
                 <FlexLabelAndOtherInput labelVal = "Occupation Tags"> <OccupationTags/></FlexLabelAndOtherInput> 
-                <FlexLabelAndOtherInput labelVal = "Bio"> <textarea className = "text-black w-1/2 h-[20vh] resize-y" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
+                <FlexLabelAndOtherInput labelVal = "Bio"> <textarea className = "text-black w-1/2 h-[18vh] resize-y" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
             </div>
 
                 
-                <input type="submit" value="Submit" />
-                <button id="goBack">Go Back</button>
+                <div id = "form-buttons" className = "flex justify-between width-full">
+                    <button id="go-back" className = "bg-purple-500">Go Back</button>
+                    <input type="submit" className = "bg-purple-500" value="Submit" />
+                </div>
             </form>
            
 

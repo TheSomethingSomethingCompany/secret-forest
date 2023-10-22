@@ -10,8 +10,6 @@ function OccupationTags() {
             if (!currentTags.includes(inputValue)) {
                 setTags(prevTags => {
                 const updatedTags = [...prevTags, inputValue];
-                console.log("inputValue:", inputValue);  // Debugging line
-                console.log("Updated Tags:", updatedTags);  // Debugging line
                 return updatedTags;
                 });
                 console.log("After:");
@@ -36,7 +34,7 @@ function OccupationTags() {
     return ( 
         <> { /* Esnure the input field and the tags container are stacked */ }
             <input type="text" className="text-black w-1/2" onKeyDown={addTag} value={inputValue} onInput={onInputChange}></input>
-            <div id = "tags-container" className="flex flex-wrap w-1/2 bg-green-500" id="tagsContainer">
+            <div id = "tags-container" className="flex flex-wrap w-1/2 bg-green-500"> {/* flex-wrap on the tags container to ensure tags themselves don't overflow */}
                 { 
                     currentTags.map((tag) => 
                         <div key={tag} className="m-1 p-2 bg-blue-500 rounded-full flex justify-center items-center flex-nowrap">
