@@ -10,10 +10,28 @@ function CreateProfileForm() {
     /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
     /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
 
+    function handleSubmit(event) {
+        event.preventDefault();
+    
+        const formData = new FormData();
+        
+        // Collect all form fields
+        formData.append('fullName', event.target.fullName.value);
+        formData.append('country', event.target.country.value);
+        formData.append('address', event.target.address.value);
+        formData.append('bio', event.target.bio.value);
+        formData.append('occupationTags', JSON.stringify(currentTags)); // Send tags as a JSON string
+        
+        // Collect image data
+        const imageInput = document.querySelector('input[type="file"]');
+        if (imageInput.files[0]) {
+            formData.append('profileImage', imageInput.files[0]);
+        }
+    };
 
     return (
 
-            <form action="" method="post" className = "w-3/4 h-3/4 flex flex-col bg-red-500">
+            <form action="" method="post" className = "w-3/4 h-3/4 flex flex-col bg-red-500" onSubmit={handleSubmit}>
 
                 <div className = "w-full flex justify-center"><h1 className = "text-[5vh]">Create Profile</h1></div>
                 <div className = "flex flex-grow w-full h-full">
