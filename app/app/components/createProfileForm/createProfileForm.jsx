@@ -4,48 +4,29 @@ import OccupationTags from '../occupationTags/OccupationTags'
 function CreateProfileForm() {
     return (
 
-            <form action="" method="post" className = "w-1/2 h-1/2 flex flex-col justify-center items-center bg-red-500">
+            <form action="" method="post" className = "w-1/2 h-1/2  flex flex-col justify-center space-between bg-red-500">
 
-            <div className = "flex">
-            <div id = "labelsCreateProfile">
-                <label>Full Name: </label>
-                <br></br>
-                <br></br>
-                <label>Country Of Residence</label>
-                <br></br>
-                <br></br>
-                <label>Occupation Tags</label>
-                <br></br>
-                <br></br>
-                <label>Address</label>
-                <br></br>
-                <br></br>
-                <label>Bio</label>
-            </div>
-                
-            <div id = "inputsCreateProfile">
-                <input type="text" className = "text-black"  name="fullName" required />
-                <br></br>
-                <br></br>
-
-                <input type="text" className = "text-black"  name="country" required />
-               
-                <br></br>
-                <br></br>
-    
-                <OccupationTags />
-                <br></br>
-                <br></br>
-                
-
-                <input type="text" className = "text-black"  name="address" />
-                <br></br>
-                <br></br>
-                
-                <textarea className = "text-black" name="bio" required></textarea>
-                
-            </div>
+            <div className = "flex h-full space-x-10"> {/* Ensures the labels div and the inputs div are side-by-side */}
+                <div id = "labels" className = "flex flex-col h-full"> {/*Ensures all labels are stacked, not side by side */}
+                    <FlexLabel labelVal = "Full Name: "/> 
+                    <FlexLabel labelVal = "Country Of Residence: "/> 
+                    <FlexLabel labelVal = "Address: "/> 
+                    <FlexLabel labelVal = "Occupation Tags: "/> 
+                    <FlexLabel labelVal = "Bio: "/> 
                 </div>
+                    
+                <div id = "inputs" className = "h-full flex flex-col"> {/*Ensures all inputs are stacked, not side by side */}
+                    <FlexTextInput inputName ="fullName"/>
+                    <FlexTextInput inputName ="country"/>
+                    <FlexTextInput inputName ="address"/>
+                    <div className = "flex-grow">
+                        <OccupationTags />
+                    </div>
+                    <div className = "flex-grow">
+                        <textarea className = "text-black" name="bio" required></textarea> 
+                    </div>
+                </div>
+            </div>
                 
                 <input type="submit" value="Submit" />
                 <button id="goBack">Go Back</button>
@@ -54,5 +35,21 @@ function CreateProfileForm() {
 
     );
 }
+
+function FlexLabel(props){
+    return(
+        <div className = "flex-grow">
+            <label>{props.labelVal}</label>
+        </div>);
+
+    }
+
+    function FlexTextInput(props){
+        return(
+            <div className = "flex-grow">
+                <input type = "text" className = "text-black" name = {props.inputName}></input>
+            </div>
+        )
+    }
 
 export default CreateProfileForm;

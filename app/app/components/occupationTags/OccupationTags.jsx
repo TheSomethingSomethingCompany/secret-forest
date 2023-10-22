@@ -34,13 +34,13 @@ function OccupationTags() {
     };
 
     return ( 
-        <div className="flex">
+        <div className="flex"> { /* Esnure the input field and the tags container are side-by-side */ }
             <input type="text" className="text-black" onKeyDown={addTag} value={inputValue} onInput={onInputChange}></input>
-            <div className="bg-green-500 flex ml-5 " id="tagsContainer">
+            <div className="bg-green-500 flex ml-5 flex-wrap" id="tagsContainer">
                 { 
                     currentTags.map((tag) => 
-                        <div key={tag} className="m-1 p-2 bg-blue-500 rounded-full flex justify-center items-center">
-                            <p>{tag}</p>
+                        <div key={tag} className="m-1 p-2 bg-blue-500 rounded-full flex justify-center items-center flex-nowrap">
+                            <p className = "whitespace-pre">{tag}</p>
                             <button tag-association={tag} onMouseDown = {removeTag} className = "ml-1 text-red-500">x</button>
                         </div>)
                 }
