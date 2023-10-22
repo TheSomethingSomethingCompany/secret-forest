@@ -62,7 +62,7 @@ function ProfilePicture(){
         }
     };
     return(
-        <div id = "pfp" className = "w-1/2 h-full flex flex-col justify-center items-center">
+        <div id = "pfp" className = "w-1/2 h-full flex flex-col justify-center items-center bg-orange-500">
             <img src={image} alt="Profile Preview" className="rounded-full w-[20vw] h-[20vw] object-cover mb-4"/>
             <input type="file" accept="image/*" onChange={handleImageChange}/>
         </div>
