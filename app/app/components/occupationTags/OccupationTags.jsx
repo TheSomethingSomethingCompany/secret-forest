@@ -6,9 +6,10 @@ function OccupationTags({currentTags, setTags}) { /* receive currentTags and set
     const addTag = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
-            if (!currentTags.includes(inputValue)) {
+            const value = inputValue.trim();
+            if (!currentTags.includes(value) && value!== "") {
                 setTags(prevTags => {
-                const updatedTags = [...prevTags, inputValue];
+                const updatedTags = [...prevTags, value];
                 return updatedTags;
                 });
                 console.log("After:");
