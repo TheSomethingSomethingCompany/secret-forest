@@ -34,18 +34,18 @@ function OccupationTags() {
     };
 
     return ( 
-        <div className="flex"> { /* Esnure the input field and the tags container are side-by-side */ }
+        <> { /* Esnure the input field and the tags container are stacked */ }
             <input type="text" className="text-black w-1/2" onKeyDown={addTag} value={inputValue} onInput={onInputChange}></input>
-            <div className="bg-green-500 flex ml-5 flex-wrap" id="tagsContainer">
+            <div id = "tags-container" className="flex flex-wrap w-1/2 bg-green-500" id="tagsContainer">
                 { 
                     currentTags.map((tag) => 
                         <div key={tag} className="m-1 p-2 bg-blue-500 rounded-full flex justify-center items-center flex-nowrap">
-                            <p className = "whitespace-pre">{tag}</p>
+                            <p className = "whitespace-pre-wrap break-words">{tag}</p> {/* whitespace-pre-wrap allows breaks in a <p> element on a space when its about to overflow. break-words allows words themselves to break before they overflow. Breaking of whitespace is prioritized by the browser when combining both of these classes */ }
                             <button tag-association={tag} onMouseDown = {removeTag} className = "ml-1 text-red-500">x</button>
                         </div>)
                 }
             </div>
-        </div>
+        </>
     );
 }
 

@@ -6,7 +6,7 @@ function CreateProfileForm() {
 
             <form action="" method="post" className = "w-1/2 h-1/2 flex flex-col bg-red-500">
 
-      
+            <div className = "w-full flex justify-center"><h1 className = "text-[5vh]">Create Profile</h1></div>
             <div id = "labels-and-inputs-container" className = "flex h-full w-full flex-col "> {/* Ensures the labels div and the inputs div are side-by-side */}
                 <FlexLabelAndTextInput labelVal = "Full Name" inputName = "fullName"/> 
                 <FlexLabelAndTextInput labelVal = "Country Of Residence" inputName="country"/> 
