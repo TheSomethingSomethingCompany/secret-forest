@@ -35,7 +35,7 @@ function OccupationTags() {
 
     return ( 
         <div className="flex"> { /* Esnure the input field and the tags container are side-by-side */ }
-            <input type="text" className="text-black" onKeyDown={addTag} value={inputValue} onInput={onInputChange}></input>
+            <input type="text" className="text-black w-1/2" onKeyDown={addTag} value={inputValue} onInput={onInputChange}></input>
             <div className="bg-green-500 flex ml-5 flex-wrap" id="tagsContainer">
                 { 
                     currentTags.map((tag) => 

@@ -12,7 +12,7 @@ function CreateProfileForm() {
                 <FlexLabelAndTextInput labelVal = "Country Of Residence" inputName="country"/> 
                 <FlexLabelAndTextInput labelVal = "Address" inputName = "address"/> 
                 <FlexLabelAndOtherInput labelVal = "Occupation Tags"> <OccupationTags/></FlexLabelAndOtherInput> 
-                <FlexLabelAndOtherInput labelVal = "Bio"> <textarea className = "text-black" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
+                <FlexLabelAndOtherInput labelVal = "Bio"> <textarea className = "text-black w-1/2 h-[20vh] resize-y" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
             </div>
 
                 
@@ -26,8 +26,8 @@ function CreateProfileForm() {
 
 function FlexLabelAndOtherInput(props){
     return(
-        <div className = "flex-grow">
-            <label>{props.labelVal}</label>
+        <div className = "flex-grow w-full bg-yellow-500">
+            <label className = "text-lg">{props.labelVal}</label>
             <br></br>
             {props.children}
         </div>);
@@ -35,10 +35,10 @@ function FlexLabelAndOtherInput(props){
 
 function FlexLabelAndTextInput(props){
     return(
-        <div className = "flex-grow">
-            <label>{props.labelVal}</label>
+        <div className = "flex-grow w-full bg-yellow-500">
+            <label className="text-lg"> {props.labelVal} </label>
             <br></br>
-            <input type = "text" className = "text-black" name = {props.inputName}></input>
+            <input type = "text" className = "text-black w-1/2" name = {props.inputName}></input>
         </div>);
 
     }
