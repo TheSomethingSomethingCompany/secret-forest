@@ -4,6 +4,13 @@ import defaultProfilePicture from '../../images/defaultProfilePicture.jpg'
 import {useState} from "react"
 
 function CreateProfileForm() {
+    // Inside CreateProfileForm component
+
+    const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
+    /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
+    /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
+
+
     return (
 
             <form action="" method="post" className = "w-3/4 h-3/4 flex flex-col bg-red-500">
@@ -14,7 +21,7 @@ function CreateProfileForm() {
                         <FlexLabelAndTextInput labelVal = "Full Name" inputName = "fullName"/> 
                         <FlexLabelAndTextInput labelVal = "Country Of Residence" inputName="country"/> 
                         <FlexLabelAndTextInput labelVal = "Address" inputName = "address"/> 
-                        <FlexLabelAndOtherInput labelVal = "Occupation Tags"> <OccupationTags/></FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Occupation Tags"> <OccupationTags currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
                         <FlexLabelAndOtherInput labelVal = "Bio"> <textarea className = "text-black w-1/2 h-[18vh] resize-y" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
                     </div>
                     <ProfilePicture></ProfilePicture>

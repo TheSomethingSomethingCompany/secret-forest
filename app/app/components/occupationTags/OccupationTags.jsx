@@ -1,7 +1,6 @@
 import { useState } from 'react'
-function OccupationTags() {
-
-    const [currentTags, setTags] = useState([]);
+function OccupationTags({currentTags, setTags}) { /* receive currentTags and setTags as props from CreateProfileForm */
+    
     const [inputValue, setInputValue] = useState('');
 
     const addTag = (event) => {
