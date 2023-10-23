@@ -103,3 +103,31 @@
 ## Peer Review
 ![indivWeek6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/069e0fc6-b0b8-400f-836d-ce9b66ea6d27)
 
+# Personal Log - Yafei Sedlacek
+**Week**: 7
+**Work Period**: `16-10-2023` - `22-10-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Create general UI design of the search bar (No actual functionality yet, just UI design that still needs implementation)
+  - make a search bar
+  - search button
+  - dropdown button for filtering search 
+- Figure out how to use next js and tailwind css properly for the search bar
+
+## Active Tasks
+
+-  Create general UI design of the search bar
+  
+## Status of Tasks
+
+-  Create general UI design of the search bar (completed)
+  -  NOTE: As of this log update I have not yet made a pull request yet but code is done. I just need to do a minor adjustment.
+     
+
+## Peer Review
+
+![2023-10-22](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/63b84431-3a89-4033-9170-0af24a1692e9)
+
+
