@@ -95,3 +95,32 @@
 
 ## Peer Review
 ![week 6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/af0f4809-9982-44a0-adae-aded25869b4d)
+
+-----------------
+
+**Week**: 7
+
+**Work Period**: 16 October 2023 - 22 October 2023
+
+## Individual Objectives
+
+- I was in charge of developing the landing page for our first sprint. I had to make sure that implementing the landing page caused no issues in terms of page routing with the already provided pages so far. I was also assigned the task to work on making the navbar component which will be used for most our pages. 
+
+
+## Active Tasks
+
+- Develop landing page
+- Develop Nav bar component
+- Learn associated code and css that came up when developing the landing page
+- Assigning tasks for second sprint
+
+## Status of Tasks
+
+- Develop landing page -- Completed
+- Develop Nav bar component -- In Progress
+- Learn associated code and css that came up when developing the landing page -- In Progress
+- Assigning tasks for second sprint -- Completed
+
+## Peer Review
+
+![week 7](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/c5ada3b8-ce0f-49bf-bdfe-80fa6a6ceff3)
