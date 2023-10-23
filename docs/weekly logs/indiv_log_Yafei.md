@@ -128,6 +128,6 @@
 
 ## Peer Review
 
-![2023-10-22](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/63b84431-3a89-4033-9170-0af24a1692e9)
+![2023-10-22 (1)](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/e9fa53ab-7631-406a-84b0-4469a06c7ade)
 
 
