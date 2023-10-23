@@ -111,3 +111,36 @@
 - Update and Maintain Kanban Board - `COMPLETED`
 
 <img width="566" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/4151028f-d90f-49c1-af70-53536b879177">
+
+# Personal Log - Arsh Bhat
+
+**Week**: 7
+**Week**: `16-10-2023` - `22-10-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Learn Tech Stack
+  - CSS
+  - JavaScript
+  - Next.js
+- Create Profile Page's Back-end Logic
+  - Write code to insert input data from Profile Page to the Database
+- Update and Maintain Kanban Board
+
+## Active Tasks
+
+- Learn Tech Stack
+- Create Profile Page's Back-end Logic
+  - Write code to insert input data from Profile Page to the Database
+- Update and Maintain Kanban Board
+
+## Status of Tasks
+
+- Learn Tech Stack - `IN-PROGRESS`
+  - CSS `IN-PROGRESS`
+  - JavaScript - `Completed`
+  - Next.js - `IN-PROGRESS`
+- Create Profile Page's Back-end Logic - `COMPLETED`
+  - Write code to insert input data from Profile Page to the Database - `COMPLETED`
+- Update and Maintain Kanban Board - `COMPLETED`
