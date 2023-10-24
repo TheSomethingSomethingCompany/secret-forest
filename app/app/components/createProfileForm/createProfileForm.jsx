@@ -30,9 +30,11 @@ function CreateProfileForm() {
         }
     };
 
+    
+
     return (
 
-            <form action="" method="post" className = "w-3/4 h-3/4 flex flex-col bg-red-500" onSubmit={handleSubmit}>
+            <form action="" method="post" className = "w-full h-full flex flex-col bg-red-500" onSubmit={handleSubmit}>
 
                 <div className = "w-full flex justify-center"><h1 className = "text-[5vh]">Create Profile</h1></div>
                 <div className = "flex flex-grow w-full h-full">
