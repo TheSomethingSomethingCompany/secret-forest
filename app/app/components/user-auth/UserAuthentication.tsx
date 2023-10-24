@@ -2,9 +2,12 @@
 
 import React, { useState } from "react";
 
-export default function UserAuthentication() {
-  const [showSignIn, setShowSignIn] = useState(true);
+export default function UserAuthentication({bool}:{bool:any}) {
+  console.log(bool);
+  const temp = bool;
+  const [showSignIn, setShowSignIn] = useState(temp);
   return showSignIn ? (
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
     <section className="flex justify-evenly">
       <div>
         <h1 className="font-bold text-2xl">Sign In</h1>
@@ -22,7 +25,9 @@ export default function UserAuthentication() {
         <button onClick={() => setShowSignIn(!showSignIn)}>Sign Up</button>
       </div>
     </section>
+    </div>
   ) : (
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
     <section className="flex flex-row-reverse justify-evenly">
       <div>
         <h1 className="font-bold text-2xl">Sign Up</h1>
@@ -44,5 +49,6 @@ export default function UserAuthentication() {
         <button onClick={() => setShowSignIn(!showSignIn)}>Sign In</button>
       </div>
     </section>
+    </div>
   );
 }
