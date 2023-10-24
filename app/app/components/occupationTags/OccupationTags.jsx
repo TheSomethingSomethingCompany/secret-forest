@@ -1,5 +1,5 @@
 import { useState } from 'react'
-function OccupationTags({currentTags, setTags}) { /* receive currentTags and setTags as props from CreateProfileForm */
+function OccupationTags({currentTags, setTags, inputWidth}) { /* receive currentTags and setTags as props from CreateProfileForm */
     
     const [inputValue, setInputValue] = useState('');
 
@@ -33,7 +33,7 @@ function OccupationTags({currentTags, setTags}) { /* receive currentTags and set
 
     return ( 
         <> { /* Esnure the input field and the tags container are stacked */ }
-            <input type="text" className="text-black w-1/2" onKeyDown={addTag} value={inputValue} onInput={onInputChange}></input>
+            <input type="text" className= {`text-black ${inputWidth}`} onKeyDown={addTag} value={inputValue} onInput={onInputChange}></input> {/*Template literal ` ` is just a string allows for ${}, and anything inside ${} is a javascript expression whose return value is returned and placed within the template literal. Similar to format strings */}
             <div id = "tags-container" className="flex flex-wrap mt-2"> {/* flex-wrap on the tags container to ensure tags themselves don't overflow */}
                 { 
                     currentTags.map((tag) => 

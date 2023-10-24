@@ -1,24 +1,10 @@
-"use client"
-import CreateProfileForm from "./components/createProfileForm/createProfileForm";
-import React, { useEffect } from 'react';
+import Image from "next/image";
+import UserAuthentication from "./components/user-auth/UserAuthentication";
 
 export default function Home() {
-   
-    useEffect(() => {
-      document.body.classList.add('h-full');
-      
-      // Clean up function
-      return () => {
-        document.body.classList.remove('your-class-name');
-      };
-    }, []);
-
   return (
-
-    <main className = "w-full h-full flex justify-center items-center bg-blue-500">
-      <CreateProfileForm />
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <UserAuthentication />
     </main>
-    
   );
 }
-
