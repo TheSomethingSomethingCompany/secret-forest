@@ -38,9 +38,9 @@ function CreateProfileForm() {
 
         <form action="" method="post" className="relative overflow-y-auto w-full h-screen" onSubmit={handleSubmit}>
         
-                <div className = "flex w-screen h-[100vh] overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500">
+                <div className = "flex mobile:items-center mobile:flex-col-reverse tablet:flex-row desktop:flex-row w-screen h-[100vh] overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500">
                     <div id = "labels-and-inputs-container" className = "flex h-[100vh] w-1/2 flex-col items-center"> {/* Ensures the labels div and the inputs div are side-by-side */}
-                        <div className = "w-3/4 mb-10 mt-20"><h1 className = "mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Create Your Profile</h1> </div>
+                        <div className = "w-3/4 mb-10 mt-20"><h1 className = "mobile:hidden tablet:block desktop:block mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Create Your Profile</h1> </div>
                         <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" required = {true}/> 
                         <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" required = {true} /> 
                         <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" required = {true}  /> 
@@ -49,10 +49,12 @@ function CreateProfileForm() {
                       
                     </div>
                     <div id = "pfp-container" className = "w-1/2 h-full flex flex-col items-center">
-                        <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Add A Profile Picture</h1> </div>
+                        <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "mobile:hidden tablet:block desktop:block mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Add A Profile Picture</h1> </div>
                         <ProfilePicture></ProfilePicture>
                     </div>
+                    <h1 className = "mobile:block tablet:hidden desktop:hidden mobile:text-[3.5vw]"> Create Your Profile </h1>
                  </div>
+            
                 
                 <div id = "form-buttons" className = "flex justify-between w-full">
                     <button id="go-back" className = "bg-purple-500">Go Back</button>
