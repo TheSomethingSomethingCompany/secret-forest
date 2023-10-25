@@ -99,17 +99,20 @@ function FlexLabelAndTextInput(props){
             }
         };
     
-        
+        const handleEditButtonClick = function(e){
+            e.preventDefault();
+            document.getElementById("edit-pfp").click();
+        };
     
         return (
-            <div id="edit-pfp" className="w-full h-fullpx flex flex-col justify-center items-center">
+            <div id="pfp-container" className="w-full h-fullpx flex flex-col justify-center items-center">
                 <div className="relative w-[20vw] h-[20vw]" style = { {maxWidth: '300px', maxHeight: '300px'} }>
                     <Image src={image} alt="Profile Preview" layout="fill" objectFit="cover" className="rounded-full" />
                 </div>
-                <div id = "edit-button-container" className = "relative w-[2vw] h-[2vw] max-h-[70px] max-w-[70px]">
-                <button><Image src = {editIcon} layout = "fill" objectFit = "cover" alt = ""></Image></button>
+                <div id = "edit-pfp-button-container" className = "relative w-[2vw] h-[2vw] max-h-[70px] max-w-[70px]">
+                <button id = "edit-pfp-button"><Image src = {editIcon} layout = "fill" objectFit = "cover" alt = "Edit" onClick = {handleEditButtonClick}></Image></button>
                 </div>
-                <input id="pfp" type="file" accept="image/*" onChange={handleImageChange} className = "hidden" />
+                <input id="edit-pfp" type="file" accept="image/*" onChange={handleImageChange} className = "hidden" />
             </div>
         );
     }
