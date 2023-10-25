@@ -1,7 +1,9 @@
 "use client";
 import OccupationTags from '../occupationTags/OccupationTags'
 import defaultProfilePicture from '../../images/defaultProfilePicture.jpg'
+import editIcon from '../../images/pencil-solid.svg'
 import {useState, useEffect} from "react"
+
 import Image from "next/image"
 
 function CreateProfileForm() {
@@ -34,20 +36,19 @@ function CreateProfileForm() {
 
     return (
 
-            <form action="" method="post" className = "w-full h-full flex flex-col" onSubmit={handleSubmit}>
-
-                <div className = "w-full flex justify-center"></div>
-                <div className = "flex flex-grow w-full h-full">
-                    <div id = "labels-and-inputs-container" className = "flex h-full w-1/2 flex-col items-center bg-blue-500"> {/* Ensures the labels div and the inputs div are side-by-side */}
-                        <div className = "w-3/4 mb-10 mt-20"><h1 className = "text-[5vh] font-semibold">Create Your Profile</h1> </div>
+        <form action="" method="post" className="relative overflow-y-auto w-full h-screen" onSubmit={handleSubmit}>
+        
+                <div className = "flex w-screen h-[100vh] overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500">
+                    <div id = "labels-and-inputs-container" className = "flex h-[100vh] w-1/2 flex-col items-center"> {/* Ensures the labels div and the inputs div are side-by-side */}
+                        <div className = "w-3/4 mb-10 mt-20"><h1 className = "text-[5vw] font-semibold">Create Your Profile</h1> </div>
                         <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" required = {true}/> 
                         <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" required = {true} /> 
                         <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" required = {true}  /> 
-                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4" inputHeight="h-1/4" cornerDesign = "rounded-md" textSize = "text-xl" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4" inputHeight="h-3/4" cornerDesign = "rounded-md" textSize = "text-xl" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
                         <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "text-black w-3/4 h-[18vh] rounded-md text-xl" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
                     </div>
-                    <div className = "w-1/2 bg-green-500 flex flex-col items-center">
-                        <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "text-[5vh] font-semibold">Add A Profile Picture</h1> </div>
+                    <div id = "pfp-container" className = "w-1/2 h-full flex flex-col items-center">
+                        <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "text-[5vw] font-semibold">Add A Profile Picture</h1> </div>
                         <ProfilePicture></ProfilePicture>
                     </div>
                  </div>
@@ -64,8 +65,8 @@ function CreateProfileForm() {
 
 function FlexLabelAndOtherInput(props){
     return(
-        <div className = "flex-grow w-3/4">
-            <label className = "text-[1.25vw]">{props.labelVal}</label>
+        <div className = "w-3/4 mt-10 mb-10">
+            <label className = "text-[1.5vw]">{props.labelVal}</label>
             <br></br>
             {props.children}
         </div>);
@@ -73,17 +74,16 @@ function FlexLabelAndOtherInput(props){
 
 function FlexLabelAndTextInput(props){
     return(
-        <div className = "flex-grow w-3/4">
-            <label className="text-[1.25vw]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
+        <div className = "w-3/4 mt-10 mb-10">
+            <label className="text-[1.5vw]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
             <br></br>
-            <input type = "text" className = "text-black w-3/4 h-1/4 rounded-md text-xl" name = {props.inputName} required = {props.required}></input>
+            <input type = "text" className = "text-black w-3/4 h-3/4 rounded-md text-xl" name = {props.inputName} required = {props.required}></input>
         </div>);
 
     }
 
     function ProfilePicture() {
         const [image, setImage] = useState(defaultProfilePicture);
-        const [dimensions, setDimensions] = useState({ width: '20vw', height: '20vw'});
     
         const handleImageChange = (e) => {
             const file = e.target.files[0];
@@ -96,35 +96,17 @@ function FlexLabelAndTextInput(props){
             }
         };
     
-        useEffect(() => {
-            function updateDimensions() {
-                const container = document.getElementById('edit-pfp');
-    
-                const width = container.offsetWidth;
-                const height = container.offsetHeight;
-    
-                const size = Math.min(width, height) * 0.5; // 50% of the smallest dimension
-                const limitedSize = Math.min(size, 400); // Limit to 400px
-    
-                setDimensions({ width: `${limitedSize}px`, height: `${limitedSize}px` });
-            }
-    
-            // Initially set dimensions
-            updateDimensions();
-    
-            // Add event listener to window resize event
-            window.addEventListener('resize', updateDimensions);
-    
-            // Cleanup listener on component unmount
-            return () => window.removeEventListener('resize', updateDimensions);
-        }, []);
+        
     
         return (
-            <div id="edit-pfp" className="w-full h-3/4 flex flex-col justify-center items-center bg-green-500">
-                <div className="relative" style={dimensions}>
+            <div id="edit-pfp" className="w-full h-fullpx flex flex-col justify-center items-center">
+                <div className="relative w-[20vw] h-[20vw]" style = { {maxWidth: '300px', maxHeight: '300px'} }>
                     <Image src={image} alt="Profile Preview" layout="fill" objectFit="cover" className="rounded-full" />
                 </div>
-                <input id="pfp" type="file" accept="image/*" onChange={handleImageChange} />
+                <div id = "edit-button-container" className = "relative w-[2vw] h-[2vw] max-h-[70px] max-w-[70px]">
+                <button><Image src = {editIcon} layout = "fill" objectFit = "cover" alt = ""></Image></button>
+                </div>
+                <input id="pfp" type="file" accept="image/*" onChange={handleImageChange} className = "hidden" />
             </div>
         );
     }
