@@ -44,8 +44,9 @@ function CreateProfileForm() {
                         <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" required = {true}/> 
                         <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" required = {true} /> 
                         <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" required = {true}  /> 
-                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4" inputHeight="h-3/4" cornerDesign = "rounded-md" textSize = "text-xl" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-                        <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "text-black w-3/4 h-[18vh] rounded-md text-xl" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4" inputHeight="h-[4vw] max-h-[45px]" cornerDesign = "rounded-md" textSize = "text-xl" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "text-black w-3/4 h-[18vw] rounded-md text-xl" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
+                      
                     </div>
                     <div id = "pfp-container" className = "w-1/2 h-full flex flex-col items-center">
                         <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "text-[5vw] font-semibold">Add A Profile Picture</h1> </div>
@@ -65,7 +66,7 @@ function CreateProfileForm() {
 
 function FlexLabelAndOtherInput(props){
     return(
-        <div className = "w-3/4 mt-10 mb-10">
+    <div className = "w-3/4 mt-10 mb-10 flex flex-col"> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
             <label className = "text-[1.5vw]">{props.labelVal}</label>
             <br></br>
             {props.children}
@@ -77,7 +78,7 @@ function FlexLabelAndTextInput(props){
         <div className = "w-3/4 mt-10 mb-10">
             <label className="text-[1.5vw]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
             <br></br>
-            <input type = "text" className = "text-black w-3/4 h-3/4 rounded-md text-xl" name = {props.inputName} required = {props.required}></input>
+            <input type = "text" className = "text-black w-3/4 h-[4vw] max-h-[45px] rounded-md text-xl" name = {props.inputName} required = {props.required}></input>
         </div>);
 
     }
