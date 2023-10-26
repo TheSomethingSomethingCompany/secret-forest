@@ -1,15 +1,28 @@
-CREATE TABLE member (
-  "email" text PRIMARY KEY NOT NULL,
-  "name" text NOT NULL,
-  "password" text NOT NULL,
-  "isOrganization" bool DEFAULT false
-);
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE TABLE "security_question" (
-  "id" uuid PRIMARY KEY,
-  "memberEmail" text NOT NULL,
-  "question" text NOT NULL,
-  "answer" text NOT NULL
-);
+CREATE TABLE
+  member (
+    id uuid PRIMARY KEY UNIQUE DEFAULT uuid_generate_v4 (),
+    name text NOT NULL,
+    username text NOT NULL UNIQUE,
+    email text NOT NULL UNIQUE,
+    password text NOT NULL,
+    isOrganization boolean DEFAULT false
+  );
 
-ALTER TABLE "security_question" ADD FOREIGN KEY ("memberEmail") REFERENCES "member" ("email");
+CREATE TABLE
+  security_question (
+    id uuid PRIMARY KEY,
+    memberId uuid NOT NULL REFERENCES member (id),
+    question text NOT NULL,
+    answer text NOT NULL
+  );
+
+CREATE VIEW
+  usign AS
+SELECT
+  username,
+  email,
+  password
+FROM
+  member;

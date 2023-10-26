@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model member {
+  id                String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name              String
+  username          String              @unique
+  email             String              @unique
+  password          String
+  isorganization    Boolean?            @default(false)
+  security_question security_question[]
+}
+
+model security_question {
+  id       String @id @db.Uuid
+  memberid String @db.Uuid
+  question String
+  answer   String
+  member   member @relation(fields: [memberid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
