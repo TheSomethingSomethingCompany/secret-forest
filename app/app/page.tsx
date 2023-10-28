@@ -1,7 +1,7 @@
 import Image from "next/image";
 import UserAuthentication from "./components/user-auth/UserAuthentication";
 import LandingPage from "./components/landing-page/LandingPage";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar3";
 
 export default function Home() {
   return (

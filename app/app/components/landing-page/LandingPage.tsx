@@ -2,11 +2,13 @@
 
 import React from "react"
 import Link from "next/link"
+import Navbar from "../Navbar/Navbar"
 
 export default function LandingPage(){
 
     return (
         <>
+        <Navbar/>
             <h1>Welcome to the team 10 project!</h1>
             <h1>Please sign up, or if you have an account, sign in</h1>
 
