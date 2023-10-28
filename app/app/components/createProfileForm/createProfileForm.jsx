@@ -111,7 +111,7 @@ function FlexLabelAndTextInput(props){
     
         return (
             <div id="pfp-container" className="w-full h-fullpx flex flex-col justify-center items-center">
-                <div className="relative w-[20vw] h-[20vw]" style = { {maxWidth: '300px', maxHeight: '300px'} }>
+                <div className="relative w-[20vw] h-[20vw]" style = { {maxWidth: '300px', maxHeight: '300px', minWidth:'10rem', minHeight: '10rem'} }>
                     <Image src={image} alt="Profile Preview" layout="fill" objectFit="cover" className="rounded-full" />
                 </div>
                 <div id = "edit-pfp-button-container" className = "relative w-[2vw] h-[2vw] max-h-[70px] max-w-[70px]">
