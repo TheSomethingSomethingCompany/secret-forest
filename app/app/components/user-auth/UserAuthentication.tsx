@@ -31,8 +31,6 @@ export default function UserAuthentication({bool}:{bool:any}) {
         <p>Start your journey with us today!</p>
         <button onClick={() => setShowSignIn(!showSignIn)}>Sign Up</button>
       </div>
-      <Link href="/" onClick={doaction}>hello</Link>
-
     </section>
     </div>
     <Navbar/>
