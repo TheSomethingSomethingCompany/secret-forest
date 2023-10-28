@@ -10,6 +10,23 @@ CREATE TABLE
     isOrganization boolean DEFAULT false
   );
 
+CREATE TABLE profile (
+    "memberID" uuid PRIMARY KEY,
+    "country" text NOT NULL,
+    "address" text NOT NULL,
+    "bio" text,
+    FOREIGN KEY ("memberID") REFERENCES member("id")
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE "security_question" (
+  "id" uuid PRIMARY KEY,
+  "memberEmail" text NOT NULL,
+  "question" text NOT NULL,
+  "answer" text NOT NULL
+);
+
 CREATE TABLE
   security_question (
     id uuid PRIMARY KEY,
