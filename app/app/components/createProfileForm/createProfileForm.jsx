@@ -50,8 +50,8 @@ function CreateProfileForm() {
                         <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" required = {true}/> 
                         <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" required = {true} /> 
                         <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" required = {true}  /> 
-                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4 max-w-[500px] min-w-[15rem]" inputHeight="h-[3vw] max-h-[45px] min-h-[2rem]" cornerDesign = "rounded-md" textSize = "mobile:text-[1.25vw] tablet:text-[1.25vw] desktop:text-[20px]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-                        <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[500px] h-[18vw] rounded-md mobile:text-[1.25vw] tablet:text-[1.25vw] desktop:text-[20px]" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4 max-w-[500px] min-w-[15rem]" inputHeight="h-[3vw] max-h-[45px] min-h-[2rem]" cornerDesign = "rounded-md" textSize = "mobile:text-[1rem] tablet:text-[1.25vw] desktop:text-[20px]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[500px] h-[18vw] rounded-md mobile:[1.25rem] tablet:text-[1.25vw] desktop:text-[20px]" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
                     </div>
                     
                   
@@ -85,7 +85,7 @@ function FlexLabelAndTextInput(props){
         <div className = "w-3/4 mt-10 mb-10 flex flex-col mobile:items-center tablet:items-start desktop:items-start">
             <label className="mobile:text-[1rem] tablet:text-[1.5vw] desktop:text-[2rem]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
             <br></br>
-            <input type = "text" className = "min-w-[15rem] min-h-[2rem] text-black w-3/4 h-[3vw] max-w-[500px] max-h-[45px] rounded-md mobile:text-[1.25vw] tablet:text-[1.25vw] desktop:text-[20px]" name = {props.inputName} required = {props.required}></input>
+            <input type = "text" className = "min-w-[15rem] min-h-[2rem] text-black w-3/4 h-[3vw] max-w-[500px] max-h-[45px] rounded-md mobile:text-[1rem] tablet:text-[1.25vw] desktop:text-[20px]" name = {props.inputName} required = {props.required}></input>
         </div>);
 
     }
