@@ -36,31 +36,34 @@ function CreateProfileForm() {
 
     return (
 
-        <form action="" method="post" className="relative overflow-y-auto w-full h-screen" onSubmit={handleSubmit}>
+        <form action="" method="post" className="relative overflow-y-auto w-full h-screen overflow-y-auto  bg-gradient-to-r from-blue-500 to-green-500" onSubmit={handleSubmit}>
         
-                <div className = "flex mobile:items-center mobile:flex-col-reverse tablet:flex-row desktop:flex-row w-screen h-[100vh] overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500">
+                <div className = "flex mobile:items-center mobile:flex-col-reverse tablet:flex-row desktop:flex-row w-screen h-[100vh]">
                     <div id = "labels-and-inputs-container" className = "flex h-[100vh] w-1/2 flex-col items-center"> {/* Ensures the labels div and the inputs div are side-by-side */}
-                        <div className = "w-3/4 mb-10 mt-20"><h1 className = "mobile:hidden tablet:block desktop:block mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Create Your Profile</h1> </div>
+                        <div className = "w-3/4 mb-10 mt-20 flex mobile:justify-center tablet:justify-start desktop:justify-start"><h1 className = "mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Create Your Profile</h1> </div>
+
+                        <div id = "pfp-container" className = "w-1/2 tablet:hidden desktop:hidden flex flex-col items-center"> {/* On mobile, having this here will ensure it does not take up the full height */}
+                            <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "mobile:hidden tablet:block desktop:block mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Add A Profile Picture</h1> </div>
+                            <ProfilePicture></ProfilePicture>
+                        </div>
+
                         <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" required = {true}/> 
                         <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" required = {true} /> 
                         <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" required = {true}  /> 
                         <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4 max-w-[500px]" inputHeight="h-[3vw] max-h-[45px]" cornerDesign = "rounded-md" textSize = "mobile:text-[1.25vw] tablet:text-[1.25vw] desktop:text-[20px]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
                         <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "text-black w-3/4 max-w-[500px] h-[18vw] rounded-md mobile:text-[1.25vw] tablet:text-[1.25vw] desktop:text-[20px]" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
-                      
                     </div>
-                    <div id = "pfp-container" className = "w-1/2 h-full flex flex-col items-center">
-                        <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "mobile:hidden tablet:block desktop:block mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Add A Profile Picture</h1> </div>
+                    
+                  
+                    <div id = "pfp-container" className = "w-1/2 h-full mobile:hidden tablet:block desktop:block flex flex-col items-center bg-yellow-500">
+                        <div className = "w-3/4 mb-10 mt-20 flex justify-center bg-red-500 mobile:hidden tablet:inline-block desktop:inline-block"><h1 className = "mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Add A Profile Picture</h1> </div>
                         <ProfilePicture></ProfilePicture>
                     </div>
-                    <h1 className = "mobile:block tablet:hidden desktop:hidden mobile:text-[3.5vw]"> Create Your Profile </h1>
-                 </div>
-            
-                
-                <div id = "form-buttons" className = "flex justify-between w-full">
-                    <button id="go-back" className = "bg-purple-500">Go Back</button>
-                    <input type="submit" className = "bg-purple-500 hover:cursor-pointer" value="Submit" />
-                </div>
-            </form>
+                 
+
+               
+                 </div>   
+        </form>
            
 
     );
