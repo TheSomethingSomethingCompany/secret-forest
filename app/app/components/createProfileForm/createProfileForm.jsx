@@ -39,24 +39,23 @@ function CreateProfileForm() {
         <form action="" method="post" className="relative overflow-y-auto w-full h-screen overflow-y-auto  bg-gradient-to-r from-blue-500 to-green-500" onSubmit={handleSubmit}>
         
                 <div className = "flex mobile:items-center mobile:flex-col-reverse tablet:flex-row desktop:flex-row w-screen h-[100vh]">
-                    <div id = "labels-and-inputs-container" className = "flex h-[100vh] w-1/2 flex-col items-center"> {/* Ensures the labels div and the inputs div are side-by-side */}
-                        <div className = "w-3/4 mb-10 mt-20 flex mobile:justify-center tablet:justify-start desktop:justify-start"><h1 className = "mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Create Your Profile</h1> </div>
+                    <div id = "labels-and-inputs-container" className = "flex h-[100vh] w-1/2 flex-col items-center p-2"> {/* Ensures the labels div and the inputs div are side-by-side */}
+                        <div className = "w-full mb-10 mt-20 flex mobile:justify-center tablet:justify-start desktop:justify-start"><h1 className = "font-semibold mobile:text-[5vw] tablet:text-[4rem] desktop:text-[4rem]">Create Your Profile</h1> </div>
 
                         <div id = "pfp-container" className = "w-1/2 tablet:hidden desktop:hidden flex flex-col items-center"> {/* On mobile, having this here will ensure it does not take up the full height */}
-                            <div className = "w-3/4 mb-10 mt-20 flex justify-center"><h1 className = "mobile:hidden tablet:block desktop:block mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Add A Profile Picture</h1> </div>
                             <ProfilePicture></ProfilePicture>
                         </div>
 
                         <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" required = {true}/> 
                         <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" required = {true} /> 
                         <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" required = {true}  /> 
-                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4 max-w-[500px] min-w-[15rem]" inputHeight="h-[3vw] max-h-[45px] min-h-[2rem]" cornerDesign = "rounded-md" textSize = "mobile:text-[1rem] tablet:text-[1.25vw] desktop:text-[20px]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-                        <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[500px] h-[18vw] rounded-md mobile:[1.25rem] tablet:text-[1.25vw] desktop:text-[20px]" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Occupation Tags:"> <OccupationTags inputWidth = "w-3/4 max-w-[35rem] min-w-[15rem]" inputHeight="h-[2.5rem]" cornerDesign = "rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+                        <FlexLabelAndOtherInput labelVal = "Bio:"> <textarea className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio"> </textarea> </FlexLabelAndOtherInput> 
                     </div>
                     
                   
-                    <div id = "pfp-container" className = "w-1/2 h-full mobile:hidden tablet:block desktop:block flex flex-col items-center">
-                        <div className = "w-3/4 mb-10 mt-20 flex justify-center bg-red-500 mobile:hidden tablet:inline-block desktop:inline-block"><h1 className = "mobile:text-[3.5vw] tablet:text-[3.5vw] desktop:text-[50px] font-semibold">Add A Profile Picture</h1> </div>
+                    <div id = "pfp-container" className = "w-1/2 h-full mobile:hidden tablet:block desktop:block flex flex-col items-center p-2">
+                        <div className = "w-full mb-10 mt-20 flex justify-center mobile:hidden tablet:inline-block desktop:inline-block"><h1 className = "text-center tablet:text-[4rem] desktop:text-[4rem] font-semibold">Add A Profile Picture</h1> </div>
                         <ProfilePicture></ProfilePicture>
                     </div>
                  
@@ -71,7 +70,7 @@ function CreateProfileForm() {
 
 function FlexLabelAndOtherInput(props){
     return(
-    <div className = "w-3/4 mt-10 mb-10 flex flex-col mobile:items-center tablet:items-start desktop:items-start"> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
+    <div className = "w-full mt-10 mb-10 flex flex-col mobile:items-center tablet:items-start desktop:items-start"> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
             <label className = "mobile:text-[1rem] tablet:text-[1.5vw] desktop:text-[2rem]">{props.labelVal}</label>
             <br></br>
             {props.children}
@@ -82,10 +81,10 @@ function FlexLabelAndTextInput(props){
 
 
     return(
-        <div className = "w-3/4 mt-10 mb-10 flex flex-col mobile:items-center tablet:items-start desktop:items-start">
+        <div className = "w-full mt-10 mb-10 flex flex-col mobile:items-center tablet:items-start desktop:items-start">
             <label className="mobile:text-[1rem] tablet:text-[1.5vw] desktop:text-[2rem]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
             <br></br>
-            <input type = "text" className = "min-w-[15rem] min-h-[2rem] text-black w-3/4 h-[3vw] max-w-[500px] max-h-[45px] rounded-md mobile:text-[1rem] tablet:text-[1.25vw] desktop:text-[20px]" name = {props.inputName} required = {props.required}></input>
+            <input type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}></input>
         </div>);
 
     }
