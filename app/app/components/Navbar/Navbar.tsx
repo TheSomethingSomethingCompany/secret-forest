@@ -9,7 +9,7 @@ export default function Navbar(){
 
     const [displayIcon,setDisplayIcon]= useState(false);
     
-    var [loggedIn, setLoggedIn] = useState(true);
+    var [loggedIn, setLoggedIn] = useState(false);
 
     if(window.localStorage.getItem("loggedIn")){
         loggedIn = true;
@@ -64,22 +64,22 @@ export default function Navbar(){
 {/* large screen */}
 <ul className="hidden md:flex">
     <li className="mr-2 lg:mr-4 hover:text-teal-300">
-        <Link href="/"><button className="rounded-full font-bold  py-1 px-1 mt-1">Home</button></Link>
+        <Link href="/"><button className="rounded-full font-bold  py-1 px-2 mt-1">Home</button></Link>
     </li>
 
     {loggedIn ? 
     (   <>
         
         <li className="mr-2 lg:mr-4 hover:text-teal-300">
-            <Link href="#"><button className="rounded-full font-bold  py-2 px-1">Requests</button></Link>
+            <Link href="#"><button className="rounded-full font-bold  py-2 px-2">Requests</button></Link>
         </li>
 
         <li className="mr-2 lg:mr-4 hover:text-teal-300">
-            <Link href="#"><button className="rounded-full font-bold  py-2 px-1">Chats</button></Link>
+            <Link href="#"><button className="rounded-full font-bold  py-2 px-2">Chats</button></Link>
         </li>
 
         <li className="mr-2 lg:mr-4 hover:text-teal-300">
-            <Link href="#"><button className="rounded-full font-bold  py-2 px-1">Profile</button></Link>
+            <Link href="#"><button className="rounded-full font-bold  py-2 px-2">Profile</button></Link>
         </li>
 
         <li className="mr-2 lg:mr-4 hover:text-teal-300">
