@@ -71,7 +71,7 @@ function CreateProfileForm() {
 function FlexLabelAndOtherInput(props){
     return(
     <div className = "w-full mt-10 mb-10 flex flex-col mobile:items-center tablet:items-start desktop:items-start"> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
-            <label className = "mobile:text-[1rem] tablet:text-[1.5vw] desktop:text-[2rem]">{props.labelVal}</label>
+            <label className = "mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]">{props.labelVal}</label>
             <br></br>
             {props.children}
         </div>);
@@ -82,7 +82,7 @@ function FlexLabelAndTextInput(props){
 
     return(
         <div className = "w-full mt-10 mb-10 flex flex-col mobile:items-center tablet:items-start desktop:items-start">
-            <label className="mobile:text-[1rem] tablet:text-[1.5vw] desktop:text-[2rem]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
+            <label className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
             <br></br>
             <input type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}></input>
         </div>);
