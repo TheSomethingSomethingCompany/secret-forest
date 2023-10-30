@@ -25,7 +25,7 @@ export default function Navbar(){
     }
 
     function smallLogin(){
-        setLoggedIn(true)
+        // setLoggedIn(true)
         handleIcon()
     }
 
@@ -83,14 +83,14 @@ export default function Navbar(){
         </li>
 
         <li className="mr-2 lg:mr-4 hover:text-teal-300">
-            <Link href="#" onClick={logout}><button className="rounded font-bold bg-teal-600 py-2 px-4">Logout</button></Link>
+            <Link href="/" onClick={logout}><button className="rounded font-bold bg-teal-600 py-2 px-4">Logout</button></Link>
         </li>
 
         </>
     ) 
     : 
     (<li className="mr-2 lg:mr-4 hover:text-teal-300">
-    <a><button className="rounded font-bold bg-teal-600 py-2 px-4" onClick={() => setLoggedIn(true)}>Login</button></a>
+    <a href="/signin"><button className="rounded font-bold bg-teal-600 py-2 px-4">Login</button></a>
         </li>)}
 </ul>
 
@@ -131,14 +131,14 @@ export default function Navbar(){
                 </li>
 
                 <li className="py-5 hover:text-text-teal-300">
-                    <Link href="#" onClick={smallLogout}>Logout</Link>
+                    <Link href="/" onClick={smallLogout}>Logout</Link>
                 </li>
 
                 </>
             )
             :
             (<li className="py-5 hover:text-text-teal-300">
-            <Link href="#" onClick={smallLogin}>Login</Link>
+            <Link href="/signin" onClick={smallLogin}>Login</Link>
                 </li>)}
 
         </ul>
