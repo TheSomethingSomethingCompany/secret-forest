@@ -212,7 +212,9 @@
 - Learn Next.js - `In-Progress`
 - Learn JEST For Testing - `In-Progress`
 
+
 ## Peer Review
+<img width="1079" alt="2023-10-29_21-46-59" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/89119621-03ba-4b66-b7f4-87f9d13db196">
 
 **Week**: 8
 **Work Period**: 23/10/2023 - 29/10/2023
@@ -264,3 +266,4 @@
 - Learn JEST For Testing - `In-Progress`
 
 ## Peer Review
+<img width="1079" alt="week8 peer review" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/2e5a63c0-2fb5-4231-9b65-d29a18cea04e">
