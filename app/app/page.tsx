@@ -5,8 +5,6 @@ import LandingPage from "./components/landing-page/LandingPage";
 export default function Home() {
   return (
     <main className="">
-    {/* <main> */}
-      {/* <Navbar/> */}
       <LandingPage />
     </main>
   );
