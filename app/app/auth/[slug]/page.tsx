@@ -125,7 +125,7 @@ export default function UserAuthentication({ params }: userauthprops) {
         isorganization: false,
       };
 
-      const respose = await fetch(`/auth/${params.slug}/api/create`, {
+      const respose = await fetch(`/auth/${params.slug}/api/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -150,8 +150,8 @@ export default function UserAuthentication({ params }: userauthprops) {
       };
 
       let url = emailRegex.test(values.identifier)
-        ? `/auth/${params.slug}/api/email-signin`
-        : `/auth/${params.slug}/api/username-signin`;
+        ? `/auth/${params.slug}/api/signin/email`
+        : `/auth/${params.slug}/api/signin/username`;
 
       const response = await fetch(url, {
         method: "POST",
