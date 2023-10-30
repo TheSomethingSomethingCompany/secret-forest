@@ -169,3 +169,98 @@
 
 
 
+**Week**: 7
+**Work Period**: 16/10/2023 - 22/10/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Create General Design, Layout, Optimization, and Logic Of Profile Page
+    - All Required Form Fields
+    - Occupation Tags Functionality
+        - Add and Remove Tags
+        - No Duplicates
+        - No Spaces
+    - Allow Upload Of Profile Picture, and Editing Of Profile Picture
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Active Tasks
+
+- Create General Design, Layout, Optimization, and Logic Of Profile Page
+    - All Required Form Fields
+    - Occupation Tags Functionality
+        - Add and Remove Tags
+        - No Duplicates
+        - No Spaces
+    - Allow Upload Of Profile Picture, and Editing Of Profile Picture
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Status of Tasks
+
+- Create General Design, Layout, Optimization, and Logic Of Profile Page - `Complete`
+    - All Required Form Fields
+    - Occupation Tags Functionality
+        - Add and Remove Tags
+        - No Duplicates
+        - No Spaces
+    - Allow Upload Of Profile Picture, and Editing Of Profile Picture
+- Learn Express.js - `In-Progress`
+- Learn Next.js - `In-Progress`
+- Learn JEST For Testing - `In-Progress`
+
+## Peer Review
+
+**Week**: 8
+**Work Period**: 23/10/2023 - 29/10/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Fully Complete and Optimize Design Of Create Profile
+    - Implemented Responsive Layout
+        - Proper Resizing Of Element Widths and Heights Up To A Maximum and Minimum Width/Height
+    - Column Drop Based Responsive Layout As Viewport Width Gets Smaller
+- Update DDL
+    - Update Member and Profile Relation With New Fields
+    - Create Separate Profile_Picture Relation To Store Images
+    - Create User_Tags and Tags Relation
+        - User_Tags contains IDs corresponding to the actual occupation tags stores as text within Tags. This allows for less redundancy and optimizes database further for ensuring that the same tags between members reference the same tag text within the database.
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Active Tasks
+
+- Fully Complete and Optimize Design Of Create Profile
+    - Implemented Responsive Layout
+        - Proper Resizing Of Element Widths and Heights Up To A Maximum and Minimum Width/Height
+    - Column Drop Based Responsive Layout As Viewport Width Gets Smaller
+- Update DDL
+    - Update Member and Profile Relation With New Fields
+    - Create Separate Profile_Picture Relation To Store Images
+    - Create User_Tags and Tags Relation
+        - User_Tags contains IDs corresponding to the actual occupation tags stores as text within Tags. This allows for less redundancy and optimizes database further for ensuring that the same tags between members reference the same tag text within the database.
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Status of Tasks
+
+- Fully Complete and Optimize Design Of Create Profile - `Complete`
+    - Implemented Responsive Layout
+        - Proper Resizing Of Element Widths and Heights Up To A Maximum and Minimum Width/Height
+    - Column Drop Based Responsive Layout As Viewport Width Gets Smaller
+- Update DDL - `Complete`
+    - Update Member and Profile Relation With New Fields
+    - Create Separate Profile_Picture Relation To Store Images
+    - Create User_Tags and Tags Relation
+        - User_Tags contains IDs corresponding to the actual occupation tags stores as text within Tags. This allows for less redundancy and optimizes database further for ensuring that the same tags between members reference the same tag text within the database.
+- Learn Express.js - `In-Progress`
+- Learn Next.js - `In-Progress`
+- Learn JEST For Testing - `In-Progress`
+
+## Peer Review
