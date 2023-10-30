@@ -50,4 +50,5 @@ Satanshu Mishra: `SatanshuMishra`
 ![[Pasted image 20231022173414.png]]
 
 - Burn-Up Chart
-![[Pasted image 20231022173606.png]]
+<img width="1166" alt="week8" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/89c7326d-8900-4e43-8da0-8ad6535b70a2">
+
