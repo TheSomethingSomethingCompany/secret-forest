@@ -18,19 +18,19 @@ services:
       - ./ddl:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: nextjs-docker-postgres
-    environment:
-      - PORT=${PORT}
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    volumes:
-      - ./src:/app/
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: nextjs-docker-postgres
+  #   environment:
+  #     - PORT=${PORT}
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./src:/app/
   pgadmin:
     image: dpage/pgadmin4
     restart: always
