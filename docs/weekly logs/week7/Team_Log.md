@@ -43,7 +43,8 @@ Satanshu Mishra: `SatanshuMishra`
 ## Test Report
 
 - Setting Up Testing Environment - Sample Test
-![[Pasted image 20231022173414.png]]
+<img width="590" alt="2023-10-29_20-14-03" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/476f9ba0-c18c-4b60-a018-f8997836d3f2">
+
 
 - Burn-Up Chart
-![[Pasted image 20231022173606.png]]
+<img width="754" alt="week7_burnup" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/28891b39-93c6-4550-ab7d-814a7ada7137">
