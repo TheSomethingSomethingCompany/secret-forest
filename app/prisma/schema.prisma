@@ -8,19 +8,52 @@ datasource db {
 }
 
 model member {
-  id                String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  memberID          String              @id @db.Uuid
   name              String
+  email             String?             @unique
   username          String              @unique
-  email             String              @unique
   password          String
-  isorganization    Boolean?            @default(false)
+  isOrg             Boolean?            @default(false)
+  profile           profile?
+  profile_picture   profile_picture?
   security_question security_question[]
+  user_tag          user_tag[]
 }
 
 model security_question {
-  id       String @id @db.Uuid
-  memberid String @db.Uuid
-  question String
-  answer   String
-  member   member @relation(fields: [memberid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  securityQuestionID String @id @db.Uuid
+  memberID           String @db.Uuid
+  question           String
+  answer             String
+  member             member @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+}
+
+model profile {
+  memberID String  @id @db.Uuid
+  name     String
+  country  String
+  address  String
+  bio      String?
+  member   member  @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+}
+
+model profile_picture {
+  memberID String @id @db.Uuid
+  image    Bytes?
+  member   member @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+}
+
+model tag {
+  tagID    Int        @id @default(autoincrement())
+  tagName  String
+  user_tag user_tag[]
+}
+
+model user_tag {
+  memberID String @db.Uuid
+  tagID    Int
+  member   member @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+  tag      tag    @relation(fields: [tagID], references: [tagID], onDelete: Cascade)
+
+  @@id([tagID, memberID])
 }
