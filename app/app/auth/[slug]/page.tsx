@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
-import { Checkbox } from "@/app/components/ui/checkbox";
+// import { Checkbox } from "@/app/components/ui/checkbox";
 import * as Yup from "yup";
 import SignUp from "./api/signup";
 import SignIn from "./api/signin";
@@ -127,7 +127,7 @@ export default function UserAuthentication({ params }: userauthprops) {
         isorganization: false,
       };
 
-      const response = await SignUp(body);
+      // const response = await SignUp(body);
 
       // const respose = await fetch(`/auth/${params.slug}/api/signup`, {
       //   method: "POST",
@@ -137,7 +137,7 @@ export default function UserAuthentication({ params }: userauthprops) {
       // });
       console.log("Success");
       console.log(response);
-      // router.push("/weee");
+      router.push("/createProfile");
     } catch (error) {
       console.log(error);
     }
@@ -155,11 +155,11 @@ export default function UserAuthentication({ params }: userauthprops) {
       };
       const isEmail = emailRegex.test(values.identifier);
 
-      const response = await SignIn({
-        identifier: values.identifier,
-        password: values.password,
-        isEmail,
-      });
+      // const response = await SignIn({
+      //   identifier: values.identifier,
+      //   password: values.password,
+      //   isEmail,
+      // });
 
       // const response = await fetch(url, {
       //   method: "POST",
@@ -169,6 +169,7 @@ export default function UserAuthentication({ params }: userauthprops) {
       // });
       console.log("Logged In Successfully!");
       console.log(response);
+      setLoggedIn(response);
       // router.push("/weee");
     } catch (error) {
       console.log(error);
@@ -227,12 +228,14 @@ export default function UserAuthentication({ params }: userauthprops) {
             onBlur={formikSignIn.handleBlur}
           />
           <div className="w-full flex justify-between items-end">
-            <button
-              className="h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
-              type="submit"
-            >
-              Sign In
-            </button>
+            <a href="/createProfile">
+              <button
+                className="h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
+                type="button"
+              >
+                Sign In
+              </button>
+            </a>
             <div className="flex flex-col items-end">
               <p className="text-xl font-normal pb-2">Not a member?</p>
               <button
@@ -438,7 +441,7 @@ export default function UserAuthentication({ params }: userauthprops) {
             )}
           </label>
           <div className="mb-4 items-top flex  space-x-2">
-            <Checkbox id="organization" />
+            {/* <Checkbox id="organization" /> */}
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="organization"
@@ -452,11 +455,11 @@ export default function UserAuthentication({ params }: userauthprops) {
             </div>
           </div>
           <div className="mb-4 items-top flex  space-x-2">
-            <Checkbox
+            {/* <Checkbox
               id="terms"
               checked={terms}
               onCheckedChange={(e) => setTerms(!terms)}
-            />
+            /> */}
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="terms"
