@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "__mocks__/axios.js"
+    "__tests__/createProfile.test.mjs"
   ],
   "exclude": ["node_modules"]
 }
