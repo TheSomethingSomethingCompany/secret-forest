@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import * as Yup from "yup";
+import SignUp from "./api/signup";
+import SignIn from "./api/signin";
 
 // TYPE DEFINITION OF USER PROPS
 type userauthprops = {
@@ -125,14 +127,16 @@ export default function UserAuthentication({ params }: userauthprops) {
         isorganization: false,
       };
 
-      const respose = await fetch(`/auth/${params.slug}/api/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-        cache: "no-cache",
-      });
+      const response = await SignUp(body);
+
+      // const respose = await fetch(`/auth/${params.slug}/api/signup`, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(body),
+      //   cache: "no-cache",
+      // });
       console.log("Success");
-      console.log(respose);
+      console.log(response);
       // router.push("/weee");
     } catch (error) {
       console.log(error);
@@ -147,22 +151,24 @@ export default function UserAuthentication({ params }: userauthprops) {
       const body = {
         identifier: values.identifier,
         password: values.password,
+        isEmail: emailRegex.test(values.identifier),
       };
+      const isEmail = emailRegex.test(values.identifier);
 
-      let url = emailRegex.test(values.identifier)
-        ? `/auth/${params.slug}/api/email-signin`
-        : `/auth/${params.slug}/api/username-signin`;
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-        cache: "no-cache",
+      const response = await SignIn({
+        identifier: values.identifier,
+        password: values.password,
+        isEmail,
       });
+
+      // const response = await fetch(url, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(body),
+      //   cache: "no-cache",
+      // });
       console.log("Logged In Successfully!");
-      let username = await response.json();
-      setLoggedIn(username);
-      console.log(loggedIn);
+      console.log(response);
       // router.push("/weee");
     } catch (error) {
       console.log(error);

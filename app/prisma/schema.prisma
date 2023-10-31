@@ -8,6 +8,22 @@ datasource db {
 }
 
 model member {
+<<<<<<< HEAD
+  id             String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name           String
+  username       String   @unique
+  email          String   @unique
+  password       String
+  isorganization Boolean? @default(false)
+  profile        profile?
+}
+
+model security_question {
+  id          String @id @db.Uuid
+  memberEmail String
+  question    String
+  answer      String
+=======
   memberID          String              @id @db.Uuid
   name              String
   email             String?             @unique
@@ -26,10 +42,17 @@ model security_question {
   question           String
   answer             String
   member             member @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+>>>>>>> development
 }
 
 model profile {
   memberID String  @id @db.Uuid
+<<<<<<< HEAD
+  country  String
+  address  String
+  bio      String?
+  member   member  @relation(fields: [memberID], references: [id], onDelete: Cascade)
+=======
   name     String
   country  String
   address  String
@@ -56,4 +79,5 @@ model user_tag {
   tag      tag    @relation(fields: [tagID], references: [tagID], onDelete: Cascade)
 
   @@id([tagID, memberID])
+>>>>>>> development
 }

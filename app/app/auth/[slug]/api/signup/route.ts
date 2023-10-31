@@ -1,11 +1,12 @@
 import prisma from "../../../../lib/prisma";
 import { NextRequest } from "next/server";
 import { HmacSHA256 } from "crypto-js";
+import { Database } from "lucide-react";
 
 export async function POST(request: NextRequest) {
   const requestJson = await request.json();
   const { name, username, email, password } = requestJson;
-  const result = await prisma.member.create({
+  const { id } = await prisma.member.create({
     data: {
       name,
       username,
@@ -18,5 +19,19 @@ export async function POST(request: NextRequest) {
       isorganization: false,
     },
   });
-  return new Response(JSON.stringify(result), { status: 201 });
+
+  return new Response(
+    JSON.stringify({
+      data: { id },
+      status: 201,
+    })
+  );
 }
+
+// function insertUser(JSON) {
+//   {name, email ...} = JSON;
+//   if(values missing) return false
+//   insert name, email, etc into Database
+// if(inserted) return true
+// else return false
+// }
