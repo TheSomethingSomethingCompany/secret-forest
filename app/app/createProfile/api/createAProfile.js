@@ -9,9 +9,10 @@ export async function createAProfile(data){
 
     let resBody = await response.json(); // Retrieve body and turn into JSON object
     console.log(resBody.message);
+    console.log(resBody.status)
     if(resBody.status == 201)
         return true;
-    else if(resBody.status == 500) return false;
+    else if(resBody.status == 422) return false;
    }
 
    export default createAProfile;

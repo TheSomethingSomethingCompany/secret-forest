@@ -16,6 +16,10 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
 
     const{fullName, country, address, bio, occupationTags} = req.body;
     try{
+    if(fullName == "" || country == "" || address == "")
+    {
+        return res.json({ status: 422, message: 'Please enter all required fields' })
+    }
     await db.none('INSERT INTO tag("tagName") VALUES($1)',["Engineerrrrrrr"]);
     res.json({ status: 201, message: 'Profile created successfully' });
     } catch(error){

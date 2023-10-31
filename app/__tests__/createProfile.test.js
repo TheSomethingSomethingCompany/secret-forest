@@ -8,14 +8,8 @@ beforeEach(() =>{
 });
 
 describe("CreateProfile", () =>{
-it("Receive proper data given successful body and response", async()=>{
-    let mockResponse = { 
-        success: true,
-         message: 'Profile created successfully' 
-        };
-
-        fetchMock.mockResponse(JSON.stringify(mockResponse));
-
+it("Ensure profile can be created given correct fields", async()=>{
+    
         const mockRequest = {
             fullName: "John Doe",
             country: "Canada",
@@ -30,7 +24,25 @@ it("Receive proper data given successful body and response", async()=>{
     
     });
 
-    describe("CreateProfile", )
-
 });
+
+
+describe("CreateProfile", () =>{
+    it("Ensure profile can't be created given incorrect fields", async()=>{
+        
+            const mockRequest = {
+                fullName: "John Doe",
+                country: "",
+                address: "",
+                bio: "Some Test Bio",
+                occupationTags: ["test1", "test2"]
+            };
+    
+            const response = await createAProfile(mockRequest);
+    
+            expect(response).toEqual(false);
+        
+        });
+    
+    });
 
