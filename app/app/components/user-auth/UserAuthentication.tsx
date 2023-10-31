@@ -1,9 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import Navbar from "../Navbar/Navbar";
+import Link from "next/link";
 
-export default function UserAuthentication() {
-  const [showSignIn, setShowSignIn] = useState(true);
+export default function UserAuthentication({bool}:{bool:any}) {
+  // console.log(bool);
+  const temp = bool;
+  const [showSignIn, setShowSignIn] = useState(temp);
+
+  function doaction(){
+    window.localStorage.setItem("loggedIn","ahmed");
+  }
   return showSignIn ? (
     <section className="grid grid-cols-2 p-0 m-0 w-screen h-screen">
       <div className="flex flex-col justify-center items-start p-20 w-full h-full">
@@ -50,7 +58,11 @@ export default function UserAuthentication() {
         </button>
       </div>
     </section>
-  ) : (
+    </div>
+    <Navbar/>
+    </>
+  ) : (<>
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
     <section className="flex flex-row-reverse justify-evenly">
       <div>
         <h1 className="font-bold text-2xl">Sign Up</h1>
@@ -72,5 +84,8 @@ export default function UserAuthentication() {
         <button onClick={() => setShowSignIn(!showSignIn)}>Sign In</button>
       </div>
     </section>
+    </div>
+    <Navbar/>
+    </>
   );
 }
