@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE member (
   "memberID" UUID PRIMARY KEY,
   "email" TEXT UNIQUE,
@@ -5,6 +7,8 @@ CREATE TABLE member (
   "password" TEXT NOT NULL,
   "isOrg" BOOLEAN DEFAULT FALSE
 );
+
+
 
 CREATE TABLE profile (
     "memberID" UUID PRIMARY KEY,
