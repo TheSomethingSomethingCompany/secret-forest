@@ -3,6 +3,7 @@ import OccupationTags from '../occupationTags/OccupationTags'
 import defaultProfilePicture from '../../images/defaultProfilePicture.jpg'
 import editIcon from '../../images/pencil-solid.svg'
 import {useState, useEffect} from "react"
+import { createAProfile } from '../../createProfile/api/createAProfile.js'
 
 import Image from "next/legacy/image"
 
@@ -45,23 +46,17 @@ function CreateProfileForm() {
                 occupationTags: JSON.stringify(currentTags),
             };
 
-            createAProfile(profileData);
+            if(createAProfile(profileData)){
+                alert("Created Your Profile")
+            }
+            else{
+                alert("Could Not Create")
+            }
 
         
         }
 
-        async function createAProfile(data){
-            const response = await fetch('http://localhost:6969/createAProfile/api', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
         
-            let resBody = await response.json(); // Retrieve body and turn into JSON object
-            console.log(resBody.message);
-           }
     };
 
     
@@ -149,7 +144,8 @@ function FlexLabelAndTextInput(props){
             </div>
         );
     }
-    
+
+
 
 
 export default CreateProfileForm;

@@ -15,8 +15,12 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
     console.log(req.body);
 
     const{fullName, country, address, bio, occupationTags} = req.body;
-    await db.none('INSERT INTO tag("tagName") VALUES($1)',["Doctor"]);
-    res.json({ success: true, message: 'Profile created successfully' });
+    try{
+    await db.none('INSERT INTO tag("tagName") VALUES($1)',["Engineerrrrrrr"]);
+    res.json({ status: 201, message: 'Profile created successfully' });
+    } catch(error){
+        res.json({ status: 500, message: 'Failed to create profile' });
+    }
 });
 
 module.exports = router;
