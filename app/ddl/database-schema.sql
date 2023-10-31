@@ -2,9 +2,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE member (
   "memberID" UUID PRIMARY KEY,
-  "name" TEXT NOT NULL,
   "email" TEXT UNIQUE,
-  "username" text NOT NULL UNIQUE,
+  "name" TEXT NOT NULL,
   "password" TEXT NOT NULL,
   "isOrg" BOOLEAN DEFAULT FALSE
 );
@@ -16,13 +15,14 @@ CREATE TABLE profile (
     "name" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "address" TEXT NOT NULL,
+    "occupationTags" TEXT[],
     "bio" TEXT,
     FOREIGN KEY ("memberID") REFERENCES member("memberID")
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE security_question (
-  "securityQuestionID" uuid PRIMARY KEY,
+  "id" UUID PRIMARY KEY,
   "memberID" UUID NOT NULL,
   "question" TEXT NOT NULL,
   "answer" TEXT NOT NULL,
@@ -46,19 +46,8 @@ CREATE TABLE user_tag(
 );
 
 CREATE TABLE profile_picture (
-    "memberID" uuid primary key,
+    "memberID" uuid,
     image bytea,
     foreign key ("memberID") references member("memberID")
     	on delete cascade on update cascade
 );
-
-
-
-CREATE VIEW
-  usign AS
-SELECT
-  username,
-  email,
-  password
-FROM
-  member;

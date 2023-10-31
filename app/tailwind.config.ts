@@ -18,6 +18,7 @@ const config: Config = {
         desktop: "1400px",
         tablet: "1200px",
         mobile: "300px",
+        start: "0px",
       },
     },
   },
