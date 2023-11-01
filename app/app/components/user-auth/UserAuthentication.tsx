@@ -13,7 +13,7 @@ export default function UserAuthentication({bool}:{bool:any}) {
     window.localStorage.setItem("loggedIn","ahmed");
   }
   return showSignIn ? (
-    <section className="grid grid-cols-2 p-0 m-0 w-screen h-screen">
+    <div className="grid grid-cols-2 p-0 m-0 w-screen h-screen">
       <div className="flex flex-col justify-center items-start p-20 w-full h-full">
         <h1 className="font-bold text-6xl mb-4">Sign In</h1>
         <form className="flex flex-col items-start mb-4" action="#">
@@ -57,7 +57,7 @@ export default function UserAuthentication({bool}:{bool:any}) {
           Sign Up
         </button>
       </div>
-    </section>
+    </div>
     </div>
     <Navbar/>
     </>
