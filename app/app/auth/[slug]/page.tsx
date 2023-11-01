@@ -8,6 +8,7 @@ import { Checkbox } from "@/app/components/ui/checkbox";
 import * as Yup from "yup";
 import SignUp from "./api/signup";
 import SignIn from "./api/signin";
+import Input from "@/app/components/formComponents/Input";
 
 // TYPE DEFINITION OF USER PROPS
 type userauthprops = {
@@ -17,7 +18,7 @@ type userauthprops = {
 export default function UserAuthentication({ params }: userauthprops) {
   const router = useRouter();
   const [showSignIn, setShowSignIn] = useState(true);
-  const [terms, setTerms] = useState(false);
+  const [terms, setTerms] = useState(true);
   const [loggedIn, setLoggedIn] = useState("");
   // FORMIK LOGIC
 
@@ -137,7 +138,7 @@ export default function UserAuthentication({ params }: userauthprops) {
       // });
       console.log("Success");
       console.log(response);
-      // router.push("/weee");
+      router.push("/createProfile");
     } catch (error) {
       console.log(error);
     }
@@ -155,11 +156,11 @@ export default function UserAuthentication({ params }: userauthprops) {
       };
       const isEmail = emailRegex.test(values.identifier);
 
-      const response = await SignIn({
-        identifier: values.identifier,
-        password: values.password,
-        isEmail,
-      });
+      // const response = await SignIn({
+      //   identifier: values.identifier,
+      //   password: values.password,
+      //   isEmail,
+      // });
 
       // const response = await fetch(url, {
       //   method: "POST",
@@ -169,6 +170,7 @@ export default function UserAuthentication({ params }: userauthprops) {
       // });
       console.log("Logged In Successfully!");
       console.log(response);
+      setLoggedIn(response);
       // router.push("/weee");
     } catch (error) {
       console.log(error);
@@ -192,7 +194,7 @@ export default function UserAuthentication({ params }: userauthprops) {
     window.localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
   }, [loggedIn]);
 
-  // console.log(formikSignIn.values);
+  console.log(formikSignIn.values);
 
   return showSignIn ? (
     <section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 w-full h-screen">
@@ -202,37 +204,33 @@ export default function UserAuthentication({ params }: userauthprops) {
           className="flex flex-col items-start my-4 w-full"
           onSubmit={formikSignIn.handleSubmit}
         >
-          <label className="text-2xl font-semibold pb-2" htmlFor="identifier">
-            Username:
-          </label>
-          <input
-            className="mb-4 p-2 text-2xl rounded-lg border-2 border-gray-200 w-full"
+          <Input
+            label="Username"
             type="text"
-            name="identifier"
             id="identifier"
+            name="identifier"
             placeholder={formikSignIn.values.identifier}
             onChange={formikSignIn.handleChange}
             onBlur={formikSignIn.handleBlur}
           />
-          <label className="text-2xl font-semibold pb-2" htmlFor="password">
-            Password:
-          </label>
-          <input
-            className="mb-8 p-2 text-2xl rounded-lg border-2 border-gray-200 w-full"
+          <Input
+            label="Password"
             type="password"
-            name="password"
             id="password"
+            name="password"
             placeholder={formikSignIn.values.password}
             onChange={formikSignIn.handleChange}
             onBlur={formikSignIn.handleBlur}
           />
           <div className="w-full flex justify-between items-end">
-            <button
-              className="h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
-              type="submit"
-            >
-              Sign In
-            </button>
+            <a href="/createProfile">
+              <button
+                className="h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
+                type="button"
+              >
+                Sign In
+              </button>
+            </a>
             <div className="flex flex-col items-end">
               <p className="text-xl font-normal pb-2">Not a member?</p>
               <button
@@ -438,7 +436,7 @@ export default function UserAuthentication({ params }: userauthprops) {
             )}
           </label>
           <div className="mb-4 items-top flex  space-x-2">
-            <Checkbox id="organization" />
+            {/* <Checkbox id="organization" /> */}
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="organization"
@@ -452,11 +450,11 @@ export default function UserAuthentication({ params }: userauthprops) {
             </div>
           </div>
           <div className="mb-4 items-top flex  space-x-2">
-            <Checkbox
+            {/* <Checkbox
               id="terms"
               checked={terms}
               onCheckedChange={(e) => setTerms(!terms)}
-            />
+            /> */}
             <div className="grid gap-1.5 leading-none">
               <label
                 htmlFor="terms"
