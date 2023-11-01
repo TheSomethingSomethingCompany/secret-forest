@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
-// import { Checkbox } from "@/app/components/ui/checkbox";
+import { Checkbox } from "@/app/components/ui/checkbox";
 import * as Yup from "yup";
 import SignUp from "./api/signup";
 import SignIn from "./api/signin";
+import Input from "@/app/components/formComponents/Input";
 
 // TYPE DEFINITION OF USER PROPS
 type userauthprops = {
@@ -17,7 +18,7 @@ type userauthprops = {
 export default function UserAuthentication({ params }: userauthprops) {
   const router = useRouter();
   const [showSignIn, setShowSignIn] = useState(true);
-  const [terms, setTerms] = useState(false);
+  const [terms, setTerms] = useState(true);
   const [loggedIn, setLoggedIn] = useState("");
   // FORMIK LOGIC
 
@@ -127,7 +128,7 @@ export default function UserAuthentication({ params }: userauthprops) {
         isorganization: false,
       };
 
-      // const response = await SignUp(body);
+      const response = await SignUp(body);
 
       // const respose = await fetch(`/auth/${params.slug}/api/signup`, {
       //   method: "POST",
@@ -193,7 +194,7 @@ export default function UserAuthentication({ params }: userauthprops) {
     window.localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
   }, [loggedIn]);
 
-  // console.log(formikSignIn.values);
+  console.log(formikSignIn.values);
 
   return showSignIn ? (
     <section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 w-full h-screen">
@@ -203,26 +204,20 @@ export default function UserAuthentication({ params }: userauthprops) {
           className="flex flex-col items-start my-4 w-full"
           onSubmit={formikSignIn.handleSubmit}
         >
-          <label className="text-2xl font-semibold pb-2" htmlFor="identifier">
-            Username:
-          </label>
-          <input
-            className="mb-4 p-2 text-2xl rounded-lg border-2 border-gray-200 w-full"
+          <Input
+            label="Username"
             type="text"
-            name="identifier"
             id="identifier"
+            name="identifier"
             placeholder={formikSignIn.values.identifier}
             onChange={formikSignIn.handleChange}
             onBlur={formikSignIn.handleBlur}
           />
-          <label className="text-2xl font-semibold pb-2" htmlFor="password">
-            Password:
-          </label>
-          <input
-            className="mb-8 p-2 text-2xl rounded-lg border-2 border-gray-200 w-full"
+          <Input
+            label="Password"
             type="password"
-            name="password"
             id="password"
+            name="password"
             placeholder={formikSignIn.values.password}
             onChange={formikSignIn.handleChange}
             onBlur={formikSignIn.handleBlur}

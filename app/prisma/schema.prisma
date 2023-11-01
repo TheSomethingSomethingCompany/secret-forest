@@ -8,62 +8,42 @@ datasource db {
 }
 
 model member {
-<<<<<<< HEAD
-  id             String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name           String
-  username       String   @unique
-  email          String   @unique
-  password       String
-  isorganization Boolean? @default(false)
-  profile        profile?
-}
-
-model security_question {
-  id          String @id @db.Uuid
-  memberEmail String
-  question    String
-  answer      String
-=======
   memberID          String              @id @db.Uuid
-  name              String
   email             String?             @unique
-  username          String              @unique
+  name              String
   password          String
   isOrg             Boolean?            @default(false)
   profile           profile?
-  profile_picture   profile_picture?
+  profile_picture   profile_picture[]   @ignore
   security_question security_question[]
   user_tag          user_tag[]
 }
 
 model security_question {
-  securityQuestionID String @id @db.Uuid
-  memberID           String @db.Uuid
-  question           String
-  answer             String
-  member             member @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
->>>>>>> development
+  id       String @id @db.Uuid
+  memberID String @db.Uuid
+  question String
+  answer   String
+  member   member @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
 }
 
 model profile {
-  memberID String  @id @db.Uuid
-<<<<<<< HEAD
-  country  String
-  address  String
-  bio      String?
-  member   member  @relation(fields: [memberID], references: [id], onDelete: Cascade)
-=======
-  name     String
-  country  String
-  address  String
-  bio      String?
-  member   member  @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+  memberID       String   @id @db.Uuid
+  name           String
+  country        String
+  address        String
+  occupationTags String[]
+  bio            String?
+  member         member   @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
 }
 
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model profile_picture {
-  memberID String @id @db.Uuid
+  memberID String? @db.Uuid
   image    Bytes?
-  member   member @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+  member   member? @relation(fields: [memberID], references: [memberID], onDelete: Cascade)
+
+  @@ignore
 }
 
 model tag {
@@ -79,5 +59,4 @@ model user_tag {
   tag      tag    @relation(fields: [tagID], references: [tagID], onDelete: Cascade)
 
   @@id([tagID, memberID])
->>>>>>> development
 }
