@@ -77,7 +77,7 @@ function CreateProfileForm() {
     {
         return(
         <div className = "w-full mt-10 mb-10 flex flex-col items-center "> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
-                <label className = "mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]">{props.labelVal}</label>
+                <label htmlFor = {props.assoc} className = "mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]">{props.labelVal}</label>
                 <br></br>
                 {props.children}
                 <p err_assoc= {props.assoc}></p>
@@ -88,9 +88,9 @@ function CreateProfileForm() {
     {
         return(
             <div className = "w-full mt-10 mb-10 flex flex-col items-center">
-                <label className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>
+                <label htmlFor = {props.inputName} className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
                 <br></br>
-                <input type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}></input>
+                <input id = {props.inputName}  type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}></input>
                 <p err_assoc = {props.assoc} className = "text-red-500"></p>
             </div>);
     
@@ -103,8 +103,8 @@ function CreateProfileForm() {
             <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" assoc = "fullName" required = {true}/> 
             <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" assoc = "country" required = {true} /> 
             <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" assoc = "address" required = {true}  /> 
-            <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags inputName = "occupationTags" inputWidth = "w-3/4 max-w-[35rem] min-w-[15rem]" inputHeight="h-[2.5rem]" cornerDesign = "rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-            <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio"></textarea> </FlexLabelAndOtherInput> 
+            <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags id = "occupationTags" inputName = "occupationTags" inputWidth = "w-3/4 max-w-[35rem] min-w-[15rem]" inputHeight="h-[2.5rem]" cornerDesign = "rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+            <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio"></textarea> </FlexLabelAndOtherInput> 
         </>
         )
     

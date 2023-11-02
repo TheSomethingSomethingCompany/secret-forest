@@ -20,7 +20,7 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
     {
         return res.json({ status: 422, message: 'Please enter all required fields' })
     }
-    await db.none('INSERT INTO tag("tagName") VALUES($1)',["Engineerrrrrrr"]);
+    await db.none('INSERT INTO tag("tagName") VALUES($1)',["Engineer"]);
     res.json({ status: 201, message: 'Profile created successfully' });
     } catch(error){
         res.json({ status: 500, message: 'Failed to create profile' });
