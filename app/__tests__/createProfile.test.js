@@ -106,6 +106,18 @@ describe("OccupationTags", ()=>{
 
 });
 
+describe("OccupationTags", ()=>{
+    it("Ensure an occupationTag can be deleted after creation by clicking 'x' button", async () => {
+        const { getByLabelText, getByText, container } = render(<CreateProfileForm />);
+        const occupationTagsInput = getByLabelText(/Occupation Tags/);
+        await userEvent.type(occupationTagsInput, "Software Engineer{enter}");
+        const deleteButton = container.querySelector("#SoftwareEngineer").nextElementSibling; // Assuming "x" is unique enough in this context
+        await userEvent.click(deleteButton);
+        const occupationTag = container.querySelector("#SoftwareEngineer");
+        expect(occupationTag).toEqual(null);
+    });
+
+});
 
 
 describe("createAProfile", () =>{
