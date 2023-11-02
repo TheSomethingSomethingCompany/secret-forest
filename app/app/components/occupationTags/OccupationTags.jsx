@@ -38,7 +38,7 @@ function OccupationTags({id, inputName, currentTags, setTags, inputWidth, inputH
                 { 
                     currentTags.map((tag) => 
                         <div key={tag} className={`m-1 p-2 bg-blue-500 rounded-full flex justify-center items-center flex-nowrap ${tagColor}`}>
-                            <p className = {`whitespace-pre-wrap break-words ${textSize}`}>{tag}</p> {/* whitespace-pre-wrap allows breaks in a <p> element on a space when its about to overflow. break-words allows words themselves to break before they overflow. Breaking of whitespace is prioritized by the browser when combining both of these classes */ }
+                            <p id={tag.replace(/\s+/g, '')} className = {`whitespace-pre-wrap break-words ${textSize}`}>{tag}</p> {/* whitespace-pre-wrap allows breaks in a <p> element on a space when its about to overflow. break-words allows words themselves to break before they overflow. Breaking of whitespace is prioritized by the browser when combining both of these classes */ }
                             <button tag-association={tag} onMouseDown = {removeTag} className = "ml-1 text-red-500">x</button>
                         </div>)
                 }

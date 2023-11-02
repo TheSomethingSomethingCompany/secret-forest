@@ -1,7 +1,7 @@
 import {} from "@testing-library/react";
 import fetchMock from "jest-fetch-mock" ;
 import createAProfile from "../app/createProfile/api/createAProfile.js";
-import {render, waitFor} from '@testing-library/react';
+import {render, waitFor, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CreateProfileForm from '../app/components/CreateProfileForm/CreateProfileForm.jsx';
 
@@ -88,12 +88,24 @@ describe("CreateProfileForm", ()=>{
         const bioInput = getByLabelText(/Bio/);
         userEvent.type(bioInput, "Something");
     
-        await waitFor(() => { //Virtual DOM updates are asynchronous. Thereforem we need to wait until the value is updated
+        await waitFor(() => { //Virtual DOM updates are asynchronous. Therefore we need to wait until the value is updated
             expect(bioInput.value).toEqual("Something"); 
         });
     });
 
 });
+
+describe("OccupationTags", ()=>{
+    it("Ensure an occupationTag can be created", async () => {
+        const { getByLabelText, getByText, container } = render(<CreateProfileForm />);
+        const occupationTagsInput = getByLabelText(/Occupation Tags/);
+        await userEvent.type(occupationTagsInput, "Software Engineer{enter}");
+        const expectedOccupationTagValue = container.querySelector("#SoftwareEngineer").textContent;
+        expect(expectedOccupationTagValue).toEqual("Software Engineer");
+    });
+
+});
+
 
 
 describe("createAProfile", () =>{
