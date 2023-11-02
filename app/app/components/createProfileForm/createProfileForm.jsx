@@ -1,16 +1,13 @@
 "use client";
-import OccupationTags from '../occupationTags/OccupationTags'
-import defaultProfilePicture from '../../images/defaultProfilePicture.jpg'
-import editIcon from '../../images/pencil-solid.svg'
-import {useState, useEffect} from "react"
-import { createAProfile } from '../../createProfile/api/createAProfile.js'
+import OccupationTags from "../occupationTags/OccupationTags";
+import defaultProfilePicture from "../../images/defaultProfilePicture.jpg";
+import editIcon from "../../images/pencil-solid.svg";
+import { useState, useEffect } from "react";
+import { createAProfile } from "../../createProfile/api/createAProfile.js";
 
-import Image from "next/legacy/image"
+import Image from "next/legacy/image";
 
 function CreateProfileForm() {
-    // Inside CreateProfileForm component
-
-
     const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
     /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
     /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
@@ -172,9 +169,7 @@ function ProfilePicture() {
             <EditPictureButton/>
         </div>
     );
+
 }
-
-
-
 
 export default CreateProfileForm;
