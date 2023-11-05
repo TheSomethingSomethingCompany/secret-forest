@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import CreateProfileForm from '../app/components/CreateProfileForm/CreateProfileForm.jsx';
 
 
+
 beforeEach(() =>{
     fetchMock.resetMocks();
 });
@@ -27,7 +28,6 @@ describe("CreateProfileForm", ()=>{
         });
     });
     
-
 });
 
 describe("CreateProfileForm", ()=>{
@@ -118,6 +118,29 @@ describe("OccupationTags", ()=>{
     });
 
 });
+
+describe("createAProfile", () => {
+    it("Ensure empty input fields are emphasized to user when form submitted and required fields are not filled out", async ()=>{
+        const {getByLabelText, getByText, queryByText} = render(<CreateProfileForm/>);
+
+        /** Type in "Full Name" and "Country" input fields, but do not fill out address field */
+        const fullNameInput = getByLabelText(/Full Name/);
+        await userEvent.type(fullNameInput, "John Doe");
+        const countryInput = getByLabelText(/Country Of Residence/);
+        await userEvent.type(countryInput, "Canada");
+
+        const submitButton = getByText(/SUBMIT/); 
+        await submitButton.click();
+
+        const addrErrorMsgElement = queryByText(/Please Enter Your Address/);
+        expect(addrErrorMsgElement).not.toEqual(null);
+       
+
+
+    });
+
+});
+
 
 
 describe("createAProfile", () =>{
