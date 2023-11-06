@@ -180,3 +180,101 @@
 
 
 
+**Week**: 7
+**Work Period**: 16/10/2023 - 22/10/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Create General Design, Layout, Optimization, and Logic Of Profile Page
+    - All Required Form Fields
+    - Occupation Tags Functionality
+        - Add and Remove Tags
+        - No Duplicates
+        - No Spaces
+    - Allow Upload Of Profile Picture, and Editing Of Profile Picture
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Active Tasks
+
+- Create General Design, Layout, Optimization, and Logic Of Profile Page
+    - All Required Form Fields
+    - Occupation Tags Functionality
+        - Add and Remove Tags
+        - No Duplicates
+        - No Spaces
+    - Allow Upload Of Profile Picture, and Editing Of Profile Picture
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Status of Tasks
+
+- Create General Design, Layout, Optimization, and Logic Of Profile Page - `Complete`
+    - All Required Form Fields
+    - Occupation Tags Functionality
+        - Add and Remove Tags
+        - No Duplicates
+        - No Spaces
+    - Allow Upload Of Profile Picture, and Editing Of Profile Picture
+- Learn Express.js - `In-Progress`
+- Learn Next.js - `In-Progress`
+- Learn JEST For Testing - `In-Progress`
+
+
+## Peer Review
+<img width="1079" alt="2023-10-29_21-46-59" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/89119621-03ba-4b66-b7f4-87f9d13db196">
+
+**Week**: 8
+**Work Period**: 23/10/2023 - 29/10/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Fully Complete and Optimize Design Of Create Profile
+    - Implemented Responsive Layout
+        - Proper Resizing Of Element Widths and Heights Up To A Maximum and Minimum Width/Height
+    - Column Drop Based Responsive Layout As Viewport Width Gets Smaller
+- Update DDL
+    - Update Member and Profile Relation With New Fields
+    - Create Separate Profile_Picture Relation To Store Images
+    - Create User_Tags and Tags Relation
+        - User_Tags contains IDs corresponding to the actual occupation tags stores as text within Tags. This allows for less redundancy and optimizes database further for ensuring that the same tags between members reference the same tag text within the database.
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Active Tasks
+
+- Fully Complete and Optimize Design Of Create Profile
+    - Implemented Responsive Layout
+        - Proper Resizing Of Element Widths and Heights Up To A Maximum and Minimum Width/Height
+    - Column Drop Based Responsive Layout As Viewport Width Gets Smaller
+- Update DDL
+    - Update Member and Profile Relation With New Fields
+    - Create Separate Profile_Picture Relation To Store Images
+    - Create User_Tags and Tags Relation
+        - User_Tags contains IDs corresponding to the actual occupation tags stores as text within Tags. This allows for less redundancy and optimizes database further for ensuring that the same tags between members reference the same tag text within the database.
+- Learn Express.js
+- Learn Next.js
+- Learn JEST For Testing
+
+## Status of Tasks
+
+- Fully Complete and Optimize Design Of Create Profile - `Complete`
+    - Implemented Responsive Layout
+        - Proper Resizing Of Element Widths and Heights Up To A Maximum and Minimum Width/Height
+    - Column Drop Based Responsive Layout As Viewport Width Gets Smaller
+- Update DDL - `Complete`
+    - Update Member and Profile Relation With New Fields
+    - Create Separate Profile_Picture Relation To Store Images
+    - Create User_Tags and Tags Relation
+        - User_Tags contains IDs corresponding to the actual occupation tags stores as text within Tags. This allows for less redundancy and optimizes database further for ensuring that the same tags between members reference the same tag text within the database.
+- Learn Express.js - `In-Progress`
+- Learn Next.js - `In-Progress`
+- Learn JEST For Testing - `In-Progress`
+
+## Peer Review
+<img width="1079" alt="week8 peer review" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/2e5a63c0-2fb5-4231-9b65-d29a18cea04e">
