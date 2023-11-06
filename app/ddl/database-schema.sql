@@ -15,7 +15,6 @@ CREATE TABLE profile (
     "name" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "address" TEXT NOT NULL,
-    "occupationTags" TEXT[],
     "bio" TEXT,
     FOREIGN KEY ("memberID") REFERENCES member("memberID")
         ON DELETE CASCADE ON UPDATE CASCADE

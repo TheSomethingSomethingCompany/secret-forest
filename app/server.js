@@ -15,3 +15,5 @@ server.use('/createAProfile', createProfileRoutes ); // Any time /createAProfile
 server.listen(PORT, ()=>{
     console.log('Server started on http://localhost:6969');
 })
+
+
