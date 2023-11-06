@@ -124,3 +124,61 @@
 ## Peer Review
 
 ![week 7](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/c5ada3b8-ce0f-49bf-bdfe-80fa6a6ceff3)
+
+
+-----------------
+
+**Week**: 8
+
+**Work Period**: 23 October 2023 - 29 October 2023
+
+## Individual Objectives
+
+- I was in charge of fixing up the Navbar logic due to the way we want to implement it using local storage. I also re-implemented the landing page design given by Arsh.  
+
+
+## Active Tasks
+
+- Re-implement landing page per given new design
+- Develop Nav bar component with the updated logic
+- Learn associated code and css that came up when developing the landing page and the navbar 
+
+
+## Status of Tasks
+
+- Re-implement landing page per given new design -- Completed
+- Develop Nav bar component with the updated logic -- Completed
+- Learn associated code and css that came up when developing the landing page and the navbar -- In Progress
+
+## Peer Review
+
+![week 8](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/9ee73122-dedd-488d-953e-ed5253ec3bf4)
+
+-----------------
+
+**Week**: 9
+
+**Work Period**: 30 October 2023 - 5 November 2023
+
+## Individual Objectives
+
+- I was involved a little in merging of the code and putting it all together, I specifically put the searchbar component within the navbar. I also was present within the mini-presentation along with my team. I have also implemented automated UI testing for the navbar and landing page components.
+
+
+## Active Tasks
+
+- Merge code in preperation for the presentation and live demo
+- Write automated UI tests for navbar
+- Write automated UI tests for lanidng page
+- Learn automated UI tests and how to perform them
+
+## Status of Tasks
+
+- Merge code in preperation for the presentation and live demo -- Completed
+- Write automated tests for navbar -- Completed
+- Write automated tests for lanidng page -- Completed
+- Learn automated tests and how to perform them -- In Progress (still need to learn backend automated testing)
+
+## Peer Review
+
+![week 9](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/0ea35689-ec8a-41ba-b4da-2b59518ba41d)
