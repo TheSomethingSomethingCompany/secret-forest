@@ -56,61 +56,49 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden md:block md:w-1/4">
+        {/* <div className="hidden md:block md:w-1/4">
           <Search />
-        </div>
+        </div> */}
 
         {/* large screen */}
         <ul className="hidden md:flex">
           <li className="mr-2 lg:mr-4 hover:text-teal-300">
-            <Link href="/">
-              <button className="rounded-full font-bold  py-1 px-2 mt-1">
+            <Link href="/" className="rounded-full font-bold  py-1 px-2 mt-1" data-testid="home1">
                 Home
-              </button>
-            </Link>
+              </Link>
           </li>
 
           {loggedIn ? (
             <>
               <li className="mr-2 lg:mr-4 hover:text-teal-300">
-                <Link href="#">
-                  <button className="rounded-full font-bold  py-2 px-2">
+                <Link href="#" className="rounded-full font-bold  py-2 px-2">
                     Requests
-                  </button>
                 </Link>
               </li>
 
               <li className="mr-2 lg:mr-4 hover:text-teal-300">
-                <Link href="#">
-                  <button className="rounded-full font-bold  py-2 px-2">
+                <Link href="#" className="rounded-full font-bold  py-2 px-2">
                     Chats
-                  </button>
                 </Link>
               </li>
 
               <li className="mr-2 lg:mr-4 hover:text-teal-300">
-                <Link href="#">
-                  <button className="rounded-full font-bold  py-2 px-2">
+                <Link href="#" className="rounded-full font-bold  py-2 px-2">
                     Profile
-                  </button>
                 </Link>
               </li>
 
               <li className="mr-2 lg:mr-4 hover:text-teal-300">
-                <Link href="/" onClick={logout}>
-                  <button className="rounded font-bold bg-teal-600 py-2 px-4">
+                <Link href="/" onClick={logout} className="rounded font-bold bg-teal-600 py-2 px-4" data-testid="logout">
                     Logout
-                  </button>
                 </Link>
               </li>
             </>
           ) : (
             <li className="mr-2 lg:mr-4 hover:text-teal-300">
-              <a href="/auth/signin">
-                <button className="rounded font-bold bg-teal-600 py-2 px-4">
+              <Link href="/auth/signin" className="rounded font-bold bg-teal-600 py-2 px-4" data-testid="login">
                   Login
-                </button>
-              </a>
+              </Link>
             </li>
           )}
         </ul>
@@ -136,11 +124,11 @@ export default function Navbar() {
                 onClick={handleIcon}
                 className="py-5 hover:text-text-teal-300"
               >
-                <li className="w-full">
-                  <Search />
-                </li>
+                {/* <li className="w-full"> */}
+                  {/* <Search /> */}
+                {/* </li> */}
 
-                <Link href="/">Home</Link>
+                <Link href="/" data-testid="home2">Home</Link>
               </li>
 
               {loggedIn ? (
