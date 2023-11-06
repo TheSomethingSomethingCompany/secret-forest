@@ -84,3 +84,4 @@ Satanshu Mishra: `SatanshuMishra`
 ## Test Report
 
 - Burn-Up Chart
+![Week 9 Burn Up Chart](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/bde21220-38e5-4306-8050-b84ef6e1924c)
