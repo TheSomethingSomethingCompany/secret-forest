@@ -304,18 +304,18 @@
               - Inputs can be properly filled out
               - Feedback is provided to the user when required fields are not filled out
               - Feedback is provided upon successful submission of data
-      - End-To-End, Integration, and Unit Testing via The Controller Function
-          - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
+  - End-To-End, Integration, and Unit Testing via The Controller Function
+    - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
           - Ensure that given incorrect data to the function will not allow data to be reflected into the database, and a response reflecting this is correctly given
 - Fix Tailwind CSS File Causing Styles To Not Be Rendered
   - Fixed by ensuring duplicates were not present in the config file, which occured as a result of the merge
 - Discuss and Implement New Addition To Workflow
     - Ideas column in Kaanban board, which will ensure anything discussed in meetings can be reflected and later turned into tasks in the Kaanban board.
 - Facilitate Merging Everyone's Individual Components Into A Cohesive Website
-- Teach Others The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
+- Teach Team The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
 - Teach Other The Single Responsibility Principle (SRP) For Refactoring and Optimization
-- Teach Others The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
-- Teach Others The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
+- Teach Team The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
+- Teach Team The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
 
 ## Active Tasks
 
@@ -338,18 +338,18 @@
               - Inputs can be properly filled out
               - Feedback is provided to the user when required fields are not filled out
               - Feedback is provided upon successful submission of data
-      - End-To-End, Integration, and Unit Testing via The Controller Function
-          - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
+  - End-To-End, Integration, and Unit Testing via The Controller Function
+    - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
           - Ensure that given incorrect data to the function will not allow data to be reflected into the database, and a response reflecting this is correctly given
 - Fix Tailwind CSS File Causing Styles To Not Be Rendered
   - Fixed by ensuring duplicates were not present in the config file, which occured as a result of the merge
 - Discuss and Implement New Addition To Workflow
     - Ideas column in Kaanban board, which will ensure anything discussed in meetings can be reflected and later turned into tasks in the Kaanban board.
 - Facilitate Merging Everyone's Individual Components Into A Cohesive Website
-- Teach Others The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
+- Teach Team The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
 - Teach Other The Single Responsibility Principle (SRP) For Refactoring and Optimization
-- Teach Others The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
-- Teach Others The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
+- Teach Team The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
+- Teach Team The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
 
 
 ## Status of Tasks: `All Tasks Listed Completed`
@@ -373,18 +373,18 @@
               - Inputs can be properly filled out
               - Feedback is provided to the user when required fields are not filled out
               - Feedback is provided upon successful submission of data
-      - End-To-End, Integration, and Unit Testing via The Controller Function
-          - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
+  - End-To-End, Integration, and Unit Testing via The Controller Function
+    - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
           - Ensure that given incorrect data to the function will not allow data to be reflected into the database, and a response reflecting this is correctly given
 - Fix Tailwind CSS File Causing Styles To Not Be Rendered
   - Fixed by ensuring duplicates were not present in the config file, which occured as a result of the merge
 - Discuss and Implement New Addition To Workflow
     - Ideas column in Kaanban board, which will ensure anything discussed in meetings can be reflected and later turned into tasks in the Kaanban board.
 - Facilitate Merging Everyone's Individual Components Into A Cohesive Website
-- Teach Others The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
+- Teach Team The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
 - Teach Other The Single Responsibility Principle (SRP) For Refactoring and Optimization
-- Teach Others The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
-- Teach Others The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
+- Teach Team The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
+- Teach Team The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
 
 
 ## Peer Review
