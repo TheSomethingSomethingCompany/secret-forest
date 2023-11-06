@@ -18,7 +18,8 @@ function CreateProfileForm() {
 
     var fullName, country, address, bio, occupationTags, pfp;
 
-    function collectFormData(){
+    function collectFormData()
+    {
         fullName = document.querySelector('[name = "fullName"]');
         country = document.querySelector('[name = "country"]');
         address = document.querySelector('[name = "address"]');
@@ -37,7 +38,8 @@ function CreateProfileForm() {
         }
     };
 
-    function onCountryChange(e){
+    function onCountryChange(e)
+    {
         const label = document.querySelector('[for = "country"]');
         if(e.target.value == "")
          label.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>';
@@ -45,17 +47,18 @@ function CreateProfileForm() {
         {          
             label.innerHTML = 'Country Of Residence: <span class = "text-red-500"> * </span> '
         }
-    }
+    };
 
-    function onAddressChange(e){
+    function onAddressChange(e)
+    {
         const label = document.querySelector('[for = "address"]');
         if(e.target.value == "")
          label.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>';
         else
         {          
-            label.innerHTML = 'Address: <span class = "text-red-500"> * </span> '
+            label.innerHTML = 'Address: <span class = "text-red-500"> * </span>'
         }
-    }
+    };
 
     
 
@@ -64,10 +67,12 @@ function CreateProfileForm() {
         if(fullName.value.trim() === "" || country.value.trim() === "" || address.value.trim() === "")
             return false
         else return true
-    }
+    };
 
+    
 
-    function formDataAsJSON(){
+    function formDataAsJSON()
+    {
         return {
             fullName: fullName.value,
             country: country.value,
@@ -75,7 +80,21 @@ function CreateProfileForm() {
             bio: bio.value,
             occupationTags: JSON.stringify(currentTags),
         };
-    }
+    };
+
+    function displayErrorOnRequiredFields()
+    {
+        const fullNameLabel = document.querySelector('[for = "fullName"]');
+        const countryLabel = document.querySelector('[for = "country"]');
+        const addressLabel = document.querySelector('[for = "address"]');
+
+        if(fullName.value.trim() == "")
+            fullNameLabel.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your full name:</span>';
+        if(country.value.trim() == "")
+            countryLabel.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>';
+        if(address.value.trim() == "")
+            addressLabel.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>';
+    };
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -85,6 +104,7 @@ function CreateProfileForm() {
             if(createAProfile(formDataAsJSON()))
                 alert("Created Your Profile")
             else alert("Could Not Create Your Profile")
+        else displayErrorOnRequiredFields();
         
     };
 
@@ -178,7 +198,6 @@ function ProfilePicture() {
     };
 
     function EditPictureButton(){
-console.log("RERENDER");
         return(
         <div id = "edit-pfp-button-container" className = "relative w-[2vw] h-[2vw] max-h-[70px] max-w-[70px]">
             <button id = "edit-pfp-button"><Image src = {editIcon} layout = "fill" objectFit = "cover" alt = "Edit" onClick = {handleEditButtonClick}></Image></button>

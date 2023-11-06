@@ -132,14 +132,13 @@ describe("createAProfile", () => {
         const submitButton = getByText(/SUBMIT/); 
         await submitButton.click();
 
-        const addrErrorMsgElement = queryByText(/Please Enter Your Address/);
+        const addrErrorMsgElement = queryByText(/You cannot leave this field empty! Please enter your address/);
         expect(addrErrorMsgElement).not.toEqual(null);
-       
-
 
     });
 
 });
+
 
 
 
