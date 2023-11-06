@@ -124,4 +124,83 @@
 
 ## Peer Review
 
+![Peer Review Week 6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/548faedc-9445-42cb-8790-92993923d0f1)
+
+# Personal Log - Satanshu Mishra
+
+**Week**: 8
+**Week**: 
+**GitHub Account**: `SatanshuMishra`
+
+## Individual Objectives
+
+
+
+## Active Tasks
+
+
+
+## Status of Tasks
+
+
+
+## Peer Review
+
 ![Peer Review Week 8](https://github-production-user-asset-6210df.s3.amazonaws.com/63601536/275373805-548faedc-9445-42cb-8790-92993923d0f1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231030%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231030T073118Z&X-Amz-Expires=300&X-Amz-Signature=ed0a70fb1e68f99fed16fc7b8cbe91805e6107956bf73d246243edda885e79cd&X-Amz-SignedHeaders=host&actor_id=63601536&key_id=0&repo_id=693840618)
+
+# Personal Log - Satanshu Mishra
+
+**Week**: 9
+**Week**: `30/10/2023` - `05/11/2023`
+**GitHub Account**: `SatanshuMishra`
+
+## Individual Objectives
+
+- Fix Errors encountered due to merging branching for Mini-Presentations.
+  - Fix **JEST Testing** for user authentication pages
+    - Sign-In
+    - Sign-Up
+- Add UI Testing
+  - User Authentication
+    - Sign-In
+    - Sign-Up
+- Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
+  -  Improve User Interface Designs
+  -  Remove Redundant Code
+- Develop Chat Page
+  - Start designing UI design ideas.
+
+## Active Tasks
+
+- Fix Errors encountered due to merging branching for Mini-Presentations.
+  - Fix **JEST Testing** for user authentication pages
+    - Sign-In
+    - Sign-Up
+- Add UI Testing
+  - User Authentication
+    - Sign-In
+    - Sign-Up
+- Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
+  -  Improve User Interface Designs
+  -  Remove Redundant Code
+- Develop Chat Page
+  - Start designing UI design ideas.
+
+## Status of Tasks
+
+- Fix Errors encountered due to merging branching for Mini-Presentations.
+  - Fix **JEST Testing** for user authentication pages
+    - Sign-In `IN-PROGRESS`
+    - Sign-Up `IN-PROGRESS`
+- Add UI Testing
+  - User Authentication
+    - Sign-In `IN-PROGRESS`
+    - Sign-Up `IN-PROGRESS`
+- Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
+  -  Improve User Interface Designs `IN-PROGRESS`
+  -  Remove Redundant Code `IN-PROGRESS`
+- Develop Chat Page
+  - Start designing UI design ideas. `IN-PROGRESS`
+
+## Peer Review
+![Peer Review Week 9](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/3ae5ec51-90ef-408d-a9cb-037b98cf97cb)
