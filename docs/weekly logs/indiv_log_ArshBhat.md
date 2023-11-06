@@ -145,6 +145,9 @@
   - Write code to insert input data from Profile Page to the Database - `COMPLETED`
 - Update and Maintain Kanban Board - `COMPLETED`
 
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/67627ab6-f47e-4e17-b481-7d31ce357513)
+
+
 # Personal Log - Arsh Bhat
 
 **Week**: 9
