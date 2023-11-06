@@ -103,3 +103,34 @@
 ## Peer Review
 ![indivWeek6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/069e0fc6-b0b8-400f-836d-ce9b66ea6d27)
 
+
+# Personal Log - Yafei Sedlacek
+**Week**: 9
+**Work Period**: `30-10-2023` - `05-11-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- prepare for presentation
+- start learning express js
+- change backend of search functionality to work with express js
+
+## Active Tasks
+
+- Research tech stack
+  - express js
+- Prepare and do presentation
+- Express js backend for search
+
+  
+## Status of Tasks
+
+- Research tech stack (In-progress)
+  - Express js
+- Prepare and do presentation (completed)
+- Express js backend for search (In-progress)
+  
+## Peer Review
+![indivWeek6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/069e0fc6-b0b8-400f-836d-ce9b66ea6d27)
+
+
