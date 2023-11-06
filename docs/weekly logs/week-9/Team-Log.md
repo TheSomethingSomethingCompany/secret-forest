@@ -82,6 +82,8 @@ Satanshu Mishra: `SatanshuMishra`
       - Sign-Up `In-Progress`
 
 ## Test Report
-
+<img width="807" alt="Week 9 Test Report" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/4c99e7ed-df57-4545-bf1d-4534feb0797c">
+  - UserAuth tests currently failing as a result of switch to Express.js and pg-promise, and will be fixed once tests are reconfigured to work with Express.js and pg-promise.
+  
 - Burn-Up Chart
 ![Week 9 Burn Up Chart](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/bde21220-38e5-4306-8050-b84ef6e1924c)
