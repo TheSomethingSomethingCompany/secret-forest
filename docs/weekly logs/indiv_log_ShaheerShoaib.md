@@ -278,3 +278,115 @@
 
 ## Peer Review
 <img width="1079" alt="week8 peer review" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/2e5a63c0-2fb5-4231-9b65-d29a18cea04e">
+
+**Week**: 9
+**Work Period**: 30/10/2023 - 05/11/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Research How To Utilize JEST, and Implement Various Testing Aspects Of It
+    - UI Testing
+    - Unit Testing
+    - Integration Testing
+    - End-To-End Testing
+- Research How To Utlize Express.js and pg-promise, and Implement It
+      - Create database connection file with pg-promise ORM
+      - Create Routes for createProfile page, which is a standard basis for how routes for other pages will be created
+      - Create actual server.js file for creating an instance of a node server locally
+      - Implement controller function to manage transitioning of data between UI and Server, adhering to MVC design pattern
+      - Implement prepared statements for any SQL statements for increased security by preventing SQL injection attacks
+- Refactor createProfile page such that it follows the MVC design pattern, and all functions follow the Single Responsibility Principle for ease of readibility and optimization
+- Implement tests for createProfile page
+    - UI Testing
+          - Testing all aspects of the page from a user perspective
+              - All components of the page can be rendered
+              - Inputs can be properly filled out
+              - Feedback is provided to the user when required fields are not filled out
+              - Feedback is provided upon successful submission of data
+  - End-To-End, Integration, and Unit Testing via The Controller Function
+    - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
+          - Ensure that given incorrect data to the function will not allow data to be reflected into the database, and a response reflecting this is correctly given
+- Fix Tailwind CSS File Causing Styles To Not Be Rendered
+  - Fixed by ensuring duplicates were not present in the config file, which occured as a result of the merge
+- Discuss and Implement New Addition To Workflow
+    - Ideas column in Kaanban board, which will ensure anything discussed in meetings can be reflected and later turned into tasks in the Kaanban board.
+- Facilitate Merging Everyone's Individual Components Into A Cohesive Website
+- Teach Team The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
+- Teach Other The Single Responsibility Principle (SRP) For Refactoring and Optimization
+- Teach Team The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
+- Teach Team The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
+
+## Active Tasks
+
+- Research How To Utilize JEST, and Implement Various Testing Aspects Of It
+    - UI Testing
+    - Unit Testing
+    - Integration Testing
+    - End-To-End Testing
+- Research How To Utlize Express.js and pg-promise, and Implement It
+      - Create database connection file with pg-promise ORM
+      - Create Routes for createProfile page, which is a standard basis for how routes for other pages will be created
+      - Create actual server.js file for creating an instance of a node server locally
+      - Implement controller function to manage transitioning of data between UI and Server, adhering to MVC design pattern
+      - Implement prepared statements for any SQL statements for increased security by preventing SQL injection attacks
+- Refactor createProfile page such that it follows the MVC design pattern, and all functions follow the Single Responsibility Principle for ease of readibility and optimization
+- Implement tests for createProfile page
+    - UI Testing
+          - Testing all aspects of the page from a user perspective
+              - All components of the page can be rendered
+              - Inputs can be properly filled out
+              - Feedback is provided to the user when required fields are not filled out
+              - Feedback is provided upon successful submission of data
+  - End-To-End, Integration, and Unit Testing via The Controller Function
+    - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
+          - Ensure that given incorrect data to the function will not allow data to be reflected into the database, and a response reflecting this is correctly given
+- Fix Tailwind CSS File Causing Styles To Not Be Rendered
+  - Fixed by ensuring duplicates were not present in the config file, which occured as a result of the merge
+- Discuss and Implement New Addition To Workflow
+    - Ideas column in Kaanban board, which will ensure anything discussed in meetings can be reflected and later turned into tasks in the Kaanban board.
+- Facilitate Merging Everyone's Individual Components Into A Cohesive Website
+- Teach Team The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
+- Teach Other The Single Responsibility Principle (SRP) For Refactoring and Optimization
+- Teach Team The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
+- Teach Team The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
+
+
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Research How To Utilize JEST, and Implement Various Testing Aspects Of It
+    - UI Testing
+    - Unit Testing
+    - Integration Testing
+    - End-To-End Testing
+- Research How To Utlize Express.js and pg-promise, and Implement It
+      - Create database connection file with pg-promise ORM
+      - Create Routes for createProfile page, which is a standard basis for how routes for other pages will be created
+      - Create actual server.js file for creating an instance of a node server locally
+      - Implement controller function to manage transitioning of data between UI and Server, adhering to MVC design pattern
+      - Implement prepared statements for any SQL statements for increased security by preventing SQL injection attacks
+- Refactor createProfile page such that it follows the MVC design pattern, and all functions follow the Single Responsibility Principle for ease of readibility and optimization
+- Implement tests for createProfile page
+    - UI Testing
+          - Testing all aspects of the page from a user perspective
+              - All components of the page can be rendered
+              - Inputs can be properly filled out
+              - Feedback is provided to the user when required fields are not filled out
+              - Feedback is provided upon successful submission of data
+  - End-To-End, Integration, and Unit Testing via The Controller Function
+    - Ensure that given correct data to the function allows for function to facilitate adding data into the database, and providing the corresponding correct response to reflect
+          - Ensure that given incorrect data to the function will not allow data to be reflected into the database, and a response reflecting this is correctly given
+- Fix Tailwind CSS File Causing Styles To Not Be Rendered
+  - Fixed by ensuring duplicates were not present in the config file, which occured as a result of the merge
+- Discuss and Implement New Addition To Workflow
+    - Ideas column in Kaanban board, which will ensure anything discussed in meetings can be reflected and later turned into tasks in the Kaanban board.
+- Facilitate Merging Everyone's Individual Components Into A Cohesive Website
+- Teach Team The Fundamentals Of Unit Testing, UI Testing, End-To-End testing, Regression Testing, and Integration Testing In JEST
+- Teach Other The Single Responsibility Principle (SRP) For Refactoring and Optimization
+- Teach Team The Fundamentals Of Express.js and pg-promise, How To Implement It, and How To Adhere To Express.js Workflow
+- Teach Team The MVC Design Pattern, How To Test It, and How To Integrate It Within Next.js
+
+
+## Peer Review
+<img width="891" alt="tasks_w9" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/35faa71d-b38e-4d65-b180-57a09b55416b">
+

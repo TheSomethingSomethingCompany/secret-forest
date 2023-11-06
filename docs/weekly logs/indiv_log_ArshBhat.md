@@ -111,3 +111,80 @@
 - Update and Maintain Kanban Board - `COMPLETED`
 
 <img width="566" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/4151028f-d90f-49c1-af70-53536b879177">
+
+# Personal Log - Arsh Bhat
+
+**Week**: 7
+**Week**: `16-10-2023` - `22-10-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Learn Tech Stack
+  - CSS
+  - JavaScript
+  - Next.js
+- Create Profile Page's Back-end Logic
+  - Write code to insert input data from Profile Page to the Database
+- Update and Maintain Kanban Board
+
+## Active Tasks
+
+- Learn Tech Stack
+- Create Profile Page's Back-end Logic
+  - Write code to insert input data from Profile Page to the Database
+- Update and Maintain Kanban Board
+
+## Status of Tasks
+
+- Learn Tech Stack - `IN-PROGRESS`
+  - CSS `IN-PROGRESS`
+  - JavaScript - `Completed`
+  - Next.js - `IN-PROGRESS`
+- Create Profile Page's Back-end Logic - `COMPLETED`
+  - Write code to insert input data from Profile Page to the Database - `COMPLETED`
+- Update and Maintain Kanban Board - `COMPLETED`
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/67627ab6-f47e-4e17-b481-7d31ce357513)
+
+
+# Personal Log - Arsh Bhat
+
+**Week**: 9
+**Week**: `30-10-2023` - `05-11-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Learn Tech Stack
+  - ExpressJS
+  - Node.js
+  - Next.js
+- Complete figma protoype for Dashboard page
+- Plan and Present Mini Presentation
+  - Give Project overview with user scenario
+  - Plan what to talk about in presentation
+  - Divide presenation tasks among team
+ 
+## Active Tasks
+
+- Learn Tech Stack
+- Complete figma protoype for Dashboard page
+- Plan and Present Mini Presentation
+  - Give Project overview with user scenario
+  - Plan what to talk about in presentation
+  - Divide presenation tasks among team
+
+## Status of Tasks
+
+- Learn Tech Stack - `IN-PROGRESS`
+  - ExpressJS - `IN-PROGRESS`
+  - Node.js - `COMPLETED`
+  - Next.js - `IN-PROGRESS`
+- Complete figma protoype for Dashboard page - `IN-PROGRESS`
+- Plan and Present Mini Presentation - `COMPLETED`
+  - Give Project overview with user scenario - `COMPLETED`
+  - Plan what to talk about in presentation - `COMPLETED`
+  - Divide presenation tasks among team - `COMPLETED`
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/28757c15-9657-44e6-af65-c6b02d96bcaf)
