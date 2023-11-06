@@ -1,4 +1,4 @@
-**Week**: 30/10/2023 - 05/11/2023
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">**Week**: 30/10/2023 - 05/11/2023
 
 ## GitHub Accounts
 
@@ -82,7 +82,14 @@ Satanshu Mishra: `SatanshuMishra`
       - Sign-Up `In-Progress`
 
 ## Test Report
-<img width="807" alt="Week 9 Test Report" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/4c99e7ed-df57-4545-bf1d-4534feb0797c">
+<img width="1016" alt="2023-11-05_22-28-18" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/b031f730-1c66-45f0-b25c-6553efea6107">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/b3313f68-cc76-446d-9c9c-7cf40c4e323a">
+<img width="1015" alt="2023-11-05_22-29-12" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/3ea644b4-5425-4836-905e-9c11e376d284">
+
+
+
+
+
   - UserAuth tests currently failing as a result of switch to Express.js and pg-promise, and will be fixed once tests are reconfigured to work with Express.js and pg-promise.
   
 - Burn-Up Chart
