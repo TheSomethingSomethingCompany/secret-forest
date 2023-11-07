@@ -8,59 +8,7 @@ import { createAProfile } from "../../createProfile/api/createAProfile.js";
 import Image from "next/legacy/image";
 
 function CreateProfileForm() {
-    const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
-    /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
-    /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
-
-    
-
-
-
-    var fullName, country, address, bio, occupationTags, pfp;
-
-    function collectFormData()
-    {
-        fullName = document.querySelector('[name = "fullName"]');
-        country = document.querySelector('[name = "country"]');
-        address = document.querySelector('[name = "address"]');
-        bio = document.querySelector('[name = "bio"]');
-        occupationTags = document.querySelector('[name = "occupationTags"]');
-        pfp = document.querySelector("#pfp");
-    }
-
-    function onFullNameChange(e){
-        const label = document.querySelector('[for = "fullName"]');
-        if(e.target.value == "")
-         label.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your full name:</span>';
-        else
-        {          
-            label.innerHTML = 'Full Name: <span class = "text-red-500"> * </span> '
-        }
-    };
-
-    function onCountryChange(e)
-    {
-        const label = document.querySelector('[for = "country"]');
-        if(e.target.value == "")
-         label.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>';
-        else
-        {          
-            label.innerHTML = 'Country Of Residence: <span class = "text-red-500"> * </span> '
-        }
-    };
-
-    function onAddressChange(e)
-    {
-        const label = document.querySelector('[for = "address"]');
-        if(e.target.value == "")
-         label.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>';
-        else
-        {          
-            label.innerHTML = 'Address: <span class = "text-red-500"> * </span>'
-        }
-    };
-
-    
+   
 
     function requiredFieldsFilledIn()
     {
@@ -133,7 +81,7 @@ function CreateProfileForm() {
     {
         return(
             <div className = "w-full mt-10 mb-10 flex flex-col items-center">
-                <label htmlFor = {props.inputName} cum = {props.inputName} className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]"> {props.labelVal} {props.required && <span className = "text-red-500"> * </span> } </label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
+                <label htmlFor = {props.inputName} cum = {props.inputName} className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
                 <br></br>
                 <input id = {props.inputName}  type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
             </div>);
@@ -142,13 +90,68 @@ function CreateProfileForm() {
     
     function FormLabelsAndInputs()
     {
+
+        const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
+        /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
+        /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
+        const [fullName, setFullName] = useState("");
+        const [country, setCountry] = useState("");
+        const [address, setAddress] = useState("");
+        const [bio, setBio] = useState("");
+    
+        const [fullNameLabelHTML, setFullNameLabelHTML] = useState({__html:'Full Name: <span class = "text-red-500"> * </span>'});
+        const[countryLabelHTML, setCountryLabelHTML] = useState({__html: 'Country Of Residence: <span class = "text-red-500"> * </span> '});
+        const [addressLabelHTML, setAddressLabelHTML] = useState({__html: 'Address: <span class = "text-red-500"> * </span> '});
+    
+    
+     
+        function onFullNameChange(e)
+        {
+            const value = e.target.value.trim();
+            setFullName(value);
+    
+            if(value == "")
+                setFullNameLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your full name:</span>'});
+    
+            else      
+                setFullNameLabelHTML({__html: 'Full Name: <span class = "text-red-500"> * </span> '});
+            
+        };
+    
+        function onCountryChange(e)
+        {
+            const value = e.target.value.trim();
+            setCountry(value);
+            if(value == "")
+                setCountryLabelHTML({__html: '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>'});
+            else      
+                setCountryLabelHTML({__html: 'Country Of Residence: <span class = "text-red-500"> * </span> '});
+        
+        };
+    
+        function onAddressChange(e)
+        {
+            const value = e.target.value.trim();
+            setAddress(value);
+            if(value == "")
+                setAddressLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>'});
+            else      
+                setAddressLabelHTML({__html: 'Address: <span class = "text-red-500"> * </span>'}); 
+        };
+    
+        function onBioChange(e)
+        {
+            const value = e.target.value.trim();
+            setBio(value);
+        }
+        
         return(
         <>
-            <FlexLabelAndTextInput labelVal = "Full Name:" inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange }/> 
-            <FlexLabelAndTextInput labelVal = "Country Of Residence:" inputName="country" required = {true} onChangeFunction = { onCountryChange } /> 
-            <FlexLabelAndTextInput labelVal = "Address:" inputName = "address" required = {true} onChangeFunction = { onAddressChange }  /> 
+            <FlexLabelAndTextInput labelVal = {fullNameLabelHTML} inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange }/> 
+            <FlexLabelAndTextInput labelVal = {countryLabelHTML} inputName="country" required = {true} onChangeFunction = { onCountryChange } /> 
+            <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange }  /> 
             <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags id = "occupationTags" inputName = "occupationTags" inputWidth = "w-3/4 max-w-[35rem] min-w-[15rem]" inputHeight="h-[2.5rem]" cornerDesign = "rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-            <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio"></textarea> </FlexLabelAndOtherInput> 
+            <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
         </>
         )
     
