@@ -4,6 +4,7 @@ import defaultProfilePicture from "../../images/defaultProfilePicture.jpg";
 import editIcon from "../../images/pencil-solid.svg";
 import { useState, useEffect } from "react";
 import { createAProfile } from "../../createProfile/api/createAProfile.js";
+import React from 'react';
 
 import Image from "next/legacy/image";
 
@@ -67,15 +68,16 @@ function CreateProfileForm() {
 
     }
 
-    function FlexLabelAndOtherInput(props)
+    const FlexLabelAndOtherInput = React.memo(function (props)
     {
+        console.log("RERENDER MEMOIZED CHILD");
         return(
         <div className = "w-full mt-10 mb-10 flex flex-col items-center "> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
                 <label htmlFor = {props.assoc} className = "mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]">{props.labelVal}</label>
                 <br></br>
                 {props.children}
         </div>);
-    };
+    });
     
     function FlexLabelAndTextInput(props)
     {
@@ -90,6 +92,7 @@ function CreateProfileForm() {
     
     function FormLabelsAndInputs()
     {
+        console.log("RERENDER PARENT");
 
         const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
         /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
