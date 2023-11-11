@@ -31,133 +31,13 @@ function CreateProfileForm() {
         };
     };
 
-    function displayErrorOnRequiredFields()
-    {
-        const fullNameLabel = document.querySelector('[for = "fullName"]');
-        const countryLabel = document.querySelector('[for = "country"]');
-        const addressLabel = document.querySelector('[for = "address"]');
-
-        if(fullName.value.trim() == "")
-            fullNameLabel.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your full name:</span>';
-        if(country.value.trim() == "")
-            countryLabel.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>';
-        if(address.value.trim() == "")
-            addressLabel.innerHTML = '<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>';
-    };
-
     function handleSubmit(event) {
         event.preventDefault();
-    
-        collectFormData();
         if(requiredFieldsFilledIn())
             if(createAProfile(formDataAsJSON()))
                 alert("Created Your Profile")
             else alert("Could Not Create Your Profile")
-        else displayErrorOnRequiredFields();
         
-    };
-
-
-    function CreateProfileHeader()
-    {
-        return (
-        <div className = "w-full mb-10 mt-20 flex justify-center">
-            <h1 className = "font-semibold mobile:text-[5vw] tablet:text-[4rem] desktop:text-[4rem]">Create Your Profile</h1> 
-        </div>
-        );
-
-    }
-
-    const FlexLabelAndOtherInput = React.memo(function (props)
-    {
-        console.log("RERENDER MEMOIZED CHILD");
-        return(
-        <div className = "w-full mt-10 mb-10 flex flex-col items-center "> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
-                <label htmlFor = {props.assoc} className = "mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]">{props.labelVal}</label>
-                <br></br>
-                {props.children}
-        </div>);
-    });
-    
-    function FlexLabelAndTextInput(props)
-    {
-        return(
-            <div className = "w-full mt-10 mb-10 flex flex-col items-center">
-                <label htmlFor = {props.inputName} cum = {props.inputName} className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
-                <br></br>
-                <input id = {props.inputName}  type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
-            </div>);
-    
-        };
-    
-    function FormLabelsAndInputs()
-    {
-        console.log("RERENDER PARENT");
-
-        const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
-        /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
-        /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
-        const [fullName, setFullName] = useState("");
-        const [country, setCountry] = useState("");
-        const [address, setAddress] = useState("");
-        const [bio, setBio] = useState("");
-    
-        const [fullNameLabelHTML, setFullNameLabelHTML] = useState({__html:'Full Name: <span class = "text-red-500"> * </span>'});
-        const[countryLabelHTML, setCountryLabelHTML] = useState({__html: 'Country Of Residence: <span class = "text-red-500"> * </span> '});
-        const [addressLabelHTML, setAddressLabelHTML] = useState({__html: 'Address: <span class = "text-red-500"> * </span> '});
-    
-    
-     
-        function onFullNameChange(e)
-        {
-            const value = e.target.value.trim();
-            setFullName(value);
-    
-            if(value == "")
-                setFullNameLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your full name:</span>'});
-    
-            else      
-                setFullNameLabelHTML({__html: 'Full Name: <span class = "text-red-500"> * </span> '});
-            
-        };
-    
-        function onCountryChange(e)
-        {
-            const value = e.target.value.trim();
-            setCountry(value);
-            if(value == "")
-                setCountryLabelHTML({__html: '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>'});
-            else      
-                setCountryLabelHTML({__html: 'Country Of Residence: <span class = "text-red-500"> * </span> '});
-        
-        };
-    
-        function onAddressChange(e)
-        {
-            const value = e.target.value.trim();
-            setAddress(value);
-            if(value == "")
-                setAddressLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>'});
-            else      
-                setAddressLabelHTML({__html: 'Address: <span class = "text-red-500"> * </span>'}); 
-        };
-    
-        function onBioChange(e)
-        {
-            const value = e.target.value.trim();
-            setBio(value);
-        }
-        
-        return(
-        <>
-            <FlexLabelAndTextInput labelVal = {fullNameLabelHTML} inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange }/> 
-            <FlexLabelAndTextInput labelVal = {countryLabelHTML} inputName="country" required = {true} onChangeFunction = { onCountryChange } /> 
-            <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange }  /> 
-            <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags id = "occupationTags" inputName = "occupationTags" inputWidth = "w-3/4 max-w-[35rem] min-w-[15rem]" inputHeight="h-[2.5rem]" cornerDesign = "rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-            <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
-        </>
-        )
-    
     };
 
 
@@ -174,6 +54,107 @@ function CreateProfileForm() {
         </>
     );
 }
+
+
+function CreateProfileHeader()
+{
+    return (
+    <div className = "w-full mb-10 mt-20 flex justify-center">
+        <h1 className = "font-semibold mobile:text-[5vw] tablet:text-[4rem] desktop:text-[4rem]">Create Your Profile</h1> 
+    </div>
+    );
+
+}
+
+function FormLabelsAndInputs()
+{
+
+    const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
+    /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
+    /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
+    const [fullName, setFullName] = useState("");
+    const [country, setCountry] = useState("");
+    const [address, setAddress] = useState("");
+    const [bio, setBio] = useState("");
+
+    const [fullNameLabelHTML, setFullNameLabelHTML] = useState({__html:'Full Name: <span class = "text-red-500"> * </span>'});
+    const[countryLabelHTML, setCountryLabelHTML] = useState({__html: 'Country Of Residence: <span class = "text-red-500"> * </span> '});
+    const [addressLabelHTML, setAddressLabelHTML] = useState({__html: 'Address: <span class = "text-red-500"> * </span> '});
+
+
+    
+    function onFullNameChange(e)
+    {
+        const value = e.target.value.trim();
+        setFullName(value);
+
+        if(value == "")
+            setFullNameLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your full name:</span>'});
+
+        else      
+            setFullNameLabelHTML({__html: 'Full Name: <span class = "text-red-500"> * </span> '});
+        
+    };
+
+    function onCountryChange(e)
+    {
+        const value = e.target.value.trim();
+        setCountry(value);
+        if(value == "")
+            setCountryLabelHTML({__html: '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>'});
+        else      
+            setCountryLabelHTML({__html: 'Country Of Residence: <span class = "text-red-500"> * </span> '});
+    
+    };
+
+    function onAddressChange(e)
+    {
+        const value = e.target.value.trim();
+        setAddress(value);
+        if(value == "")
+            setAddressLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>'});
+        else      
+            setAddressLabelHTML({__html: 'Address: <span class = "text-red-500"> * </span>'}); 
+    };
+
+    function onBioChange(e)
+    {
+        const value = e.target.value.trim();
+        setBio(value);
+    }
+    
+    return(
+    <>
+        <FlexLabelAndTextInput labelVal = {fullNameLabelHTML} inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange }/> 
+        <FlexLabelAndTextInput labelVal = {countryLabelHTML} inputName="country" required = {true} onChangeFunction = { onCountryChange } /> 
+        <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange }  /> 
+        <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 max-w-[35rem] min-w-[15rem] h-[2.5rem] rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+        <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
+    </>
+    )
+    
+};
+
+const FlexLabelAndOtherInput = React.memo(function (props)
+{
+    return(
+    <div className = "w-full mt-10 mb-10 flex flex-col items-center "> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
+            <label htmlFor = {props.assoc} className = "mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]">{props.labelVal}</label>
+            <br></br>
+            {props.children}
+    </div>);
+});
+    
+function FlexLabelAndTextInput(props)
+{
+return(
+    <div className = "w-full mt-10 mb-10 flex flex-col items-center">
+        <label htmlFor = {props.inputName} cum = {props.inputName} className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
+        <br></br>
+        <input id = {props.inputName}  type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
+    </div>);
+    
+};
 
 
 function ProfilePicture() {
