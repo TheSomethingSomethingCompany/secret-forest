@@ -182,3 +182,38 @@
 ## Peer Review
 
 ![week 9](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/0ea35689-ec8a-41ba-b4da-2b59518ba41d)
+
+-----------------
+
+**Week**: 10
+
+**Work Period**: 6 October 2023 - 12 November 2023
+
+## Individual Objectives
+
+- I was involved involved a little bit in re-designing the navbar in order to make it appear more modern. I was also involved in redesigning our search results/dashboard page and what we plan to have it do in terms of functionality. I have also been exploring how to use our Express JS server for the backend by researching and using team-mates' code as a reference. I have started to make an attempt on using Express JS on a local repo as practice for now. I have also started to do some research into the different AWS services that are available to us as we plan to host our project on AWS soon.
+
+
+## Active Tasks
+
+- Assist in re-design of the Navbar
+- Re-design search results page
+- Research Express JS
+	- Research online resources
+   	- Use team-mate codes as referance
+   	- Use Express JS on a local repo to understand how it works
+ - Start researching AWS services we can use
+   
+## Status of Tasks
+
+- Assist in re-design of the Navbar -- Completed
+- Re-design search results page -- Completed
+- Research Express JS -- In Progress
+	- Research online resources -- In Progress
+   	- Use team-mate codes as referance -- In Progress
+   	- Use Express JS on a local repo to understand how it works -- In Progress
+ - Start researching AWS services we can use -- In Progress
+
+## Peer Review
+![week 10](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/61e6d9b4-3a32-461c-898b-aeb3ffa926e8)
+

@@ -129,20 +129,14 @@
 # Personal Log - Satanshu Mishra
 
 **Week**: 8
-**Week**: 
+**Week**:
 **GitHub Account**: `SatanshuMishra`
 
 ## Individual Objectives
 
-
-
 ## Active Tasks
 
-
-
 ## Status of Tasks
-
-
 
 ## Peer Review
 
@@ -165,8 +159,8 @@
     - Sign-In
     - Sign-Up
 - Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
-  -  Improve User Interface Designs
-  -  Remove Redundant Code
+  - Improve User Interface Designs
+  - Remove Redundant Code
 - Develop Chat Page
   - Start designing UI design ideas.
 
@@ -181,8 +175,8 @@
     - Sign-In
     - Sign-Up
 - Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
-  -  Improve User Interface Designs
-  -  Remove Redundant Code
+  - Improve User Interface Designs
+  - Remove Redundant Code
 - Develop Chat Page
   - Start designing UI design ideas.
 
@@ -197,10 +191,78 @@
     - Sign-In `IN-PROGRESS`
     - Sign-Up `IN-PROGRESS`
 - Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
-  -  Improve User Interface Designs `IN-PROGRESS`
-  -  Remove Redundant Code `IN-PROGRESS`
+  - Improve User Interface Designs `IN-PROGRESS`
+  - Remove Redundant Code `IN-PROGRESS`
 - Develop Chat Page
   - Start designing UI design ideas. `IN-PROGRESS`
 
 ## Peer Review
+
 ![Peer Review Week 9](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/3ae5ec51-90ef-408d-a9cb-037b98cf97cb)
+
+**Week**: 10
+**Week**: `06/11/2023` - `12/11/2023`
+**GitHub Account**: `SatanshuMishra`
+
+## Individual Objectives
+
+- Migrate User Auth Back-end to Express.js
+  - Sign-Up
+  - Sign-In
+    - Email
+    - Username
+- Switch from using Local Storage to Session Data
+- Fix Errors encountered due to merging branching for Mini-Presentations.
+  - Fix **JEST Testing** for user authentication pages
+    - Sign-In
+    - Sign-Up
+- Add UI Testing
+  - User Authentication
+    - Sign-In
+    - Sign-Up
+- Update UI for Nav-Bar to resemble a more modern and minimal aesthetic
+- Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
+  - Improve User Interface Designs
+  - Remove Redundant Code
+- Develop Chat Page
+  - Start designing UI design ideas.
+
+## Active Tasks
+
+- Migrate User Auth Back-end to Express.js
+  - Sign-Up
+- Switch from using Local Storage to Session Data
+- Fix Errors encountered due to merging branching for Mini-Presentations.
+  - Fix **JEST Testing** for user authentication pages
+    - Sign-Up
+- Add UI Testing
+  - User Authentication
+    - Sign-Up
+- Update UI for Nav-Bar to resemble a more modern and minimal aesthetic
+- Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
+  - Improve User Interface Designs
+  - Remove Redundant Code
+- Develop Chat Page
+  - Start designing UI design ideas.
+
+## Status of Tasks
+
+- Migrate User Auth Back-end to Express.js
+  - Sign-Up `COMPLETE`
+- Switch from using Local Storage to Session Data `IN-COMPLETE`
+- Fix Errors encountered due to merging branching for Mini-Presentations.
+  - Fix **JEST Testing** for user authentication pages
+    - Sign-Up `IN-PROGRESS`
+- Add UI Testing
+  - User Authentication
+    - Sign-Up `IN-PROGRESS`
+- Update UI for Nav-Bar to resemble a more modern and minimal aesthetic IN-PROGRESS
+- Update designs for the User Authentication Page and Create a Profile Page with consistency, optimization and responsiveness.
+  - Improve User Interface Designs `IN-PROGRESS`
+  - Remove Redundant Code `IN-PROGRESS`
+- Develop Chat Page
+  - Start designing UI design ideas. `IN-PROGRESS`
+
+## Peer Review
+
+![Peer Review Week 10](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/466d79cc-396f-41e8-baf2-393bcf333e6b)
