@@ -188,3 +188,35 @@
   - Divide presenation tasks among team - `COMPLETED`
 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/28757c15-9657-44e6-af65-c6b02d96bcaf)
+
+# Personal Log - Arsh Bhat
+
+**Week**: 10
+**Week**: `06-10-2023` - `12-11-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Learn Tech Stack
+  - ExpressJS
+  - Node.js
+  - Next.js
+- Design Search Results page
+- Finalize design for search bar
+ 
+## Active Tasks
+
+- Learn Tech Stack
+- Design Search Results page
+- Finalize design for search bar
+
+## Status of Tasks
+
+- Learn Tech Stack - `IN-PROGRESS`
+  - ExpressJS - `IN-PROGRESS`
+  - Node.js - `COMPLETED`
+  - Next.js - `IN-PROGRESS`
+- Design Search Results page - `COMPLETED`
+- Finalize design for search bar - `COMPLETED`
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/9da7817d-4342-4c5a-a084-0a70968393eb)
