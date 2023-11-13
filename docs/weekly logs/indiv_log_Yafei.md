@@ -160,3 +160,37 @@
 ## Peer Review
 
 ![indivWeek6](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/069e0fc6-b0b8-400f-836d-ce9b66ea6d27)
+
+
+# Personal Log - Yafei Sedlacek
+
+**Week**: 10
+**Work Period**: `06-11-2023` - `12-11-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Learning express js
+- Change backend of search functionality to work with express js
+- Set up testing to test search functionality
+
+## Active Tasks
+
+- Learning express js
+  - Learn how to implement routing functionality to search with express js
+- Learn how to set up testing for search either from teammates or other resources
+- Express js backend for search
+
+## Status of Tasks
+
+- Learning express js (In-progress)
+  - Learn how to implement routing functionality to search with express js
+- Learn how to set up testing for search either from teammates or other resources (In-progress)
+- Express js backend for search (In-progress)
+
+## Peer Review
+
+![week10](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/96e7c1b0-b2df-443b-9bb4-116cd46471a0)
+
+
+
