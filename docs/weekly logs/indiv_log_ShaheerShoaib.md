@@ -390,3 +390,37 @@
 ## Peer Review
 <img width="891" alt="tasks_w9" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/35faa71d-b38e-4d65-b180-57a09b55416b">
 
+**Week**: 10
+**Work Period**: 06/11/2023 - 12/11/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Research stored XSS attacks, and how to prevent it within our website
+- Research React reconciliation algorithm to optimize components
+    - Ensure no nested component definitions to prevent their recreation on parent rerender
+    - Ensure no direct DOM manipulation to prevent inconsistencies between DOM and Virtual DOM
+- Further refactoring and documentation of createProfile
+
+## Active Tasks
+
+- Research stored XSS attacks, and how to prevent it within our website
+- Research React reconciliation algorithm to optimize components
+    - Ensure no nested component definitions to prevent their recreation on parent rerender
+    - Ensure no direct DOM manipulation to prevent inconsistencies between DOM and Virtual DOM
+- Further refactoring and documentation of createProfile
+
+
+## Status of Tasks: `All Tasks Listed Completed`
+- Research stored XSS attacks, and how to prevent it within our website
+- Research React reconciliation algorithm to optimize components
+    - Ensure no nested component definitions to prevent their recreation on parent rerender
+    - Ensure no direct DOM manipulation to prevent inconsistencies between DOM and Virtual DOM
+- Further refactoring and documentation of createProfile
+
+
+## Peer Review
+<img width="887" alt="2023-11-14_00-31-12" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f735e4bf-d816-4974-aaa5-5645afe550e1">
+
+
+

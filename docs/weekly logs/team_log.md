@@ -18,6 +18,12 @@ Satanshu Mishra: `SatanshuMishra`
 - Implement backend logic for Search Bar
 - Implement backend logic for Search Results Page
 - Research AWS services for project use
+- Research Microservices architecture
+- Research and further optimize createProfile
+  - Remove nested component definitions to prevent their recreation on parent rerender
+  - Remove direct DOM manipulation to ensure proper syncing of Virtual DOM and DOM
+- Research cybersecurity measures to implement within our website
+  - Research stored XSS attacks and measures to prevent it
 
 ## Accomplishments
 
