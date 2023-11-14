@@ -131,7 +131,7 @@ function FormLabelsAndInputs()
         <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 max-w-[35rem] min-w-[15rem] h-[2.5rem] rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
         <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
     </>
-    )
+    );
     
 };
 
