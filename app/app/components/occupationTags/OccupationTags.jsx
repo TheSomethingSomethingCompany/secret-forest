@@ -12,7 +12,6 @@ function OccupationTags({id, inputName, currentTags, setTags, inputFieldStyles, 
                 const updatedTags = [...prevTags, value];
                 return updatedTags;
                 });
-                console.log("After:");
                 console.log(currentTags);
                 setInputValue('');
                 

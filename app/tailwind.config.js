@@ -20,9 +20,9 @@ module.exports = {
       },
       screens: {
         desktop: "1400px",
-        tablet: "1200px",
+        tablet: "1100px",
         mobile: "300px",
-        start: "0px",
+        start: "100px",
       },
       colors: {
         border: "hsl(var(--border))",

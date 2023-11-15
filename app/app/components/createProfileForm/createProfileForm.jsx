@@ -11,6 +11,7 @@ import Image from "next/legacy/image";
 function CreateProfileForm() {
    
 
+
     function requiredFieldsFilledIn()
     {
         if(fullName.value.trim() === "" || country.value.trim() === "" || address.value.trim() === "")
@@ -44,11 +45,10 @@ function CreateProfileForm() {
     return (
         <>
             <form action="" method="post" className="flex justify-center relative overflow-y-auto w-full h-screen overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500" onSubmit={handleSubmit}>
-                <div id = "labels-and-inputs-container" className = "flex h-[100vh] w-1/2 flex-col items-center p-2"> {/* Ensures the labels div and the inputs div are side-by-side */}
+                <div id = "labels-and-inputs-container" className = "flex h-[100vh] min-w-[25rem] w-1/2 max-w-[50rem] flex-col items-center p-2 bg-green-500"> {/* Ensures the labels div and the inputs div are side-by-side */}
                     <CreateProfileHeader/>
                     <ProfilePicture/>
                     <FormLabelsAndInputs/>
-                    <button className = "bg-black p-2 font-semibold rounded-lg hover:text-green-500 w-1/4" onClick = {handleSubmit}>SUBMIT</button>
                 </div>        
             </form>         
         </>
@@ -60,7 +60,7 @@ function CreateProfileHeader()
 {
     return (
     <div className = "w-full mb-10 mt-20 flex justify-center">
-        <h1 className = "font-semibold mobile:text-[5vw] tablet:text-[4rem] desktop:text-[4rem]">Create Your Profile</h1> 
+        <h1 className = "font-semibold mobile:text-[2rem] tablet:text-[3rem] desktop:text-[4rem]">Create Your Profile</h1> 
     </div>
     );
 
@@ -81,7 +81,9 @@ function FormLabelsAndInputs()
     const[countryLabelHTML, setCountryLabelHTML] = useState({__html: 'Country Of Residence: <span class = "text-red-500"> * </span> '});
     const [addressLabelHTML, setAddressLabelHTML] = useState({__html: 'Address: <span class = "text-red-500"> * </span> '});
 
-
+    // Using dangerouslySetInnerHTML allows us to set the innerHTML of a label, which is useful for adding a red asterisk to required fields and for adding error messages
+    // dangerouslySetInnerHTML does not have a security risk here because we are not using user input to set the innerHTML, we are using a string that we have defined ourselves
+    // dangerouslySetInnerHTML does have a security risk if we were to use user input to set the innerHTML, because it would allow users to inject HTML into our page, but since we are using a label and it is not possible to save this HTML to the database or show it to other users, there is no security risk here.
     
     function onFullNameChange(e)
     {
@@ -128,14 +130,15 @@ function FormLabelsAndInputs()
         <FlexLabelAndTextInput labelVal = {fullNameLabelHTML} inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange }/> 
         <FlexLabelAndTextInput labelVal = {countryLabelHTML} inputName="country" required = {true} onChangeFunction = { onCountryChange } /> 
         <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange }  /> 
-        <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 max-w-[35rem] min-w-[15rem] h-[2.5rem] rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-        <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "min-w-[15rem] min-h-[10rem] text-black w-3/4 max-w-[35rem] h-[18vw] rounded-md text-[1.25rem]" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
+        <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 h-[2.5rem] rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+        <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "mobile:h-[10rem] tablet:h-[20rem] desktop:h-[30rem] text-black w-3/4 rounded-md text-[1.25rem]" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
+        <FormButtons/>
     </>
     );
     
 };
 
-const FlexLabelAndOtherInput = React.memo(function (props)
+function FlexLabelAndOtherInput (props)
 {
     return(
     <div className = "w-full mt-10 mb-10 flex flex-col items-center "> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
@@ -143,7 +146,7 @@ const FlexLabelAndOtherInput = React.memo(function (props)
             <br></br>
             {props.children}
     </div>);
-});
+};
     
 function FlexLabelAndTextInput(props)
 {
@@ -151,13 +154,25 @@ return(
     <div className = "w-full mt-10 mb-10 flex flex-col items-center">
         <label htmlFor = {props.inputName} cum = {props.inputName} className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
         <br></br>
-        <input id = {props.inputName}  type = "text" className = "min-w-[15rem] text-black w-3/4 h-[2.5rem] max-w-[35rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
+        <input id = {props.inputName}  type = "text" className = "text-black w-3/4 h-[2.5rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
     </div>);
     
 };
 
+function FormButtons()
+{
 
-function ProfilePicture() {
+    return(
+    <div className = "flex w-full bg-red-500 mobile:flex-col mobile:space-y-10 mobile:items-center tablet:space-x-52 tablet:space-y-0 tablet:flex-row tablet:justify-center ">
+    <button className = "bg-black p-2 font-semibold rounded-lg hover:text-green-500 w-1/2">GO BACK</button>
+    <button className = "bg-black p-2 font-semibold rounded-lg hover:text-green-500 w-1/2">SUBMIT</button>
+    </div>
+    );
+
+};
+
+function ProfilePicture() 
+{
     const [image, setImage] = useState(defaultProfilePicture);
 
     const handleImageChange = (e) => {
@@ -171,7 +186,8 @@ function ProfilePicture() {
         }
     };
 
-    const handleEditButtonClick = function(e){
+    const handleEditButtonClick = function(e)
+    {
         e.preventDefault();
         document.getElementById("edit-pfp").click();
     };
@@ -184,7 +200,8 @@ function ProfilePicture() {
         )
     };
 
-    function EditPictureButton(){
+    function EditPictureButton()
+    {
         return(
         <div id = "edit-pfp-button-container" className = "relative w-[2vw] h-[2vw] max-h-[70px] max-w-[70px]">
             <button id = "edit-pfp-button"><Image src = {editIcon} layout = "fill" objectFit = "cover" alt = "Edit" onClick = {handleEditButtonClick}></Image></button>
