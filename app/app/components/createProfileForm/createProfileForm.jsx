@@ -11,26 +11,7 @@ import Image from "next/legacy/image";
 function CreateProfileForm() {
    
 
-
-    function requiredFieldsFilledIn()
-    {
-        if(fullName.value.trim() === "" || country.value.trim() === "" || address.value.trim() === "")
-            return false
-        else return true
-    };
-
-    
-
-    function formDataAsJSON()
-    {
-        return {
-            fullName: fullName.value,
-            country: country.value,
-            address: address.value,
-            bio: bio.value,
-            occupationTags: JSON.stringify(currentTags),
-        };
-    };
+   
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -45,7 +26,7 @@ function CreateProfileForm() {
     return (
         <>
             <form action="" method="post" className="flex justify-center relative overflow-y-auto w-full h-screen overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500" onSubmit={handleSubmit}>
-                <div id = "labels-and-inputs-container" className = "flex h-[100vh] min-w-[25rem] w-1/2 max-w-[50rem] flex-col items-center p-2 bg-green-500"> {/* Ensures the labels div and the inputs div are side-by-side */}
+                <div id = "labels-and-inputs-container" className = "flex h-[100vh] min-w-[25rem] w-1/2 max-w-[50rem] flex-col items-center p-2"> {/* Ensures the labels div and the inputs div are side-by-side */}
                     <CreateProfileHeader/>
                     <ProfilePicture/>
                     <FormLabelsAndInputs/>
@@ -124,6 +105,37 @@ function FormLabelsAndInputs()
         const value = e.target.value.trim();
         setBio(value);
     }
+
+    function displayRequiredFields()
+    {
+        if(fullName == "")
+            setFullNameLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your full name:</span>'});
+        if(country == "")
+            setCountryLabelHTML({__html: '<span class = "text-red-500"> You cannot leave this field empty! Please enter your country of residence:</span>'});
+        if(address == "")
+            setAddressLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>'});
+    }
+    function formDataAsJSON()
+    {
+        return {
+            fullName: fullName.value,
+            country: country.value,
+            address: address.value,
+            bio: bio.value,
+            occupationTags: JSON.stringify(currentTags),
+        };
+    };
+
+    function onSubmit(e)
+    {
+        e.preventDefault();
+        if(fullName != "" && country != "" && address != "")
+            if(createAProfile(formDataAsJSON()))
+                alert("Created Your Profile")
+            else alert("Could Not Create Your Profile")
+        else displayRequiredFields();
+    }
+
     
     return(
     <>
@@ -132,7 +144,7 @@ function FormLabelsAndInputs()
         <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange }  /> 
         <FlexLabelAndOtherInput labelVal = "Occupation Tags:" assoc = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 h-[2.5rem] rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
         <FlexLabelAndOtherInput labelVal = "Bio:" assoc = "bio"> <textarea id = "bio" className = "mobile:h-[10rem] tablet:h-[20rem] desktop:h-[30rem] text-black w-3/4 rounded-md text-[1.25rem]" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
-        <FormButtons/>
+        <FormButtons onSubmitHandler = {onSubmit} />
     </>
     );
     
@@ -140,6 +152,7 @@ function FormLabelsAndInputs()
 
 function FlexLabelAndOtherInput (props)
 {
+    
     return(
     <div className = "w-full mt-10 mb-10 flex flex-col items-center "> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
             <label htmlFor = {props.assoc} className = "mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]">{props.labelVal}</label>
@@ -159,13 +172,13 @@ return(
     
 };
 
-function FormButtons()
+function FormButtons({onSubmitHandler})
 {
 
     return(
-    <div className = "flex w-full bg-red-500 mobile:flex-col mobile:space-y-10 mobile:items-center tablet:space-x-52 tablet:space-y-0 tablet:flex-row tablet:justify-center ">
-    <button className = "bg-black p-2 font-semibold rounded-lg hover:text-green-500 w-1/2">GO BACK</button>
-    <button className = "bg-black p-2 font-semibold rounded-lg hover:text-green-500 w-1/2">SUBMIT</button>
+    <div className = "flex w-full mobile:flex-col-reverse mobile:items-center mobile:space-y-reverse mobile:space-y-10 tablet:space-x-52 tablet:space-y-0 tablet:flex-row tablet:justify-center "> {/* space-y puts margin top on the seocnd, third, fourth, etc elements. But, if col-reversed, the margin-top property still remains. You'll need to specify space-y-reverse to ensure the correct order of margin-top*/}
+        <button className = "h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out w-3/4">Go Back</button>
+        <button className = "h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out w-3/4" onClick = {onSubmitHandler}>Submit</button>
     </div>
     );
 
@@ -192,7 +205,8 @@ function ProfilePicture()
         document.getElementById("edit-pfp").click();
     };
 
-    function Picture(){
+    function Picture()
+    {
         return(
             <div className="relative w-[20vw] h-[20vw]" style = { {maxWidth: '300px', maxHeight: '300px', minWidth:'10rem', minHeight: '10rem'} }>
                 <Image id = "pfp" src={image} alt="Profile Preview" layout="fill" objectFit="cover" className="rounded-full" />
