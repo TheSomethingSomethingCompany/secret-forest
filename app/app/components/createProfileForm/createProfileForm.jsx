@@ -10,19 +10,6 @@ import Image from "next/legacy/image";
 
 function CreateProfileForm() {
    
-
-   
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        if(requiredFieldsFilledIn())
-            if(createAProfile(formDataAsJSON()))
-                alert("Created Your Profile")
-            else alert("Could Not Create Your Profile")
-        
-    };
-
-
     return (
         <>
             <form action="" method="post" className="flex justify-center relative overflow-y-auto w-full h-screen overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500" onSubmit={handleSubmit}>
