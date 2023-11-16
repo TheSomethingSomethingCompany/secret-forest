@@ -20,9 +20,9 @@ module.exports = {
       },
       screens: {
         desktop: "1400px",
-        tablet: "1200px",
+        tablet: "1100px",
         mobile: "300px",
-        start: "0px",
+        start: "100px",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -30,6 +30,8 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        'input-gray': '#565e6a',
+        'error-red':'#ca3a31',
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

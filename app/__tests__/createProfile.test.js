@@ -129,7 +129,7 @@ describe("createAProfile", () => {
         const countryInput = getByLabelText(/Country Of Residence/);
         await userEvent.type(countryInput, "Canada");
 
-        const submitButton = getByText(/SUBMIT/); 
+        const submitButton = getByText(/Create Profile/); 
         await submitButton.click();
 
         const addrErrorMsgElement = queryByText(/You cannot leave this field empty! Please enter your address/);
