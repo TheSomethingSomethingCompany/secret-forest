@@ -163,11 +163,19 @@ function FlexLabelAndOtherInput (props)
     
 function FlexLabelAndTextInput(props)
 {
+    function focusInputFieldOnClick(e)
+    {
+        e.preventDefault();
+        document.getElementById(props.inputName).focus();
+    }
+
 return(
     <div className = "w-full mt-10 mb-10 flex flex-col items-center">
-        <label htmlFor = {props.inputName} cum = {props.inputName} className="mobile:text-[1rem] tablet:text-[2rem] desktop:text-[2rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
-        <br></br>
-        <input id = {props.inputName}  type = "text" className = "text-black w-3/4 h-[2.5rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
+        <div className = "w-3/4 bg-gray-100 rounded-lg p-2 hover:cursor-text" onClick = {focusInputFieldOnClick}>
+            <label htmlFor = {props.inputName} cum = {props.inputName} className="hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]" onClick = {focusInputFieldOnClick} dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
+            <br></br>
+            <input id = {props.inputName}  type = "text" className = "text-black w-3/4 h-[2.5rem] rounded-md text-[1.25rem] w-full bg-gray-100 focus:outline-none" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
+        </div>
     </div>);
     
 };
