@@ -142,8 +142,8 @@ function FormLabelsAndInputs()
         <FlexLabelAndTextInput labelVal = {fullNameLabelHTML} inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange }/> 
         <FlexLabelAndTextInput labelVal = {countryLabelHTML} inputName="country" required = {true} onChangeFunction = { onCountryChange } /> 
         <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange }  /> 
-        <FlexLabelAndOtherInput labelVal = "Occupation Tags:" inputName = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 h-[2.5rem] rounded-md" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-        <FlexLabelAndOtherInput labelVal = "Bio:" inputName = "bio"> <textarea id = "bio" className = "mobile:h-[10rem] tablet:h-[20rem] desktop:h-[30rem] text-black w-3/4 rounded-md text-[1.25rem] resize-none" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
+        <FlexLabelAndOtherInput labelVal = "Occupation Tags:" inputName = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 h-[2.5rem] rounded-md p-2" textSize = "text-[1.25rem]" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
+        <FlexLabelAndOtherInput labelVal = "Bio:" inputName = "bio"> <textarea id = "bio" className = "mobile:h-[10rem] tablet:h-[20rem] desktop:h-[30rem] text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2" name = "bio" onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
         <FormButtons onSubmitHandler = {onSubmit} />
     </>
     );
@@ -152,11 +152,7 @@ function FormLabelsAndInputs()
 
 function FlexLabelAndOtherInput (props)
 {
-    function focusInputFieldOnClick(e)
-    {
-        e.preventDefault();
-        document.getElementById(props.inputName).focus();
-    }
+   
 
     return(
     <div className = "w-full mt-10 mb-10 flex flex-col items-center"> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/} 
@@ -174,7 +170,7 @@ return(
     <div className = "w-full mt-10 mb-10 flex flex-col items-center">
             <label htmlFor = {props.inputName} cum = {props.inputName} className="hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
             <br></br>
-            <input id = {props.inputName}  type = "text" className = "text-black w-3/4 h-[2.5rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} ></input>
+            <input id = {props.inputName}  type = "text" className = "text-black w-3/4 p-2 h-[2.5rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} onBlur = {props.onChangeFunction} ></input>
     </div>);
     
 };
