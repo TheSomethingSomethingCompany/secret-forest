@@ -1,5 +1,5 @@
 import { useState } from 'react'
-function OccupationTags({id, inputName, currentTags, setTags, inputFieldStyles, textSize, tagColor}) { /* receive currentTags and setTags as props from CreateProfileForm */
+function OccupationTags({id, inputName, currentTags, setTags, inputFieldStyles, textSize, tagColor, placeHolder}) { /* receive currentTags and setTags as props from CreateProfileForm */
     
     const [inputValue, setInputValue] = useState('');
 
@@ -32,7 +32,7 @@ function OccupationTags({id, inputName, currentTags, setTags, inputFieldStyles, 
 
     return ( 
         <> { /* Esnure the input field and the tags container are stacked */ }
-            <input id = {id} type="text" className= {`text-black ${inputFieldStyles}`} onKeyDown={addTag} value={inputValue} onInput={onInputChange} name = {inputName} ></input> {/*Template literal ` ` is just a string allows for ${}, and anything inside ${} is a javascript expression whose return value is returned and placed within the template literal. Similar to format strings */}
+            <input id = {id} type="text" className= {`text-black ${inputFieldStyles}`} onKeyDown={addTag} value={inputValue} onInput={onInputChange} name = {inputName} placeholder = {placeHolder}></input> {/*Template literal ` ` is just a string allows for ${}, and anything inside ${} is a javascript expression whose return value is returned and placed within the template literal. Similar to format strings */}
             <div id = "tags-container" className="flex flex-wrap mt-2"> {/* flex-wrap on the tags container to ensure tags themselves don't overflow */}
                 { 
                     currentTags.map((tag) => 
