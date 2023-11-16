@@ -50,3 +50,27 @@ CREATE TABLE profile_picture (
     foreign key ("memberID") references member("memberID")
     	on delete cascade on update cascade
 );
+
+CREATE TABLE chats(
+  "chatID" uuid PRIMARY KEY,
+  "memberID1" uuid NOT NULL,
+  "memberID2" uuid NOT NULL,
+  FOREIGN KEY ("memberID1") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE,    
+  FOREIGN KEY ("memberID2") REFERENCES member("memberID")
+  	ON DELETE CASCADE ON UPDATE CASCADE,
+);
+
+CREATE TABLE messages(
+  "messageID" uuid PRIMARY KEY,
+  "chatID" uuid NOT NULL,
+  "senderID" uuid NOT NULL,
+  "message" TEXT NOT NULL,
+  FOREIGN KEY ("chatID") REFERENCES chats("chatID")
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY ("senderID") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY ("memberID") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
