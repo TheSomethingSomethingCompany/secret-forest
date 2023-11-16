@@ -118,10 +118,10 @@ function FormLabelsAndInputs()
     function formDataAsJSON()
     {
         return {
-            fullName: fullName.value,
-            country: country.value,
-            address: address.value,
-            bio: bio.value,
+            fullName: fullName,
+            country: country,
+            address: address,
+            bio: bio,
             occupationTags: JSON.stringify(currentTags),
         };
     };
@@ -156,7 +156,7 @@ function FlexLabelAndOtherInput (props)
 
     return(
     <div className = "w-full mt-10 mb-10 flex flex-col items-center"> {/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/} 
-            <label htmlFor = {props.assoc} className = "font-semibold mb-2 hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]">{props.labelVal}</label>
+            <label htmlFor = {props.inputName} className = "font-semibold mb-2 hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]">{props.labelVal}</label>
             <br></br>
             {props.children} 
     </div>);
@@ -179,7 +179,7 @@ function FormButtons({onSubmitHandler})
 {
 
     return(
-    <div className = "flex mobile:w-full mobile:flex-col-reverse mobile:items-center mobile:space-y-reverse mobile:space-y-5 tablet:w-3/4 tablet:space-x-52 tablet:space-y-0 tablet:flex-row tablet:justify-center "> {/* space-y puts margin top on the seocnd, third, fourth, etc elements. But, if col-reversed, the margin-top property still remains. You'll need to specify space-y-reverse to ensure the correct order of margin-top*/}
+    <div className = "flex mobile:w-full mobile:flex-col-reverse mobile:items-center mobile:space-y-reverse mobile:space-y-5 desktop:w-3/4 desktop:space-x-52 desktop:space-y-0 desktop:flex-row desktop:justify-center "> {/* space-y puts margin top on the seocnd, third, fourth, etc elements. But, if col-reversed, the margin-top property still remains. You'll need to specify space-y-reverse to ensure the correct order of margin-top*/}
         <button className = "h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out w-3/4">Go Back</button>
         <button className = "h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out w-3/4" onClick = {onSubmitHandler}>Create Profile</button>
     </div>
