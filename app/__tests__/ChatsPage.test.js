@@ -134,3 +134,35 @@ describe("ChatsPage", ()=>{
 
 
 });
+
+describe("ChatsPage", ()=>{
+    it("Ensure chat can be deleted", async () => {
+        
+
+        async function deleteChat(data){
+            const response = await fetch('http://localhost:6969/deleteChat/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+
+            });
+        
+            let resBody = await response.json(); // Retrieve body and turn into JSON object
+            console.log(resBody.message);
+            console.log(resBody.status)
+            if(resBody.status == 201)
+                return true;
+            else if(resBody.status == 500 || resBody.status == 401) return false;
+           }
+        
+            const data = {chatID:1}; // Hardcoded chatID, will be replaced with dynamic chatID later.
+            await deleteChat(data).then((result)=>{
+                expect(result).toBe(true);
+            });
+          
+    });
+
+
+});

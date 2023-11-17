@@ -24,6 +24,9 @@ server.use('/sendMessage', sendMessageRoutes);
 const deleteMessageRoutes = require('./app/routes/DeleteMessage');
 server.use('/deleteMessage', deleteMessageRoutes);
 
+const deleteChatRoutes = require('./app/routes/DeleteChat');
+server.use('/deleteChat', deleteChatRoutes);
+
 server.listen(PORT, ()=>{
     console.log('Server started on http://localhost:6969');
 })
