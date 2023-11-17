@@ -17,6 +17,10 @@ server.use('/retrieveChats', retrieveChatsRoutes); //Express will map /retrieveC
 
 const retrieveMessagesRoutes = require('./app/routes/RetrieveMessages');
 server.use('/retrieveMessages', retrieveMessagesRoutes);
+
+const sendMessageRoutes = require('./app/routes/SendMessage');
+server.use('/sendMessage', sendMessageRoutes);
+
 server.listen(PORT, ()=>{
     console.log('Server started on http://localhost:6969');
 })
