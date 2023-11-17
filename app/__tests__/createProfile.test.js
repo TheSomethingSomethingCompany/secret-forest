@@ -143,7 +143,7 @@ describe("createAProfile", () => {
 
 
 describe("createAProfile", () =>{
-it("Ensure profile can be created given correct fields", async()=>{
+    it("Ensure profile can be created given correct fields", async()=>{
     
         const mockRequest = {
             fullName: "John Doe",
