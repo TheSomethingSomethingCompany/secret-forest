@@ -11,7 +11,7 @@ router.post('/api', async (req, res) => {
         //First, we must esnure that a user is a member of the chat, in order to prevent unauthorized insertion of chat messages by other users not in the chat.
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         console.log(req.body);
-        const loggedOnMemmberID = '777878f5-1ee2-4731-92f9-ecfe983e95bb';
+        const loggedOnMemmberID = '777878f5-1ee2-4731-92f9-ecfe983e95bb'; //dummy memberID, will be replaced with session memberID later.
         const chatID = req.body.chatID;
         const senderID = req.body.senderID;
         const message = req.body.message;

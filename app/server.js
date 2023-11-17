@@ -21,6 +21,9 @@ server.use('/retrieveMessages', retrieveMessagesRoutes);
 const sendMessageRoutes = require('./app/routes/SendMessage');
 server.use('/sendMessage', sendMessageRoutes);
 
+const deleteMessageRoutes = require('./app/routes/DeleteMessage');
+server.use('/deleteMessage', deleteMessageRoutes);
+
 server.listen(PORT, ()=>{
     console.log('Server started on http://localhost:6969');
 })
