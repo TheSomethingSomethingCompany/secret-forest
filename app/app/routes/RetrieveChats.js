@@ -13,7 +13,14 @@ router.get('/api', async (req, res) => {
             `, [memberID]);
         
         console.log(chatsWithUsers);
-        res.json({ status: 201, message: 'Retrieved chats successfully', data: chatsWithUsers });
+
+        if(chatsWithUsers.length == 0)
+        {
+            res.json({ status: 422, message: 'No chats found' });
+            return;
+        }
+
+        else res.json({ status: 201, message: 'Retrieved chats successfully', data: chatsWithUsers });
     } 
     catch(error)
     {

@@ -37,3 +37,35 @@ describe("ChatsPage", ()=>{
 
 
 });
+
+describe("ChatsPage", ()=>{
+    it("Ensure chats can be received", async () => {
+        
+
+        async function retrieveMessagesGivenChatID(data){
+            const response = await fetch('http://localhost:6969/retrieveMessages/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+
+            });
+        
+            let resBody = await response.json(); // Retrieve body and turn into JSON object
+            console.log(resBody.message);
+            console.log(resBody.status)
+            if(resBody.status == 201)
+                return true;
+            else if(resBody.status == 422 || resBody.status == 500 || resBody.status == 401) return false;
+           }
+        
+            const data = {chatID: 1};
+            await retrieveMessagesGivenChatID(data).then((result)=>{
+                expect(result).toBe(true);
+            });
+          
+    });
+
+
+});

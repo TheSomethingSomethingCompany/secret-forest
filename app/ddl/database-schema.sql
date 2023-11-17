@@ -62,11 +62,11 @@ CREATE TABLE chat(
 );
 
 CREATE TABLE message(
-  "messageID" uuid PRIMARY KEY,
-  "chatID" uuid NOT NULL,
+  "messageID" SERIAL PRIMARY KEY,
+  "chatID" int NOT NULL,
   "senderID" uuid NOT NULL,
   "message" TEXT NOT NULL,
-  FOREIGN KEY ("chatID") REFERENCES chats("chatID")
+  FOREIGN KEY ("chatID") REFERENCES chat("chatID")
     ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY ("senderID") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE
