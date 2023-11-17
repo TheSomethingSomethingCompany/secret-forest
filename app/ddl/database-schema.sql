@@ -1,7 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE member (
-  "memberID" UUID PRIMARY KEY,
+  "memberID" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "email" TEXT UNIQUE,
   "name" TEXT NOT NULL,
   "password" TEXT NOT NULL,
@@ -51,17 +51,17 @@ CREATE TABLE profile_picture (
     	on delete cascade on update cascade
 );
 
-CREATE TABLE chats(
-  "chatID" uuid PRIMARY KEY,
+CREATE TABLE chat(
+  "chatID" SERIAL PRIMARY KEY,
   "memberID1" uuid NOT NULL,
   "memberID2" uuid NOT NULL,
   FOREIGN KEY ("memberID1") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE,    
   FOREIGN KEY ("memberID2") REFERENCES member("memberID")
-  	ON DELETE CASCADE ON UPDATE CASCADE,
+  	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE messages(
+CREATE TABLE message(
   "messageID" uuid PRIMARY KEY,
   "chatID" uuid NOT NULL,
   "senderID" uuid NOT NULL,
@@ -69,8 +69,6 @@ CREATE TABLE messages(
   FOREIGN KEY ("chatID") REFERENCES chats("chatID")
     ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY ("senderID") REFERENCES member("memberID")
-    ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY ("memberID") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
