@@ -193,4 +193,44 @@
 ![week10](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/96e7c1b0-b2df-443b-9bb4-116cd46471a0)
 
 
+# Personal Log - Yafei Sedlacek
+
+**Week**: 11 (Reading week)
+**Work Period**: `13-11-2023` - `19-11-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Learning express js
+- Change backend of search functionality to work with express js
+- Set up testing to test search functionality
+- Create the search page
+
+## Active Tasks
+
+- Learning express js
+  - Learn how to implement routing functionality to search with express js
+- Learn how to set up testing for search either from teammates or other resources
+- Express js backend for search
+- Create search page
+  - Create design ideas/ protoypes using figma
+  - Create a page for the search bar to direct to do display search results
+  - Create front end code for search page 
+
+## Status of Tasks
+
+- Learning express js (Completed)
+  - Learn how to implement routing functionality to search with express js
+- Learn how to set up testing for search either from teammates or other resources (In-progress)
+- Express js backend for search (In-progress)
+  - Having issue with properly connecting and getting data from server
+- Create search page 
+  - Create design ideas/ protoypes using figma (Completed) 
+  - Create a page for the search bar to direct to do display search results (Completed)
+  - Create front end code for search page (In-progress)
+## Peer Review
+
+No picture since there is no week 11 form on the team formation tab in Canvas
+
+
 
