@@ -11,10 +11,11 @@ router.post('/api', async (req, res) => {
         
         
         
-        const memberID = '777878f5-1ee2-4731-92f9-ecfe983e95bb';
+        const memberID = 'b46cf0a7-06c7-4e31-a9c4-e868d86d6027';
         const messageID = req.body.messageID;
         const chatID = req.body.chatID;
 
+        // Must confirm that the logged in user is a member of the chat
         const isMember = await db.any(`
         SELECT * FROM chat WHERE "chatID" = $1 AND ("memberID1" = $2 OR "memberID2" = $2)
         `, [chatID, memberID]);
@@ -32,7 +33,7 @@ router.post('/api', async (req, res) => {
 
         if(isMember.length == 0 || isMessage.length == 0 ||isSender.length == 0)
         {
-            res.json({ status: 401, message: 'Unauthorized access' });
+            res.json({status: 401, message: 'Unauthorized access'});
         }
 
         else

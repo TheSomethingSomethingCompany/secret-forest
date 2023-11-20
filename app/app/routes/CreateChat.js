@@ -38,7 +38,7 @@ router.post('/api', async (req, res) => {
                 await db.none(`
                 INSERT INTO chat("memberID1", "memberID2") VALUES ($1, $2)
                 `, [memberID1, memberID2]);
-                res.json({ status: 201, message: 'Created chat successfully' });
+                res.json({ status: 201, message: 'Created chat successfully'});
             }
         }
         

@@ -25,7 +25,7 @@ router.post('/api', async (req, res) => {
          SELECT * FROM message WHERE "messageID" = $1 AND "chatID" = $2
          `, [messageID, chatID]);
 
-        //Must confirm that the sender is the one deleting the message
+        //Must confirm that the message being deleted was sent by the logged in user
         const isSender = await db.any(`
         SELECT * FROM message WHERE "messageID" = $1 AND "senderID" = $2
         `, [messageID, memberID]);

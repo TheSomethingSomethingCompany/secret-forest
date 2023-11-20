@@ -19,6 +19,7 @@ describe("ChatsPage", ()=>{
             });
         
             let resBody = await response.json(); // Retrieve body and turn into JSON object
+            
             if(resBody.status == 201)
                 return true
             else if(resBody.status == 409 || resBody.status == 500 || resBody.status == 404) return false;
@@ -34,7 +35,7 @@ describe("ChatsPage", ()=>{
 });
 
 
-/*
+
 
 
 
@@ -65,6 +66,8 @@ describe("ChatsPage", ()=>{
 
 
 });
+
+/*
 
 describe("ChatsPage", ()=>{
     it("Ensure messages can be received", async () => {

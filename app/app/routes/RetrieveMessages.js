@@ -8,13 +8,13 @@ router.post('/api', async (req, res) => {
     try
     {
 
-        //First, we must confirm if the current logged on user is a member of the chat, in order to prevent unauthorized access of chat messages by other users not in the chat.
         
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         const memberID = '777878f5-1ee2-4731-92f9-ecfe983e95bb';
         const chatID = req.body.chatID;
 
         
+        //First, we must confirm if the current logged on user is a member of the chat, in order to prevent unauthorized access of chat messages by other users not in the chat.
         const isMember = await db.any(`
         SELECT * from chat WHERE "chatID" = $1 AND ("memberID1" = $2 OR "memberID2" = $2)
             `, [chatID, memberID]);
