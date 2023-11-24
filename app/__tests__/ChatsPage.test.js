@@ -19,23 +19,23 @@ describe("ChatsPage", ()=>{
             });
         
             let resBody = await response.json(); // Retrieve body and turn into JSON object
+            
             if(resBody.status == 201)
                 return true
-            else if(resBody.status == 409 || resBody.status == 500) return false;
+            else if(resBody.status == 409 || resBody.status == 500 || resBody.status == 404) return false;
            }
 
-            const data = {memberID2: '61109528-7c05-4683-9fe5-e4c282ac7d2e'}; // Hard coded memberID2, will be replaced with dynamic memberID2 later.
+            const data = {username: "janedoe123"}; 
             await createChat(data).then((result)=>{
                 expect(result).toBe(true);
             });
           
     });
 
-
 });
 
 
-/*
+
 
 
 
@@ -66,6 +66,8 @@ describe("ChatsPage", ()=>{
 
 
 });
+
+/*
 
 describe("ChatsPage", ()=>{
     it("Ensure messages can be received", async () => {

@@ -2,7 +2,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE member (
   "memberID" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  "email" TEXT UNIQUE,
+  "email" TEXT UNIQUE NOT NULL,
+  "username" TEXT UNIQUE NOT NULL,
   "name" TEXT NOT NULL,
   "password" TEXT NOT NULL,
   "isOrg" BOOLEAN DEFAULT FALSE
