@@ -193,4 +193,96 @@
 ![week10](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/96e7c1b0-b2df-443b-9bb4-116cd46471a0)
 
 
+# Personal Log - Yafei Sedlacek
+
+**Week**: 11 (Reading week)
+**Work Period**: `13-11-2023` - `19-11-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Learning express js
+- Change backend of search functionality to work with express js
+- Set up testing to test search functionality
+- Create the search page
+
+## Active Tasks
+
+- Learning express js
+  - Learn how to implement routing functionality to search with express js
+- Learn how to set up testing for search either from teammates or other resources
+- Express js backend for search
+- Create search page
+  - Create design ideas/ protoypes using figma
+  - Create a page for the search bar to direct to do display search results
+  - Create front end code for search page 
+
+## Status of Tasks
+
+- Learning express js (Completed)
+  - Learn how to implement routing functionality to search with express js
+- Learn how to set up testing for search either from teammates or other resources (In-progress)
+- Express js backend for search (In-progress)
+  - Having issue with properly connecting and getting data from server
+- Create search page 
+  - Create design ideas/ protoypes using figma (Completed) 
+  - Create a page for the search bar to direct to do display search results (Completed)
+  - Create front end code for search page (In-progress)
+- Rough design prototypes with figma (not finalized):
+![searchtemp](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/b5201759-b63b-47f2-a195-844c1a94e28b)
+![searchpagetemp](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/226db5f1-3cea-4ad7-b7d2-819f2bd84037)
+
+
+## Peer Review
+
+No picture since there is no week 11 form on the team formation tab in Canvas
+
+
+# Personal Log - Yafei Sedlacek
+
+**Week**: 12
+**Work Period**: `20-11-2023` - `26-11-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Preparing and discussing design document and video
+- Work on the edit profile feature
+- Learn and set edit profile testing
+
+## Active Tasks
+
+- Preparation for design document
+  - help organize work load
+  - work on the UI diagrams
+  - help prepare slides for design video
+- Edit profile feature
+  - First create ability to view profile
+  - Add nessessary modifications to allow editing of profile
+- Preparation for video
+  - Decide what features to showcase
+  - Create slides to be included in video  
+
+
+## Status of Tasks
+
+- Preparation for design document (In-progress)
+  - help organize work load
+  - work on the UI diagrams
+  - help prepare slides for design video
+- Edit profile feature (In-progress)
+  - First create ability to view profile
+  - Add nessessary modifications to allow editing of profile
+- Preparation for video (In-progress)
+  - Decide what features to showcase 
+  - Create slides to be included in video 
+
+
+## Peer Review
+
+![week12](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/490e637e-bf5e-4f6c-9330-42ac7d80170e)
+
+
+
+
 

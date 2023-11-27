@@ -266,3 +266,55 @@
 ## Peer Review
 
 ![Peer Review Week 10](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/466d79cc-396f-41e8-baf2-393bcf333e6b)
+
+**Week**: 11 - 12
+**Week**: `13/11/2023` - `26/11/2023`
+**GitHub Account**: `SatanshuMishra`
+
+## Individual Objectives
+
+- Complete Testing for User Auth Page
+  - Sign-Up
+  - Sign-In
+    - Email
+    - Username
+- Delete User
+- Design Chats Page
+    - Chats Bubble (With and Without Attachment)
+    - Chats Window
+- Implement Chats Page Designs
+
+## Active Tasks
+
+- Complete Testing for User Auth Page
+  - Sign-Up
+  - Sign-In
+    - Email
+    - Username
+- Delete User
+- Design Chats Page
+    - Chats Bubble (With and Without Attachment)
+    - Chats Window
+- Implement Chats Page Designs
+
+## Status of Tasks
+
+- Complete Testing for User Auth Page
+  - Sign-Up `COMPLETE`
+  - Sign-In
+    - Email `COMPLETE`
+    - Username `COMPLETE`
+- Delete User `COMPLETE`
+- Design Chats Page
+    - Chats Bubble (With and Without Attachment) `COMPLETE`
+    - Chats Window `IN-PROGRESS`
+- Implement Chats Page Designs `IN-PROGRESS`
+
+## Figma Designs
+
+<img width="625" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/0173e423-a6a4-436e-8648-acf53b485395">
+
+## Peer Review
+
+<img width="1081" alt="Peer Review Week 12" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/f456dcba-d5ba-43f8-b954-519e0af32e20">
+

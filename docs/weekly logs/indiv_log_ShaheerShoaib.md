@@ -422,5 +422,94 @@
 ## Peer Review
 <img width="887" alt="2023-11-14_00-31-12" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f735e4bf-d816-4974-aaa5-5645afe550e1">
 
+**Week**: 11-12
+**Work Period**: 13/11/2023 - 26/11/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Complete Backend For Chats Page
+    - Create Chat
+    - List Chats
+    - Delete Chat
+    - Show Messages
+    - Send Message
+    - Edit Message
+    - Delete Message
+- Complete Corresponding Controller Methods For Backend Of Chats Page
+- Complete End-To-End Tests Associated With The Chats Page
+- Disucss Design Of UI Page With Group
+    - Offered the idea of implementing a 2 column layout, where the left lists the chats, and the right lists the messages with the corresponding chat clicked on, and came to a consensus on it
+- Research and Implement CORS
+    - Understood it as a security measure to ensure routes can only be accessed if present on specific URLs specified as part of the policy, in order to prevent unwanted access to routes causing potential data leaks
+    - For the moment, CORS will be enforced https://localhost, but additional URLs will be added to ensure safe connectivity to our routes
+- Explain the concept of CORS to the group
+- Begin development of the Search Page
+- Discuss With Group On How To Complete Design Document
+    - Specifically discussed the ways in which we can model our UI Functionality through Figma and System Architeture through Level 1 Data Flow Diagrams
+- Begin Designing Of DFD For System Architecture
+- Discuss opportunities for data security through End-To-End encryption
+    - Discussed the idea of Message Encryption to enforce End-To-End encryption
+    - Researched and discussed Tokenization for digital media sent through the website, along with enforcing two factor authentication for the receiver to view media from the sender, ensuring extra privacy and security of digital media in the case of a session hijacking.
+
+## Active Tasks - 
+- Complete Backend For Chats Page
+    - Create Chat
+    - List Chats
+    - Delete Chat
+    - Show Messages
+    - Send Message
+    - Edit Message
+    - Delete Message
+- Complete Corresponding Controller Methods For Backend Of Chats Page
+- Complete End-To-End Tests Associated With The Chats Page
+- Disucss Design Of UI Page With Group
+    - Offered the idea of implementing a 2 column layout, where the left lists the chats, and the right lists the messages with the corresponding chat clicked on, and came to a consensus on it
+- Research and Implement CORS
+    - Understood it as a security measure to ensure routes can only be accessed if present on specific URLs specified as part of the policy, in order to prevent unwanted access to routes causing potential data leaks
+    - For the moment, CORS will be enforced https://localhost, but additional URLs will be added to ensure safe connectivity to our routes
+- Explain the concept of CORS to the group
+- Begin development of the Search Page
+- Discuss With Group On How To Complete Design Document
+    - Specifically discussed the ways in which we can model our UI Functionality through Figma and System Architeture through Level 1 Data Flow Diagrams
+- Begin Designing Of DFD For System Architecture
+- Discuss opportunities for data security through End-To-End encryption
+    - Discussed the idea of Message Encryption to enforce End-To-End encryption
+    - Researched and discussed Tokenization for digital media sent through the website, along with enforcing two factor authentication for the receiver to view media from the sender, ensuring extra privacy and security of digital media in the case of a session hijacking.
+- Begin Designing Of DFD For System Architecture
+
+## Status of Tasks: `All Tasks Listed Completed`
+- Complete Backend For Chats Page
+    - Create Chat
+    - List Chats
+    - Delete Chat
+    - Show Messages
+    - Send Message
+    - Edit Message
+    - Delete Message
+- Complete Corresponding Controller Methods For Backend Of Chats Page
+- Complete End-To-End Tests Associated With The Chats Page
+- Disucss Design Of UI Page With Group
+    - Offered the idea of implementing a 2 column layout, where the left lists the chats, and the right lists the messages with the corresponding chat clicked on, and came to a consensus on it
+- Research and Implement CORS
+    - Understood it as a security measure to ensure routes can only be accessed if present on specific URLs specified as part of the policy, in order to prevent unwanted access to routes causing potential data leaks
+    - For the moment, CORS will be enforced https://localhost, but additional URLs will be added to ensure safe connectivity to our routes
+- Explain the concept of CORS to the group
+- Begin development of the Search Page
+- Discuss With Group On How To Complete Design Document
+    - Specifically discussed the ways in which we can model our UI Functionality through Figma and System Architeture through Level 1 Data Flow Diagrams
+- Begin Designing Of DFD For System Architecture
+- Discuss opportunities for data security through End-To-End encryption
+    - Discussed the idea of Message Encryption to enforce End-To-End encryption
+    - Researched and discussed Tokenization for digital media sent through the website, along with enforcing two factor authentication for the receiver to view media from the sender, ensuring extra privacy and security of digital media in the case of a session hijacking.
+- Provided Assistance To Other Group Members On Their Parts
+    - Helped Yafei with understanding the general format of how the Edit/View profile should be designed and developed
+    - Provided feedback to Satanshu on the designs created for the Chats Page, along with discussing with him specifically the types of responses the frontend should be able to deal with from the controller method, along with what to store on the frontend in order to be able to use that data to communicate with the controller methods.
+
+
+
+## Peer Review
+<img width="888" alt="Week 12 Peer Review" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/d4357eba-39ef-42c5-9399-dcd83aff46ba">
+
 
 

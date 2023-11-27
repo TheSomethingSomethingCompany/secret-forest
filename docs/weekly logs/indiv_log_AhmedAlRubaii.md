@@ -187,7 +187,7 @@
 
 **Week**: 10
 
-**Work Period**: 6 October 2023 - 12 November 2023
+**Work Period**: 6 November 2023 - 12 November 2023
 
 ## Individual Objectives
 
@@ -217,3 +217,78 @@
 ## Peer Review
 ![week 10](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/61e6d9b4-3a32-461c-898b-aeb3ffa926e8)
 
+-----------------
+
+**Week**: 11 (Reading Break)
+
+**Work Period**: 13 November 2023 - 19 November 2023
+
+## Individual Objectives
+
+- As it was the reading break, minimal work was done. I continued the start of my research for different AWS services that may be useful for our project by reading documentation and watched youtube tutorials explaining how some of them work. 
+
+## Active Tasks
+
+- Research AWS services that may be of use for the project
+- Services found that can be of use:
+	- AWS EC2
+ 	- AWS RDS
+	- AWS S3   
+## Status of Tasks
+
+- Research AWS services that may be of use for the project -- In Progress
+- Services found that can be of use: -- In Progress (Research is still ongoing)
+	- AWS EC2
+ 	- AWS RDS
+	- AWS S3   
+
+## Peer Review
+No peer review was available during reading break
+
+-----------------
+
+**Week**: 12
+
+**Work Period**: 20 November 2023 - 26 November 2023
+
+## Individual Objectives
+
+- For this week, I have conducted even more research into the various AWS services available that can be of use. Below are the listed services that may be of use. I have also attempted to statically host our website on AWS for the second milestone, and if possible and all goes well, to then dynamically host it as well. Currently, www.somethingsomethingcompany.com is up and running and being hosted from S3 buckets with Route 53 providing the DNS. I have run into a problem in that the page routes are not working when uploading a deployable version of our app. The source of this issue is attributed to how Next.JS produces a build version and to how AWS handles page routing. Also, as can be seen from the website, it is an older version of our app where they UI is not updated but that is not a concern as it can be easily updated by swapping the S3 bucket contents. Details on why these services were chosen will be included within the design document and the opened issue on github regarding AWS deployment. We also discussed how we would like to have our data encrypted within our project as a team.
+
+## Active Tasks
+
+- Continued research onto AWS services to be used for our project:
+	- AWS EC2
+	- AWS ECS
+	- AWS ECR
+	- AWS RDS
+	- AWS S3
+	- AWS Route 35
+	- AWS Cloudfront
+	- AWS Cognito -- Tentative
+	- AWS Rekognition -- Tentative
+	- AWS Amplify -- Tentative
+	- AWS Lambda -- Tentative
+ - Worked on statically hosting our app on AWS
+ - Started working on design document and milestone 2 design submission
+ - Discussed and decided on encryption methods to be used
+## Status of Tasks
+
+- Continued research onto AWS services to be used for our project: -- In Progress (These are the services that are found to be useful, depending on the needs of the project as we move further, more services may be added to the list)
+	- AWS EC2
+	- AWS ECS
+	- AWS ECR
+	- AWS RDS
+	- AWS S3
+	- AWS Route 35
+	- AWS Cloudfront
+	- AWS Cognito -- Tentative
+	- AWS Rekognition -- Tentative
+	- AWS Amplify -- Tentative
+	- AWS Lambda -- Tentative
+ - Worked on statically hosting our app on AWS -- In Progress
+ - Started working on design document and milestone 2 design submission -- In Progress
+ - Discussed and decided on encryption methods to be used -- Completed
+
+## Peer Review
+![week 12](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/091b0e54-69b6-423d-968b-4603802c5c56)
