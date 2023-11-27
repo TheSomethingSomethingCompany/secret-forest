@@ -224,7 +224,7 @@
 # Personal Log - Arsh Bhat
 
 **Week**: 11
-**Week**: `13-10-2023` - `19-11-2023`
+**Week**: `13-11-2023` - `19-11-2023`
 **GitHub Account**: `ArshBhat`
 
 ## Individual Objectives
@@ -260,7 +260,7 @@
 # Personal Log - Arsh Bhat
 
 **Week**: 12
-**Week**: `20-10-2023` - `26-11-2023`
+**Week**: `20-11-2023` - `26-11-2023`
 **GitHub Account**: `ArshBhat`
 
 ## Individual Objectives
@@ -269,6 +269,7 @@
 - Write CSS code to style video submission window
 - Code Backend logic for Video submission window
 - Discuss data security architecture to be used in Chat window
+- Work on Design document
  
 ## Active Tasks
 
@@ -280,7 +281,8 @@
 - Discuss data security architecture to be used in Chat window
   - Researched and finalized on a 3 layer security implementing: end-to-end encryption, OTP and receiver password protection.
   - Code edit profile window
-
+- Work on Design document
+  
 ## Status of Tasks
 
 - Learn CSS concepts for styling - `COMPLETED`
@@ -291,6 +293,9 @@
 - Discuss data security architecture to be used in Chat window - `COMPLETED`
   - Researched and finalized on a 3 layer security implementing: end-to-end encryption, OTP and receiver password protection - `COMPLETED`
   - Code edit profile window - `IN-PROGRESS`
+- Work on Design document - `IN-PROGRESS`
+  - Create DFD diagram - `IN-PROGRESS`
+  - Distribute Work among ourselves - `IN-PROGRESS`
 
 ## Peer Review
 <img width="596" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/cdb7a3d3-72d5-4d66-aa2a-6eae905b7b58">
