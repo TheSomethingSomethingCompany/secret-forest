@@ -111,8 +111,11 @@ Satanshu Mishra: `SatanshuMishra`
   - UI Workflow Diagram: Yafei
 
 ## Test Report
-<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
-<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="253" alt="2023-11-26_23-00-07" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/ac01cc4d-2b8d-488a-8d8f-ec38a085b971">
+<img width="285" alt="2023-11-26_22-59-43" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/ecad8431-ec39-45dc-a7e5-b52b875a6a4d">
+<img width="1461" alt="2023-11-26_21-50-32" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/484c99a8-baed-4b1f-8111-1b7eb1340e23">
+<img width="253" alt="2023-11-26_23-00-07" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/a808649b-46b2-4db0-91b8-29741b4ba2b7">
+
 
 
 ### Burn-Up Chart
