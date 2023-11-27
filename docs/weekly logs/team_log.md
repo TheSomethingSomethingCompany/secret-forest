@@ -105,7 +105,6 @@ Satanshu Mishra: `SatanshuMishra`
 - Completely Develop Corresponding Controller Methods For Chats Page
 - Develop Integration Tests For Chats Page
 - Begin Development Of Search Page
-- Research React.js Reconciliation and Diffing Algorithm For Optimization
 - Discuss and Assign Tasks Related To Design Document
   - DFD Diagram: Arsh, Shaheer, Satanshu
   - Database ER Diagram: Ahmed
