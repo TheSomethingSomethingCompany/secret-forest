@@ -509,7 +509,7 @@
 
 
 ## Peer Review
-<img width="887" alt="2023-11-14_00-31-12" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f735e4bf-d816-4974-aaa5-5645afe550e1">
+<img width="888" alt="Week 12 Peer Review" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/d4357eba-39ef-42c5-9399-dcd83aff46ba">
 
 
 
