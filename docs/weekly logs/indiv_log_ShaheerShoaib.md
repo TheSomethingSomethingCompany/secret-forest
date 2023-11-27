@@ -443,6 +443,9 @@
     - For the moment, CORS will be enforced https://localhost, but additional URLs will be added to ensure safe connectivity to our routes
 - Explain the concept of CORS to the group
 - Begin development of the Search Page
+- Discuss With Group On How To Complete Design Document
+    - Specifically discussed the ways in which we can model our UI Functionality through Figma and System Architeture through Level 1 Data Flow Diagrams
+- Begin Designing Of DFD For System Architecture
 
 ## Active Tasks - 
 - Complete Backend For Chats Page
@@ -460,7 +463,9 @@
     - For the moment, CORS will be enforced https://localhost, but additional URLs will be added to ensure safe connectivity to our routes
 - Explain the concept of CORS to the group
 - Begin development of the Search Page
-
+- Discuss With Group On How To Complete Design Document
+    - Specifically discussed the ways in which we can model our UI Functionality through Figma and System Architeture through Level 1 Data Flow Diagrams
+- Begin Designing Of DFD For System Architecture
 
 ## Status of Tasks: `All Tasks Listed Completed`
 - Complete Backend For Chats Page
@@ -477,7 +482,10 @@
     - Understood it as a security measure to ensure routes can only be accessed if present on specific URLs specified as part of the policy, in order to prevent unwanted access to routes causing potential data leaks
     - For the moment, CORS will be enforced https://localhost, but additional URLs will be added to ensure safe connectivity to our routes
 - Explain the concept of CORS to the group
-- Begin development of the Search Pageß
+- Begin development of the Search Page
+- Discuss With Group On How To Complete Design Document
+    - Specifically discussed the ways in which we can model our UI Functionality through Figma and System Architeture through Level 1 Data Flow Diagrams
+- Begin Designing Of DFD For System Architecture
 
 
 
