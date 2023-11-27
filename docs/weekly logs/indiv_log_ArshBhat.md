@@ -220,3 +220,82 @@
 - Finalize design for search bar - `COMPLETED`
 
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/9da7817d-4342-4c5a-a084-0a70968393eb)
+
+# Personal Log - Arsh Bhat
+
+**Week**: 11
+**Week**: `13-11-2023` - `19-11-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Design Video submission window
+- Write Javascript code for video submission window
+- Write code to preview submitted media
+- Research video formats that allow object blurring
+- Research AWS object rekognition
+ 
+## Active Tasks
+
+- Design Video submission window
+- Write Javascript code for video submission window
+- Write code to preview submitted media
+- Research video formats that allow object blurring
+  - Finalize formates and change code accordinly.
+- Research AWS object rekognition
+  - Research AWS S3 and RDBMS services
+  - Decided on uploading videos using S3 and storing URL generated into cloud database.
+
+## Status of Tasks
+
+- Design Video submission window - `COMPLETED`
+- Write Javascript code for video submission window - `COMPLETED`
+- Write code to preview submitted media - `COMPLETED`
+- Research video formats that allow object blurring - `COMPLETED`
+  - Finalize formates and change code accordinly. - `COMPLETED`
+- Research AWS object rekognition - `IN-PROGRESS`
+  - Research AWS S3 and RDBMS services - `COMPLETED`
+  - Decided on uploading videos using S3 and storing URL generated into cloud database - `IN-PROGRESS`
+
+# Personal Log - Arsh Bhat
+
+**Week**: 12
+**Week**: `20-11-2023` - `26-11-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Learn CSS concepts for styling
+- Write CSS code to style video submission window
+- Code Backend logic for Video submission window
+- Discuss data security architecture to be used in Chat window
+- Work on Design document
+ 
+## Active Tasks
+
+- Learn CSS concepts for styling
+- Write CSS code to style video submission window
+  - Incorporate CSS styling in .jsx code to create 1 single file
+- Code Backend logic for Video submission window
+  - Store video in local databse
+- Discuss data security architecture to be used in Chat window
+  - Researched and finalized on a 3 layer security implementing: end-to-end encryption, OTP and receiver password protection.
+  - Code edit profile window
+- Work on Design document
+  
+## Status of Tasks
+
+- Learn CSS concepts for styling - `COMPLETED`
+- Write CSS code to style video submission window - `COMPLETED`
+  - Incorporate CSS styling in .jsx code to create 1 single file - `COMPLETED`
+- Code Backend logic for Video submission window - `IN-PROGRESS`
+  - Store video in local databse - `IN-PROGRESS`
+- Discuss data security architecture to be used in Chat window - `COMPLETED`
+  - Researched and finalized on a 3 layer security implementing: end-to-end encryption, OTP and receiver password protection - `COMPLETED`
+  - Code edit profile window - `IN-PROGRESS`
+- Work on Design document - `IN-PROGRESS`
+  - Create DFD diagram - `IN-PROGRESS`
+  - Distribute Work among ourselves - `IN-PROGRESS`
+
+## Peer Review
+<img width="596" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/cdb7a3d3-72d5-4d66-aa2a-6eae905b7b58">
