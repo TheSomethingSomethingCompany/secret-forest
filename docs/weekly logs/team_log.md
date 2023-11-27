@@ -114,6 +114,7 @@ Satanshu Mishra: `SatanshuMishra`
 <img width="285" alt="2023-11-26_22-59-43" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/ecad8431-ec39-45dc-a7e5-b52b875a6a4d">
 <img width="1461" alt="2023-11-26_21-50-32" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/484c99a8-baed-4b1f-8111-1b7eb1340e23">
 <img width="253" alt="2023-11-26_23-00-07" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/a808649b-46b2-4db0-91b8-29741b4ba2b7">
+<br>
 <img width="357" alt="2023-11-26_22-59-20" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/3adb4e60-fa82-4af1-82ef-dc9061c8c80e">
 
 
