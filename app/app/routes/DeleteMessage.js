@@ -11,7 +11,7 @@ router.post('/api', async (req, res) => {
         
         
         
-        const memberID = '43a60c3d-f8ed-40cc-9cc0-472b02a45960';
+        const memberID = req.app.get('loggedInUser');
         const messageID = req.body.messageID;
         const chatID = req.body.chatID;
 

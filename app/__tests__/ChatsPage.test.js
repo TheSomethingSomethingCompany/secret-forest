@@ -6,7 +6,8 @@ import userEvent from '@testing-library/user-event';
 
 
 
-var chatID;
+var testChatID;
+var testMessageID;
 describe("ChatsPage", ()=>{
     it("Ensure chats can be created", async () => {
         
@@ -38,8 +39,6 @@ describe("ChatsPage", ()=>{
 
 
 
-
-
 describe("ChatsPage", ()=>{
     it("Ensure chats can be received", async () => {
         
@@ -54,7 +53,10 @@ describe("ChatsPage", ()=>{
         
             let resBody = await response.json(); // Retrieve body and turn into JSON object
             if(resBody.status == 201)
+            {
+                testChatID = resBody.data[0].chatID; // Retrieve chatID for later tests
                 return true
+            }
             else if(resBody.status == 422 || resBody.status == 500) return false;
            }
 
@@ -67,6 +69,7 @@ describe("ChatsPage", ()=>{
 
 
 });
+
 
 describe("ChatsPage", ()=>{
     it("Ensure messages can be sent", async () => {
@@ -88,7 +91,7 @@ describe("ChatsPage", ()=>{
             else if(resBody.status == 422 || resBody.status == 500 || resBody.status == 401) return false;
            }
         
-            const data = {chatID: 7, message: "I am a message"}; // Hard coded chatID and message, will be replaced with dynamic values later.
+            const data = {chatID: testChatID, message: "I am a message"}; // Hard coded chatID and message, will be replaced with dynamic values later.
             await sendMessage(data).then((result)=>{
                 expect(result).toBe(true);
             });
@@ -116,11 +119,14 @@ describe("ChatsPage", ()=>{
         
             let resBody = await response.json(); // Retrieve body and turn into JSON object
             if(resBody.status == 201)
+            {
+                testMessageID = resBody.data[0].messageID; // Retrieve messageID for later tests
                 return true;
+            }
             else if(resBody.status == 422 || resBody.status == 500 || resBody.status == 401) return false;
            }
         
-            const data = {chatID: 7}; // Hard coded chatID, will be replaced with dynamic chatID later.
+            const data = {chatID: testChatID}; // Hard coded chatID, will be replaced with dynamic chatID later.
             await retrieveMessagesGivenChatID(data).then((result)=>{
                 expect(result).toBe(true);
             });
@@ -129,6 +135,7 @@ describe("ChatsPage", ()=>{
 
 
 });
+
 
 
 describe("ChatsPage", ()=>{
@@ -151,7 +158,7 @@ describe("ChatsPage", ()=>{
             else if(resBody.status == 500 || resBody.status == 401) return false;
            }
         
-            const data = {chatID:7, messageID: 8, message: "I am an edited message"}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
+            const data = {chatID:testChatID, messageID: testMessageID, message: "I am an edited message"}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
                                                     // chatID coonfirms that the user is a member of the chat, and messageID confirms that the message belongs to the chat and can be deleted.
             await editMessage(data).then((result)=>{
                 expect(result).toBe(true);
@@ -185,7 +192,7 @@ describe("ChatsPage", ()=>{
             else if(resBody.status == 500 || resBody.status == 401) return false;
            }
         
-            const data = {chatID:7, messageID: 8}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
+            const data = {chatID:testChatID, messageID: testMessageID}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
                                                     // chatID coonfirms that the user is a member of the chat, and messageID confirms that the message belongs to the chat and can be deleted.
             await deleteMessage(data).then((result)=>{
                 expect(result).toBe(true);
@@ -223,7 +230,7 @@ describe("ChatsPage", ()=>{
             else if(resBody.status == 500 || resBody.status == 401) return false;
            }
         
-            const data = {chatID: 7}; // Hardcoded chatID, will be replaced with dynamic chatID later.
+            const data = {chatID: testChatID}; // Hardcoded chatID, will be replaced with dynamic chatID later.
             await deleteChat(data).then((result)=>{
                 expect(result).toBe(true);
             });

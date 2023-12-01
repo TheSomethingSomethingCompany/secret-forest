@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../db-connection.js")
 
 router.get('/api', async (req, res) => {
-    const memberID = '43a60c3d-f8ed-40cc-9cc0-472b02a45960'; // Hardcoded for now
+    const memberID = req.app.get('loggedInUser');; // Hardcoded for now
     try
     {
         const chatsWithUsers = await db.any(`
