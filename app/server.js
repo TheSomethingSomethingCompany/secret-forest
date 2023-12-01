@@ -7,6 +7,9 @@ const PORT = 6969;
 server.use(express.json());
 //server.use(cors());
 
+// Set global variable to be the current logged in user, which should be using session data, but is hardcoded for now
+server.set("loggedInUser", "43a60c3d-f8ed-40cc-9cc0-472b02a45960"); // This is the memberID of the logged in user, which is hardcoded for now
+
 //Any Routes
 const createProfileRoutes = require('./app/routes/Profile');  // profileRoute will equal to the "router" object exported from routes/Profile.js
 server.use('/createAProfile', createProfileRoutes ); // Any time /createAProfile is put within URL, you tell express to utilize the routes present in createProfileRoutes = './routes/Profile'

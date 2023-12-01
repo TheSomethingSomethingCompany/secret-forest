@@ -11,7 +11,7 @@ router.post('/api', async (req, res) => {
         
         
         
-        const memberID = '777878f5-1ee2-4731-92f9-ecfe983e95bb';
+        const memberID = req.app.get('loggedInUser');
         const messageID = req.body.messageID;
         const chatID = req.body.chatID;
         const editedMessage = req.body.message;
@@ -39,13 +39,8 @@ router.post('/api', async (req, res) => {
         else
         { 
             await db.none(`
-            DELETE FROM message WHERE "messageID" = $1
-            `, [messageID]);
-
-            await db.none(`
-            INSERT into message("messageID", "chatID", "senderID", "message") VALUES($1, $2, $3, $4)
-            `, [messageID, chatID, memberID, editedMessage]);
-
+            UPDATE message SET "message" = $1 WHERE "messageID" = $2
+            `, [editedMessage, messageID]);
             res.json({ status: 201, message: 'Message edited successfully' });
         }
         
