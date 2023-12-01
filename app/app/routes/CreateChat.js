@@ -8,7 +8,7 @@ router.post('/api', async (req, res) => {
     {
         
         // Since we are not using sessions, we will hardcode the memberID for now
-        const memberID1 = 'b46cf0a7-06c7-4e31-a9c4-e868d86d6027'; // One of the members of chat must clearly be the logged in user, which is hardcoded for now.
+        const memberID1 = '43a60c3d-f8ed-40cc-9cc0-472b02a45960'; // One of the members of chat must clearly be the logged in user, which is hardcoded for now.
         const usernameOfMemberID2 = req.body.username; // The other member of the chat is the one that the logged in user is trying to chat with, which is passed in the request body as their username.
         // First, we need to check if the user exists, and if they do, use their memberID
         const memberID2Query = await db.any(`
@@ -34,7 +34,6 @@ router.post('/api', async (req, res) => {
 
             else
             {
-                console.log("IN HERE");
                 await db.none(`
                 INSERT INTO chat("memberID1", "memberID2") VALUES ($1, $2)
                 `, [memberID1, memberID2]);
