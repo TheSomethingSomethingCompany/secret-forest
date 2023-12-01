@@ -1,4 +1,5 @@
 {
+  "editor.lineNumbers": "relative",
   "codesnap.realLineNumbers": true,
   "codesnap.shutterAction": "copy"
 }
