@@ -4,7 +4,8 @@ export async function createAProfile(data){
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        credentials: "include",
     });
 
     let resBody = await response.json(); // Retrieve body and turn into JSON object

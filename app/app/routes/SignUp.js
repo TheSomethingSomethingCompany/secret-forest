@@ -38,6 +38,11 @@ router.post("/api", async (req, res) => {
     );
     console.log("[SUCCESS]: SIGN-UP SUCCESSFUL");
     console.log("[RESPONSE DATA]\n" + memberData);
+
+
+    req.session.signUpMemberID = memberData.memberID; // Store memberID in session data
+    req.session.save(); // Save session data
+  
     res.json({
       data: { id: memberData.memberID },
       status: 201,
