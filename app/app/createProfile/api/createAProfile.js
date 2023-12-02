@@ -8,12 +8,10 @@ export async function createAProfile(data){
         credentials: "include",
     });
 
-    let resBody = await response.json(); // Retrieve body and turn into JSON object
-    console.log(resBody.message);
-    console.log(resBody.status)
-    if(resBody.status == 201)
-        return true;
-    else if(resBody.status == 422 || resBody.status == 500) return false;
+    let resBody = await response.json(); // Retrieve response body and turn into JSON object
+    console.log("[RESPONSE BODY CREATE PROFILE]:") 
+    console.log(resBody);
+    return resBody;
    }
 
    export default createAProfile;
