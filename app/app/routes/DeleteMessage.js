@@ -13,35 +13,45 @@ router.post('/api', async (req, res) => {
         
         const memberID = req.app.get('loggedInUser');
         const messageID = req.body.messageID;
-        const chatID = req.body.chatID;
-
-        // Must confirm that the logged in user is a member of the chat
-        const isMember = await db.any(`
-        SELECT * FROM chat WHERE "chatID" = $1 AND ("memberID1" = $2 OR "memberID2" = $2)
-        `, [chatID, memberID]);
-
-         // Must confirm that the message belongs to the chat
-         const isMessage = await db.any(`
-         SELECT * FROM message WHERE "messageID" = $1 AND "chatID" = $2
-         `, [messageID, chatID]);
-
-        //Must confirm that the sender is the one deleting the message
-        const isSender = await db.any(`
-        SELECT * FROM message WHERE "messageID" = $1 AND "senderID" = $2
-        `, [messageID, memberID]);
-
-
-        if(isMember.length == 0 || isMessage.length == 0 ||isSender.length == 0)
+        console.log("REQUEST FOR DELETE MESSAGE WITH MESSAGEID: " + messageID + " AND MEMBERID: " + memberID + "");
+        
+        //First, we need to get the chatID of the message being deleted
+        const isMessage = await db.any(`
+        SELECT "chatID" FROM message WHERE "messageID" = $1
+        `, [messageID]);
+        
+        if(isMessage.length == 0) //If the message does not exist, then we cannot delete it
         {
-            res.json({status: 401, message: 'Unauthorized access'});
+            res.json({status: 404, message: 'Message does not exist'});
         }
-
         else
         {
-            await db.none(`
-            DELETE FROM message WHERE "messageID" = $1
-            `, [messageID]);
-            res.json({ status: 201, message: 'Message deleted successfully' });
+
+            // Must confirm that the logged in user is a member of the chat
+            const chatID = isMessage[0].chatID; // An array of rows is returned, which each row being an object with a chatID property. The first row is the only row, so we can access it with [0], and then access the chatID property with .chatID
+            const isMember = await db.any(`
+            SELECT * FROM chat WHERE "chatID" = $1 AND ("memberID1" = $2 OR "memberID2" = $2)
+            `, [chatID, memberID]);
+            
+
+            //Must confirm that the sender is the one deleting the message
+            const isSender = await db.any(`
+            SELECT * FROM message WHERE "messageID" = $1 AND "senderID" = $2
+            `, [messageID, memberID]);
+
+
+            if(isMember.length == 0 || isSender.length == 0)
+            {
+                res.json({status: 401, message: 'Unauthorized access'});
+            }
+
+            else
+            {
+                await db.none(`
+                DELETE FROM message WHERE "messageID" = $1
+                `, [messageID]);
+                res.json({ status: 201, message: 'Message deleted successfully' });
+            }
         }
         
     } 
