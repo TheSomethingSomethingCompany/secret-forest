@@ -80,7 +80,7 @@ function ChatBubble({
               isEditing ?  
               (
                 // If the user is editing the message, show the save button, and the cancel button.
-                <>
+                <> {/* DUE TO THIS, THE STYLES ARE NOT BEING APPLIED TO THESE INNER DIVS MOST LIKELY */}
                   <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white hover:cursor-pointer" onClick = {() => { setIsEditing(false); setMessageText(referenceToEditBox?.current?.value || ''); saveToDatabaseHandler(referenceToEditBox?.current?.value || '', id); }} >
                     <i className="ri-save-fill"></i>
                   </div>
