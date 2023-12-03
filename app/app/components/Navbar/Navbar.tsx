@@ -10,15 +10,20 @@ import DropMenu from "./DropMenu";
 import Logo from "../../images/TheSomethingSomethingCompanyLogoV2.svg";
 import Penguin from "../../images/ExamplePenguin.jpeg";
 
-export default function Navbar() {
+type NavBarProps = {
+  isLoggedIn: boolean;
+};
+
+export default function Navbar({ isLoggedIn }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [disableDropdown, setDisableDropdown] = useState(false);
   var [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage.getItem("loggedIn")) {
-      setLoggedIn(true);
-    }
+    setLoggedIn(isLoggedIn);
+    // if (window.localStorage.getItem("loggedIn")) {
+    //   setLoggedIn(true);
+    // }
   }, []);
 
   useEffect(() => {
@@ -26,13 +31,13 @@ export default function Navbar() {
   }, [loggedIn]);
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-screen px-8 py-4 flex flex-row justify-between items-center text-[1rem]">
+    <nav className="sticky top-0 left-0 z-50 w-screen px-8 py-4 flex flex-row justify-between items-center text-[1rem]">
       <section>
         <Link href={"./"}>
           <Image src={Logo} alt={"TheSomethingSomethingCompany"}></Image>
         </Link>
       </section>
-      {true && (
+      {!loggedIn && (
         <section>
           <section className="flex flex-row justify-end items-center">
             <Link
@@ -50,7 +55,7 @@ export default function Navbar() {
           </section>
         </section>
       )}
-      {false && (
+      {loggedIn && (
         <section>
           <section className="flex flex-row justify-end items-center">
             <Link
