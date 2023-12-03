@@ -5,6 +5,7 @@ import Img from "../images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import retrieveMessageGivenChatID from "./api/retrieveMessagesGivenChatIDFromServer";
 import sendMessage from "./api/sendMessageToServer"
+import deleteMessage from "./api/deleteMessageFromServer"
 import { get } from "http";
 import { useRef, useEffect, useState } from "react";
 
@@ -44,6 +45,10 @@ export default function Chats() {
   }
 
   useEffect(() => {
+    getChats();
+  }, []);
+
+  useEffect(() => { // Refresh messages every 5 seconds. This is temporary, we will use websockets later.
     const intervalId = setInterval(() => {
       getMessages(chatID);
     }, 5000); // Runs every 5 seconds
@@ -65,9 +70,17 @@ export default function Chats() {
     console.log("MESSAGE: "+message);
   }
 
-  useEffect(() => {
-    getChats();
-  }, []);
+  function onDeleteButtonClick(e){
+    console.log("Clicked on delete button with id: "+e.currentTarget.dataset.messageId);
+    // Now, we need to remove the message from the message list
+    let messageId = e.currentTarget.dataset.messageId;
+    let newMessagesList = messagesList.filter((message) => message.messageID != messageId);
+    setMessagesList(newMessagesList);
+    // Next, we need to make an api call to delete the message from the server
+    deleteMessage({messageID: messageId});
+  }
+
+
 
   const prevMessagesListLength = useRef(messagesList.length);
   useEffect(() => {
@@ -130,6 +143,7 @@ export default function Chats() {
                   profilePicture={""}
                   hasAttachment={false}
                   isYou={message.isYou}
+                  onDeleteButtonClick = {onDeleteButtonClick}
                 />
               )
             })

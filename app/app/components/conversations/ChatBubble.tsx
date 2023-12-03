@@ -14,6 +14,7 @@ type props = {
   attachment?: string;
   attachmentType?: string;
   isYou: boolean;
+  onDeleteButtonClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 function ChatBubble({
@@ -25,8 +26,12 @@ function ChatBubble({
   attachment,
   attachmentType,
   isYou,
+  onDeleteButtonClick
 }: props) {
   const [mouseOver, setMouseOver] = useState(false);
+
+
+  
   console.log(mouseOver);
   return (
     <section className="mt-40 bg-gray-50">
@@ -51,11 +56,11 @@ function ChatBubble({
               <p id="name">{name}</p>
             </div>
           </div>
-          <div className="relative z-10 ml-8 mt-2 shadow-md drop-shadow-md rounded-xl bg-white w-full p-4">
+          <div className="relative z-10 ml-8 mt-2 shadow-md drop-shadow-md rounded-xl bg-white w-full p-4 ">
             <p id="message">{message}</p>
           </div>
           <div className="ml-8 -z-10 w-full flex flex-row justify-end -translate-y-[--translateAmt] transition-transform duration-300">
-            <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white cursor-not-allowed">
+            <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white hover:cursor-pointer" onClick = {onDeleteButtonClick} data-message-id = {id}>
               <i className="ri-delete-bin-2-fill"></i>
             </div>
             <div
