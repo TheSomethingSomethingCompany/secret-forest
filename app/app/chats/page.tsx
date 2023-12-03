@@ -3,6 +3,7 @@ import Image from "next/image";
 import ChatBubble from "../components/conversations/ChatBubble";
 import Img from "../images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
+import retrieveMessageGivenChatID from "./api/retrieveMessagesGivenChatIDFromServer";
 import { get } from "http";
 import { use, useEffect, useState } from "react";
 
@@ -10,20 +11,31 @@ export default function Chats() {
   
   
   const [response, setResponse] = useState([]);
-
-  useEffect(() => {
-
-    async function getChats() {
+  const [messages, setMessages] = useState([]);
+  async function getChats() {
     let res = await retrieveChats();
     console.log("RESPONSE FROM SERVER:")
     console.log(res);
-    console.log(res.data);
     setResponse(res.data);
     }
+
+  async function getMessages(chatID) {
+    let res = await retrieveMessageGivenChatID({chatID: chatID});
+    console.log("RESPONSE FOR MESSAGES:")
+    console.log(res);
+    setMessages(res.data);
+  }
+
+  useEffect(() => {
     getChats();
   }, []);
 
+  function onChatClick(e) {
+    console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
+    let chatID = e.currentTarget.dataset.chatId;
+    getMessages(chatID);
 
+  }
 
 
   return (
@@ -34,7 +46,7 @@ export default function Chats() {
         {
         response.map((chat) => {
           return (
-            <div data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full"> {/* A single chat */}
+            <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full"> {/* A single chat */}
               <div className="flex flex-row justify-between flex-1 p-4 bg-blue-500">
                 <div className="p-2">
                   <img
@@ -46,6 +58,7 @@ export default function Chats() {
                 <div className="flex flex-col flex-1 w-full bg-red-500 items-start justify-center p-2"> 
                   <span className="text-center">{chat.name}</span>
                   <span className="text-center">@{chat.username}</span>
+                  <span className="text-center">@{chat.chatID}</span>
                 </div>
               </div>
               <div className="flex flex-col justify-between p-2">
@@ -63,7 +76,21 @@ export default function Chats() {
   
   
       <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly">
-        <div className="flex-1 p-2">
+        <div id = "list-messages-div" className="flex-1 p-2">
+          {
+            messages.map((message) => {
+              return (
+                <ChatBubble
+                  id={message.messageID}
+                  name={message.name}
+                  message={message.message}
+                  profilePicture={""}
+                  hasAttachment={false}
+                  isYou={false}
+                />
+              )
+            })
+          }
           <ChatBubble
             id={"1"}
             name={"Satanshu Mishra"}

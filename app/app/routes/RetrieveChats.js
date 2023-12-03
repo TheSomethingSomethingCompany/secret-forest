@@ -6,7 +6,7 @@ router.get('/api', async (req, res) => {
     const memberID = req.app.get('loggedInUser');; // Hardcoded for now
     try
     {
-        console.log("HELLO");
+        console.log("REQUEST FOR RETRIEVE CHATS");
         const chatsWithUsers = await db.any(`
         SELECT "chatID", "username", "name"
         FROM(
