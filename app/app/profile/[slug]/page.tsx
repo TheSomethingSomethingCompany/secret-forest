@@ -35,7 +35,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
   };
 
   return (
-    <section className="mt-32 m-8 flex flex-row justify-evenly">
+    <section className="m-8 flex flex-row justify-evenly">
       <div className="flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
         <img
           className="rounded-full w-72 h-72"
