@@ -57,7 +57,7 @@ router.post("/api", async (req, res) => {
     {
       req.session.loggedInUserMemberID = member.memberID; // Store memberID in session data
       req.session.save(); // Save session data
-
+      console.log("[MEMBER ID]: " + req.session.loggedInUserMemberID + " Is Logged In");
       console.log("SUCCESS 201");
       res.json({
         data: { id: member.memberID },

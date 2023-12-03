@@ -15,11 +15,10 @@ server.use(session({
   secret: 'my super duper secret key hehe :)', // Secret key used to sign sessionID cookie by combining it with the sessionID value. On the server, it will use this secret key to hash with sessionID transmitted, and check if it matches the hash value of the sessionID cookie. If it does, then the sessionID cookie is valid, and no tampering has occurred. Also, this should be stored in a .env file, but for now, we will leave it here.
   resave: false , // Setting this to true forces the session to be saved back to the session store, even if the session was never modified during the request.
   saveUninitialized: false, // Only create a session if a property is added to the session, rather than creating an empty JSON object to be stored in the session store before any properties are added to it.
-  cookie: { secure: false } // If true, then only transmit sessionID cookie over HTTPS. Since we are using HTTP as of right now, we set this to false. Once we implement HTTPS, we can set this to true.
+  cookie: { secure: false , sameSite: 'lax'} // If true, then only transmit sessionID cookie over HTTPS. Since we are using HTTP as of right now, we set this to false. Once we implement HTTPS, we can set this to true.
 }));
 
 // Set global variable to be the current logged in user, which should be using session data, but is hardcoded for now
-server.set("loggedInUser", "63f10fa3-1109-4986-993d-f7aac2f40c40"); // This is the memberID of the logged in user, which is hardcoded for now
 
 //Any Routes
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js

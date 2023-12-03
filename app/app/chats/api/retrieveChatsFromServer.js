@@ -5,6 +5,7 @@ export async function retrieveChats(){
             'Content-Type': 'application/json'
         },
         cache: "no-cache",
+        credentials: "include"
     });
 
     /** Sort resBody.data by the messageID */

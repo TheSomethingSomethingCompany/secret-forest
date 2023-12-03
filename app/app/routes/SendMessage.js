@@ -10,7 +10,7 @@ router.post('/api', async (req, res) => {
 
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         console.log(req.body);
-        const memberID = req.app.get('loggedInUser'); //dummy memberID, will be replaced with session memberID later.
+        const memberID = req.session.loggedInUserMemberID; //dummy memberID, will be replaced with session memberID later.
         const chatID = req.body.chatID;
         const message = req.body.message;
 
