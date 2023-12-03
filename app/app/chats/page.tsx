@@ -6,7 +6,7 @@ import retrieveChats from "./api/retrieveChatsFromServer";
 import retrieveMessageGivenChatID from "./api/retrieveMessagesGivenChatIDFromServer";
 import sendMessage from "./api/sendMessageToServer"
 import { get } from "http";
-import { use, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function Chats() {
   
@@ -53,17 +53,6 @@ export default function Chats() {
     };
   }, [chatID]); // Runs whenever chatID changes
 
-  useEffect(() => {
-    getChats();
-  }, []);
-
-  useEffect(() => {
-    const messagesDiv = document.getElementById('list-messages-div');
-    if (messagesDiv) {
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-  }, [messagesList]);
-
   function onChatClick(e) {
     console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
     let chatID = e.currentTarget.dataset.chatId;
@@ -75,6 +64,22 @@ export default function Chats() {
     setMessage(e.target.value);
     console.log("MESSAGE: "+message);
   }
+
+  useEffect(() => {
+    getChats();
+  }, []);
+
+  const prevMessagesListLength = useRef(messagesList.length);
+  useEffect(() => {
+    if (messagesList.length > prevMessagesListLength.current) {
+      const messagesDiv = document.getElementById('list-messages-div');
+      if (messagesDiv) {
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+    }
+    prevMessagesListLength.current = messagesList.length;
+  }, [messagesList]);
+
 
 
   return (
