@@ -7,6 +7,9 @@ export async function retrieveChats(){
         cache: "no-cache",
     });
 
+    /** Sort resBody.data by the messageID */
+    
+
     let resBody = await response.json(); // Retrieve body and turn into JSON object
     return resBody;
 }

@@ -47,7 +47,7 @@ export default function Chats() {
         response.map((chat) => {
           return (
             <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full"> {/* A single chat */}
-              <div className="flex flex-row justify-between flex-1 p-4 bg-blue-500">
+              <div className="flex flex-row justify-between flex-1 p-4">
                 <div className="p-2">
                   <img
                     src={Img.src}
@@ -55,7 +55,7 @@ export default function Chats() {
                     className="w-24 rounded-full object-scale-down"
                   />
                 </div>
-                <div className="flex flex-col flex-1 w-full bg-red-500 items-start justify-center p-2"> 
+                <div className="flex flex-col flex-1 w-full items-start justify-center p-2"> 
                   <span className="text-center">{chat.name}</span>
                   <span className="text-center">@{chat.username}</span>
                   <span className="text-center">@{chat.chatID}</span>
@@ -86,7 +86,7 @@ export default function Chats() {
                   message={message.message}
                   profilePicture={""}
                   hasAttachment={false}
-                  isYou={false}
+                  isYou={message.isYou}
                 />
               )
             })

@@ -30,8 +30,8 @@ router.post('/api', async (req, res) => {
         else
         {
             const chatMessages = await db.any(`
-            SELECT "chatID", "messageID", "message", "name" from member JOIN message on member."memberID" = message."senderID" WHERE "chatID" = $1
-                `, [chatID]);
+            SELECT "chatID", "messageID", "message", "name", CASE WHEN member."memberID" = $2 THEN true ELSE false END AS "isYou" from member JOIN message on member."memberID" = message."senderID" WHERE "chatID" = $1
+                `, [chatID, memberID]);
             
             console.log(chatMessages);
 
@@ -40,7 +40,11 @@ router.post('/api', async (req, res) => {
                 res.json({ status: 422, message: 'No messages found' });
                 return;
             }
-            else res.json({ status: 201, message: 'Retrieved messages', data: chatMessages });
+            else 
+            {
+
+                res.json({ status: 201, message: 'Retrieved messages', data: chatMessages });
+            }
         }
 
     } 

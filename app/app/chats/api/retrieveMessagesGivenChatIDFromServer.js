@@ -9,6 +9,11 @@ export async function retrieveMessagesGivenChatID(data){
     });
 
     let resBody = await response.json(); // Retrieve body and turn into JSON object
+   
+    resBody.data.sort((a, b) => { // Sort by messageID
+        return a.messageID - b.messageID;
+    });
+
     return resBody;
    
    }
