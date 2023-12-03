@@ -45,7 +45,7 @@ function ChatBubble({
             <img
               src={Penguin.src}
               alt="ProfilePicture"
-              className="absolute w-24 rounded-full object-scale-down"
+              className="relative w-24 rounded-full object-scale-down"
             />
             <div className="mr-8 p-2 w-[14rem] flex flex-row justify-start bg-blue-600 text-white rounded-xl text-start">
               <p id="name">{name}</p>
@@ -88,9 +88,9 @@ function ChatBubble({
             <img
               src={Penguin.src}
               alt="ProfilePicture"
-              className="absolute w-24 h-2w-24 rounded-full object-scale-down"
+              className="relative w-24 h-2w-24 rounded-full object-scale-down z-10"
             />
-            <div className="ml-8 p-2 w-[14rem] flex flex-row justify-end bg-blue-600 text-white rounded-xl">
+            <div className="relative p-2 ml-[-4rem] w-[14rem] flex flex-row justify-end bg-blue-600 text-white rounded-xl z-0 TAGHERE">
               <p id="name">{name}</p>
             </div>
           </div>

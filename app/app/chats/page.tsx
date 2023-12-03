@@ -41,7 +41,7 @@ export default function Chats() {
   return (
     <section className="m-4 mt-40 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-[50rem] bg-purple-100">
       {/* First, we need to make an api call to the RetrieveChats route */}
-      <div className = "flex flex-col itmes-center col-span-1">
+      <div className = "flex flex-col itmes-center col-span-1 overflow-y-scroll">
 
         {
         response.map((chat) => {
@@ -75,8 +75,8 @@ export default function Chats() {
      
   
   
-      <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly">
-        <div id = "list-messages-div" className="flex-1 p-2 overflow-y-scroll">
+      <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly ">
+        <div id = "list-messages-div" className="flex-1 p-2 overflow-y-auto">
           {
             messages.map((message) => {
               return (
