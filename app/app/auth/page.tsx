@@ -146,7 +146,7 @@ export default function UserAuthentication({ params }: userauthprops) {
       console.log("Successs");
       console.log(response);
 
-      // router.push("/createProfile");
+      router.push("/createProfile");
     } catch (error) {
       console.log(error);
     }
@@ -168,8 +168,16 @@ export default function UserAuthentication({ params }: userauthprops) {
 
       console.log("Logged In Successfully!");
       console.log(response);
+      if(response.status == 205)
+      {
+        router.push("/createProfile")
+        return;
+      }
+      else
+      {
       // setLoggedIn(response);
-      // router.push("/weee");
+      // router.push("/searchpage");
+      }
     } catch (error) {
       console.log(error);
     }

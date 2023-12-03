@@ -2,10 +2,10 @@
 import OccupationTags from "../occupationTags/OccupationTags";
 import defaultProfilePicture from "../../images/defaultProfilePicture.jpg";
 import editIcon from "../../images/pencil-solid.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { createAProfile } from "../../createProfile/api/createAProfile.js";
+import {useRouter} from "next/navigation";
 import React from 'react';
-
 import Image from "next/legacy/image";
 
 function CreateProfileForm() {
@@ -37,6 +37,7 @@ function CreateProfileHeader()
 function FormLabelsAndInputs()
 {
 
+    const router = useRouter();
     const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
     /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
     /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
@@ -113,17 +114,31 @@ function FormLabelsAndInputs()
         };
     };
 
-    function onSubmit(e)
+    async function onSubmit(e)
     {
+        
         e.preventDefault();
         if(fullName != "" && country != "" && address != "")
-            if(createAProfile(formDataAsJSON()))
+        {
+            var response = await createAProfile(formDataAsJSON());
+            if(response.status == 201)
+            {
                 alert("Created Your Profile")
-            else alert("Could Not Create Your Profile")
+               // router.push("/Search"); // Code for this page has not been written yet
+            }
+            else if(response.status == 401)
+            {
+                alert("You have not signed up yet. Please sign up first.");
+                router.push("/SignUp");
+            }
+            else
+            {
+             alert("Sorry, we were unable to create your profile. Please try again.")
+            }
+        }
         else displayRequiredFields();
     }
 
-    
     return(
     <>
         <FlexLabelAndTextInput labelVal = {fullNameLabelHTML} inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange } placeHolder = "e.g., John Wilfred Doe"/> 

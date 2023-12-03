@@ -4,12 +4,18 @@ import createAProfile from "../app/createProfile/api/createAProfile.js";
 import {render, waitFor, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CreateProfileForm from '../app/components/CreateProfileForm/CreateProfileForm.jsx';
+import SignUp from '../app/auth/api/signup.ts';
 
 
-
-beforeEach(() =>{
-    fetchMock.resetMocks();
-});
+// First, sign up a test user for testing purposes
+SignUp(
+{
+    name: "John Doe",
+    email: "johndoe@gmail.com",
+    username: "johndoe123456",
+    password: "MySuperSecretPassword@123456",
+    isorganization: false
+  });
 
 describe("CreateProfileForm", ()=>{
     it("Ensure CreateProfileForm renders", () =>{
@@ -145,7 +151,7 @@ describe("createAProfile", () => {
 describe("createAProfile", () =>{
     it("Ensure profile can be created given correct fields", async()=>{
     
-        const mockRequest = {
+        const request = {
             fullName: "John Doe",
             country: "Canada",
             address: "Some Test Address 123",
@@ -153,7 +159,7 @@ describe("createAProfile", () =>{
             occupationTags: ["test1", "test2"]
         };
 
-        const response = await createAProfile(mockRequest);
+        const response = await createAProfile(request);
 
         expect(response).toEqual(true);
     

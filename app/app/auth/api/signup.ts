@@ -11,6 +11,7 @@ export default async function SignUp(values: {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(values),
     cache: "no-cache",
+    credentials: "include",
   });
   let resBody: AuthResponse = await response.json();
   console.log("[MIDDLEMAN]:\n" + JSON.stringify(resBody));
