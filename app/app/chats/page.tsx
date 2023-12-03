@@ -4,6 +4,7 @@ import ChatBubble from "../components/conversations/ChatBubble";
 import Img from "../images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import retrieveMessageGivenChatID from "./api/retrieveMessagesGivenChatIDFromServer";
+import sendMessage from "./api/sendMessageToServer"
 import { get } from "http";
 import { use, useEffect, useState } from "react";
 
@@ -11,7 +12,12 @@ export default function Chats() {
   
   
   const [response, setResponse] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [messagesList, setMessagesList] = useState([]);
+  const [message, setMessage] = useState("");
+  const [chatID, setChatID] = useState("");
+
+  console.log("chatID: "+chatID);
+
   async function getChats() {
     let res = await retrieveChats();
     console.log("RESPONSE FROM SERVER:")
@@ -23,18 +29,51 @@ export default function Chats() {
     let res = await retrieveMessageGivenChatID({chatID: chatID});
     console.log("RESPONSE FOR MESSAGES:")
     console.log(res);
-    setMessages(res.data);
+    setMessagesList(res.data);
   }
+
+  async function onSendMessage(){
+   
+      console.log("SENDING MESSAGE: "+message);
+      console.log("CHAT ID: "+chatID);
+      let res = await sendMessage({chatID: chatID, message: message});
+      console.log("RESPONSE FROM SERVER:")
+      console.log(res);
+      setMessage("");
+      getMessages(chatID); // Refresh messages
+  }
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getMessages(chatID);
+    }, 5000); // Runs every 5 seconds
+  
+    return () => {
+      clearInterval(intervalId); // Clears the interval when the component unmounts
+    };
+  }, [chatID]); // Runs whenever chatID changes
 
   useEffect(() => {
     getChats();
   }, []);
 
+  useEffect(() => {
+    const messagesDiv = document.getElementById('list-messages-div');
+    if (messagesDiv) {
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  }, [messagesList]);
+
   function onChatClick(e) {
     console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
     let chatID = e.currentTarget.dataset.chatId;
+    setChatID(chatID);
     getMessages(chatID);
+  }
 
+  function onSendingMessage(e){
+    setMessage(e.target.value);
+    console.log("MESSAGE: "+message);
   }
 
 
@@ -58,7 +97,6 @@ export default function Chats() {
                 <div className="flex flex-col flex-1 w-full items-start justify-center p-2"> 
                   <span className="text-center">{chat.name}</span>
                   <span className="text-center">@{chat.username}</span>
-                  <span className="text-center">@{chat.chatID}</span>
                 </div>
               </div>
               <div className="flex flex-col justify-between p-2">
@@ -78,7 +116,7 @@ export default function Chats() {
       <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly ">
         <div id = "list-messages-div" className="flex-1 p-2 overflow-y-auto">
           {
-            messages.map((message) => {
+            messagesList.map((message) => {
               return (
                 <ChatBubble
                   id={message.messageID}
@@ -91,23 +129,6 @@ export default function Chats() {
               )
             })
           }
-
-          <ChatBubble
-            id={"2"}
-            name={"Satanshu Mishra"}
-            message={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
-            profilePicture={""}
-            hasAttachment={true}
-            isYou={false}
-          />
-            <ChatBubble
-            id={"2"}
-            name={"Satanshu Mishra"}
-            message={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
-            profilePicture={""}
-            hasAttachment={true}
-            isYou={false}
-          />
          
         </div>
         <div className="p-2">
@@ -116,8 +137,11 @@ export default function Chats() {
               type="text"
               className="w-full h-12 rounded-lg shadow-md drop-shadow-md p-2 m-2"
               placeholder="Type a message..."
+              onChange = {onSendingMessage}
+              onKeyDown = { (e) => { if(e.key == "Enter"){ e.preventDefault(); onSendMessage(); }   }} 
+              value = {message}
             />
-            <button className="w-12 h-12 rounded-lg shadow-md drop-shadow-md bg-blue-600 text-white m-2">
+            <button id = "sendButton" className="w-12 h-12 rounded-lg shadow-md drop-shadow-md bg-blue-600 text-white m-2" onClick = {onSendMessage}>
               <i className="ri-send-plane-fill"></i>
             </button>
           </div>
