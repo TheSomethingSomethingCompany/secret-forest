@@ -10,8 +10,10 @@ router.post('/api', async (req, res) => {
 
         
         //Since we still need to implement sessions, we will use a dummy memberID for now.
+        
         const memberID = req.app.get('loggedInUser');;
         const chatID = req.body.chatID;
+        console.log("REQUEST FOR RETRIEVE MESSAGES WITH CHATID: " + chatID + " AND MEMBERID: " + memberID + "");
 
         
         //First, we must confirm if the current logged on user is a member of the chat, in order to prevent unauthorized access of chat messages by other users not in the chat.
@@ -28,8 +30,8 @@ router.post('/api', async (req, res) => {
         else
         {
             const chatMessages = await db.any(`
-            SELECT * from message WHERE "chatID" = $1
-                `, [chatID]);
+            SELECT "chatID", "messageID", "message", "name", CASE WHEN member."memberID" = $2 THEN true ELSE false END AS "isYou" from member JOIN message on member."memberID" = message."senderID" WHERE "chatID" = $1
+                `, [chatID, memberID]);
             
             console.log(chatMessages);
 
@@ -38,7 +40,11 @@ router.post('/api', async (req, res) => {
                 res.json({ status: 422, message: 'No messages found' });
                 return;
             }
-            else res.json({ status: 201, message: 'Retrieved messages', data: chatMessages });
+            else 
+            {
+
+                res.json({ status: 201, message: 'Retrieved messages', data: chatMessages });
+            }
         }
 
     } 
