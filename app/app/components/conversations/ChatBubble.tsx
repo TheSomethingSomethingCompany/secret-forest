@@ -45,9 +45,9 @@ function ChatBubble({
             <img
               src={Penguin.src}
               alt="ProfilePicture"
-              className="relative w-24 rounded-full object-scale-down"
+              className="relative z-10 w-24 rounded-full object-scale-down"
             />
-            <div className="mr-8 p-2 w-[14rem] flex flex-row justify-start bg-blue-600 text-white rounded-xl text-start">
+            <div className="relative z-0 mr-[-4rem] p-2 w-[14rem] flex flex-row justify-start bg-blue-600 text-white rounded-xl text-start">
               <p id="name">{name}</p>
             </div>
           </div>
