@@ -39,7 +39,7 @@ export default function Chats() {
 
 
   return (
-    <section className="m-4 mt-40 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-full bg-purple-100">
+    <section className="m-4 mt-40 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-[50rem] bg-purple-100">
       {/* First, we need to make an api call to the RetrieveChats route */}
       <div className = "flex flex-col itmes-center col-span-1">
 
@@ -76,7 +76,7 @@ export default function Chats() {
   
   
       <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly">
-        <div id = "list-messages-div" className="flex-1 p-2">
+        <div id = "list-messages-div" className="flex-1 p-2 overflow-y-scroll">
           {
             messages.map((message) => {
               return (
@@ -91,14 +91,7 @@ export default function Chats() {
               )
             })
           }
-          <ChatBubble
-            id={"1"}
-            name={"Satanshu Mishra"}
-            message={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
-            profilePicture={""}
-            hasAttachment={false}
-            isYou={true}
-          />
+
           <ChatBubble
             id={"2"}
             name={"Satanshu Mishra"}
@@ -107,6 +100,15 @@ export default function Chats() {
             hasAttachment={true}
             isYou={false}
           />
+            <ChatBubble
+            id={"2"}
+            name={"Satanshu Mishra"}
+            message={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+            profilePicture={""}
+            hasAttachment={true}
+            isYou={false}
+          />
+         
         </div>
         <div className="p-2">
           <div className="flex flex-row justify-between items-center p-2">
