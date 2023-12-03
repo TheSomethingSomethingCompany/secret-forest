@@ -1,9 +1,8 @@
 export default interface MemberFetch {
   data: {
-    username: string;
     name: string;
-    email: string;
-    memberID: string;
+    country: string;
+    bio: string;
   };
   pgErrorObject: any;
   status: number;

@@ -5,10 +5,10 @@ const db = require("../db-connection.js");
 router.post("/api", async (req, res) => {
   console.log(req.body);
 
-  const { slug } = req.body;
+  const { id } = req.body;
   try {
-    console.log("[FETCH USER]: IN TRY");
-    if (slug == "") {
+    console.log("[FETCH PROFILE]: IN TRY");
+    if (id == "") {
       console.log("[ERROR]: EMPTY FIELDS");
       return res.json({
         data: null,
@@ -17,9 +17,9 @@ router.post("/api", async (req, res) => {
         pgErrorObject: null,
       });
     }
-    const user = await db.one(
-      `SELECT email, "memberID", name, username FROM member WHERE username = $1`,
-      [slug]
+    const profile = await db.one(
+      `SELECT "name", "country", "bio" FROM profile WHERE "memberID" = $1`,
+      [id]
     );
 
     // if (user.length != 1) {
@@ -32,12 +32,12 @@ router.post("/api", async (req, res) => {
     //   });
     // }
 
-    console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
+    console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
 
     res.json({
-      data: { ...user },
+      data: { ...profile },
       status: 202,
-      message: "User Fetch Successful",
+      message: "Profile Fetch Successful",
       pgErrorObject: null,
     });
   } catch (error) {
@@ -47,7 +47,7 @@ router.post("/api", async (req, res) => {
         JSON.stringify({
           data: null,
           status: 500,
-          message: "User Fetch Failed",
+          message: "Profile Fetch Failed",
           pgErrorObject: {
             ...error,
           },
@@ -56,7 +56,7 @@ router.post("/api", async (req, res) => {
     res.json({
       data: null,
       status: 500,
-      message: "User Fetch Failed",
+      message: "Profile Fetch Failed",
       pgErrorObject: {
         ...error,
       },

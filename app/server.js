@@ -68,6 +68,9 @@ server.use("/signin", signinRoutes);
 const fetchUserDataRoutes = require("./app/routes/FetchUserData");
 server.use("/fetchUserData", fetchUserDataRoutes);
 
+const fetchProfileDataRoutes = require("./app/routes/FetchProfileData");
+server.use("/fetchProfileData", fetchProfileDataRoutes);
+
 server.listen(PORT, () => {
   console.log("Server started on http://localhost:6969");
 });
