@@ -1,12 +1,15 @@
 const express = require("express");
 const server = express();
 const session = require('express-session');
+const cors = require('cors');
 const PORT = 6969;
 //const cors = require('cors');
 
 //Middleware to parse JSON requests
 server.use(express.json());
-//server.use(cors());
+server.use(cors({
+  origin: 'http://localhost:3000' // Replace with your client's origin
+}));
 
 server.use(session({
   secret: 'my super duper secret key hehe :)', // Secret key used to sign sessionID cookie by combining it with the sessionID value. On the server, it will use this secret key to hash with sessionID transmitted, and check if it matches the hash value of the sessionID cookie. If it does, then the sessionID cookie is valid, and no tampering has occurred. Also, this should be stored in a .env file, but for now, we will leave it here.
@@ -16,7 +19,7 @@ server.use(session({
 }));
 
 // Set global variable to be the current logged in user, which should be using session data, but is hardcoded for now
-server.set("loggedInUser", "43a60c3d-f8ed-40cc-9cc0-472b02a45960"); // This is the memberID of the logged in user, which is hardcoded for now
+server.set("loggedInUser", "63f10fa3-1109-4986-993d-f7aac2f40c40"); // This is the memberID of the logged in user, which is hardcoded for now
 
 //Any Routes
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js
