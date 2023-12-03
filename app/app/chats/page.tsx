@@ -6,6 +6,7 @@ import retrieveChats from "./api/retrieveChatsFromServer";
 import retrieveMessageGivenChatID from "./api/retrieveMessagesGivenChatIDFromServer";
 import sendMessage from "./api/sendMessageToServer"
 import deleteMessage from "./api/deleteMessageFromServer"
+import editMessage from "./api/editMessageOnServer"
 import { get } from "http";
 import { useRef, useEffect, useState } from "react";
 
@@ -75,11 +76,18 @@ export default function Chats() {
     // Now, we need to remove the message from the message list
     let messageId = e.currentTarget.dataset.messageId;
     let newMessagesList = messagesList.filter((message) => message.messageID != messageId);
+    console.log("New messages list: ");
+    console.log(newMessagesList);
     setMessagesList(newMessagesList);
     // Next, we need to make an api call to delete the message from the server
     deleteMessage({messageID: messageId});
   }
 
+  function saveToDatabaseHandler(editedMessage: string, messageID: string){
+    console.log("Saving message to database: "+editedMessage);
+    // Now, we need to make an api call to edit the message on the server
+    editMessage({messageID: messageID, message: editedMessage});
+  }
 
 
   const prevMessagesListLength = useRef(messagesList.length);
@@ -137,6 +145,7 @@ export default function Chats() {
             messagesList.map((message) => {
               return (
                 <ChatBubble
+                key = {message.messageID}
                   id={message.messageID}
                   name={message.name}
                   message={message.message}
@@ -144,6 +153,7 @@ export default function Chats() {
                   hasAttachment={false}
                   isYou={message.isYou}
                   onDeleteButtonClick = {onDeleteButtonClick}
+                  saveToDatabaseHandler={saveToDatabaseHandler}
                 />
               )
             })
