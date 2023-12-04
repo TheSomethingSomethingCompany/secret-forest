@@ -17,6 +17,7 @@ export default function Chats() {
   const [message, setMessage] = useState("");
   const [chatID, setChatID] = useState("");
 
+  
   console.log("chatID: " + chatID);
 
   async function getChats() {
@@ -25,7 +26,7 @@ export default function Chats() {
     console.log(res);
     if(res.data)
       setChatsList(res.data);
-    }
+
   }
 
   async function getMessages(chatID) {
