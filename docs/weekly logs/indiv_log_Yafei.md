@@ -282,6 +282,47 @@ No picture since there is no week 11 form on the team formation tab in Canvas
 
 ![week12](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/490e637e-bf5e-4f6c-9330-42ac7d80170e)
 
+**Week**: 13
+**Work Period**: `27-11-2023` - `03-12-2023`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Preparing and discussing design document and video
+- Work on the edit profile feature
+- Learn and set edit profile testing
+
+## Active Tasks
+
+- Preparation for design document
+  - help organize work load
+  - work on the UI diagrams and related explanations
+- Edit profile feature
+  - First create ability to view profile
+  - Add nessessary modifications to allow editing of profile
+- Preparation for video
+  - Decide what changes to showcase
+  - Editing and any other needed work
+
+
+## Status of Tasks
+
+- Preparation for design document (Completed)
+  - help organize work load
+  - work on the UI diagrams and related explanations
+- Edit profile feature (Satanshu took the lead and helped finish and complete what I was struggling to do)
+  - First create ability to view profile (Completed)  
+  - Add nessessary modifications to allow editing of profile (In-progress) 
+- Preparation for video (Completed)
+  - Decide what changes to showcase
+  - Editing video and any other needed work
+
+
+## Peer Review
+
+![week13](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/779cfedf-e676-48a4-89d3-7c9a173e2630)
+
+
 
 
 
