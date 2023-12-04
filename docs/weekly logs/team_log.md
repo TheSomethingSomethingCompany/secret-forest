@@ -124,4 +124,46 @@ Satanshu Mishra: `SatanshuMishra`
 
 
 
+**Week 13**: 27/11/2023 - 03/12/2023
 
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Work on Design Document
+  - Provide Introductory 3 line
+  - List and Justify 2 system architecture, 2 database and 2 workflow design choices
+  - Create 2 DFD diagrams, 2 ER diagrams, 2 Workflow diagrams
+  - Compile feature list for this milestone
+  - List aws services
+- Work on Design Video Submission
+  - Record demo
+  - Create presentation for design choices
+  - Record presentation for 2 design choices
+  - Compile submission
+  
+
+## Accomplishments - `All Tasks Completed Unless Specified`
+
+- Work on Design Document
+  - Provide Introductory 3 line
+  - List and Justify 2 system architecture, 2 database and 2 workflow design choices
+  - Create 2 DFD diagrams, 2 ER diagrams, 2 Workflow diagrams
+  - Compile feature list for this milestone
+  - List aws services
+- Work on Design Video Submission
+  - Record demo
+  - Create presentation for design choices
+  - Record presentation for 2 design choices
+  - Compile submission
+
+## Test Report
+
+
+### Burn-Up Chart
