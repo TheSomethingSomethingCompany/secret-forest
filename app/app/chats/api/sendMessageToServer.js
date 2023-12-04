@@ -5,7 +5,8 @@ export async function sendMessage(data){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
-        cache: "no-cache"
+        cache: "no-cache",
+        credentials: "include"
 
     });
 

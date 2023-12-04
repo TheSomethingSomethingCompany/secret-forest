@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require("../db-connection.js")
 
 router.post('/api', async (req, res) => {
-    const chatID = req.chatID;
     
     try
     {
@@ -11,7 +10,7 @@ router.post('/api', async (req, res) => {
         
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         
-        const memberID = req.app.get('loggedInUser');;
+        const memberID = req.session.loggedInUserMemberID;
         const chatID = req.body.chatID;
         console.log("REQUEST FOR RETRIEVE MESSAGES WITH CHATID: " + chatID + " AND MEMBERID: " + memberID + "");
 

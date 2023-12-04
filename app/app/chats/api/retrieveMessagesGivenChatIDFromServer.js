@@ -5,7 +5,8 @@ export async function retrieveMessagesGivenChatID(data){
             'Content-Type': 'application/json'
         },
         cache: "no-cache",
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        credentials: "include"
     });
 
     let resBody = await response.json(); // Retrieve body and turn into JSON object

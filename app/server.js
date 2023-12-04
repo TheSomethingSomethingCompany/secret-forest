@@ -30,7 +30,6 @@ server.use(
 );
 
 // Set global variable to be the current logged in user, which should be using session data, but is hardcoded for now
-server.set("loggedInUser", "63f10fa3-1109-4986-993d-f7aac2f40c40"); // This is the memberID of the logged in user, which is hardcoded for now
 
 //Any Routes
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js

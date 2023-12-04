@@ -5,7 +5,8 @@ async function deleteMessage(data){
             'Content-Type': 'application/json'
                 },
         body: JSON.stringify(data),
-        cache: "no-cache"
+        cache: "no-cache",
+        credentials: "include"
     });
         
     let resBody = await response.json(); // Retrieve body and turn into JSON object

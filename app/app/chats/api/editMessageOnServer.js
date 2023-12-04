@@ -4,7 +4,9 @@ export async function editMessage(data){
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        cache: "no-cache",
+        credentials: "include"
 
     });
 

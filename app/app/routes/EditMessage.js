@@ -10,7 +10,7 @@ router.post('/api', async (req, res) => {
         // Since we are not using sessions, we will hardcode the memberID for now
         
         
-        const memberID = req.app.get('loggedInUser');
+        const memberID = req.session.loggedInUserMemberID;
         const messageID = req.body.messageID;
         const editedMessage = req.body.message;
 

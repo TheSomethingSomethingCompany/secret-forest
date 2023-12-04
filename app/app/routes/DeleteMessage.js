@@ -11,7 +11,7 @@ router.post('/api', async (req, res) => {
         
         
         
-        const memberID = req.app.get('loggedInUser');
+        const memberID = req.session.loggedInUserMemberID;
         const messageID = req.body.messageID;
         console.log("REQUEST FOR DELETE MESSAGE WITH MESSAGEID: " + messageID + " AND MEMBERID: " + memberID + "");
         

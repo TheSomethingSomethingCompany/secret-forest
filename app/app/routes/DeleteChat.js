@@ -9,7 +9,7 @@ router.post('/api', async (req, res) => {
         // Must confirm that the logged in user is a member of the chat
         // Since we are not using sessions, we will hardcode the memberID for now
         
-        const memberID = req.app.get('loggedInUser');
+        const memberID = req.session.loggedInUserMemberID;
         const chatID = req.body.chatID;
 
         const isMember = await db.any(`
