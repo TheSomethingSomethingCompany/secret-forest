@@ -1,61 +1,61 @@
-"use client"
+"use client";
 import Image from "next/image";
 import ChatBubble from "../components/conversations/ChatBubble";
 import Img from "../images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import retrieveMessageGivenChatID from "./api/retrieveMessagesGivenChatIDFromServer";
-import sendMessage from "./api/sendMessageToServer"
-import deleteMessage from "./api/deleteMessageFromServer"
-import editMessage from "./api/editMessageOnServer"
+import sendMessage from "./api/sendMessageToServer";
+import deleteMessage from "./api/deleteMessageFromServer";
+import editMessage from "./api/editMessageOnServer";
 import { get } from "http";
 import { useRef, useEffect, useState } from "react";
 
 export default function Chats() {
-  
   
   const [chatsList, setChatsList] = useState([]);
   const [messagesList, setMessagesList] = useState([]);
   const [message, setMessage] = useState("");
   const [chatID, setChatID] = useState("");
 
-  console.log("chatID: "+chatID);
+  console.log("chatID: " + chatID);
 
   async function getChats() {
     let res = await retrieveChats();
-    console.log("RESPONSE FROM SERVER:")
+    console.log("RESPONSE FROM SERVER:");
     console.log(res);
     if(res.data)
       setChatsList(res.data);
     }
+  }
 
   async function getMessages(chatID) {
-    let res = await retrieveMessageGivenChatID({chatID: chatID});
-    console.log("RESPONSE FOR MESSAGES:")
+    let res = await retrieveMessageGivenChatID({ chatID: chatID });
+    console.log("RESPONSE FOR MESSAGES:");
     console.log(res);
     if(res.data)
       setMessagesList(res.data);
   }
 
-  async function onSendMessage(){
-   
-      console.log("SENDING MESSAGE: "+message);
-      console.log("CHAT ID: "+chatID);
-      let res = await sendMessage({chatID: chatID, message: message});
-      console.log("RESPONSE FROM SERVER:")
-      console.log(res);
-      setMessage("");
-      getMessages(chatID); // Refresh messages
+  async function onSendMessage() {
+    console.log("SENDING MESSAGE: " + message);
+    console.log("CHAT ID: " + chatID);
+    let res = await sendMessage({ chatID: chatID, message: message });
+    console.log("RESPONSE FROM SERVER:");
+    console.log(res);
+    setMessage("");
+    getMessages(chatID); // Refresh messages
   }
 
   useEffect(() => {
     getChats();
   }, []);
 
-  useEffect(() => { // Refresh messages every 5 seconds. This is temporary, we will use websockets later.
+  useEffect(() => {
+    // Refresh messages every 5 seconds. This is temporary, we will use websockets later.
     const intervalId = setInterval(() => {
       getMessages(chatID);
     }, 5000); // Runs every 5 seconds
-  
+
     return () => {
       clearInterval(intervalId); // Clears the interval when the component unmounts
     };
@@ -68,34 +68,37 @@ export default function Chats() {
     getMessages(chatID);
   }
 
-  function onSendingMessage(e){
+  function onSendingMessage(e) {
     setMessage(e.target.value);
-    console.log("MESSAGE: "+message);
+    console.log("MESSAGE: " + message);
   }
 
-  function onDeleteButtonClick(e){
-    console.log("Clicked on delete button with id: "+e.currentTarget.dataset.messageId);
+  function onDeleteButtonClick(e) {
+    console.log(
+      "Clicked on delete button with id: " + e.currentTarget.dataset.messageId
+    );
     // Now, we need to remove the message from the message list
     let messageId = e.currentTarget.dataset.messageId;
-    let newMessagesList = messagesList.filter((message) => message.messageID != messageId);
+    let newMessagesList = messagesList.filter(
+      (message) => message.messageID != messageId
+    );
     console.log("New messages list: ");
     console.log(newMessagesList);
     setMessagesList(newMessagesList);
     // Next, we need to make an api call to delete the message from the server
-    deleteMessage({messageID: messageId});
+    deleteMessage({ messageID: messageId });
   }
 
-  function saveToDatabaseHandler(editedMessage: string, messageID: string){
-    console.log("Saving message to database: "+editedMessage);
+  function saveToDatabaseHandler(editedMessage: string, messageID: string) {
+    console.log("Saving message to database: " + editedMessage);
     // Now, we need to make an api call to edit the message on the server
-    editMessage({messageID: messageID, message: editedMessage});
+    editMessage({ messageID: messageID, message: editedMessage });
   }
-
 
   const prevMessagesListLength = useRef(messagesList.length);
   useEffect(() => {
     if (messagesList.length > prevMessagesListLength.current) {
-      const messagesDiv = document.getElementById('list-messages-div');
+      const messagesDiv = document.getElementById("list-messages-div");
       if (messagesDiv) {
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       }
@@ -103,11 +106,10 @@ export default function Chats() {
     prevMessagesListLength.current = messagesList.length;
   }, [messagesList]);
 
-
-
   return (
-    <section className="m-4 mt-40 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-[50rem] bg-purple-100">
+    <section className="m-4 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-[50rem] bg-gray-100">
       {/* First, we need to make an api call to the RetrieveChats route */}
+
       <div className = "flex flex-col itmes-center col-span-1 overflow-y-scroll">
 
         {
@@ -143,10 +145,9 @@ export default function Chats() {
           }))
 
         }
+
       </div>
-     
-  
-  
+
       <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly ">
         <div id = "list-messages-div" className="flex-1 p-2 overflow-y-auto">
           {
@@ -180,11 +181,20 @@ export default function Chats() {
               type="text"
               className="w-full h-12 rounded-lg shadow-md drop-shadow-md p-2 m-2"
               placeholder="Type a message..."
-              onChange = {onSendingMessage}
-              onKeyDown = { (e) => { if(e.key == "Enter"){ e.preventDefault(); onSendMessage(); }   }} 
-              value = {message}
+              onChange={onSendingMessage}
+              onKeyDown={(e) => {
+                if (e.key == "Enter") {
+                  e.preventDefault();
+                  onSendMessage();
+                }
+              }}
+              value={message}
             />
-            <button id = "sendButton" className="w-12 h-12 rounded-lg shadow-md drop-shadow-md bg-blue-600 text-white m-2" onClick = {onSendMessage}>
+            <button
+              id="sendButton"
+              className="w-12 h-12 rounded-lg shadow-md drop-shadow-md bg-blue-600 text-white m-2"
+              onClick={onSendMessage}
+            >
               <i className="ri-send-plane-fill"></i>
             </button>
           </div>
@@ -193,4 +203,3 @@ export default function Chats() {
     </section>
   );
 }
-
