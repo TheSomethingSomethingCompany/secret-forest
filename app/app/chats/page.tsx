@@ -26,6 +26,7 @@ export default function Chats() {
     console.log(res);
     if(res.data)
       setChatsList(res.data);
+    else setChatsList([]);
 
   }
 
@@ -35,6 +36,7 @@ export default function Chats() {
     console.log(res);
     if(res.data)
       setMessagesList(res.data);
+    else setMessagesList([]);
   }
 
   async function onSendMessage() {
@@ -55,7 +57,7 @@ export default function Chats() {
     // Refresh messages every 5 seconds. This is temporary, we will use websockets later.
     const intervalId = setInterval(() => {
       getMessages(chatID);
-    }, 5000); // Runs every 5 seconds
+    }, 3000); // Runs every 5 seconds
 
     return () => {
       clearInterval(intervalId); // Clears the interval when the component unmounts
