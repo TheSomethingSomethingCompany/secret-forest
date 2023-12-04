@@ -4,55 +4,62 @@ import ChatBubble from "../components/conversations/ChatBubble";
 import Img from "../images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, use } from "react";
 
 export default function Chats() {
   
   const [chatsList, setChatsList] = useState([]);
   const [messagesList, setMessagesList] = useState([]);
   const [message, setMessage] = useState("");
-  const [chatID, setChatID] = useState("");
     
   // Create a WebSocket connection to the server
   
-  const [ws, setWs] = useState(null);
+  const ws = useRef(null);
+  const chatID = useRef("");
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:7979');
+    ws.current = new WebSocket('ws://localhost:7979');
+  
 
-    ws.onopen = () => {
+    ws.current.onopen = () => {
       console.log('WebSocket connection opened');
     };
 
-    ws.onmessage = (event) => {
+    ws.current.onmessage = (event) => {
       const response = JSON.parse(event.data);
       console.log('Message from server: ', response);
       switch(response.action) {
         case "setMessages":
           if(response.status == "201")
             setMessagesList(response.data);
-          else if(response.status == "404")
+          else if(response.status == "422")
             setMessagesList([]);
           else console.log("Error retrieving messages from server.");
-          break;  
+          break; 
+        case "refreshMessages": 
+          if(response.status == "201")
+            getMessages(chatID.current);
+          else if(response.status == "422")
+            setMessagesList([]);
+          else console.log("Error retrieving messages from server.");
+          break;
       }
       
     };
 
-    ws.onclose = () => {
+    ws.current.onclose = () => {
       console.log('WebSocket connection closed');
     };
 
-    ws.onerror = (event) => {
+    ws.current.onerror = (event) => {
       console.error('WebSocket error: ', event);
     };
 
-    setWs(ws);
 
     // Clean up the WebSocket connection when the component unmounts
     return () => {
-      if (ws) {
-        ws.close();
+      if (ws.current) {
+        ws.current.close();
       }
     };
   }, []);
@@ -70,16 +77,14 @@ export default function Chats() {
 
   async function getMessages(chatID: string) { // We need to specify the chatID since state variables are not updated immediately
     const dataToSendToWSS = JSON.stringify({action: "retrieveMessages", body:{  chatID: chatID }});
-    ws.send(dataToSendToWSS);
-    setMessagesList([]);
+    ws.current.send(dataToSendToWSS);
   }
 
   async function onSendMessage() {
     console.log("SENDING MESSAGE: " + message);
-    const dataToSendToWSS = JSON.stringify({action: "sendMessage", body:{  chatID: chatID, message: message }});
-    await ws.send(dataToSendToWSS);
+    const dataToSendToWSS = JSON.stringify({action: "insertMessage", body:{  chatID: chatID.current, message: message }});
+    ws.current.send(dataToSendToWSS);
     setMessage("");
-    getMessages(chatID); // Refresh messages
   }
 
   useEffect(() => {
@@ -89,9 +94,8 @@ export default function Chats() {
 
   function onChatClick(e) {
     console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
-    let chatID = e.currentTarget.dataset.chatId;
-    setChatID(chatID);
-    getMessages(chatID);
+    chatID.current = e.currentTarget.dataset.chatId;
+    getMessages(chatID.current);
   }
 
   function onSendingMessage(e) {

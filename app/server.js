@@ -52,7 +52,6 @@ const retrieveChatsRoutes = require("./app/routes/RetrieveChats"); // Express wi
 server.use("/retrieveChats", retrieveChatsRoutes); //Express will map /retrieveChats to ./app/routes/RetrieveChats, while will contain the corresponding routes.
 //  /api must be specifically mentioned after /retrieveChats in order to get the corresponding routes. /api is not necessary to have in the routes, but it is good practice to have it.
 
-
 const deleteChatRoutes = require("./app/routes/DeleteChat");
 server.use("/deleteChat", deleteChatRoutes);
 

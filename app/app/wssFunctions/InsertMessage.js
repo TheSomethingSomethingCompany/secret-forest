@@ -5,13 +5,12 @@ async function handleInsertingMessage (req, res){
     
     try
     {
-
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         console.log(req.body);
         const memberID = req.session.loggedInUserMemberID; //dummy memberID, will be replaced with session memberID later.
         const chatID = req.body.chatID;
         const message = req.body.message;
-
+        console.log("REQUEST FOR INSERT MESSAGE WITH CHATID: " + chatID + "" + " AND MESSAGE: " + message + "" + " AND MEMBERID: " + memberID + "");
 
         // First, we must ensure that the user is a member of the chat, in order to prevent unauthorized insertion of chat messages by other users not in the chat.
         const isMember = await db.any(`
@@ -28,7 +27,7 @@ async function handleInsertingMessage (req, res){
             await db.none(`
             INSERT into message ("chatID", "senderID", "message") VALUES ($1, $2, $3)
                 `, [chatID, memberID, message]);    
-            res.json({ status: 201, message: 'Successfully inserted message'});
+            res.json({ status: 201, message: 'Successfully inserted message', action: 'refreshMessages'});
         }
 
     } 
