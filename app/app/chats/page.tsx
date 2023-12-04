@@ -68,7 +68,7 @@ export default function Chats() {
 
   }
 
-  async function getMessages() {
+  async function getMessages(chatID: string) { // We need to specify the chatID since state variables are not updated immediately
     const dataToSendToWSS = JSON.stringify({action: "retrieveMessages", body:{  chatID: chatID }});
     ws.send(dataToSendToWSS);
     setMessagesList([]);
@@ -79,7 +79,7 @@ export default function Chats() {
     const dataToSendToWSS = JSON.stringify({action: "sendMessage", body:{  chatID: chatID, message: message }});
     await ws.send(dataToSendToWSS);
     setMessage("");
-    getMessages(); // Refresh messages
+    getMessages(chatID); // Refresh messages
   }
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function Chats() {
     console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
     let chatID = e.currentTarget.dataset.chatId;
     setChatID(chatID);
-    getMessages();
+    getMessages(chatID);
   }
 
   function onSendingMessage(e) {
