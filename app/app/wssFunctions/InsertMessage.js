@@ -19,7 +19,7 @@ async function handleInsertingMessage (req, res){
 
         if(isMember.length === 0)
         {
-            res.json({ status: 401, message: 'Unauthorized access' });
+            res.json({ status: 401, message: 'Unauthorized access', action: 'insertMessage' });
         }
 
         else
@@ -27,13 +27,13 @@ async function handleInsertingMessage (req, res){
             await db.none(`
             INSERT into message ("chatID", "senderID", "message") VALUES ($1, $2, $3)
                 `, [chatID, memberID, message]);    
-            res.json({ status: 201, message: 'Successfully inserted message', action: 'refreshMessages'});
+            res.json({ status: 201, message: 'Successfully inserted message', action: 'insertMessage'});
         }
 
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to insert message' });
+        res.json({ status: 500, message: 'Failed to insert message',  action: 'insertMessage'});
     }
 
 }

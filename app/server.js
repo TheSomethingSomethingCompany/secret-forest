@@ -86,25 +86,36 @@ wss.on('connection' , (ws, req) => {
   const res = { json: (data) => { ws.send(JSON.stringify(data)); } };
 
   ws.on('message', (message) => {
-    console.log(`Received message => ${message}`);
+  console.log(`Received message => ${message}`);
    const {action, body} = JSON.parse(message);
+   const chatID = body.chatID;
    req.body = body;
+   (async () => {
    switch (action) {
     case 'insertMessage':
-      handleInsertingMessage(req, res);
+      await handleInsertingMessage(req, res);
       break;
     case 'retrieveMessages':
-      handleRetrievingMessages(req, res);
+      await handleRetrievingMessages(req, res);
       break;
     case 'editMessage':
-      handleEditingMessage(req, res);
+      await handleEditingMessage(req, res);
       break;
     case 'deleteMessage':
-      handleDeletingMessage(req, res);
+      await handleDeletingMessage(req, res);
       break;
     default:
       console.log(`Unknown action: ${action}`);
     }
-    
+
+    if(action === 'insertMessage' || action === 'editMessage' || action === 'deleteMessage')
+    {
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({'chatID': chatID, 'broadcast': true}));
+        }
+      })
+    }
+  })();
   });
 });

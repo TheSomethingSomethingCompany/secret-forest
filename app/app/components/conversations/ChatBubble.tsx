@@ -69,7 +69,7 @@ function ChatBubble({
             { isEditing ? ( // Since the key of the ChatBubble does not change, we do not have to worry about the input field being cancelled as a result of Chats Page recreating the ChatBubble for every new message, since the corresponding ChatBubble will be recreated with the same key, and thus React will use the existing ChatBubble instead of creating a new one.
               <input ref = {referenceToEditBox} type = "text" defaultValue = {messageText} className = "w-full h-full" />
             ) : (
-              <p id="message">{messageText}</p>
+              <p id="message">{messageText + " "+id}</p>
             )}
 
           </div>
@@ -133,7 +133,7 @@ function ChatBubble({
             </div>
           </div>
           <div className="relative z-10 ml-8 mt-2 shadow-md drop-shadow-md rounded-xl bg-white w-full p-4">
-            <p id="message">{message}</p>
+            <p id="message">{messageText + " "+id}</p>
           </div>
           <div className="ml-8 -z-10 w-full flex flex-row justify-end -translate-y-[--translateAmt] transition-transform duration-300">
             <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white cursor-not-allowed">

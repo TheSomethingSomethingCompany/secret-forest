@@ -18,7 +18,7 @@ async function handleDeletingMessage (req, res) {
         
         if(isMessage.length == 0) //If the message does not exist, then we cannot delete it
         {
-            res.json({status: 404, message: 'Message does not exist'});
+            res.json({status: 404, message: 'Message does not exist', action: 'deleteMessage'});
         }
         else
         {
@@ -46,14 +46,14 @@ async function handleDeletingMessage (req, res) {
                 await db.none(`
                 DELETE FROM message WHERE "messageID" = $1
                 `, [messageID]);
-                res.json({ status: 201, message: 'Message deleted successfully', action: 'refreshMessages' });
+                res.json({ status: 201, message: 'Message deleted successfully', action: 'deleteMessage' });
             }
         }
         
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to delete message' });
+        res.json({ status: 500, message: 'Failed to delete message', action: 'deleteMessage' });
     }
 };
 

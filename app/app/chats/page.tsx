@@ -28,25 +28,40 @@ export default function Chats() {
     ws.current.onmessage = (event) => {
       const response = JSON.parse(event.data);
       console.log('Message from server: ', response);
-      switch(response.action) {
-        case "setMessages":
-          if(response.status == "201")
-            setMessagesList(response.data);
-          else if(response.status == "422")
-            setMessagesList([]);
-          else console.log("Error retrieving messages from server.");
-          break; 
-        case "refreshMessages": 
-          if(response.status == "201")
-            getMessages(chatID.current);
-          else if(response.status == "422")
-            setMessagesList([]);
-          else console.log("Error retrieving messages from server.");
-          break;
+      if(response.broadcast){
+        if(response.chatID == chatID.current)
+          getMessages(chatID.current);
       }
-      
-    };
+      else{
+        switch(response.action){
+          case "retrieveMessages":
+            if(response.status == 201)
+            {
+              //sort the messages by messageID in ascending order
+              response.chatMessages.sort((a, b) => (a.messageID > b.messageID) ? 1 : -1);
+             
+              setMessagesList(response.chatMessages);
+            }
+            else if(response.status == 404)
+              setMessagesList([]);
+            break;
+          case "insertMessage":
+            if(response.status == 201)
+              console.log("Message inserted successfully!");
+            break;
+          case "deleteMessage":
+            if(response.status == 201)
+              console.log("Message deleted successfully!");
+            break;
+          case "editMessage":
+            if(response.status == 201)
+              console.log("Message edited successfully!");
+            break;
+        }
 
+      }
+    }
+      
     ws.current.onclose = () => {
       console.log('WebSocket connection closed');
     };
@@ -115,14 +130,14 @@ export default function Chats() {
     );
     */
     // Next, we need to make an api call to delete the message from the server
-      const dataToSendToWSS = JSON.stringify({action: "deleteMessage", body:{  messageID: messageId }});
+      const dataToSendToWSS = JSON.stringify({action: "deleteMessage", body:{  messageID: messageId, chatID: chatID.current }});
       ws.current.send(dataToSendToWSS);
   }
 
   function saveToDatabaseHandler(editedMessage: string, messageID: string) {
     console.log("Saving message to database: " + editedMessage);
     // Now, we need to make an api call to edit the message on the server
-    const dataToSendToWSS = JSON.stringify({action: "editMessage", body:{  messageID: messageID, message: editedMessage }});
+    const dataToSendToWSS = JSON.stringify({action: "editMessage", body:{  messageID: messageID, message: editedMessage, chatID: chatID.current }});
     ws.current.send(dataToSendToWSS);
   }
 
@@ -191,7 +206,7 @@ export default function Chats() {
             :(messagesList.map((message) => {
               return (
                 <ChatBubble
-                key = {message.messageID}
+                key = {message.messageID + message.message}
                   id={message.messageID}
                   name={message.name}
                   message={message.message}
