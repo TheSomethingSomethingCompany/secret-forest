@@ -52,20 +52,9 @@ const retrieveChatsRoutes = require("./app/routes/RetrieveChats"); // Express wi
 server.use("/retrieveChats", retrieveChatsRoutes); //Express will map /retrieveChats to ./app/routes/RetrieveChats, while will contain the corresponding routes.
 //  /api must be specifically mentioned after /retrieveChats in order to get the corresponding routes. /api is not necessary to have in the routes, but it is good practice to have it.
 
-const retrieveMessagesRoutes = require("./app/wssFunctions/RetrieveMessages");
-server.use("/retrieveMessages", retrieveMessagesRoutes);
-
-const sendMessageRoutes = require("./app/wssFunctions/InsertMessage");
-server.use("/sendMessage", sendMessageRoutes);
-
-const deleteMessageRoutes = require("./app/wssFunctions/DeleteMessage");
-server.use("/deleteMessage", deleteMessageRoutes);
 
 const deleteChatRoutes = require("./app/routes/DeleteChat");
 server.use("/deleteChat", deleteChatRoutes);
-
-const editMessageRoutes = require("./app/wssFunctions/EditMessage");
-server.use("/editMessage", editMessageRoutes);
 
 const signupRoutes = require("./app/routes/SignUp");
 server.use("/signup", signupRoutes);
@@ -98,6 +87,7 @@ wss.on('connection' , (ws, req) => {
   const res = { json: (data) => { ws.send(JSON.stringify(data)); } };
 
   ws.on('message', (message) => {
+    console.log(`Received message => ${message}`);
    const {action, body} = JSON.parse(message);
    req.body = body;
    switch (action) {
