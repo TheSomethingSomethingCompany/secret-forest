@@ -299,3 +299,44 @@
 
 ## Peer Review
 <img width="596" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/cdb7a3d3-72d5-4d66-aa2a-6eae905b7b58">
+
+# Personal Log - Arsh Bhat
+
+**Week**: 13
+**Week**: `27-11-2023` - `03-12-2023`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+
+- Complete Design document and Design Video
+- Created 2 DFD diagrams to show 2 design choices made
+  - Provided written justification
+  - Created Presentation
+  - Recorded Video presentation for selected design choice
+- Learn 3-Tier Arcitecture basics for presentation
+- Learn ExpressJS further
+ 
+## Active Tasks
+
+- Complete Design document and Design Video
+- Created 2 DFD diagrams to show 2 design choices made
+  - Provided written justification
+  - Created Presentation
+  - Recorded Video presentation for selected design choice
+- Learn 3-Tier Arcitecture basics for presentation
+- Learn ExpressJS further
+  
+## Status of Tasks
+
+- Complete Design document and Design Video - `COMPLETED`
+- Created 2 DFD diagrams to show 2 design choices made - `COMPLETED`
+  - Provided written justification - `COMPLETED`
+  - Created Presentation - `COMPLETED`
+  - Recorded Video presentation for selected design choice - `COMPLETED`
+- Learn 3-Tier Arcitecture basics for presentation - `COMPLETED`
+- Learn ExpressJS further - `COMPLETED`
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/a593d6d1-d7c2-4ee8-8d96-55138e5a1e85)
+
+
