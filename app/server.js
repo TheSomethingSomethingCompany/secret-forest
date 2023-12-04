@@ -6,19 +6,20 @@ const cors = require("cors");
 
 //Middleware to parse JSON requests
 server.use(express.json());
+
 // server.use(cors({
 //   origin: 'http://localhost:3000' // Replace with your client's origin
 // }));
 
-// const corsOptions = {
-//   origin: "http://localhost:3000",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
+ const corsOptions = {
+   origin: "http://localhost:3000",
+   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+   credentials: true,
+   optionsSuccessStatus: 200,
+ };
 
 // //Middleware to parse JSON requests
-// server.use(cors(corsOptions));
+server.use(cors(corsOptions));
 
 server.use(
   session({

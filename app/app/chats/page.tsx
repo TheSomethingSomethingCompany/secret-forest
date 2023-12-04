@@ -13,7 +13,7 @@ import { useRef, useEffect, useState } from "react";
 export default function Chats() {
   
   
-  const [response, setResponse] = useState([]);
+  const [chatsList, setChatsList] = useState([]);
   const [messagesList, setMessagesList] = useState([]);
   const [message, setMessage] = useState("");
   const [chatID, setChatID] = useState("");
@@ -24,14 +24,16 @@ export default function Chats() {
     let res = await retrieveChats();
     console.log("RESPONSE FROM SERVER:")
     console.log(res);
-    setResponse(res.data);
+    if(res.data)
+      setChatsList(res.data);
     }
 
   async function getMessages(chatID) {
     let res = await retrieveMessageGivenChatID({chatID: chatID});
     console.log("RESPONSE FOR MESSAGES:")
     console.log(res);
-    setMessagesList(res.data);
+    if(res.data)
+      setMessagesList(res.data);
   }
 
   async function onSendMessage(){
@@ -109,32 +111,38 @@ export default function Chats() {
       <div className = "flex flex-col itmes-center col-span-1 overflow-y-scroll">
 
         {
-        response.map((chat) => {
-          return (
-            <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full"> {/* A single chat */}
-              <div className="flex flex-row justify-between flex-1 p-4">
-                <div className="p-2">
-                  <img
-                    src={Img.src}
-                    alt="Example"
-                    className="w-24 rounded-full object-scale-down"
-                  />
+            chatsList.length == 0 ? 
+            (<div className = "flex flex-col items-center justify-center h-full"> 
+              <h1 className = "text-2xl font-bold"> No chats yet! </h1> 
+              <h2 className = "text-xl font-normal"> Start a conversation with someone! </h2> 
+            </div>)
+            : 
+            (chatsList.map((chat) => {
+            return (
+              <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full"> {/* A single chat */}
+                <div className="flex flex-row justify-between flex-1 p-4">
+                  <div className="p-2">
+                    <img
+                      src={Img.src}
+                      alt="Example"
+                      className="w-24 rounded-full object-scale-down"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 w-full items-start justify-center p-2"> 
+                    <span className="text-center">{chat.name}</span>
+                    <span className="text-center">@{chat.username}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col flex-1 w-full items-start justify-center p-2"> 
-                  <span className="text-center">{chat.name}</span>
-                  <span className="text-center">@{chat.username}</span>
+                <div className="flex flex-col justify-between p-2">
+                  <span className="p-1 rounded-full bg-pink-600 w-8 h-8 text-center text-white font-normal">
+                    2
+                  </span>
                 </div>
               </div>
-              <div className="flex flex-col justify-between p-2">
-                <span className="p-1 rounded-full bg-pink-600 w-8 h-8 text-center text-white font-normal">
-                  2
-                </span>
-              </div>
-            </div>
-          )
-        })
-        
-      }
+            )
+          }))
+
+        }
       </div>
      
   
@@ -142,7 +150,13 @@ export default function Chats() {
       <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly ">
         <div id = "list-messages-div" className="flex-1 p-2 overflow-y-auto">
           {
-            messagesList.map((message) => {
+            messagesList.length == 0 ? 
+            (<div className = "flex flex-col items-center justify-center h-full"> 
+              <h1 className = "text-2xl font-bold"> No messages yet! </h1> 
+              <h2 className = "text-xl font-normal"> Start a conversation! </h2>
+              <h2 className = "text-xl font-normal"> Or, select a chat from the left! </h2>
+            </div>)
+            :(messagesList.map((message) => {
               return (
                 <ChatBubble
                 key = {message.messageID}
@@ -156,7 +170,7 @@ export default function Chats() {
                   saveToDatabaseHandler={saveToDatabaseHandler}
                 />
               )
-            })
+            }))
           }
          
         </div>
