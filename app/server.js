@@ -4,12 +4,12 @@ const WebSocket = require('ws');
 const cors = require("cors");
 
 const HTTP_PORT = 6969;
-const WEBSOCKET_PORT = 7000;
+const WEBSOCKET_PORT = 7979;
 
-import handleInsertingMessage from "./app/wssFunctions/InsertMessage";
-import handleRetrievingMessages from "./app/wssFunctions/RetrieveMessages";
-import handleEditingMessage from "./app/wssFunctions/EditMessage"
-import handleDeletingMessage from "./app/wssFunctions/DeleteMessage";
+const handleInsertingMessage = require('./app/wssFunctions/InsertMessage');
+const handleRetrievingMessages = require("./app/wssFunctions/RetrieveMessages");
+const handleEditingMessage = require( "./app/wssFunctions/EditMessage");
+const handleDeletingMessage = require("./app/wssFunctions/DeleteMessage");
 
 const server = express(); // Create an express server
 const wss = new WebSocket.Server({ port: WEBSOCKET_PORT }); // Create a websocket server
@@ -86,6 +86,7 @@ server.listen(HTTP_PORT, () => {
   console.log("Server started on http://localhost:6969");
 });
 
+/** WEB SOCKET SERVER */
 wss.on('connection' , (ws, req) => {
   console.log("New client connected on websocket server");
 
@@ -97,7 +98,24 @@ wss.on('connection' , (ws, req) => {
   const res = { json: (data) => { ws.send(JSON.stringify(data)); } };
 
   ws.on('message', (message) => {
-   const {action, data} = JSON.parse(message);
-  
+   const {action, body} = JSON.parse(message);
+   req.body = body;
+   switch (action) {
+    case 'insertMessage':
+      handleInsertingMessage(req, res);
+      break;
+    case 'retrieveMessages':
+      handleRetrievingMessages(req, res);
+      break;
+    case 'editMessage':
+      handleEditingMessage(req, res);
+      break;
+    case 'deleteMessage':
+      handleDeletingMessage(req, res);
+      break;
+    default:
+      console.log(`Unknown action: ${action}`);
+    }
+    
   });
 });

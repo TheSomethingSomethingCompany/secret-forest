@@ -20,7 +20,7 @@ async function handleRetrievingMessages(req, res){
 
         if(isMember.length === 0)
         {
-            res.json({ status: 401, message: 'Unauthorized access' });
+            res.json({ status: 401, message: 'Unauthorized access', action: 'setMessages' });
         }
 
         else
@@ -33,13 +33,13 @@ async function handleRetrievingMessages(req, res){
 
             if (chatMessages.length === 0)
             {
-                res.json({ status: 422, message: 'No messages found' });
+                res.json({ status: 422, message: 'No messages found', action: 'setMessages'});
                 return;
             }
             else 
             {
-
-                res.json({ status: 201, message: 'Retrieved messages', data: chatMessages });
+                console.log("Retrieved messages successfully with chatID: " + chatID + " and memberID: " + memberID + "");
+                res.json({ status: 201, message: 'Retrieved messages', data: chatMessages, action: 'setMessages' });
             }
         }
 
@@ -51,4 +51,4 @@ async function handleRetrievingMessages(req, res){
 
 };
 
-module.exports = handleGettingMessages
+module.exports = handleRetrievingMessages

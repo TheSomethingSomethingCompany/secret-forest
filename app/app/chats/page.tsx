@@ -3,10 +3,6 @@ import Image from "next/image";
 import ChatBubble from "../components/conversations/ChatBubble";
 import Img from "../images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
-import retrieveMessageGivenChatID from "./api/retrieveMessagesGivenChatIDFromServer";
-import sendMessage from "./api/sendMessageToServer";
-import deleteMessage from "./api/deleteMessageFromServer";
-import editMessage from "./api/editMessageOnServer";
 import { get } from "http";
 import { useRef, useEffect, useState } from "react";
 
@@ -16,13 +12,55 @@ export default function Chats() {
   const [messagesList, setMessagesList] = useState([]);
   const [message, setMessage] = useState("");
   const [chatID, setChatID] = useState("");
-
+    
+  // Create a WebSocket connection to the server
   
-  console.log("chatID: " + chatID);
+  const [ws, setWs] = useState(null);
+
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:7979');
+
+    ws.onopen = () => {
+      console.log('WebSocket connection opened');
+    };
+
+    ws.onmessage = (event) => {
+      const response = JSON.parse(event.data);
+      console.log('Message from server: ', response);
+      switch(response.action) {
+        case "setMessages":
+          if(response.status == "201")
+            setMessagesList(response.data);
+          else if(response.status == "404")
+            setMessagesList([]);
+          else console.log("Error retrieving messages from server.");
+          break;  
+      }
+      
+    };
+
+    ws.onclose = () => {
+      console.log('WebSocket connection closed');
+    };
+
+    ws.onerror = (event) => {
+      console.error('WebSocket error: ', event);
+    };
+
+    setWs(ws);
+
+    // Clean up the WebSocket connection when the component unmounts
+    return () => {
+      if (ws) {
+        ws.close();
+      }
+    };
+  }, []);
+  
 
   async function getChats() {
     let res = await retrieveChats();
-    console.log("RESPONSE FROM SERVER:");
+    console.log("RESPONSE FROM SERVER FOR CHATS:");
     console.log(res);
     if(res.data)
       setChatsList(res.data);
@@ -30,45 +68,30 @@ export default function Chats() {
 
   }
 
-  async function getMessages(chatID) {
-    let res = await retrieveMessageGivenChatID({ chatID: chatID });
-    console.log("RESPONSE FOR MESSAGES:");
-    console.log(res);
-    if(res.data)
-      setMessagesList(res.data);
-    else setMessagesList([]);
+  async function getMessages() {
+    const dataToSendToWSS = JSON.stringify({action: "retrieveMessages", body:{  chatID: chatID }});
+    ws.send(dataToSendToWSS);
+    setMessagesList([]);
   }
 
   async function onSendMessage() {
     console.log("SENDING MESSAGE: " + message);
-    console.log("CHAT ID: " + chatID);
-    let res = await sendMessage({ chatID: chatID, message: message });
-    console.log("RESPONSE FROM SERVER:");
-    console.log(res);
+    const dataToSendToWSS = JSON.stringify({action: "sendMessage", body:{  chatID: chatID, message: message }});
+    await ws.send(dataToSendToWSS);
     setMessage("");
-    getMessages(chatID); // Refresh messages
+    getMessages(); // Refresh messages
   }
 
   useEffect(() => {
     getChats();
   }, []);
 
-  useEffect(() => {
-    // Refresh messages every 5 seconds. This is temporary, we will use websockets later.
-    const intervalId = setInterval(() => {
-      getMessages(chatID);
-    }, 3000); // Runs every 5 seconds
-
-    return () => {
-      clearInterval(intervalId); // Clears the interval when the component unmounts
-    };
-  }, [chatID]); // Runs whenever chatID changes
 
   function onChatClick(e) {
     console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
     let chatID = e.currentTarget.dataset.chatId;
     setChatID(chatID);
-    getMessages(chatID);
+    getMessages();
   }
 
   function onSendingMessage(e) {
@@ -78,7 +101,7 @@ export default function Chats() {
 
   function onDeleteButtonClick(e) {
     console.log(
-      "Clicked on delete button with id: " + e.currentTarget.dataset.messageId
+      "Clicked on delete button with message id: " + e.currentTarget.dataset.messageId
     );
     // Now, we need to remove the message from the message list
     let messageId = e.currentTarget.dataset.messageId;
@@ -89,13 +112,15 @@ export default function Chats() {
     console.log(newMessagesList);
     setMessagesList(newMessagesList);
     // Next, we need to make an api call to delete the message from the server
-    deleteMessage({ messageID: messageId });
+      const dataToSendToWSS = JSON.stringify({action: "deleteMessage", body:{  messageID: messageId }});
+      let res = ws.send(dataToSendToWSS);
   }
 
   function saveToDatabaseHandler(editedMessage: string, messageID: string) {
     console.log("Saving message to database: " + editedMessage);
     // Now, we need to make an api call to edit the message on the server
-    editMessage({ messageID: messageID, message: editedMessage });
+    const dataToSendToWSS = JSON.stringify({action: "editMessage", body:{  messageID: messageID, message: editedMessage }});
+    ws.send(dataToSendToWSS);
   }
 
   const prevMessagesListLength = useRef(messagesList.length);
