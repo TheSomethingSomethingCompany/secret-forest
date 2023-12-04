@@ -280,8 +280,8 @@
     - Username
 - Delete User
 - Design Chats Page
-    - Chats Bubble (With and Without Attachment)
-    - Chats Window
+  - Chats Bubble (With and Without Attachment)
+  - Chats Window
 - Implement Chats Page Designs
 
 ## Active Tasks
@@ -293,8 +293,8 @@
     - Username
 - Delete User
 - Design Chats Page
-    - Chats Bubble (With and Without Attachment)
-    - Chats Window
+  - Chats Bubble (With and Without Attachment)
+  - Chats Window
 - Implement Chats Page Designs
 
 ## Status of Tasks
@@ -306,8 +306,8 @@
     - Username `COMPLETE`
 - Delete User `COMPLETE`
 - Design Chats Page
-    - Chats Bubble (With and Without Attachment) `COMPLETE`
-    - Chats Window `IN-PROGRESS`
+  - Chats Bubble (With and Without Attachment) `COMPLETE`
+  - Chats Window `IN-PROGRESS`
 - Implement Chats Page Designs `IN-PROGRESS`
 
 ## Figma Designs
@@ -318,3 +318,36 @@
 
 <img width="1081" alt="Peer Review Week 12" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/f456dcba-d5ba-43f8-b954-519e0af32e20">
 
+**Week**: 12 - 13
+**Week**: `27/11/2023` - `03/12/2023`
+**GitHub Account**: `SatanshuMishra`
+
+## Individual Objectives
+
+- Complete Testing for User Auth Page
+  - Design Edit Profile Page
+  - Implement Edit Profile Page
+  - Implement Back-End logic for Create Profile Pahe
+  - Design Chats UI
+  - Implements Chats UI
+
+## Active Tasks
+
+- Complete Testing for User Auth Page
+  - Design Edit Profile Page
+  - Implement Edit Profile Page
+  - Implement Back-End logic for Create Profile Pahe
+  - Design Chats UI
+  - Implements Chats UI
+
+## Status of Tasks
+
+    - Design Edit Profile Page `IN-PROGRESS`
+    - Implement Edit Profile Page `IN-PROGRESS`
+    - Implement Back-End logic for Create Profile Page `IN-PROGRESS`
+    - Design Chats UI `IN-PROGRESS`
+    - Implements Chats UI `IN-PROGRESS`
+
+## Peer Review
+
+![Alt text](image-1.png)
