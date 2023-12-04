@@ -141,7 +141,6 @@ Satanshu Mishra: `SatanshuMishra`
   - List and Justify 2 system architecture, 2 database and 2 workflow design choices
   - Create 2 DFD diagrams, 2 ER diagrams, 2 Workflow diagrams
   - Compile feature list for this milestone
-  - List aws services
 - Work on Design Video Submission
   - Record demo
   - Create presentation for design choices
@@ -169,7 +168,6 @@ Satanshu Mishra: `SatanshuMishra`
   - List and Justify 2 system architecture, 2 database and 2 workflow design choices
   - Create 2 DFD diagrams, 2 ER diagrams, 2 Workflow diagrams
   - Compile feature list for this milestone
-  - List aws services
 - Work on Design Video Submission
   - Record demo
   - Create presentation for design choices
