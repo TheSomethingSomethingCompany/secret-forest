@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleInsertingMessage (req, res){
     const chatID = req.chatID;
     
     try
@@ -39,6 +37,6 @@ router.post('/api', async (req, res) => {
         res.json({ status: 500, message: 'Failed to insert message' });
     }
 
-});
+}
 
-module.exports = router;
+module.exports = handleInsertingMessage;

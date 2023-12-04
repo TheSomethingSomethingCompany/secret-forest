@@ -1,12 +1,9 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleRetrievingMessages(req, res){
     
     try
     {
-
         
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         
@@ -52,6 +49,6 @@ router.post('/api', async (req, res) => {
         res.json({ status: 500, message: 'Failed to retrieve messages' });
     }
 
-});
+};
 
-module.exports = router;
+module.exports = handleGettingMessages

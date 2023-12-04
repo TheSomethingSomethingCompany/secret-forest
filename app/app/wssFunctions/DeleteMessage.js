@@ -1,15 +1,11 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleDeletingMessage (req, res) {
     
     try
     {
         // Must confirm that the logged in user is a member of the chat
         // Since we are not using sessions, we will hardcode the memberID for now
-        
-        
         
         const memberID = req.session.loggedInUserMemberID;
         const messageID = req.body.messageID;
@@ -59,6 +55,6 @@ router.post('/api', async (req, res) => {
     {
         res.json({ status: 500, message: 'Failed to delete message' });
     }
-});
+};
 
-module.exports = router;
+module.exports = handleDeletingMessage;

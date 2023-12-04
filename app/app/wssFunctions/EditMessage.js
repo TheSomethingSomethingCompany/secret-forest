@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleEditingMessage(req, res) {
     
     try
     {
@@ -63,6 +61,6 @@ router.post('/api', async (req, res) => {
     {
         res.json({ status: 500, message: 'Failed to delete message' });
     }
-});
+};
 
-module.exports = router;
+module.exports = handleEditingMessage;
