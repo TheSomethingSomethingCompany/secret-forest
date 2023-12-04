@@ -109,22 +109,21 @@ export default function Chats() {
     );
     // Now, we need to remove the message from the message list
     let messageId = e.currentTarget.dataset.messageId;
+    /*
     let newMessagesList = messagesList.filter(
       (message) => message.messageID != messageId
     );
-    console.log("New messages list: ");
-    console.log(newMessagesList);
-    setMessagesList(newMessagesList);
+    */
     // Next, we need to make an api call to delete the message from the server
       const dataToSendToWSS = JSON.stringify({action: "deleteMessage", body:{  messageID: messageId }});
-      let res = ws.send(dataToSendToWSS);
+      ws.current.send(dataToSendToWSS);
   }
 
   function saveToDatabaseHandler(editedMessage: string, messageID: string) {
     console.log("Saving message to database: " + editedMessage);
     // Now, we need to make an api call to edit the message on the server
     const dataToSendToWSS = JSON.stringify({action: "editMessage", body:{  messageID: messageID, message: editedMessage }});
-    ws.send(dataToSendToWSS);
+    ws.current.send(dataToSendToWSS);
   }
 
   const prevMessagesListLength = useRef(messagesList.length);

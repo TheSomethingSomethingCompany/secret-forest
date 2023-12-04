@@ -52,7 +52,7 @@ async function handleEditingMessage(req, res) {
                 await db.none(`
                 UPDATE message SET "message" = $1 WHERE "messageID" = $2
                 `, [editedMessage, messageID]);
-                res.json({ status: 201, message: 'Message edited successfully' });
+                res.json({ status: 201, message: 'Message edited successfully', action: 'refreshMessages' });
             }
         }
         

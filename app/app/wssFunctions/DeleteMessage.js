@@ -46,7 +46,7 @@ async function handleDeletingMessage (req, res) {
                 await db.none(`
                 DELETE FROM message WHERE "messageID" = $1
                 `, [messageID]);
-                res.json({ status: 201, message: 'Message deleted successfully' });
+                res.json({ status: 201, message: 'Message deleted successfully', action: 'refreshMessages' });
             }
         }
         
