@@ -147,6 +147,19 @@ Satanshu Mishra: `SatanshuMishra`
   - Create presentation for design choices
   - Record presentation for 2 design choices
   - Compile submission
+- Code Chats window
+  - Complete Backend integration with database
+  - Integrated Backend with Frontend
+  - Improve and implement UI (advanced)
+- Code Sessions data
+  - Standardize Session Data To Be Used On All Routes
+  - Remove Local Storage Use
+- Create Display Profile page
+  - Redesign and code UI
+  - Code backend integration with database
+- Better Navbar UI
+  - Fix positioning issues
+- Statically host app on AWS
   
 
 ## Accomplishments - `All Tasks Completed Unless Specified`
@@ -162,7 +175,20 @@ Satanshu Mishra: `SatanshuMishra`
   - Create presentation for design choices
   - Record presentation for 2 design choices
   - Compile submission
-
+- Code Chats window
+  - Complete Backend integration with database
+  - Integrated Backend with Frontend
+  - Improve and implement UI (advanced)
+- Code Sessions data
+  - Standardize Session Data To Be Used On All Routes
+  - Remove Local Storage Use
+- Create Display Profile page
+  - Redesign and code UI
+  - Code backend integration with database
+- Better Navbar UI
+  - Fix positioning issues
+- Statically host app on AWS
+  
 ## Test Report
 <img width="285" alt="2023-11-26_22-59-43" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/ecad8431-ec39-45dc-a7e5-b52b875a6a4d">
 <img width="1461" alt="2023-11-26_21-50-32" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/484c99a8-baed-4b1f-8111-1b7eb1340e23">
@@ -172,3 +198,4 @@ Satanshu Mishra: `SatanshuMishra`
 
 
 ### Burn-Up Chart
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/5fa43b13-9561-4ce8-a23b-6e6d6a249bbc)
