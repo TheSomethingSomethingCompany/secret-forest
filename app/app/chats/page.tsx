@@ -42,7 +42,7 @@ export default function Chats() {
              
               setMessagesList(response.chatMessages);
             }
-            else if(response.status == 404)
+            else if(response.status == 422)
               setMessagesList([]);
             break;
           case "insertMessage":
