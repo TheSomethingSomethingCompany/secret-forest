@@ -158,7 +158,7 @@ describe("ChatsPage", ()=>{
             else if(resBody.status == 500 || resBody.status == 401) return false;
            }
         
-            const data = {chatID:testChatID, messageID: testMessageID, message: "I am an edited message"}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
+            const data = {messageID: testMessageID, message: "I am an edited message"}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
                                                     // chatID coonfirms that the user is a member of the chat, and messageID confirms that the message belongs to the chat and can be deleted.
             await editMessage(data).then((result)=>{
                 expect(result).toBe(true);
@@ -192,7 +192,7 @@ describe("ChatsPage", ()=>{
             else if(resBody.status == 500 || resBody.status == 401) return false;
            }
         
-            const data = {chatID:testChatID, messageID: testMessageID}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
+            const data = {messageID: testMessageID}; // Hardcoded messageID and chatID, will be replaced with dynamic messageID later.
                                                     // chatID coonfirms that the user is a member of the chat, and messageID confirms that the message belongs to the chat and can be deleted.
             await deleteMessage(data).then((result)=>{
                 expect(result).toBe(true);

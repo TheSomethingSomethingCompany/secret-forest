@@ -3,9 +3,10 @@ const router = express.Router();
 const db = require("../db-connection.js")
 
 router.get('/api', async (req, res) => {
-    const memberID = req.app.get('loggedInUser');; // Hardcoded for now
+    const memberID = req.session.loggedInUserMemberID;
     try
     {
+        console.log("REQUEST FOR RETRIEVE CHATS WITH MEMBERID: " + memberID + "");
         const chatsWithUsers = await db.any(`
         SELECT "chatID", "username", "name"
         FROM(
@@ -15,7 +16,6 @@ router.get('/api', async (req, res) => {
         ) as chats JOIN member USING("memberID")
             `, [memberID]);
         
-
         if(chatsWithUsers.length == 0)
         {
             res.json({ status: 422, message: 'No chats found' });
@@ -23,6 +23,7 @@ router.get('/api', async (req, res) => {
         }
 
         else res.json({ status: 201, message: 'Retrieved chats successfully', data: chatsWithUsers });
+
     } 
     catch(error)
     {

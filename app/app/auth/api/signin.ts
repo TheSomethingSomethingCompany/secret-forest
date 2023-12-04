@@ -9,10 +9,12 @@ export default async function SignIn(values: {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(values),
     cache: "no-cache",
+    credentials: "include",
   });
   let resBody: AuthResponse = await response.json();
   console.log(resBody.message);
   return resBody;
+
   // if (resBody.status == 201) return resBody.data;
   // else if (resBody.status == 404 || resBody.status == 500) return false;
 }

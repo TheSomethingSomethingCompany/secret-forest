@@ -30,14 +30,43 @@ router.post("/api", async (req, res) => {
         ).toString(),
       ]
     );
-    console.log("SUCCESS 201");
-    console.log(member);
-    res.json({
-      data: { id: member.memberID },
-      status: 201,
-      message: "User SignIn Successful",
-      pgErrorObject: null,
-    });
+
+   // We need to check if the user has actually created a profile yet. If not, we need to redirect them to the profile creation page.
+    const hasProfile = await db.any(`
+    SELECT * FROM profile WHERE "memberID" = $1
+    `, [member.memberID]);
+
+    // If the user has not created a profile yet, we will redirect them to the profile creation page. We'll also store their memberID in the session data, so that we can use it to create their profile.
+    // Also, we'll use a special status code, 205, to indicate that the user has not created a profile yet.
+    if(hasProfile.length === 0)
+    {
+      req.session.signUpMemberID = member.memberID; // Store memberID in session data as signUpMemberID since CreateProfile.js is expecting that.
+      req.session.save(); // Save session data
+      console.log("[MEMBER ID]: " + req.session.signUpMemberID + " [STATUS CODE]: 205");
+
+      console.log("SUCCESS 205");
+      res.json({
+        data: { id: member.memberID },
+        status: 205,
+        message: "User SignIn Successful",
+        pgErrorObject: null,
+      });
+    }
+
+    else // If the user has created a profile, we will store their memberID in the session data, and redirect them to the search page.
+    {
+      req.session.loggedInUserMemberID = member.memberID; // Store memberID in session data
+      req.session.save(); // Save session data
+      console.log("[MEMBER ID]: " + req.session.loggedInUserMemberID + " Is Logged In");
+      console.log("SUCCESS 201");
+      res.json({
+        data: { id: member.memberID },
+        status: 201,
+        message: "User SignIn Successful",
+        pgErrorObject: null,
+      });
+    }
+
   } catch (error) {
     console.log(typeof error.received);
     if (error.name === "QueryResultError") {
