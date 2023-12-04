@@ -296,3 +296,34 @@ As discussed with the TA, I will be providing some additional notes regarding my
 
 ## Peer Review
 ![week 12](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/091b0e54-69b6-423d-968b-4603802c5c56)
+
+-----------------
+
+**Week**: 13
+
+**Work Period**: 27 November 2023 - 3 December 2023
+
+## Individual Objectives
+
+- This week I continued work on deploying the website staticaly onto AWS. I have fixed the issue I was facing with navigation from last week. I have now updated the website so that it has the updated styling and pages (although not all pages are accessible as they need backend functionality to be reached. eg: creatProfile.html). I also worked with my team on the design document and was in charge of doing the database design changes along with creating the ER diagrams. I also recorded a part of this change for the design video. 
+
+## Active Tasks
+
+- Refactor up-to-date code to get an AWS compatable deployable version
+- Statically host our app on AWS
+- Worked on design submission
+	- Wrote the database design changes
+	- Did ER diagrams
+	- Did video part for submission
+## Status of Tasks
+
+- Refactor up-to-date code to get an AWS compatable deployable version -- Completed
+- Statically host our app on AWS -- Completed
+- Worked on design submission -- Completed
+	- Wrote the database design changes
+	- Did ER diagrams
+	- Did video part for submission
+
+
+## Peer Review
+![week 13](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/203a9ea9-be26-41c9-b300-42aff5c0c1cd)
