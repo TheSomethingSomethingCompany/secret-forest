@@ -302,7 +302,8 @@ No picture since there is no week 11 form on the team formation tab in Canvas
   - Add nessessary modifications to allow editing of profile
 - Preparation for video
   - Decide what changes to showcase
-  - Editing and any other needed work
+  - Video editing
+  - Creating slides
 
 
 ## Status of Tasks
@@ -315,7 +316,8 @@ No picture since there is no week 11 form on the team formation tab in Canvas
   - Add nessessary modifications to allow editing of profile (In-progress) 
 - Preparation for video (Completed)
   - Decide what changes to showcase
-  - Editing video and any other needed work
+  - Video editing
+  - Creating slides
 
 
 ## Peer Review
