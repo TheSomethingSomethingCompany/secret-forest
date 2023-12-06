@@ -1,15 +1,11 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleDeletingMessage (req, res) {
     
     try
     {
         // Must confirm that the logged in user is a member of the chat
         // Since we are not using sessions, we will hardcode the memberID for now
-        
-        
         
         const memberID = req.session.loggedInUserMemberID;
         const messageID = req.body.messageID;
@@ -22,7 +18,7 @@ router.post('/api', async (req, res) => {
         
         if(isMessage.length == 0) //If the message does not exist, then we cannot delete it
         {
-            res.json({status: 404, message: 'Message does not exist'});
+            res.json({status: 404, message: 'Message does not exist', action: 'deleteMessage'});
         }
         else
         {
@@ -50,15 +46,15 @@ router.post('/api', async (req, res) => {
                 await db.none(`
                 DELETE FROM message WHERE "messageID" = $1
                 `, [messageID]);
-                res.json({ status: 201, message: 'Message deleted successfully' });
+                res.json({ status: 201, message: 'Message deleted successfully', action: 'deleteMessage' });
             }
         }
         
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to delete message' });
+        res.json({ status: 500, message: 'Failed to delete message', action: 'deleteMessage' });
     }
-});
+};
 
-module.exports = router;
+module.exports = handleDeletingMessage;

@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleEditingMessage(req, res) {
     
     try
     {
@@ -24,7 +22,7 @@ router.post('/api', async (req, res) => {
 
         if(isMessage.length == 0) //If the message does not exist, then we cannot edit it
         {
-            res.json({status: 404, message: 'Message does not exist'});
+            res.json({status: 404, message: 'Message does not exist', action: 'editMessage'});
         }
 
         else
@@ -45,7 +43,7 @@ router.post('/api', async (req, res) => {
 
             if(isMember.length == 0 ||isSender.length == 0)
             {
-                res.json({ status: 401, message: 'Unauthorized access' });
+                res.json({ status: 401, message: 'Unauthorized access', action: 'editMessage' });
             }
 
             else
@@ -54,15 +52,15 @@ router.post('/api', async (req, res) => {
                 await db.none(`
                 UPDATE message SET "message" = $1 WHERE "messageID" = $2
                 `, [editedMessage, messageID]);
-                res.json({ status: 201, message: 'Message edited successfully' });
+                res.json({ status: 201, message: 'Message edited successfully', action: 'editMessage' });
             }
         }
         
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to delete message' });
+        res.json({ status: 500, message: 'Failed to delete message', action: 'editMessage' });
     }
-});
+};
 
-module.exports = router;
+module.exports = handleEditingMessage;

@@ -5,6 +5,7 @@ const e = require("express");
 
 
 router.post('/api', async (req, res) => { // ./createAProfile/api will utilize this route. /api isn't necessary, but it makes it apparent that this is a route call.
+                                        // By calling router.get() or router.post(), it will implicitly send 3 arguments to the callback function: req, res, and next. req is the request object from the client, res is the response object that handles sending data back to the client, and next is a function that will call the next middleware function in the stack.
     const memberID = req.session.signUpMemberID; // Retrieve memberID from session data, which was set in the SignUp route
     console.log("[MEMBER ID IN CREATE PROFILE]: " + memberID);
     if(memberID == null) // If memberID is null, then a user is accessing this route without signing up first, since the memberID is stored in session data upon sign up
@@ -50,5 +51,5 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
     }
 });
 
-module.exports = router;
+module.exports = router; // Export the router, as this is necessary as the second argument of server.use(). Remember, the first argument is always the path, and the second argument is the router object. The router object will then specify an endpoint, and the endpoint will specify a callback function.
 

@@ -133,7 +133,7 @@ function ChatBubble({
             </div>
           </div>
           <div className="relative z-10 ml-8 mt-2 shadow-md drop-shadow-md rounded-xl bg-white w-full p-4">
-            <p id="message">{message}</p>
+            <p id="message">{messageText}</p>
           </div>
           <div className="ml-8 -z-10 w-full flex flex-row justify-end -translate-y-[--translateAmt] transition-transform duration-300">
             <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white cursor-not-allowed">

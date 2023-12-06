@@ -1,12 +1,9 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleRetrievingMessages(req, res){
     
     try
     {
-
         
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         
@@ -23,7 +20,7 @@ router.post('/api', async (req, res) => {
 
         if(isMember.length === 0)
         {
-            res.json({ status: 401, message: 'Unauthorized access' });
+            res.json({ status: 401, message: 'Unauthorized access', action: 'retrieveMessages' });
         }
 
         else
@@ -36,22 +33,21 @@ router.post('/api', async (req, res) => {
 
             if (chatMessages.length === 0)
             {
-                res.json({ status: 422, message: 'No messages found' });
+                res.json({ status: 422, message: 'No messages found', action: 'retrieveMessages'});
                 return;
             }
             else 
             {
-
-                res.json({ status: 201, message: 'Retrieved messages', data: chatMessages });
+                res.json({ status: 201, message: 'Retrieved messages', chatMessages: chatMessages, action: 'retrieveMessages' });
             }
         }
 
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to retrieve messages' });
+        res.json({ status: 500, message: 'Failed to retrieve messages' , action: 'retrieveMessages'});
     }
 
-});
+};
 
-module.exports = router;
+module.exports = handleRetrievingMessages

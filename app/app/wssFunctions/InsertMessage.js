@@ -1,19 +1,16 @@
-const express = require("express");
-const router = express.Router();
 const db = require("../db-connection.js")
 
-router.post('/api', async (req, res) => {
+async function handleInsertingMessage (req, res){
     const chatID = req.chatID;
     
     try
     {
-
         //Since we still need to implement sessions, we will use a dummy memberID for now.
         console.log(req.body);
         const memberID = req.session.loggedInUserMemberID; //dummy memberID, will be replaced with session memberID later.
         const chatID = req.body.chatID;
         const message = req.body.message;
-
+        console.log("REQUEST FOR INSERT MESSAGE WITH CHATID: " + chatID + "" + " AND MESSAGE: " + message + "" + " AND MEMBERID: " + memberID + "");
 
         // First, we must ensure that the user is a member of the chat, in order to prevent unauthorized insertion of chat messages by other users not in the chat.
         const isMember = await db.any(`
@@ -22,7 +19,7 @@ router.post('/api', async (req, res) => {
 
         if(isMember.length === 0)
         {
-            res.json({ status: 401, message: 'Unauthorized access' });
+            res.json({ status: 401, message: 'Unauthorized access', action: 'insertMessage' });
         }
 
         else
@@ -30,15 +27,15 @@ router.post('/api', async (req, res) => {
             await db.none(`
             INSERT into message ("chatID", "senderID", "message") VALUES ($1, $2, $3)
                 `, [chatID, memberID, message]);    
-            res.json({ status: 201, message: 'Successfully inserted message'});
+            res.json({ status: 201, message: 'Successfully inserted message', action: 'insertMessage'});
         }
 
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to insert message' });
+        res.json({ status: 500, message: 'Failed to insert message',  action: 'insertMessage'});
     }
 
-});
+}
 
-module.exports = router;
+module.exports = handleInsertingMessage;
