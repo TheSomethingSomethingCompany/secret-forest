@@ -327,3 +327,35 @@ As discussed with the TA, I will be providing some additional notes regarding my
 
 ## Peer Review
 ![week 13](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/203a9ea9-be26-41c9-b300-42aff5c0c1cd)
+
+---------------------------
+
+**Week**: 14
+
+**Work Period**: 8 January 2024 - 14 January 2024
+
+## Individual Objectives
+
+- This week I conducted research, reading documentation and watching tutorials regarding how we can deploy our app and the different ways of deployment. Using the pointers given to me during the AWS discussion on Tuesday, I research EC2 and Fargate AWS services to be used with ECS. From research done, EC2 gives us more control over the virtual machines which the app is deployed on wheras Fargate leaves all the details to AWS to handle. From this, I think that Fargate will be a better option moving forward. I have as a result just started reading up on how this would work physically with the code we have now as it would require changes and additions to the docker file and other related docker container issues as that is how AWS will interprate them. 
+
+## Active Tasks
+
+- Research AWS services to be used for app deployment
+	- Fargate
+	- EC2
+	- ECS
+	- Load balancer
+ - Start researching how to dockerize our app to be deployed with AWS standard
+## Status of Tasks
+
+- Research AWS services to be used for app deployment -- In Progress
+	- Fargate
+	- EC2
+	- ECS
+	- Load balancer
+ - Start researching how to dockerize our app to be deployed with AWS standard -- In Progress
+
+
+## Peer Review
+![week 14](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/291b753c-a425-49ba-9ea0-d8b4987283c6)
+

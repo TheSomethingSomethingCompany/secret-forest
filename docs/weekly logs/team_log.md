@@ -111,20 +111,13 @@ Satanshu Mishra: `SatanshuMishra`
   - UI Workflow Diagram: Yafei
 
 ## Test Report
-<img width="285" alt="2023-11-26_22-59-43" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/ecad8431-ec39-45dc-a7e5-b52b875a6a4d">
-<img width="1461" alt="2023-11-26_21-50-32" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/484c99a8-baed-4b1f-8111-1b7eb1340e23">
-<img width="253" alt="2023-11-26_23-00-07" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/a808649b-46b2-4db0-91b8-29741b4ba2b7">
-<br>
-<img width="357" alt="2023-11-26_22-59-20" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/3adb4e60-fa82-4af1-82ef-dc9061c8c80e">
-
-
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
 
 ### Burn-Up Chart
-<img width="620" alt="2023-11-26_18-30-42" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/80d813ff-c304-4395-a48b-add25e3a1df6">
+![burn2](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/dd89b390-5634-4ddf-961c-4e5e55c57a8d)
 
 
-
-**Week 13**: 27/11/2023 - 03/12/2023
+**Term 2 - Week 1 (Week 14)**: 08/01/2024 - 14/01/2024
 
 ## GitHub Accounts
 
@@ -136,64 +129,28 @@ Satanshu Mishra: `SatanshuMishra`
 
 ## Objectives
 
-- Work on Design Document
-  - Provide Introductory 3 line
-  - List and Justify 2 system architecture, 2 database and 2 workflow design choices
-  - Create 2 DFD diagrams, 2 ER diagrams, 2 Workflow diagrams
-  - Compile feature list for this milestone
-- Work on Design Video Submission
-  - Record demo
-  - Create presentation for design choices
-  - Record presentation for 2 design choices
-  - Compile submission
-- Code Chats window
-  - Complete Backend integration with database
-  - Integrated Backend with Frontend
-  - Improve and implement UI (advanced)
-- Code Sessions data
-  - Standardize Session Data To Be Used On All Routes
-  - Remove Local Storage Use
-- Create Display Profile page
-  - Redesign and code UI
-  - Code backend integration with database
-- Better Navbar UI
-  - Fix positioning issues
-- Statically host app on AWS
-  
+- Research AWS
+  - Attended discussion groups and discussed details regarding AWS in individual log
+- Integrate Video Upload Into Website
+- Implement Fully Live Asynchronous Messanging On Chats Page Using WebSockets (Done after Week 13)
+- Design Edit Profile Page
+- Work On Search Page
+- Discuss Github Project Management
 
 ## Accomplishments - `All Tasks Completed Unless Specified`
 
-- Work on Design Document
-  - Provide Introductory 3 line
-  - List and Justify 2 system architecture, 2 database and 2 workflow design choices
-  - Create 2 DFD diagrams, 2 ER diagrams, 2 Workflow diagrams
-  - Compile feature list for this milestone
-- Work on Design Video Submission
-  - Record demo
-  - Create presentation for design choices
-  - Record presentation for 2 design choices
-  - Compile submission
-- Code Chats window
-  - Complete Backend integration with database
-  - Integrated Backend with Frontend
-  - Improve and implement UI (advanced)
-- Code Sessions data
-  - Standardize Session Data To Be Used On All Routes
-  - Remove Local Storage Use
-- Create Display Profile page
-  - Redesign and code UI
-  - Code backend integration with database
-- Better Navbar UI
-  - Fix positioning issues
-- Statically host app on AWS
-  
-## Test Report
-<img width="285" alt="2023-11-26_22-59-43" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/ecad8431-ec39-45dc-a7e5-b52b875a6a4d">
-<img width="1461" alt="2023-11-26_21-50-32" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/484c99a8-baed-4b1f-8111-1b7eb1340e23">
-<img width="253" alt="2023-11-26_23-00-07" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/a808649b-46b2-4db0-91b8-29741b4ba2b7">
-<br>
-<img width="357" alt="2023-11-26_22-59-20" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/3adb4e60-fa82-4af1-82ef-dc9061c8c80e">
+- Research AWS
+  - Attended discussion groups and discussed details regarding AWS in individual log
+- Integrate Video Upload Into Website
+- Implement Fully Live Asynchronous Messanging On Chats Page Using WebSockets (Done after Week 13)
+- Design Edit Profile Page
+- Work On Search Page - `In-Progress`
+- Discuss Github Project Management
 
+## Test Report
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
 
 ### Burn-Up Chart
-![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/5fa43b13-9561-4ce8-a23b-6e6d6a249bbc)
+![burn](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/8618ee95-196b-4ecc-939d-7aa2a5890318)
+
