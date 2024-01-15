@@ -112,11 +112,45 @@ Satanshu Mishra: `SatanshuMishra`
 
 ## Test Report
 <img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
-<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
-
 
 ### Burn-Up Chart
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
 
+**Term 2 - Week 1 (Week 14)**: 08/01/2024 - 14/01/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Research AWS
+  - Attended discussion groups and discussed details regarding AWS in individual log
+- Integrate Video Upload Into Website
+- Implement Fully Live Asynchronous Messanging On Chats Page Using WebSockets (Done after Week 13)
+- Design Edit Profile Page
+- Work On Search Page
+- Discuss Github Project Management
+
+## Accomplishments - `All Tasks Completed Unless Specified`
+
+- Research AWS
+  - Attended discussion groups and discussed details regarding AWS in individual log
+- Integrate Video Upload Into Website
+- Implement Fully Live Asynchronous Messanging On Chats Page Using WebSockets (Done after Week 13)
+- Design Edit Profile Page
+- Work On Search Page - `In-Progress`
+- Discuss Github Project Management
+
+## Test Report
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
 
 
 
