@@ -564,7 +564,7 @@
 ## Peer Review
 <img width="881" alt="2023-12-04_00-12-24" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/cd31ef63-a9ab-4c2a-9087-3849c4bd1352">
 
-**Work Period**: 26/11/2023 - 03/12/2023
+**Work Period**: 08/01/2024 - 08/01/2024
 **GitHub Account**: `shaheershoaib`
 
 ## Individual Objectives
