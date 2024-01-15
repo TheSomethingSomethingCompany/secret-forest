@@ -114,7 +114,8 @@ Satanshu Mishra: `SatanshuMishra`
 <img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
 
 ### Burn-Up Chart
-<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+![burn2](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/dd89b390-5634-4ddf-961c-4e5e55c57a8d)
+
 
 **Term 2 - Week 1 (Week 14)**: 08/01/2024 - 14/01/2024
 
@@ -148,6 +149,8 @@ Satanshu Mishra: `SatanshuMishra`
 
 ## Test Report
 <img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
 
 ### Burn-Up Chart
-<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+![burn](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/8618ee95-196b-4ecc-939d-7aa2a5890318)
+
