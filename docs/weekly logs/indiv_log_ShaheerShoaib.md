@@ -509,7 +509,61 @@
 
 
 ## Peer Review
-<img width="887" alt="2023-11-14_00-31-12" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f735e4bf-d816-4974-aaa5-5645afe550e1">
+<img width="888" alt="Week 12 Peer Review" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/d4357eba-39ef-42c5-9399-dcd83aff46ba">
+
+**Work Period**: 26/11/2023 - 03/12/2023
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Integrate backend of Chats Page its UI
+  - Live Messaging
+  - Delete Message
+  - Send Message
+  - Edit Message
+  - Show Messages
+  - Navigate Between Chats
+- Implement session data functionality for all routes
+- Implement CORS ensure session data, and general website functionality, works the same across mutliple browsers
+- Record video prototyping website features for design document
+- Provide feedback on all diagrams present in the design document
+- Improve security of routes for chats page
+- Assist other group members with bugfixes associated with their tasks for the development of the website
+  
+## Active Tasks - 
+- Integrate backend of Chats Page its UI
+  - Live Messaging
+  - Delete Message
+  - Send Message
+  - Edit Message
+  - Show Messages
+  - Navigate Between Chats
+- Implement session data functionality for all routes
+- Implement CORS ensure session data, and general website functionality, works the same across mutliple browsers
+- Record video prototyping website features for design document
+- Provide feedback on all diagrams present in the design document
+- Improve security of routes for chats page
+- Assist other group members with bugfixes associated with their tasks for the development of the website
+
+
+## Status of Tasks: `All Tasks Listed Completed`
+- Integrate backend of Chats Page its UI
+  - Live Messaging
+  - Delete Message
+  - Send Message
+  - Edit Message
+  - Show Messages
+  - Navigate Between Chats
+- Implement session data functionality for all routes
+- Implement CORS ensure session data, and general website functionality, works the same across mutliple browsers
+- Record video prototyping website features for design document
+- Provide feedback on all diagrams present in the design document
+- Improve security of routes for chats page
+- Assist other group members with bugfixes associated with their tasks for the development of the website
+
+
+## Peer Review
+<img width="881" alt="2023-12-04_00-12-24" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/cd31ef63-a9ab-4c2a-9087-3849c4bd1352">
 
 
 

@@ -290,5 +290,40 @@ No peer review was available during reading break
  - Started working on design document and milestone 2 design submission -- In Progress
  - Discussed and decided on encryption methods to be used -- Completed
 
+### Additional Notes
+As discussed with the TA, I will be providing some additional notes regarding my work this week as proof as I have not contributed to the project in terms of coding but mainly in terms of AWS deployment. After researching, reading documentation and watching tutorials, I have chosen a few AWS services that can be used for our project. As we have a 3 tier client-server architecture, the use of AWS ECS would work very well. ECS allows for us to upload multiple docker containers (one for each of our nextjs, express js and database) within ECR and to initialize them to be run on separate EC2 instances. These EC2 instances are able to communicate with each other and should be able to share data as they currently do on localhost. we are also planning on using amazon's database service RDS as it has support for postgressql. To store all of our files, we can use AWS S3 and keep them in buckets. buckets can also add a layer of security depending on the configuration. We will also be looking into using AWS cloudfront to reduce latency and load times of the app. AWS route 53 will be used for DNS and any related tasks. Currently working on getting static hosting of the app to work. I have also read the Amazon documentation regarding S3 and ECS and have watched tutorials regarding all the previously mentioned AWS services that were found to be useful. (https://www.youtube.com/watch?v=mls8tiiI3uc , https://www.youtube.com/watch?v=86Ys0LnMSnY , https://www.youtube.com/watch?v=YDNSItBN15w , https://www.youtube.com/watch?v=6-RtA6FlbgQ , https://www.youtube.com/watch?v=tfU0JEZjcsg) these for reference are a few of the tutorials I have watched and have been following. As stated previously, www.somethingsomethingcompany.com is up and running (although routing not working fully) which shows that I have been working on the project, although not in a coding sense. 
+
+
 ## Peer Review
 ![week 12](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/091b0e54-69b6-423d-968b-4603802c5c56)
+
+-----------------
+
+**Week**: 13
+
+**Work Period**: 27 November 2023 - 3 December 2023
+
+## Individual Objectives
+
+- This week I continued work on deploying the website staticaly onto AWS. I have fixed the issue I was facing with navigation from last week. I have now updated the website so that it has the updated styling and pages (although not all pages are accessible as they need backend functionality to be reached. eg: creatProfile.html). I also worked with my team on the design document and was in charge of doing the database design changes along with creating the ER diagrams. I also recorded a part of this change for the design video. 
+
+## Active Tasks
+
+- Refactor up-to-date code to get an AWS compatable deployable version
+- Statically host our app on AWS
+- Worked on design submission
+	- Wrote the database design changes
+	- Did ER diagrams
+	- Did video part for submission
+## Status of Tasks
+
+- Refactor up-to-date code to get an AWS compatable deployable version -- Completed
+- Statically host our app on AWS -- Completed
+- Worked on design submission -- Completed
+	- Wrote the database design changes
+	- Did ER diagrams
+	- Did video part for submission
+
+
+## Peer Review
+![week 13](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/203a9ea9-be26-41c9-b300-42aff5c0c1cd)
