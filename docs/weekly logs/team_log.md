@@ -151,6 +151,3 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 <img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
-
-
-
