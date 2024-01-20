@@ -17,3 +17,6 @@ back-end:
       - app/Dockerfile
       - app/tailwind.config.js
       - app/tsconfig.json
+test-report:
+  - changed-files:
+    - any-glob-to-any-file: app/__tests__
