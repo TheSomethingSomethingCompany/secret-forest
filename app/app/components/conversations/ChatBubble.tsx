@@ -2,6 +2,8 @@
 import React, { useState, useRef } from "react";
 import Cat from "@/app/images/CuteClef.png";
 import Penguin from "@/app/images/ExamplePenguin.jpeg";
+import PenguinB from "@/app/images/PenguinB.jpeg";
+import PenguinC from "@/app/images/PenguinC.jpeg";
 import Image from "next/image";
 import "remixicon/fonts/remixicon.css";
 
@@ -60,10 +62,11 @@ function ChatBubble({
               <p id="name">{name}</p>
             </div>
 			<img
-              src={Penguin.src}
+              src={PenguinC.src}
               alt="ProfilePicture"
-              className="relative z-10 w-24 rounded-full object-scale-down"
+              className="relative z-10 h-24 w-24 rounded-full object-cover"
             />
+
           </div>
           <div ref = {referenceToMessageBox} className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-xl w-full p-4 MESSAGEBOXISHERE bg-white" >
             { isEditing ? ( // Since the key of the ChatBubble does not change, we do not have to worry about the input field being cancelled as a result of Chats Page recreating the ChatBubble for every new message, since the corresponding ChatBubble will be recreated with the same key, and thus React will use the existing ChatBubble instead of creating a new one.
