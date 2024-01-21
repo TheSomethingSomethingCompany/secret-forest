@@ -55,5 +55,15 @@ services:
     ports:
       - "3000:3000"
 
+  expressjs:
+    image: expressjs-docker-test
+    build:
+      context: .
+      dockerfile: Dockerfile.expressjs
+    volumes:
+      - .:/app
+    ports:
+      - "6969:6969"
+
 volumes:
   pgdata:
