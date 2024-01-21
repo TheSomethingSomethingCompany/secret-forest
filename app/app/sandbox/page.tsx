@@ -4,7 +4,7 @@ import PenguinC from "@/app/images/PenguinC.jpeg";
 function page() {
   return (
 	<section className="grid grid-cols-12 gap-4 m-4 h-full grid-rows-[1fr] min-h-full">
-		<div className="w-full h-full col-span-5 shadow min-h-full p-4">
+		<div className="w-full h-full col-span-5 shadow min-h-full p-4 rounded-lg">
 			<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg shadow h-full">
 				<div className="flex flex-row justify-start">
 					<img
@@ -23,7 +23,7 @@ function page() {
 				</div>
 			</div>
 		</div>
-		<div className="w-full h-full col-span-7 shadow min-h-full">
+		<div className="w-full h-full col-span-7 shadow min-h-full rounded-lg">
 			<p>HelloWorl</p>
 		</div>
 	</section>
