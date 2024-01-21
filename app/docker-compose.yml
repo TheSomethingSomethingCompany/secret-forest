@@ -42,5 +42,18 @@ services:
       - "5050:80"
     depends_on:
       - db
+    
+  nextjs:
+    image: nextjs-docker-test
+    build:
+      context: .
+      dockerfile: Dockerfile.nextjs
+    volumes:
+        - .:/app
+        - /app/node_modules
+        - /app/.next
+    ports:
+      - "3000:3000"
+
 volumes:
   pgdata:
