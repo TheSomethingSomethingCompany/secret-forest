@@ -154,3 +154,43 @@ Satanshu Mishra: `SatanshuMishra`
 ### Burn-Up Chart
 ![burn](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/8618ee95-196b-4ecc-939d-7aa2a5890318)
 
+
+
+**Term 2 - Week 2 (Week 15)**: 15/01/2024 - 21/01/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Work on Edit Profile Page
+- Dockerization of the app into containers for deployment
+- Work On Deployment to AWS Fargate Using ECS
+- Finish Search Page
+- Added GitHub Actions Labeler
+- Modernize Chat Bubble
+- Started Modernizing Chat Page
+
+
+## Accomplishments
+
+- Work on Edit Profile Page - `In-Progress`
+- Dockerization of the app into containers for deployment - `Complete`
+- Work On Deployment to AWS Fargate Using ECS - `In-Progress`
+- Finish Search Page - `Complete`
+- Added GitHub Actions Labeler - `Complete`
+- Modernize Chat Bubble - `Complete`
+- Started Modernizing Chat Page - `In-Progress`
+
+
+## Test Report
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+
+### Burn-Up Chart
+![week 15 burnup](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/fd939eea-320f-4e96-9313-84dfe70df8a3)
