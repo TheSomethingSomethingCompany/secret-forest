@@ -8,15 +8,15 @@ router.post("/api", async (req, res) => {
   const { name, occupationTags} = req.body;
   try {
     
-    query = `SELECT "memberID", "name", "country", array_agg("tagName") as "tags" 
+    query = `SELECT profile."memberID", profile."name", profile."country", array_agg(tag."tagName") as "tags" 
             FROM profile JOIN user_tag ON profile."memberID" = user_tag."memberID"
             JOIN tag ON user_tag."tagID" = tag."tagID" `;
 
 
     if(occupationTags.length > 0){
-        query += `WHERE "tagName" = ANY($1) AND "name" LIKE $2`; // Even if name is empty, it will still work because empty string is a substring of all strings
-        query += `GROUP BY "memberID", "name", "country"`;
-        const profiles = await db.any(query, [occupationTags, name]);
+        query += `WHERE tag."tagName" = ANY($1) AND profile."name" LIKE $2`; // Even if name is empty, it will still work because empty string is a substring of all strings
+        query += `GROUP BY profile."memberID", profile."name", profile."country"`;
+        const profiles = await db.any(query, [occupationTags, name+'%']);
         console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
         res.json({
             data: profiles,
@@ -29,9 +29,9 @@ router.post("/api", async (req, res) => {
 
         }
     else if(occupationTags.length == 0){ // If no tags are selected, then just search by name. even if name is empty, it will still work because empty string is a substring of all strings
-        query += `WHERE "name" LIKE $1`;
-        query += `GROUP BY "memberID", "name", "country"`;
-        const profiles = await db.any(query, [name]);
+        query += `WHERE profile."name" LIKE $1`;
+        query += `GROUP BY profile."memberID", profile."name", profile."country"`;
+        const profiles = await db.any(query, [name + '%']);
         console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
         res.json({
             data: profiles,
@@ -41,7 +41,7 @@ router.post("/api", async (req, res) => {
           });
         }
     else{
-        query += `GROUP BY "memberID", "name", "country"`;
+        query += `GROUP BY profile."memberID", profile."name", profile."country"`;
         const profiles = await db.any(query);
         console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
         res.json({
