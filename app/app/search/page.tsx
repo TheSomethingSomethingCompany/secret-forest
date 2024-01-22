@@ -1,43 +1,23 @@
 "use client"
-import { useSearchParams } from "next/navigation";
-import useSWR from "swr";
-import {member} from "@prisma/client";
+import SearchBar from "../components/searchBar/Searchbar";
+import React, { useEffect } from 'react';
 
-// Function to fetch data from the specified URL
-const fetchInfo = async (url: string) => {
-    const resp = await fetch(url);
+export default function Home() {
+   
+    useEffect(() => {
+      document.body.classList.add('h-full');
+      
+      // Clean up function
+      return () => {
+        document.body.classList.remove('your-class-name');
+      };
+    }, []);
 
-    if (!resp.ok) {
-        throw new Error('Fetch error');
-    }
+  return (
 
-    return resp.json();
+    <main className = "w-full h-full flex justify-center items-center">
+        <SearchBar/>
+    </main>
+    
+  );
 }
-
-const SearchPage = () => {
-    const search = useSearchParams();
-    const searchQ = search ? search.get("q") : null;
-    const enSearchQ = encodeURI(searchQ || "");
-
-    // Use the useSWR hook to fetch data from the specified URL
-    const {data, isLoading} = useSWR<{findInfo: Array<member>}>(
-        `./api/search?q=${enSearchQ}` , // I think the issue is starting from here
-        fetchInfo
-        );
-        
-    if (!data?.findInfo){
-        return null;
-    }
-
-
-    console.log("Search Params", enSearchQ);
-
-    // Render the data from the response
-    return <div>{data.findInfo.map((member) => (
-        <div>{member.name}</div>
-    ))}
-    </div>
-
-}
-
-export default SearchPage;
