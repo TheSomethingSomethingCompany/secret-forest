@@ -2,6 +2,8 @@
 import React, { useState, useRef } from "react";
 import Cat from "@/app/images/CuteClef.png";
 import Penguin from "@/app/images/ExamplePenguin.jpeg";
+import PenguinB from "@/app/images/PenguinB.jpeg";
+import PenguinC from "@/app/images/PenguinC.jpeg";
 import Image from "next/image";
 import "remixicon/fonts/remixicon.css";
 
@@ -43,7 +45,7 @@ function ChatBubble({
   
   console.log(mouseOver);
   return (
-    <section className="mt-40 bg-gray-50">
+    <section>
       {isYou ? (
         <div
           className="p-2 text-xl max-w-md"
@@ -55,17 +57,18 @@ function ChatBubble({
             } as any
           }
         >
-          <div className="flex flex-row-reverse -mr-16 items-end">
-            <img
-              src={Penguin.src}
-              alt="ProfilePicture"
-              className="relative z-10 w-24 rounded-full object-scale-down"
-            />
-            <div className="relative z-0 mr-[-4rem] p-2 w-[14rem] flex flex-row justify-start bg-blue-600 text-white rounded-xl text-start">
+          <div className="flex flex-row justify-end items-end">
+            <div className="relative z-0 p-2 mr-1 w-fit max-w-[14rem] flex flex-row justify-start bg-[#102E51] text-white rounded-xl text-start">
               <p id="name">{name}</p>
             </div>
+			<img
+              src={PenguinC.src}
+              alt="ProfilePicture"
+              className="relative z-10 h-24 w-24 rounded-full object-cover"
+            />
+
           </div>
-          <div ref = {referenceToMessageBox} className="relative z-10 ml-8 mt-2 shadow-md drop-shadow-md rounded-xl w-full p-4 MESSAGEBOXISHERE">
+          <div ref = {referenceToMessageBox} className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-xl w-full p-4 MESSAGEBOXISHERE bg-white" >
             { isEditing ? ( // Since the key of the ChatBubble does not change, we do not have to worry about the input field being cancelled as a result of Chats Page recreating the ChatBubble for every new message, since the corresponding ChatBubble will be recreated with the same key, and thus React will use the existing ChatBubble instead of creating a new one.
               <input ref = {referenceToEditBox} type = "text" defaultValue = {messageText} className = "w-full h-full" />
             ) : (
@@ -75,7 +78,7 @@ function ChatBubble({
           </div>
 
           {/* This is the div that contains the buttons. It is hidden by default, and is shown when the mouse hovers over the chat bubble. */}
-          <div className="ml-8 -z-10 w-full flex flex-row justify-end -translate-y-[--translateAmt] transition-transform duration-300">
+          <div className="-z-10 w-full flex flex-row justify-start mx-4 -translate-y-[--translateAmt] transition-transform duration-300">
             {
               isEditing ?  
               (
@@ -128,14 +131,14 @@ function ChatBubble({
               alt="ProfilePicture"
               className="relative w-24 h-2w-24 rounded-full object-scale-down z-10"
             />
-            <div className="relative p-2 ml-[-4rem] w-[14rem] flex flex-row justify-end bg-blue-600 text-white rounded-xl z-0 TAGHERE">
+            <div className="relative ml-1 p-2 w-[14rem] flex flex-row justify-start w-fit max-w-[14rem] bg-blue-600 text-white rounded-xl z-0 TAGHERE">
               <p id="name">{name}</p>
             </div>
           </div>
-          <div className="relative z-10 ml-8 mt-2 shadow-md drop-shadow-md rounded-xl bg-white w-full p-4">
-            <p id="message">{message}</p>
+          <div className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-xl bg-white w-full p-4">
+            <p id="message">{messageText}</p>
           </div>
-          <div className="ml-8 -z-10 w-full flex flex-row justify-end -translate-y-[--translateAmt] transition-transform duration-300">
+          <div className="-z-10 w-full flex flex-row justify-end mr-8 -translate-y-[--translateAmt] transition-transform duration-300">
             <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white cursor-not-allowed">
               <i className="ri-delete-bin-2-fill"></i>
             </div>
