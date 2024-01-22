@@ -21,7 +21,7 @@ router.post("/api", async (req, res) => {
         res.json({
             data: profiles,
             status: 202,
-            message: "Profiles Fetch Successful",
+            message: "Search Query Fetch Successful",
             pgErrorObject: null,
           });
         
@@ -36,7 +36,7 @@ router.post("/api", async (req, res) => {
         res.json({
             data: profiles,
             status: 202,
-            message: "Profiles Fetch Successful",
+            message: "Search Query Fetch Successful",
             pgErrorObject: null,
           });
         }
@@ -47,7 +47,7 @@ router.post("/api", async (req, res) => {
         res.json({
             data: profiles,
             status: 202,
-            message: "Profiles Fetch Successful",
+            message: "Search Query Fetch Successful",
             pgErrorObject: null,
           });
     }
@@ -62,7 +62,7 @@ router.post("/api", async (req, res) => {
         JSON.stringify({
           data: null,
           status: 500,
-          message: "Profiles Fetch Failed",
+          message: "Search Query Fetch Failed",
           pgErrorObject: {
             ...error,
           },
@@ -71,7 +71,7 @@ router.post("/api", async (req, res) => {
     res.json({
       data: null,
       status: 500,
-      message: "Profiles Fetch Failed",
+      message: "Search Query Fetch Failed",
       pgErrorObject: {
         ...error,
       },
