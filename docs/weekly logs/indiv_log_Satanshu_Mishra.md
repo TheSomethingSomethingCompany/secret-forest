@@ -351,3 +351,34 @@
 ## Peer Review
 
 ![Alt text](image-1.png)
+
+**Week**: 15
+
+**Work Period**: 15 January 2024 - 21 January 2024
+
+## Individual Objectives
+
+- Add directories for Labeler - GitHub Actions.
+- Re-design and Implement Chat Bubble Compoment
+- Modernize Chats Page to use Grids instead of Flex
+- Re-design and Implement Conversation Tab Compoment (Used within chats page)
+
+## Active Tasks
+
+- Add directories for Labeler - GitHub Actions.
+- Re-design and Implement Chat Bubble Compoment
+- Modernize Chats Page to use Grids instead of Flex
+- Re-design and Implement Conversation Tab Compoment (Used within chats page)
+ 
+
+## Status of Tasks
+
+- Add directories for Labeler - GitHub Actions - `Complete`
+- Re-design and Implement Chat Bubble Compoment - `Complete`
+- Modernize Chats Page to use Grids instead of Flex - `In-Progress`
+- Re-design and Implement Conversation Tab Compoment (Used within chats page) - `In-Progress`
+
+
+## Peer Review
+<img width="1079" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/fa654ca3-c067-495e-a9cf-802e12131331">
+
