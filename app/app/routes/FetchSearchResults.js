@@ -8,13 +8,8 @@ router.post("/api", async (req, res) => {
   const { name, occupationTags} = req.body;
   try {
     
-    query = `SELECT profile."memberID", profile."name", profile."country", array_agg(tag."tagName") as "tags" 
-            FROM profile JOIN user_tag ON profile."memberID" = user_tag."memberID"
-            JOIN tag ON user_tag."tagID" = tag."tagID" `;
-
-
     if(occupationTags.length > 0){
-        query = `SELECT profile."memberID", profile."name", profile."country", array_agg(tag."tagName") as "tags" 
+        query = `SELECT profile."name", profile."country", array_agg(tag."tagName") as "tags" 
         FROM profile JOIN (
           select "memberID"
           from user_tag join tag on user_tag."tagID" = tag."tagID"
@@ -34,12 +29,10 @@ router.post("/api", async (req, res) => {
             message: "Search Query Fetch Successful",
             pgErrorObject: null,
           });
-        
-       
 
         }
     else if(occupationTags.length == 0){ // If no tags are selected, then just search by name. even if name is empty, it will still work because empty string is a substring of all strings
-        query = `SELECT profile."memberID", profile."name", profile."country", array_agg(tag."tagName") as "tags" 
+        query = `SELECT profile."name", profile."country", array_agg(tag."tagName") as "tags" 
         FROM profile 
         JOIN user_tag ON profile."memberID" = user_tag."memberID"
         join tag on user_tag."tagID" = tag."tagID"
