@@ -48,13 +48,13 @@ export default function Home() {
         <br></br>
         <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "mobile:w-full tablet:w-3/4 h-[2.5rem] rounded-md p-2 text-lg" textSize = "text-[1.25rem]" placeHolder = "Enter Tag Here. E.g, Software Engineer" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/>
         {searchResults.map((result, index) => (
-          <div key={index} className="result-card">
-          <h2>Username: {result.username}</h2>
-          <p>Email: {result.email}</p>
-          <p>Name: {result.name}</p>
-          <p>Tags: {result.tags.join(', ')}</p>
-          </div>
-        ))}
+  <div key={index} className="result-card bg-white shadow-md rounded-lg p-6 m-4 w-full md:w-1/2 lg:w-1/3">
+    <h2 className="text-2xl font-bold mb-2">Username: {result.username}</h2>
+    <p className="text-lg mb-2">Email: {result.email}</p>
+    <p className="text-lg mb-2">Name: {result.name}</p>
+    <p className="text-lg">Tags: {result.tags.join(', ')}</p>
+  </div>
+))}
     </main>
     
   );
