@@ -14,4 +14,4 @@ export async function fetchSearchResults(data){
     return resBody;
    }
 
-   export default createAProfile;
+   export default fetchSearchResults;

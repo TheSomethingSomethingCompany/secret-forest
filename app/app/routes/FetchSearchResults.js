@@ -56,7 +56,8 @@ router.post("/api", async (req, res) => {
         GROUP BY profile."memberID", member."username", member."email", profile."name", profile."country";`;
 
         const profiles = await db.any(query, [name + '%']);
-        console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
+        console.log("[SUCCESS]: SEARCH QUERY FETCH SUCCESSFUL");
+        console.log(profiles);
         res.json({
             data: profiles,
             status: 202,

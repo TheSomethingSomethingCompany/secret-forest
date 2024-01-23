@@ -21,20 +21,30 @@ export default function Home() {
     const [searchBy, setSearchBy] = useState("name");
     const [searchResults, setSearchResults] = useState([]);
 
-    function onSearchByChange(event){
-      setSearchBy(event.target.value);
-    }
+    function onSearch(){
+      let op= 0;
 
-    function onsearchQChange(event){
-      setSearchQ(event.target.value);
-    }
+      switch(searchBy){
+        case "name":
+          op = 0;
+          break;
+        case "email":
+          op = 1;
+          break;
+        case "username":
+          op = 2;
+          break;   
+      }
+        fetchSearchResults({name: searchQ, occupationTags: currentTags, op: op}).then((res) => {
+          setSearchResults(res);
+        });
+      }
 
-    
 
   return (
 
     <main className = "w-full h-full flex flex-col justify-center items-center">
-        <SearchBar searchQ = {searchQ} setSearch = {setSearchQ} searchBy = {searchBy} setSearchBy = {setSearchBy}/>
+        <SearchBar searchQ = {searchQ} setSearchQ = {setSearchQ} searchBy = {searchBy} setSearchBy = {setSearchBy} onSearch = {onSearch}/>
         <br></br>
         <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "mobile:w-full tablet:w-3/4 h-[2.5rem] rounded-md p-2 text-lg" textSize = "text-[1.25rem]" placeHolder = "Enter Tag Here. E.g, Software Engineer" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/>
     </main>
