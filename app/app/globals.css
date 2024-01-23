@@ -87,3 +87,8 @@
 .highlight-error {
   @apply text-red-600;
 }
+
+.chat-height {
+	@apply h-screen;
+	height: calc(100vh - 120px);
+}
