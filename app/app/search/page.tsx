@@ -17,7 +17,7 @@ export default function Home() {
 
 
     const [currentTags, setTags] = useState([]);
-    const [currentSearchQ, setSearchQ] = useState("");
+    const [searchQ, setSearchQ] = useState("");
     const [searchBy, setSearchBy] = useState("name");
     const [searchResults, setSearchResults] = useState([]);
 
@@ -25,21 +25,16 @@ export default function Home() {
       setSearchBy(event.target.value);
     }
 
-    function onCurrentSearchQChange(event){
+    function onsearchQChange(event){
       setSearchQ(event.target.value);
     }
 
-    function OnSearchClick(event){
-      event.preventDefault();
-      console.log("Search Clicked");
-      
-
-    }
+    
 
   return (
 
     <main className = "w-full h-full flex flex-col justify-center items-center">
-        <SearchBar/>
+        <SearchBar searchQ = {searchQ} setSearch = {setSearchQ} searchBy = {searchBy} setSearchBy = {setSearchBy}/>
         <br></br>
         <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "mobile:w-full tablet:w-3/4 h-[2.5rem] rounded-md p-2 text-lg" textSize = "text-[1.25rem]" placeHolder = "Enter Tag Here. E.g, Software Engineer" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/>
     </main>
