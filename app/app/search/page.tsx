@@ -35,7 +35,7 @@ export default function Home() {
           op = 2;
           break;   
       }
-        fetchSearchResults({name: searchQ, occupationTags: currentTags, op: op}).then((res) => {
+        fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, op: op}).then((res) => {
           setSearchResults(res);
         });
       }

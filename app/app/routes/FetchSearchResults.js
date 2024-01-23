@@ -5,7 +5,7 @@ const db = require("../db-connection.js");
 router.post("/api", async (req, res) => {
   console.log(req.body);
 
-  const { name, occupationTags, op} = req.body; //If op is 0, then we are searching by name. If op is 1, then we are searching by email. If op is 2, then we are searching by username.
+  const {searchQ, occupationTags, op} = req.body; //If op is 0, then we are searching by name. If op is 1, then we are searching by email. If op is 2, then we are searching by username.
 
   var whereFilter = '';
   switch(op){ 
@@ -36,7 +36,7 @@ router.post("/api", async (req, res) => {
         GROUP BY profile."memberID", member."username", member."email", profile."name", profile."country";`;
 
       
-        const profiles = await db.any(query, [occupationTags, name+'%']);
+        const profiles = await db.any(query, [occupationTags, searchQ+'%']);
         console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
         res.json({
             data: profiles,
@@ -55,7 +55,7 @@ router.post("/api", async (req, res) => {
         WHERE ${whereFilter} ILIKE $1
         GROUP BY profile."memberID", member."username", member."email", profile."name", profile."country";`;
 
-        const profiles = await db.any(query, [name + '%']);
+        const profiles = await db.any(query, [searchQ + '%']);
         console.log("[SUCCESS]: SEARCH QUERY FETCH SUCCESSFUL");
         console.log(profiles);
         res.json({
