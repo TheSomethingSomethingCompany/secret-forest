@@ -47,6 +47,14 @@ export default function Home() {
         <SearchBar searchQ = {searchQ} setSearchQ = {setSearchQ} searchBy = {searchBy} setSearchBy = {setSearchBy} onSearch = {onSearch}/>
         <br></br>
         <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "mobile:w-full tablet:w-3/4 h-[2.5rem] rounded-md p-2 text-lg" textSize = "text-[1.25rem]" placeHolder = "Enter Tag Here. E.g, Software Engineer" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/>
+        {searchResults.map((result, index) => (
+          <div key={index} className="result-card">
+          <h2>Username: {result.username}</h2>
+          <p>Email: {result.email}</p>
+          <p>Name: {result.name}</p>
+          <p>Tags: {result.tags.join(', ')}</p>
+          </div>
+        ))}
     </main>
     
   );
