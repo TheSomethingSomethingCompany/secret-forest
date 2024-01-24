@@ -20,6 +20,7 @@ export default function Home() {
     const [searchQ, setSearchQ] = useState("");
     const [searchBy, setSearchBy] = useState("name");
     const [searchResults, setSearchResults] = useState([]);
+    // Boolean value used to track if all Tags must be present in search results or not.
     const[hasOnlyTags, setHasOnlyTags] = useState(false);
 
     function onSearch(){
