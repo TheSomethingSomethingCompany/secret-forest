@@ -5,13 +5,6 @@ import OccupationTags from "../occupationTags/OccupationTags";
 
 function SearchBar({searchQ, setSearchQ, searchBy, setSearchBy, onSearch}){
 
-  
-  
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    props.onSearch(searchQ);
-  }
 
   return (
 
@@ -25,7 +18,7 @@ function SearchBar({searchQ, setSearchQ, searchBy, setSearchBy, onSearch}){
       <option value="username">Username</option>
     </select>
 
-      <form className="mobile:w-full tablet:w-2/4" onSubmit={handleSubmit}>
+      <form className="mobile:w-full tablet:w-3/4 flex bg-green-500" onSubmit={ (event) => {event.preventDefault(); onSearch();}}>
         <input
           type="search"
           value={searchQ || ""}
@@ -33,8 +26,9 @@ function SearchBar({searchQ, setSearchQ, searchBy, setSearchBy, onSearch}){
           placeholder="Search..."
           className="w-full p-3 rounded-lg text-black bg-white text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-search-bar-blue"
         />
+        <button type = "submit" className = "w-1/4"> <p className = "text-blue-500 p-3 font-bold">SUBMIT</p> </button>
       </form>
-     <button className = "w-1/4" onClick = {onSearch}> <p className = "text-blue-500 p-3 font-bold">SUBMIT</p> </button>
+     
     </div>
   );
 };

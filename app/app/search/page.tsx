@@ -9,7 +9,7 @@ export default function Home() {
     useEffect(() => {
       document.body.classList.add('h-full');
       
-      // Clean up function
+      // Clean up function 
       return () => {
         document.body.classList.remove('your-class-name');
       };
