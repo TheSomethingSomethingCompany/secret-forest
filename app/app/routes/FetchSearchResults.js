@@ -61,7 +61,8 @@ router.post("/api", async (req, res) => {
 
       
         const profiles = await db.any(query, [occupationTags, searchQ+'%']);
-        console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
+        console.log("[SUCCESS]: SEARCH QUERY FETCH SUCCESSFUL");
+        console.log(profiles);
         res.json({
             data: profiles,
             status: 202,
