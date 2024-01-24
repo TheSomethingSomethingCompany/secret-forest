@@ -19,7 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} relative min-h-screen`}>
+      <body className={`${inter.className} relative min-h-screen bg-black`}>
+		<div className="snow"></div>
+		<div className="snow2"></div>
+
         <Navbar isLoggedIn={true} />
 		<div>
 			{children}
