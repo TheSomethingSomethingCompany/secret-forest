@@ -4,18 +4,18 @@ import PenguinC from "@/app/images/PenguinC.jpeg";
 function page() {
   return (
 	<div className="flex flex-row w-screen chat-height justify-center items-start px-8 py-4">
-		<section className="rounded-lg shadow w-[25rem] min-w-[25rem] max-w-[25rem] h-full mr-2">
+		<section className="rounded-lg shadow w-[30rem] min-w-[30rem] max-w-[30rem] h-full mr-2">
 			<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
-				<div className="flex flex-row justify-start items-center mr-1">
+				<div className="flex flex-row justify-start items-center mr-1 max-w-[25rem] overflow-hidden">
 					<img
 						src={PenguinC.src}
 						alt="ProfilePicture"
 						className="relative z-10 max-h-[6rem] max-w-[6rem] min-w-[6rem] min-h-[6rem] h-24 w-24 mr-2 rounded-full object-cover"
 					/>
-					<div className="ml-1 flex flex-col justify-between items-start">
+					<div className="ml-2 flex flex-col justify-between items-start">
 						<div>
-							<p className="text-xl font-bold">Thuppahiralalage Eranga De Saa</p>
-							<p className="text-[1rem] font-light">@SatanshuMishradfwdnkafqwbfdlwquebflqwf</p>
+							<p className="text-[1.35rem] font-bold break-words w-[20rem]">Satanshu Mishra</p>
+							<p className="text-[1.1rem] font-light">@SatanshuMishra</p>
 						</div>
 						<div>
 							<i className="ri-check-double-fill text-3xl text-gray-400 text-green-600"></i>
