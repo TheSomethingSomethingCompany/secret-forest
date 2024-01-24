@@ -21,8 +21,8 @@ function page() {
         };
     }, []);
   return (
-	<div className="flex flex-row w-screen chat-height justify-center items-start px-8 py-4">
-		<section className="rounded-lg shadow w-[30rem] min-w-[30rem] max-w-[30rem] h-full mr-2">
+	<div className="flex flex-row w-screen chat-height justify-center items-start px-8 py-4 z-50">
+		<section className="rounded-lg shadow w-[30rem] min-w-[30rem] max-w-[30rem] h-full mr-2 bg-white">
 			<div className="flex flex-row outline-black shadow rounded-lg h-fit w-full px-4 py-2 m-4 max-w-[28rem] items-center justify-center">
 				<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>
 				<form className="flex-1 h-auto ml-1">
@@ -56,7 +56,7 @@ function page() {
 				</div>
 			</div>
 		</section>
-		<section className="flex-1 rounded-lg shadow h-full ml-2">
+		<section className="flex-1 rounded-lg shadow h-full bg-white ml-2">
 			<p>Hi World</p>
 		</section>
 	</div>
