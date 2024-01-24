@@ -5,7 +5,7 @@ const db = require("../db-connection.js");
 router.post("/api", async (req, res) => {
   console.log(req.body);
 
-  const {searchQ, occupationTags, op} = req.body; //If op is 0, then we are searching by name. If op is 1, then we are searching by email. If op is 2, then we are searching by username.
+  const {searchQ, occupationTags, op, hasOnlyTags} = req.body; //If op is 0, then we are searching by name. If op is 1, then we are searching by email. If op is 2, then we are searching by username.
 
   var whereFilter = '';
   switch(op){ 
@@ -23,17 +23,41 @@ router.post("/api", async (req, res) => {
     
     if(occupationTags.length > 0){
 
-        let query = `SELECT member."username", member."email", profile."name", profile."country", array_agg(tag."tagName") as "tags" 
-        FROM profile JOIN (
-          select "memberID"
-          from user_tag join tag on user_tag."tagID" = tag."tagID"
-          where tag."tagName" = any($1) 
-        ) as matchingProfiles ON profile."memberID" = matchingProfiles."memberID"
-        JOIN user_tag ON profile."memberID" = user_tag."memberID"
-        JOIN tag on user_tag."tagID" = tag."tagID" 
-        JOIN member ON profile."memberID" = member."memberID"
-        WHERE ${whereFilter} ILIKE $2
-        GROUP BY profile."memberID", member."username", member."email", profile."name", profile."country";`;
+        let query = ``;
+        if(hasOnlyTags){
+          query = `
+          SELECT member."username", member."email", profile."name", profile."country", array_agg(tag."tagName") as "tags"
+          FROM (
+            SELECT user_tag."memberID", array_agg(tag."tagName") as "userTags"
+            FROM user_tag
+            JOIN tag on user_tag."tagID" = tag."tagID"
+            GROUP BY user_tag."memberID"
+            HAVING $1 <@ array_agg(tag."tagName")
+          ) as matchingProfiles
+          JOIN profile ON matchingProfiles."memberID" = profile."memberID"
+          JOIN member ON profile."memberID" = member."memberID"
+          JOIN user_tag ON profile."memberID" = user_tag."memberID"
+          JOIN tag on user_tag."tagID" = tag."tagID"
+          WHERE ${whereFilter} ILIKE $2
+          GROUP BY profile."memberID", member."username", member."email", profile."name", profile."country";`;
+        }
+        
+        else{
+        query = `
+          SELECT member."username", member."email", profile."name", profile."country", array_agg(tag."tagName") as "tags" 
+          FROM profile JOIN (
+            select "memberID"
+            from user_tag join tag on user_tag."tagID" = tag."tagID"
+            where tag."tagName" = any($1) 
+          ) as matchingProfiles ON profile."memberID" = matchingProfiles."memberID"
+          JOIN user_tag ON profile."memberID" = user_tag."memberID"
+          JOIN tag on user_tag."tagID" = tag."tagID" 
+          JOIN member ON profile."memberID" = member."memberID"
+          WHERE ${whereFilter} ILIKE $2
+          GROUP BY profile."memberID", member."username", member."email", profile."name", profile."country";`;
+        }
+
+          
 
       
         const profiles = await db.any(query, [occupationTags, searchQ+'%']);
