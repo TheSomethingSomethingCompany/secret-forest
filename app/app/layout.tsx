@@ -19,9 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} relative`}>
+      <body className={`${inter.className} relative min-h-screen`}>
         <Navbar isLoggedIn={true} />
-        {children}
+		<div>
+			{children}
+		</div>
       </body>
     </html>
   );
