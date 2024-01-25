@@ -561,9 +561,29 @@
 - Improve security of routes for chats page
 - Assist other group members with bugfixes associated with their tasks for the development of the website
 
-
 ## Peer Review
 <img width="881" alt="2023-12-04_00-12-24" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/cd31ef63-a9ab-4c2a-9087-3849c4bd1352">
+
+**Work Period**: 15/01/2024 - 21/01/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Finish Backend For Search Page
+- Complete Design Of Search Page
+  
+## Active Tasks - 
+
+- Finish Backend For Search Page
+- Complete Design Of Search Page
+
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Finish Backend For Search Page
+- Complete Design Of Search Page
+
+## Peer Review
+<img width="1065" alt="2024-01-14_23-40-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/e9f4990f-c33c-4d51-8adc-ddffb4a31de2">
 
 
 

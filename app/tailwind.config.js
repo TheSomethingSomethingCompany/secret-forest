@@ -25,6 +25,7 @@ module.exports = {
         start: "100px",
       },
       colors: {
+        'search-bar-blue': '#f5f7fd',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
