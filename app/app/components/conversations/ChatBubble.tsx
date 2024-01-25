@@ -45,8 +45,9 @@ function ChatBubble({
   
   console.log(mouseOver);
   return (
-    <section>
+    <section className="w-full">
       {isYou ? (
+		<div className="flex flex-row justify-end w-full">
         <div
           className="p-2 text-xl max-w-md"
           onMouseEnter={() => setMouseOver(true)}
@@ -57,7 +58,7 @@ function ChatBubble({
             } as any
           }
         >
-          <div className="flex flex-row justify-end items-end">
+          <div className="flex flex-row justify-end items-end w-full">
             <div className="relative z-0 p-2 mr-1 w-fit max-w-[14rem] flex flex-row justify-start bg-[#102E51] text-white rounded-xl text-start">
               <p id="name">{name}</p>
             </div>
@@ -114,6 +115,7 @@ function ChatBubble({
           }
           </div>
         </div>
+		</div>
       ) : (
         <div
           className="p-2 text-xl max-w-md"

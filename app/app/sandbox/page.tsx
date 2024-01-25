@@ -2,24 +2,28 @@
 import React from "react";
 import PenguinC from "@/app/images/PenguinC.jpeg";
 import { useEffect, useRef } from "react";
+import ChatBubble from "../components/conversations/ChatBubble";
 
 function page() {
     const inputRef = useRef(null);
 
     useEffect(() => {
-        const handleKeyDown = (event:any) => {
-			event.preventDefault();
-            if (event.code === 'KeyK') { 
+        const handleKeyDownConv = (event:any) => {
+			if (event.code === 'KeyK') {
+				event.preventDefault();
                 inputRef.current?.focus();
             }
         };
 
-        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keydown', handleKeyDownConv);
 
         return () => {
-            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('keydown', handleKeyDownConv);
         };
     }, []);
+
+
+
   return (
 	<div className="flex flex-row w-screen chat-height justify-center items-start px-8 py-4 z-50">
 		<section className="rounded-lg shadow w-[30rem] min-w-[30rem] max-w-[30rem] h-full mr-2 bg-white">
@@ -56,8 +60,25 @@ function page() {
 				</div>
 			</div>
 		</section>
-		<section className="flex-1 rounded-lg shadow h-full bg-white ml-2">
-			<p>Hi World</p>
+		<section className="flex-1 flex flex-col items-start w-full rounded-lg shadow h-full bg-white ml-2">
+			<div className="flex-1 px-4 py-2 m-4 w-full">
+				<ChatBubble id='ID' name="Satanshu Mishra" message="This is amazing! ☃️" profilePicture="Smth" hasAttachment={false} isYou={true} />
+				<ChatBubble id='ID' name="Trevor Fox" message="Indeed, this is amazing! 🐳" profilePicture="Smth" hasAttachment={false} isYou={false} />
+			</div>
+			<div className="px-4 py-2 my-2 w-full">
+				<div className="flex flex-row outline-black shadow rounded-lg h-fit w-full px-4 py-2 items-center justify-center">
+					<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>
+					<form className="flex-1 flex flex-row h-auto ml-1">
+						<input className="w-full h-auto px-2 outline-none flex-1" placeholder="Search for user"/>
+						<button type="button" className="hover:cursor-pointer bg-white p-1 rounded-lg">
+							<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
+						</button>
+					</form>
+					{
+						//<kbd>o</kbd>
+					}
+				</div>
+			</div>
 		</section>
 	</div>
   );
