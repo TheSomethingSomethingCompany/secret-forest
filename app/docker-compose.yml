@@ -64,6 +64,9 @@ services:
       - .:/app
     ports:
       - "6969:6969"
+      - "7979:7979"
+
+      
 
 volumes:
   pgdata:
