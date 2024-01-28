@@ -18,6 +18,7 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
         console.log("[REQUEST BODY FOR PROFILE CREATION]:");
         console.log(req.body);
         const {fullName, country, address, bio, occupationTags} = req.body;
+        const occupationTagsAsArray = JSON.parse(occupationTags);
 
         try
         {
@@ -27,7 +28,20 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
             }
             else
             {
-                await db.none('INSERT INTO profile("memberID", "name", "country", "address", "bio") VALUES($1, $2, $3, $4, $5)', [memberID, fullName, country, address, bio]);
+                await db.tx(async t => { // Use transactions to ensure that all queries are executed successfully, or else rollback all queries
+                    await t.none('INSERT INTO profile("memberID", "name", "country", "address", "bio") VALUES($1, $2, $3, $4, $5)', [memberID, fullName, country, address, bio]);
+                    for (let tag of occupationTagsAsArray) {
+                       await t.none('INSERT INTO tag("tagName") VALUES($1) ON CONFLICT DO NOTHING', [tag]);
+                    }
+
+                    const tagIDs = await t.any('SELECT "tagID" FROM tag WHERE "tagName" = any($1)', [occupationTagsAsArray]); // Retrieve tagIDs for each tag in occupationTags
+
+                    for (let tagIDsRow of tagIDs) {
+                       await t.none('INSERT INTO user_tag("memberID", "tagID") VALUES($1, $2)', [memberID, tagIDsRow.tagID]); // Insert tagIDs into user_tag table
+                    }
+
+                });
+
                 res.json({ status: 201, message: 'Profile created successfully' });
                 console.log("[PROFILE CREATION SUCCESSFUL FOR MEMBER ID]: " + memberID);
                 delete req.session.signUpMemberID // Destroy signUp session data

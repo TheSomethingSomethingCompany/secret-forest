@@ -32,7 +32,7 @@ CREATE TABLE security_question (
 
 CREATE TABLE tag(
   "tagID" SERIAL PRIMARY KEY,
-  "tagName" TEXT NOT NULL
+  "tagName" TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE user_tag(
