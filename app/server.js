@@ -39,7 +39,6 @@ const sessionMiddleWare = session({
 
 server.use(sessionMiddleWare);
 
-// Set global variable to be the current logged in user, which should be using session data, but is hardcoded for now
 
 //Any Routes
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js
@@ -70,8 +69,8 @@ server.use("/fetchUserData", fetchUserDataRoutes);
 const fetchProfileDataRoutes = require("./app/routes/FetchProfileData");
 server.use("/fetchProfileData", fetchProfileDataRoutes);
 
-
-
+const fetchSearchResultsRoutes = require("./app/routes/FetchSearchResults");
+server.use("/fetchSearchResults", fetchSearchResultsRoutes);
 
 const saveProfileDatsRoutes = require("./app/routes/SaveProfileData");
 server.use("/saveProfileData", saveProfileDatsRoutes);
