@@ -73,11 +73,6 @@ server.use("/fetchProfileData", fetchProfileDataRoutes);
 
 
 
-
-
-
-
-
 const saveProfileDatsRoutes = require("./app/routes/SaveProfileData");
 server.use("/saveProfileData", saveProfileDatsRoutes);
 
