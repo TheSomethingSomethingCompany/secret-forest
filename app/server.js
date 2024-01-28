@@ -72,6 +72,9 @@ server.use("/fetchProfileData", fetchProfileDataRoutes);
 const fetchSearchResultsRoutes = require("./app/routes/FetchSearchResults");
 server.use("/fetchSearchResults", fetchSearchResultsRoutes);
 
+const saveProfileDatsRoutes = require("./app/routes/SaveProfileData");
+server.use("/saveProfileData", saveProfileDatsRoutes);
+
 server.listen(HTTP_PORT, () => {
   console.log("Server started on http://localhost:6969");
 });
