@@ -20,31 +20,43 @@ import FetchProfileData from "../api/fetchProfileData";
   useEffect(() => {
     const memberData = fetchData();
   });
-
-  const fetchData = async () => {
-    const memberData: MemberFetch = await fetchUserData({ ...params });
-    console.log(memberData);
-    setName(memberData.data.name);
-    setEmail(memberData.data.email);
-    setUsername(memberData.data.username);
-    const profileData: ProfileFetch = await FetchProfileData({
-      id: memberData.data.memberID,
-    });
-    setBiography(profileData.data.bio);
-    setCountry(profileData.data.country);
-  };*/
-  function EditProfile(){
+*/
+  function EditProfile({params}: {params: {slug: string}}){
     // Temporary data for the profile
     const [profile, setProfile] = useState({
-      firstName: "Test",
-      lastName: "Dummy",
+      fullName: "Test",
       userName: "Dummy",
       country: "Canada",
+      address: "123 adress st.",
       biography: "I am a fake person. I am not real.",
       email: "dummy@mail.com",
+      memberId: ""
 
 
     });
+
+    const router = useRouter();
+    useEffect(() => {
+      const memberData = fetchData();
+    });
+    
+    const fetchData = async () => {
+      const memberData: MemberFetch = await fetchUserData({ ...params });
+      console.log(memberData);
+      
+      const profileData: ProfileFetch = await FetchProfileData({
+        id: memberData.data.memberID,
+      });
+      setProfile({
+        fullName: memberData.data.name, 
+        userName: memberData.data.username,
+        country: profileData.data.country,
+        address: "Monkey124st",
+        biography: profileData.data.bio,
+        email: memberData.data.email,
+        memberId: memberData.data.memberID });
+    }
+    
     // Temporary state to hold changes while editing
     const [tempProfile, setTempProfile] = useState({ ...profile });
 
@@ -67,7 +79,7 @@ import FetchProfileData from "../api/fetchProfileData";
     const handleSave = () => {
      setIsEditing(false);
       setProfile({ ...tempProfile });
-      console.log("save changes");
+      console.log("save changes: ", tempProfile);
     };
 
 
@@ -81,7 +93,7 @@ import FetchProfileData from "../api/fetchProfileData";
           alt="Profile Picture"
         />
         <div className="my-6">
-          <h1 className="font-bold text-4xl py-1">{profile.firstName}  {profile.lastName}</h1>
+          <h1 className="font-bold text-4xl py-1">{profile.fullName}</h1>
           <h2 className="font-normal text-xl py-1">@ {profile.userName}</h2>
           <h2 className="font-light text-lg py-1 flex flex-row">
             <i className="ri-map-pin-line"></i>
@@ -106,35 +118,25 @@ import FetchProfileData from "../api/fetchProfileData";
           {/*First Name*/}
           <div>
             <label className="font-bold text-xl mt-2">
-             First Name:
+             Name:
             </label>
             <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
               type="text"
-              value={tempProfile.firstName}
-              onChange={(e) => setTempProfile({ ...tempProfile, firstName: e.target.value })}
+              value={tempProfile.fullName}
+              required
+              onChange={(e) => setTempProfile({ ...tempProfile, fullName: e.target.value })}
               readOnly={!isEditing}
             />
           </div>
-          {/*Last Name*/}
-          <div>
-            <label className="font-bold text-xl mt-2">
-              Last Name:  
-            </label>
-            <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
-             type="text"
-             value={tempProfile.lastName}
-              onChange={(e) => setTempProfile({ ...tempProfile, lastName: e.target.value })}
-              readOnly={!isEditing}
-            />
-          </div>
+    
           {/*User name*/}
           <div>
             <label className="font-bold text-xl mt-2">
               User Name:  
             </label>
             <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
-             type="text"
-             value={tempProfile.userName}
+              type="text"
+              value={tempProfile.userName}
               onChange={(e) => setTempProfile({ ...tempProfile, userName: e.target.value })}
               readOnly={!isEditing}
             />
@@ -145,8 +147,8 @@ import FetchProfileData from "../api/fetchProfileData";
               Email:  
             </label>
             <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
-             type="text"
-             value={tempProfile.email}
+              type="email"
+              value={tempProfile.email}
               onChange={(e) => setTempProfile({ ...tempProfile, email: e.target.value })}
               readOnly={!isEditing}
             />
@@ -158,9 +160,22 @@ import FetchProfileData from "../api/fetchProfileData";
               Country:  
             </label>
             <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
-             type="text"
-             value={tempProfile.country}
+              type="text"
+              value={tempProfile.country}
               onChange={(e) => setTempProfile({ ...tempProfile, country: e.target.value })}
+              readOnly={!isEditing}
+            />
+          </div>
+          
+          {/*Address*/}
+          <div>
+            <label className="font-bold text-xl mt-2">
+              Address:  
+            </label>
+            <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
+              type="text"
+              value={tempProfile.address}
+              onChange={(e) => setTempProfile({ ...tempProfile, address: e.target.value })}
               readOnly={!isEditing}
             />
           </div>

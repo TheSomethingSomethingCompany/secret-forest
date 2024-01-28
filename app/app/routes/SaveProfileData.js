@@ -4,29 +4,22 @@ const db = require("../db-connection.js");
 
 router.post("/api", async (req, res) => {
   console.log(req.body);
+  
 
-  const { firstName, lastName, email, username, country, bio} = req.body;
+  const {fullName, email, username, country, address, bio, id} = req.body;
   try {
-   
-    const user = await db.one(
-      `UPDATE PROFILE SET username = $1,  "memberID", name, username FROM member WHERE username = $1`,
-      [slug]
+    const profileInfo = await db.one(
+      `UPDATE PROFILE SET name = $1, country = $2, address = $3, bio = $4 WHERE memberID = $5`, 
+      [fullName, country, address, bio, id]
     );
-
-    // if (user.length != 1) {
-    //   console.log("[ERROR]: USER NOT FOUND");
-    //   return res.json({
-    //     data: null,
-    //     status: 404,
-    //     message: "User Not Found",
-    //     pgErrorObject: null,
-    //   });
-    // }
+    const memberInfo = await db.one(
+        `UPDATE MEMBER SET email = $1, username = $2 WHERE memberID = $3`, [email, username, id]
+    )
 
     console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
 
     res.json({
-      data: { ...user },
+      data: { ...profileInfo },
       status: 202,
       message: "User Fetch Successful",
       pgErrorObject: null,

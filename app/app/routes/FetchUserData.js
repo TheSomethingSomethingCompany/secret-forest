@@ -5,6 +5,8 @@ const db = require("../db-connection.js");
 router.post("/api", async (req, res) => {
   console.log(req.body);
 
+  const userId = req.session.loggedInUserMemberID;
+  
   const { slug } = req.body;
   try {
     console.log("[FETCH USER]: IN TRY");
