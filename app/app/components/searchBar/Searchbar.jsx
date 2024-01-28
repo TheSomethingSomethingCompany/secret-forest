@@ -18,7 +18,7 @@ function SearchBar({searchQ, setSearchQ, searchBy, setSearchBy, onSearch}){
       <option value="username">Username</option>
     </select>
 
-      <form className="mobile:w-full tablet:w-3/4 flex bg-green-500" onSubmit={ (event) => {event.preventDefault(); onSearch();}}>
+      <form className="mobile:w-full tablet:w-3/4 flex" onSubmit={ (event) => {event.preventDefault(); onSearch();}}>
         <input
           type="search"
           value={searchQ || ""}
