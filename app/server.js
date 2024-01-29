@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const WebSocket = require('ws');
 const cors = require("cors");
+const path = require("path")
 
 const HTTP_PORT = 6969;
 const WEBSOCKET_PORT = 7979;
@@ -15,10 +16,6 @@ const server = express(); // Create an express server
 const wss = new WebSocket.Server({ port: WEBSOCKET_PORT }); // Create a websocket server
 //Middleware to parse JSON requests
 server.use(express.json());
-
-// server.use(cors({
-//   origin: 'http://localhost:3000' // Replace with your client's origin
-// }));
 
  const corsOptions = {
    origin: "http://localhost:3000",

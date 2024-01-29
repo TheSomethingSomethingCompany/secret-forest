@@ -2,7 +2,7 @@
 import OccupationTags from "../occupationTags/OccupationTags";
 import defaultProfilePicture from "../../images/defaultProfilePicture.jpg";
 import editIcon from "../../images/pencil-solid.svg";
-import { useState, useEffect, use } from "react";
+import { useState } from "react";
 import { createAProfile } from "../../createProfile/api/createAProfile.js";
 import {useRouter} from "next/navigation";
 import React from 'react';
@@ -10,13 +10,13 @@ import Image from "next/legacy/image";
 
 function CreateProfileForm() {
    
+
     return (
         <>
             <form action="" method="post" className="flex justify-center relative overflow-y-auto w-full h-screen overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500">
                 <div id = "labels-and-inputs-container" className = "flex h-[100vh] min-w-[25rem] w-1/2 max-w-[50rem] flex-col items-center p-2"> {/* Ensures the labels div and the inputs div are side-by-side */}
                     <CreateProfileHeader/>
-                    <ProfilePicture/>
-                    <FormLabelsAndInputs/>
+                    <PFPandInputs/>
                 </div>        
             </form>         
         </>
@@ -34,7 +34,7 @@ function CreateProfileHeader()
 
 }
 
-function FormLabelsAndInputs()
+function FormLabelsAndInputs({image})
 {
 
     const router = useRouter();
@@ -103,15 +103,19 @@ function FormLabelsAndInputs()
         if(address == "")
             setAddressLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>'});
     }
+
     function formDataAsJSON()
     {
-        return {
-            fullName: fullName,
-            country: country,
-            address: address,
-            bio: bio,
-            occupationTags: JSON.stringify(currentTags),
-        };
+
+        const formData = new FormData();
+        console.log('imageFile: ', image);
+        formData.append("profilePicture", image);
+        formData.append("fullName", fullName);
+        formData.append("country", country);
+        formData.append("address", address);
+        formData.append("bio", bio);
+        formData.append("occupationTags", JSON.stringify(currentTags));
+        return formData;
     };
 
     async function onSubmit(e)
@@ -189,11 +193,20 @@ function FormButtons({onSubmitHandler})
 
 };
 
-
-
-function ProfilePicture() 
-{
+function PFPandInputs(){
     const [image, setImage] = useState(defaultProfilePicture);
+    return (
+        <div>
+            <ProfilePicture image={image} setImage={setImage} />
+            <FormLabelsAndInputs image={image} />
+        </div>
+    );
+
+}
+
+
+function ProfilePicture({image, setImage}) 
+{
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
