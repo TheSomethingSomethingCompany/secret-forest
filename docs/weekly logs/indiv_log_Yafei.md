@@ -392,6 +392,48 @@ Wasn't able to work on the project that much as I mentioned in the peer evals
 
 ![T2-W2](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/0db85594-af27-4f95-89db-c7641d48cedf)
 
+**Term 2 Week: 3** 
+**Work Period**: `22-01-2024` - `28-01-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Design Edit Page
+
+## Active Tasks
+
+- Design Edit Page
+  - Complete a basic level of backend functionality with express js
+    - Fetch profile information
+    - Update changes to profile information
+  - Refine edit profile page
+    - check if current user is the same as the profile they are viewing
+    - check that the username is unique
+    - check that required information is not left blank
+    - add profile image change functionality
+    - add occupational tags change functionality   
+
+
+## Status of Tasks
+
+- Design Edit Page
+  - Complete a basic level of backend functionality with express js (Completed)
+    - Fetch profile information
+    - Update changes to profile information
+  - Refine edit profile page (In-progress)
+    - check if current user is the same as the profile they are viewing
+    - check that the username is unique
+    - check that required information is not left blank
+    - add profile image change functionality
+    - add occupational tags change functionality 
+
+
+
+## Peer Review
+![term2week3](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/09c31bab-d0ea-4a81-8cd0-792c025ac530)
+
+
+
 
 
 
