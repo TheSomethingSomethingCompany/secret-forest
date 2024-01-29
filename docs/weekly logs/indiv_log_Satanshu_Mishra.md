@@ -382,3 +382,46 @@
 ## Peer Review
 <img width="1079" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/fa654ca3-c067-495e-a9cf-802e12131331">
 
+**Week**: 15
+
+**Work Period**: 21 January 2024 - 28 January 2024
+
+## Individual Objectives
+
+- Continue Designing Chat's Page
+  - Updated Conversations Side-Bar
+  - Implement Conversations Search Bar
+  - Add Responsive Chats window
+  - Add Responsive Message Component
+- Fix Bugs with NavBar
+  - Sign-In and Sign-Out State
+  - Responsive Styling
+
+## Active Tasks
+
+ - Continue Designing Chat's Page
+  - Updated Conversations Side-Bar
+  - Implement Conversations Search Bar
+  - Add Responsive Chats window
+  - Add Responsive Message Component
+
+## Status of Tasks
+
+- Continue Designing Chat's Page
+  - Updated Conversations Side-Bar - `Complete`
+  - Implement Conversations Search Bar - `Complete`
+  - Add Responsive Chats window - `Complete`
+  - Add Responsive Message Component - `Complete`
+- Fix Bugs with NavBar
+  - Sign-In and Sign-Out State - `In-Progress`
+  - Responsive Styling - `In-Progress`
+
+
+Reasoning for the Aesthetic Redegin of the Chat's Page:
+- Previously, the chats page was designed with the intention of showing the functionality of our feature rather than then complete product. This page lacked many critical features such as a responsive design which would work at both a desktop and mobile screen size. The new design takes these and other design factors into consideration and significantly improved the look and feel of the website. This not only provides a better look website but also improve user - website interaction.
+
+
+## Peer Review
+<img width="1080" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/09f0a3f9-aeec-4d18-a6e8-6477a1d48f61">
+
+
