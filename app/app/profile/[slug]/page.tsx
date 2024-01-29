@@ -7,6 +7,7 @@ import MemberFetch from "@/app/types/MemberFetch";
 import Penguin from "../../images/ExamplePenguin.jpeg";
 import ProfileFetch from "@/app/types/ProfileFetch";
 import FetchProfileData from "../api/fetchProfileData";
+import updateProfileInfo from "../api/saveProfileData";
 
 /*function EditProfile({ params }: { params: { slug: string } }) {
   const [name, setName] = useState("");
@@ -22,40 +23,43 @@ import FetchProfileData from "../api/fetchProfileData";
   });
 */
   function EditProfile({params}: {params: {slug: string}}){
+    
+    const userId = params.slug;
+
     // Temporary data for the profile
     const [profile, setProfile] = useState({
-      fullName: "Test",
-      userName: "Dummy",
-      country: "Canada",
-      address: "123 adress st.",
-      biography: "I am a fake person. I am not real.",
-      email: "dummy@mail.com",
+      fullName: "",
+      userName: "",
+      country: "",
+      address: "",
+      biography: "",
+      email: "",
       memberId: ""
 
 
     });
 
-    const router = useRouter();
-    useEffect(() => {
-      const memberData = fetchData();
-    });
-    
+
     const fetchData = async () => {
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
       
-      const profileData: ProfileFetch = await FetchProfileData({
+      const profileData: any = await FetchProfileData({
         id: memberData.data.memberID,
       });
       setProfile({
         fullName: memberData.data.name, 
         userName: memberData.data.username,
         country: profileData.data.country,
-        address: "Monkey124st",
+        address: profileData.data.address,
         biography: profileData.data.bio,
         email: memberData.data.email,
         memberId: memberData.data.memberID });
     }
+
+    useEffect(() => {fetchData();}, []);
+    useEffect(() => {setTempProfile({ ...profile });}, [profile]);
+
     
     // Temporary state to hold changes while editing
     const [tempProfile, setTempProfile] = useState({ ...profile });
@@ -72,14 +76,44 @@ import FetchProfileData from "../api/fetchProfileData";
     const handleCancel = () => {
       setIsEditing(false);
       setTempProfile({ ...profile });
-    console.log("cancel changes");
+      console.log("cancel changes");
+    };
+
+    function formDataAsJSON()
+    {
+        console.log("check data: ", tempProfile);
+        return {
+            fullName: tempProfile.fullName,
+            country: tempProfile.country,
+            address: tempProfile.address,
+            bio: tempProfile.biography,
+            username: tempProfile.userName,
+            email: tempProfile.email,
+            id: tempProfile.memberId
+        };
     };
 
     // Handler for the Save Changes button
-    const handleSave = () => {
-     setIsEditing(false);
-      setProfile({ ...tempProfile });
-      console.log("save changes: ", tempProfile);
+    async function handleSave(e: { preventDefault: () => void; }) {
+      setIsEditing(false);
+  
+      if(tempProfile.fullName != "" && tempProfile.country != "" && tempProfile.address != "" && tempProfile.userName != "")
+      {
+          var response = await updateProfileInfo(formDataAsJSON());
+          if(response.status == 202)
+          {
+              alert("Updated Your Profile");
+              setProfile({ ...tempProfile });
+             console.log("save changes: ", tempProfile)
+          }
+          else
+          {
+           alert("Sorry, we were unable to update your profile. Please try again.")
+          }
+      }
+      else {
+        console.log("Something went wrong");
+      }
     };
 
 
