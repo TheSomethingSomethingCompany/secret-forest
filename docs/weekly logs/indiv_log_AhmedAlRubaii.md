@@ -389,3 +389,44 @@ As discussed with the TA, I will be providing some additional notes regarding my
 ## Peer Review
 ![week 15](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/7ef7aae1-2580-498c-b263-78bcf0a9106b)
 
+---------------------------
+
+**Week**: 16
+
+**Work Period**: 22 January 2024 - 28 January 2024
+
+## Individual Objectives
+
+At the start of the week after some testing was done regarding the new dockerized system that I built, some issues were found. Shaheer helped in finding a solution to those issues specifically regarding web sockets. Next I had an issue regarding uploading the docker images to ECR due to a aws cli configuration and access misunderstanding. After a lot of research and eventually help from Seth on discord, I was able to successfuly gain access to the aes cli and use the commands.
+
+![aws issue](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/c416f816-6337-4b26-ba00-78377cd15c9c)
+
+However there was another issue regarding building the images. for docker to sucessfuly build an image outside using the docker-compose file (as in explicitly building an image using the docker build command) the dockerfile that the image will be built from needs to be explicitly called `Dockerfile`, and because I have named them .nextjs and .express for next and express respectivley they were not building, and this issue to quite a while to understand and diagnose as i found that there were very few cases online where people added suffixes to the dockerfile.
+
+![docker build issue](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/da245088-6770-47ed-81d2-58cf106dd3da)
+
+I eventually found a solution to that which was to create a dockerfile directory which would hold the dockerfiles in a manner where they are explicitly called `Dockerfile`. This was a minor setback as it took a long time to diagnose but the solution was simple and does not have any effect on the overall project. but for safety's sake and because our current docker-compose file works, this directory managment would only be done when pushing a new production version to aws. although the work would be repetitive in fixing the file system, it is a change that takes only 5-10 mins which i am fine with per deployment. After sucessfully uploading the images to ecr, the next issue encountered was using ecs and configuring the tasks. first i had to create a cluster but there was an issue in regards to creating it which was eventually resolved after I had come to it after a while.
+
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/f4b75bf0-e9d7-4dec-8c2f-a31c1673e943)
+
+after that issue was resolved i continued the deployment process by following tutorials and reading documentation to undertsand the process and the concepts being used. eventually after a first deployment attempt, i ended up getting a `503 Service Temporarily Unavailable` error when trying to access our app. this issue seems to be regarding using the provisioned aws vpc and not having it configured correctly, but i am unsure as there can be many other factors that can cause this issue. furthermore, there was also another realisation that i would require to set up volumes for the containers within ecs which was not mentioned in any of the tutorials i have followed. this took a lot of research in understanding what exactly volumes are and how they work and how containers interact with them. also the way in which aes ecs volumes are established are much different and more confusing that within docker-compose file. I eventually stumbled onto a forum site (i cant find the source now) that mentioned that building the images with the docker build command bundles all the runtime environments and modules within the images itself. this was the concern as we have `.next` and `node_modules` as volumes necessary for nextjs to run in our docker-compose and setting it up within ecs did not seem to line up. however after knowing that, i continued forward without setting volumes in ecs, following with the concept that volumes are bundled within the image when they are built. I am now continuing the deployment process and will be documenting any other issues that i encounter. 
+
+
+## Active Tasks
+
+- Research various topics and concepts related to containerization and deployment
+- App deployment to ECS with Fargate
+   
+## Status of Tasks
+
+- Research various topics and concepts related to containerization and deployment - In Progress/ Complete (dependant on if i encounter any more issues)
+	- Docker building
+	- AWS CLI configuration
+	- AWS VPC issues
+	- AWS ECS concerns regarding deployment
+	- AWS variables vs Docker variabls
+- App deployment to ECS with Fargate - In Progress
+
+
+## Peer Review
+![week 16](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/f504db9e-9166-41de-96c9-6dddc4ea615c)
