@@ -194,3 +194,45 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 ![week 15 burnup](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/fd939eea-320f-4e96-9313-84dfe70df8a3)
+
+
+
+**Term 2 - Week 3 (Week 16)**: 22/01/2024 - 28/01/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Work on Edit Profile Page
+- Work On Deployment to AWS Fargate Using ECS
+- Started Modernizing Chat Page
+- Fix docker issues
+- Added feature to search to filter users based on conjunctivity of tags
+- Extended create profile route to save occupational tags to the database
+- Implmented video submissions for chats
+- Fix bugs for search page
+
+## Accomplishments
+
+- Work on Edit Profile Page - `In-Progress`
+- Work On Deployment to AWS Fargate Using ECS - `In-Progress`
+- Started Modernizing Chat Page - `In-Progress`
+- Fix docker issues - `Completed`
+- Added feature to search to filter users based on conjunctivity of tags - `Completed`
+- Extended create profile route to save occupational tags to the database - `Completed`
+- Implmented video submissions for chats - `Completed`
+- Fix bugs for search page - `Completed`
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/286c04bc-63ce-4311-a5b9-551a552e56c9)
+
