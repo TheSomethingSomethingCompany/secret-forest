@@ -46,7 +46,7 @@ router.post("/api", async (req, res) => {
         query = `
           SELECT member."username", member."email", profile."name", profile."country", array_agg(tag."tagName") as "tags" 
           FROM profile JOIN (
-            select "memberID"
+            select DISTINCT "memberID"
             from user_tag join tag on user_tag."tagID" = tag."tagID"
             where tag."tagName" = any($1) 
           ) as matchingProfiles ON profile."memberID" = matchingProfiles."memberID"
