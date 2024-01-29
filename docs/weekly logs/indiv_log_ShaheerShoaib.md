@@ -585,5 +585,44 @@
 ## Peer Review
 <img width="1065" alt="2024-01-14_23-40-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/e9f4990f-c33c-4d51-8adc-ddffb4a31de2">
 
+**Work Period**: 22/01/2024 - 28/01/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Implement option to filter search results such that each profile consists at least all of the tags mentioned in the filter (conjunctive)
+- Discover, isolate, and resolve issues related to Docker
+      - Fixed docker networking issue preventing express container from connecting to postgres container
+      - Fixed docker issue preventing WebSockets, and thus live chatting, from working at all
+- Extend create profile route to additionally insert tags into the database
+- Extend create profile route to additionally save uploaded profile pictures locally in express server
+- Assist Yafei with implementing Edit Profile route, resulting in its successful completion
+- Work on implementing video submissions in live chats
+  
+## Active Tasks - 
+
+- Implement option to filter search results such that each profile consists at least all of the tags mentioned in the filter (conjunctive)
+- Discover, isolate, and resolve issues related to Docker
+      - Fixed docker networking issue preventing express container from connecting to postgres container
+      - Fixed docker issue preventing WebSockets, and thus live chatting, from working at all
+- Extend create profile route to additionally insert tags into the database
+- Extend create profile route to additionally save uploaded profile pictures locally in express server
+- Assist Yafei with implementing Edit Profile route, resulting in its successful completion
+- Work on implementing video submissions in live chats
+  
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Implement option to filter search results such that each profile consists at least all of the tags mentioned in the filter (conjunctive)
+- Discover, isolate, and resolve issues related to Docker
+      - Fixed docker networking issue preventing express container from connecting to postgres container
+      - Fixed docker issue preventing WebSockets, and thus live chatting, from working at all
+- Extend create profile route to additionally insert tags into the database
+- Extend create profile route to additionally save uploaded profile pictures locally in express server
+- Assist Yafei with implementing Edit Profile route, resulting in its successful completion
+- Work on implementing video submissions in live chats - `In-Progress`
+
+## Peer Review
+<img width="709" alt="2024-01-26_23-05-42" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/16afc746-fa56-4f86-903e-76b37da63291">
+
 
 
