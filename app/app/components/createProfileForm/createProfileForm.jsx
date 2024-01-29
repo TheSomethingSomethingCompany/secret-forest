@@ -34,7 +34,7 @@ function CreateProfileHeader()
 
 }
 
-function FormLabelsAndInputs({image})
+function FormLabelsAndInputs({imageFile})
 {
 
     const router = useRouter();
@@ -108,8 +108,8 @@ function FormLabelsAndInputs({image})
     {
 
         const formData = new FormData();
-        console.log('imageFile: ', image);
-        formData.append("profilePicture", image);
+        console.log('imageFile: ', imageFile);
+        formData.append("profilePicture", imageFile);
         formData.append("fullName", fullName);
         formData.append("country", country);
         formData.append("address", address);
@@ -194,22 +194,25 @@ function FormButtons({onSubmitHandler})
 };
 
 function PFPandInputs(){
-    const [image, setImage] = useState(defaultProfilePicture);
+    const [imageFile, setImageFile] = useState(defaultProfilePicture);
     return (
         <div>
-            <ProfilePicture image={image} setImage={setImage} />
-            <FormLabelsAndInputs image={image} />
+            <ProfilePicture imageFile={imageFile} setImageFile={setImageFile} />
+            <FormLabelsAndInputs imageFile={imageFile} />
         </div>
     );
 
 }
 
 
-function ProfilePicture({image, setImage}) 
+function ProfilePicture({imaageFile, setImageFile}) 
 {
+
+    const [image, setImage] = useState(defaultProfilePicture);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        setImageFile(file);
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
