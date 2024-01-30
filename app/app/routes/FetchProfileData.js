@@ -18,7 +18,7 @@ router.post("/api", async (req, res) => {
       });
     }
     const profile = await db.one(
-      `SELECT "name", "country", "bio" FROM profile WHERE "memberID" = $1`,
+      `SELECT "name", "country", "address", "bio" FROM profile WHERE "memberID" = $1`,
       [id]
     );
 

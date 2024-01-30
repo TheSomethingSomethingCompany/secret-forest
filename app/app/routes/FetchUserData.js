@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require("../db-connection.js");
 
 router.post("/api", async (req, res) => {
-  console.log(req.body);
 
-  const userId = req.session.loggedInUserMemberID;
+  console.log("body: " + req.body);
+  
   
   const { slug } = req.body;
   try {

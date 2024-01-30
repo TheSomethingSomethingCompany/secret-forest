@@ -3,25 +3,24 @@ const router = express.Router();
 const db = require("../db-connection.js");
 
 router.post("/api", async (req, res) => {
-  console.log(req.body);
   
 
-  const {fullName, email, username, country, address, bio, id} = req.body;
+  const {fullName, country, address, bio, username, email, id} = req.body;
   try {
-    const profileInfo = await db.one(
-      `UPDATE PROFILE SET name = $1, country = $2, address = $3, bio = $4 WHERE memberID = $5`, 
+    const updateProfileInfo = await db.none(
+      `UPDATE profile SET "name" = $1, "country" = $2, "address" = $3, "bio" = $4 WHERE "memberID" = $5`, 
       [fullName, country, address, bio, id]
     );
-    const memberInfo = await db.one(
-        `UPDATE MEMBER SET email = $1, username = $2 WHERE memberID = $3`, [email, username, id]
-    )
+    const updateMemberInfo = await db.none(
+        `UPDATE member SET "email" = $1, "username" = $2 WHERE "memberID" = $3`, [email, username, id]
+    );
 
-    console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
+    console.log("[SUCCESS]: USER INFO UPDATED");
 
     res.json({
-      data: { ...profileInfo },
+      data: { ...updateProfileInfo, ...updateMemberInfo }, 
       status: 202,
-      message: "User Fetch Successful",
+      message: "User Info Successfully Updated",
       pgErrorObject: null,
     });
   } catch (error) {
@@ -31,7 +30,7 @@ router.post("/api", async (req, res) => {
         JSON.stringify({
           data: null,
           status: 500,
-          message: "User Fetch Failed",
+          message: "User Info Update Failed",
           pgErrorObject: {
             ...error,
           },
@@ -40,7 +39,7 @@ router.post("/api", async (req, res) => {
     res.json({
       data: null,
       status: 500,
-      message: "User Fetch Failed",
+      message: "User Update Failed",
       pgErrorObject: {
         ...error,
       },
