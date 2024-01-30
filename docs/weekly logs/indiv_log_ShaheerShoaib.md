@@ -569,6 +569,28 @@
 
 ## Individual Objectives
 
+
+- Research Websockets, and How To Implement In Express
+- Implement Real Asynchronous Live Messaging Via WebSockets, and Corresponding Documentation
+    - Implemented via an event-based broadcast algorithm
+- Provide Feedback On Proposed Designs For Website
+- Assisted Teammate (Arsh) With Integrating Video Upload Into Website
+  
+## Active Tasks - 
+
+- Research Websockets, and How To Implement In Express
+- Implement Real Asynchronous Live Messaging Via WebSockets, and Corresponding Documentation
+    - Implemented via an event-based broadcast algorithm
+- Provide Feedback On Proposed Designs For Website
+- Assisted Teammate (Arsh) With Integrating Video Upload Into Website
+
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Research Websockets, and How To Implement In Express
+- Implement Real Asynchronous Live Messaging Via WebSockets, and Corresponding Documentation
+    - Implemented via an event-based broadcast algorithm
+- Provide Feedback On Proposed Designs For Website
+- Assisted Teammate (Arsh) With Integrating Video Upload Into Website
 - Finish Backend For Search Page
 - Complete Design Of Search Page
   

@@ -4,40 +4,22 @@ const db = require("../db-connection.js");
 
 router.post("/api", async (req, res) => {
   console.log(req.body);
-
-  const userId = req.session.loggedInUserMemberID;
   
-  const { slug } = req.body;
-  try {
-    console.log("[FETCH USER]: IN TRY");
-    if (slug == "") {
-      console.log("[ERROR]: EMPTY FIELDS");
-      return res.json({
-        data: null,
-        status: 400,
-        message: "Missing Parameters.",
-        pgErrorObject: null,
-      });
-    }
-    const user = await db.one(
-      `SELECT email, "memberID", name, username FROM member WHERE username = $1`,
-      [slug]
-    );
 
-    // if (user.length != 1) {
-    //   console.log("[ERROR]: USER NOT FOUND");
-    //   return res.json({
-    //     data: null,
-    //     status: 404,
-    //     message: "User Not Found",
-    //     pgErrorObject: null,
-    //   });
-    // }
+  const {fullName, email, username, country, address, bio, id} = req.body;
+  try {
+    const profileInfo = await db.one(
+      `UPDATE PROFILE SET name = $1, country = $2, address = $3, bio = $4 WHERE memberID = $5`, 
+      [fullName, country, address, bio, id]
+    );
+    const memberInfo = await db.one(
+        `UPDATE MEMBER SET email = $1, username = $2 WHERE memberID = $3`, [email, username, id]
+    )
 
     console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
 
     res.json({
-      data: { ...user },
+      data: { ...profileInfo },
       status: 202,
       message: "User Fetch Successful",
       pgErrorObject: null,

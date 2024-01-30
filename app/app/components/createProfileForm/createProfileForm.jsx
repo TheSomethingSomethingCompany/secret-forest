@@ -2,21 +2,31 @@
 import OccupationTags from "../occupationTags/OccupationTags";
 import defaultProfilePicture from "../../images/defaultProfilePicture.jpg";
 import editIcon from "../../images/pencil-solid.svg";
-import { useState, useEffect, use } from "react";
+import { useState } from "react";
 import { createAProfile } from "../../createProfile/api/createAProfile.js";
 import {useRouter} from "next/navigation";
 import React from 'react';
 import Image from "next/legacy/image";
+import Input from "../formComponents/Input";
 
 function CreateProfileForm() {
-   
+    const [imageFile, setImageFile] = useState(defaultProfilePicture);
+    const [currentTags, setTags] = useState([]); /* Send this as a reference to OccupationTags */
+    /* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
+    /* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
+    const [fullName, setFullName] = useState("");
+    const [country, setCountry] = useState("");
+    const [address, setAddress] = useState("");
+    const [bio, setBio] = useState("");
+
+
     return (
         <>
-            <form action="" method="post" className="flex justify-center relative overflow-y-auto w-full h-screen overflow-y-auto bg-gradient-to-r from-blue-500 to-green-500">
-                <div id = "labels-and-inputs-container" className = "flex h-[100vh] min-w-[25rem] w-1/2 max-w-[50rem] flex-col items-center p-2"> {/* Ensures the labels div and the inputs div are side-by-side */}
-                    <CreateProfileHeader/>
-                    <ProfilePicture/>
-                    <FormLabelsAndInputs/>
+            <form method="POST" className="m-4 p-4 flex flex-col justify-center relative overflow-y-auto w-full h-auto bg-white">
+				<CreateProfileHeader/>
+                <div id = "labels-and-inputs-container" className = "flex w-full flex-row items-center"> {/* Ensures the labels div and the inputs div are side-by-side */}
+                    <ProfilePicture imageFile = {imageFile} setImageFile = {setImageFile}/>
+                    <FormLabelsAndInputs imageFile = {imageFile} fullName = {fullName} setFullName = {setFullName} country = {country} setCountry = {setCountry} address = {address} setAddress = {setAddress} bio = {bio} setBio = {setBio} currentTags = {currentTags} setTags = {setTags}/>
                 </div>        
             </form>         
         </>
@@ -27,14 +37,14 @@ function CreateProfileForm() {
 function CreateProfileHeader()
 {
     return (
-    <div className = "w-full mb-10 mt-20 flex justify-center">
+    <div className = "w-full flex flex-row justify-left">
         <h1 className = "font-semibold mobile:text-[2rem] tablet:text-[3rem] desktop:text-[4rem]">Create Your Profile</h1> 
     </div>
     );
 
 }
 
-function FormLabelsAndInputs()
+function FormLabelsAndInputs({imageFile})
 {
 
     const router = useRouter();
@@ -103,15 +113,19 @@ function FormLabelsAndInputs()
         if(address == "")
             setAddressLabelHTML({__html:'<span class = "text-red-500"> You cannot leave this field empty! Please enter your address:</span>'});
     }
-    function formDataAsJSON()
+
+    function collectFormData()
     {
-        return {
-            fullName: fullName,
-            country: country,
-            address: address,
-            bio: bio,
-            occupationTags: JSON.stringify(currentTags),
-        };
+
+        const formData = new FormData();
+        console.log('imageFile: ', imageFile);
+        formData.append("profilePicture", imageFile);
+        formData.append("fullName", fullName);
+        formData.append("country", country);
+        formData.append("address", address);
+        formData.append("bio", bio);
+        formData.append("occupationTags", JSON.stringify(currentTags));
+        return formData;
     };
 
     async function onSubmit(e)
@@ -120,11 +134,10 @@ function FormLabelsAndInputs()
         e.preventDefault();
         if(fullName != "" && country != "" && address != "")
         {
-            var response = await createAProfile(formDataAsJSON());
+            var response = await createAProfile(collectFormData());
             if(response.status == 201)
             {
-                alert("Created Your Profile")
-               // router.push("/Search"); // Code for this page has not been written yet
+               router.push("/chats"); // Code for this page has not been written yet
             }
             else if(response.status == 401)
             {
@@ -137,17 +150,21 @@ function FormLabelsAndInputs()
             }
         }
         else displayRequiredFields();
-    }
+    };
+    
+
 
     return(
-    <>
+    <section className="flex flex-col w-full">
         <FlexLabelAndTextInput labelVal = {fullNameLabelHTML} inputName = "fullName" required = {true} onChangeFunction = { onFullNameChange } placeHolder = "e.g., John Wilfred Doe"/> 
         <FlexLabelAndTextInput labelVal = {countryLabelHTML} inputName="country" required = {true} onChangeFunction = { onCountryChange } placeHolder = "e.g, Canada"/> 
-        <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange } placeHolder = "e.g, 111 Wellington St."  /> 
+        <FlexLabelAndTextInput labelVal = {addressLabelHTML} inputName = "address" required = {true} onChangeFunction = { onAddressChange } placeHolder = "e.g, 111 Wellington St."  />
+		{//<Input label="Occupation Tags:" type="text" id="occupationTags" name="occupationTags" placeholder="e.g., Software Engineer"
+			}
         <FlexLabelAndOtherInput labelVal = "Occupation Tags:" inputName = "occupationTags"> <OccupationTags  id = "occupationTags" inputName = "occupationTags" inputFieldStyles = "w-3/4 h-[2.5rem] rounded-md p-2 text-[1.25rem]" placeHolder = "e.g, Software Engineer" tagColor = "bg-green-500" currentTags = {currentTags} setTags = {setTags}/></FlexLabelAndOtherInput> 
-        <FlexLabelAndOtherInput labelVal = "Bio:" inputName = "bio"> <textarea id = "bio" className = "mobile:h-[15rem] tablet:h-[20rem] desktop:h-[30rem] text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2" name = "bio" placeholder= "e.g, I have a Bachelor's degree in computer science and am an avid learner. While I love working in software, when not at work, you can find me in the great outdoors." onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
-        <FormButtons onSubmitHandler = {onSubmit} />
-    </>
+        <FlexLabelAndOtherInput labelVal = "Bio:" inputName = "bio"> <textarea id = "bio" className = "mobile:h-auto text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2" name = "bio" placeholder= "e.g, I have a Bachelor's degree in computer science and am an avid learner. While I love working in software, when not at work, you can find me in the great outdoors." onChange = {onBioChange}></textarea> </FlexLabelAndOtherInput> 
+        <FormButtons onSubmitHandler = {onSubmit}/>
+    </section>
     );
     
 };
@@ -169,10 +186,22 @@ function FlexLabelAndTextInput(props)
    
 
 return(
-    <div className = "w-full mt-10 mb-10 flex flex-col items-center">
-            <label htmlFor = {props.inputName} cum = {props.inputName} className="font-semibold mb-2 hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
-            <br></br>
-            <input id = {props.inputName}  type = "text" className = "text-black w-3/4 p-2 h-[2.5rem] rounded-md text-[1.25rem]" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} onBlur = {props.onChangeFunction} placeholder = {props.placeHolder}></input>
+    <div className = "w-full mx-4 px-4 flex flex-col justify-start items-start">
+			{
+			//<label htmlFor = {props.inputName} cum = {props.inputName} className="font-semibold mb-2 hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
+            //<br></br>
+			//<input id = {props.inputName}  type = "text" className = "bg-[#f4f4f5] hover:bg-[#e4e4e7] py-2 px-3 flex flex-col w-full rounded-xl hover:cursor-text my-2 text-md" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} onBlur = {props.onChangeFunction} placeholder = {props.placeHolder}></input>
+			}
+			<Input
+            label={props.labelVal}
+			dsh={props.labelVal}
+            type="text"
+            id={props.inputName}
+            name={props.inputName}
+            placeholder={props.placeHolder}
+            onChange={props.onChangeFunction}
+            onBlur={props.onChangeFunction}
+          />
     </div>);
     
 };
@@ -191,12 +220,14 @@ function FormButtons({onSubmitHandler})
 
 
 
-function ProfilePicture() 
+function ProfilePicture({imaageFile, setImageFile}) 
 {
+
     const [image, setImage] = useState(defaultProfilePicture);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        setImageFile(file);
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
