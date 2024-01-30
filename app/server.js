@@ -69,6 +69,9 @@ server.use("/fetchProfileData", fetchProfileDataRoutes);
 const fetchSearchResultsRoutes = require("./app/routes/FetchSearchResults");
 server.use("/fetchSearchResults", fetchSearchResultsRoutes);
 
+const sessionCheck = require("./app/routes/SessionCheck");
+server.use("/sessionCheck", sessionCheck);
+
 const saveProfileDatsRoutes = require("./app/routes/SaveProfileData");
 server.use("/saveProfileData", saveProfileDatsRoutes);
 

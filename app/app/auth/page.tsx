@@ -147,6 +147,7 @@ export default function UserAuthentication({ params }: userauthprops) {
       console.log(response);
 
       router.push("/createProfile");
+	 
     } catch (error) {
       console.log(error);
     }

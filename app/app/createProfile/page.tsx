@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
 
-    <main className = "w-full h-full flex justify-center items-center bg-blue-500">
+    <main className = "w-full h-full flex justify-center items-center">
       <CreateProfileForm />
     </main>
     
