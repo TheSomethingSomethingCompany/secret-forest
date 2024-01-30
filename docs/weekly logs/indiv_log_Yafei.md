@@ -362,6 +362,7 @@ Current design idea for edit profile
 
 ![term2w1](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/034be2a0-4e7e-4e28-8dee-6e8ca0e6e7e8)
 
+
 **Term 2 Week: 2** 
 **Work Period**: `15-01-2024` - `21-01-2024`
 **GitHub Account**: `YaffyTaffy`

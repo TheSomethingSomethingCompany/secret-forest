@@ -5,7 +5,7 @@
 const pgp = require('pg-promise')();
 
 const cn = {
-    host: 'localhost', // the service name from docker-compose.yml
+    host: 'db', // the service name from docker-compose.yml
     port: 5432,
     database: 'postgres', 
     user: 'postgres',
