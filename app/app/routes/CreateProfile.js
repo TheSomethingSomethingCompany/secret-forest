@@ -13,7 +13,8 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
         res.json({ status: 401, message: 'Unauthorized access' });
     }
     else
-    { 
+    
+{ 
         console.log("[MEMBER ID]: " + memberID);
         console.log("[REQUEST BODY FOR PROFILE CREATION]:");
         console.log(req.body);
