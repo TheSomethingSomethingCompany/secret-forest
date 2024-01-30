@@ -53,6 +53,13 @@ CREATE TABLE profile_picture (
     	on delete cascade on update cascade
 );
 
+CREATE TABLE files (
+    "memberID" uuid,
+    "fileName" TEXT,
+    foreign key ("memberID") references member("memberID")
+    	on delete cascade on update cascade
+);
+
 CREATE TABLE chat(
   "chatID" SERIAL PRIMARY KEY,
   "memberID1" uuid NOT NULL,
