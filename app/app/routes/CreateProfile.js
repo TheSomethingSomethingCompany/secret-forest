@@ -1,23 +1,39 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db-connection.js");
-const e = require("express");
+const path = require("path");
+const multer = require("multer");
+
+var currentDate = null;
+var fileExt = null;
+const storage = multer.diskStorage({
+    destination: "./app/uploads", // Store the file in this directory
+    filename: function (req, file, cb) {
+        currentDate = Date.now(); // Get the current date and time in milliseconds
+        fileExt = path.extname(file.originalname); // Get the file extension of the uploaded file
+        cb(null, currentDate + fileExt); // Since file names are not guaranteed to be unique, we will use the current date and time in milliseconds as the file name, along with the file extension, such as .jpg or .png.                                                        // Also, cb is just a callback that takes in the first argument as null, and the second argument as the file name that we want to use for the uploaded file.
+    },
+    });
+const upload = multer({ storage: storage }); // "profilePicture" is the name of the file input field in the form
 
 
-router.post('/api', async (req, res) => { // ./createAProfile/api will utilize this route. /api isn't necessary, but it makes it apparent that this is a route call.
+router.post('/api',upload.single('profilePicture'), async (req, res) => { // ./createAProfile/api will utilize this route. /api isn't necessary, but it makes it apparent that this is a route call.
                                         // By calling router.get() or router.post(), it will implicitly send 3 arguments to the callback function: req, res, and next. req is the request object from the client, res is the response object that handles sending data back to the client, and next is a function that will call the next middleware function in the stack.
     const memberID = req.session.signUpMemberID; // Retrieve memberID from session data, which was set in the SignUp route
     console.log("[MEMBER ID IN CREATE PROFILE]: " + memberID);
+    console.log("[REQUEST FILE]: " + req.file);
     if(memberID == null) // If memberID is null, then a user is accessing this route without signing up first, since the memberID is stored in session data upon sign up
     {
         res.json({ status: 401, message: 'Unauthorized access' });
     }
     else
-    { 
+    
+{ 
         console.log("[MEMBER ID]: " + memberID);
         console.log("[REQUEST BODY FOR PROFILE CREATION]:");
         console.log(req.body);
         const {fullName, country, address, bio, occupationTags} = req.body;
+        const occupationTagsAsArray = JSON.parse(occupationTags);
 
         try
         {
@@ -27,7 +43,29 @@ router.post('/api', async (req, res) => { // ./createAProfile/api will utilize t
             }
             else
             {
-                await db.none('INSERT INTO profile("memberID", "name", "country", "address", "bio") VALUES($1, $2, $3, $4, $5)', [memberID, fullName, country, address, bio]);
+                if(req.file == null) // If user did not upload a profile picture, then set the profile picture path to be the default profile picture
+                    pfpPath = "defaultProfilePicture.png";
+                else
+                    pfpPath = currentDate + fileExt; // Set the profile picture path to be the current date and time in milliseconds, along with the file extension
+
+                await db.tx(async t => { // Use transactions to ensure that all queries are executed successfully, or else rollback all queries
+                    await t.none('INSERT INTO profile("memberID", "name", "country", "address", "bio", "pfpPath") VALUES($1, $2, $3, $4, $5, $6)', [memberID, fullName, country, address, bio, pfpPath]); // Insert profile data into profile table
+                    for (let tag of occupationTagsAsArray) {
+                       await t.none('INSERT INTO tag("tagName") VALUES($1) ON CONFLICT DO NOTHING', [tag]);
+                    }
+
+                    const tagIDs = await t.any('SELECT "tagID" FROM tag WHERE "tagName" = any($1)', [occupationTagsAsArray]); // Retrieve tagIDs for each tag in occupationTags
+
+                    for (let tagIDsRow of tagIDs) {
+                       await t.none('INSERT INTO user_tag("memberID", "tagID") VALUES($1, $2)', [memberID, tagIDsRow.tagID]); // Insert tagIDs into user_tag table
+                    }
+
+                    
+
+                });
+
+                
+
                 res.json({ status: 201, message: 'Profile created successfully' });
                 console.log("[PROFILE CREATION SUCCESSFUL FOR MEMBER ID]: " + memberID);
                 delete req.session.signUpMemberID // Destroy signUp session data

@@ -2,6 +2,7 @@
 import SearchBar from "../components/searchBar/Searchbar";
 import OccupationTags from "../components/occupationTags/OccupationTags";
 import fetchSearchResults from "./api/search";
+import createChat from "./api/createChat";
 import React, { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -46,6 +47,12 @@ export default function Home() {
         setHasOnlyTags(!hasOnlyTags);
       }
 
+      function createChatWithUser(username){
+        createChat({username: username}).then((res) => {
+          console.log(res);
+        });
+      }
+
   return (
 
     <main className = "w-full h-full flex flex-col justify-center items-center">
@@ -59,7 +66,7 @@ export default function Home() {
     <p className="text-lg mb-2">Email: {result.email}</p>
     <p className="text-lg mb-2">Name: {result.name}</p>
     <p className="text-lg">Tags: {result.tags.join(', ')}</p>
-  </div>
+    <button onClick={() => createChatWithUser(result.username)}>Create Chat</button>  </div>
 ))}
     </main>
     

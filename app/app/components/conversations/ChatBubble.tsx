@@ -45,10 +45,11 @@ function ChatBubble({
   
   console.log(mouseOver);
   return (
-    <section>
+    <section className="w-full">
       {isYou ? (
+		<div className="flex flex-row justify-end w-full">
         <div
-          className="p-2 text-xl max-w-md"
+          className="p-2 text-xl max-w-md w-full"
           onMouseEnter={() => setMouseOver(true)}
           onMouseLeave={() => setMouseOver(false)}
           style={
@@ -57,18 +58,18 @@ function ChatBubble({
             } as any
           }
         >
-          <div className="flex flex-row justify-end items-end">
-            <div className="relative z-0 p-2 mr-1 w-fit max-w-[14rem] flex flex-row justify-start bg-[#102E51] text-white rounded-xl text-start">
+          <div className="flex flex-row justify-end items-end w-full">
+            <div className="relative z-0 p-2 mr-1 w-fit max-w-[14rem] flex flex-row justify-start bg-[#102E51] text-white rounded-lg text-start">
               <p id="name">{name}</p>
             </div>
 			<img
               src={PenguinC.src}
               alt="ProfilePicture"
-              className="relative z-10 h-24 w-24 rounded-full object-cover"
+              className="relative z-10 min-w-[6rem] min-h-[6rem] max-w-[6rem] max-h-[6rem] h-24 w-24 rounded-full object-cover"
             />
 
           </div>
-          <div ref = {referenceToMessageBox} className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-xl w-full p-4 MESSAGEBOXISHERE bg-white" >
+          <div ref = {referenceToMessageBox} className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-lg w-full p-4 MESSAGEBOXISHERE bg-white" >
             { isEditing ? ( // Since the key of the ChatBubble does not change, we do not have to worry about the input field being cancelled as a result of Chats Page recreating the ChatBubble for every new message, since the corresponding ChatBubble will be recreated with the same key, and thus React will use the existing ChatBubble instead of creating a new one.
               <input ref = {referenceToEditBox} type = "text" defaultValue = {messageText} className = "w-full h-full" />
             ) : (
@@ -84,20 +85,20 @@ function ChatBubble({
               (
                 // If the user is editing the message, show the save button, and the cancel button.
                 <> {/* DUE TO THIS, THE STYLES ARE NOT BEING APPLIED TO THESE INNER DIVS MOST LIKELY */}
-                  <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white hover:cursor-pointer" onClick = {() => { setIsEditing(false); setMessageText(referenceToEditBox?.current?.value || ''); saveToDatabaseHandler(referenceToEditBox?.current?.value || '', id); }} >
+                  <div className="p-2 hover:bg-[#1e5696] bg-[#102E51] rounded-b-lg mx-[0.3rem] text-white hover:cursor-pointer" onClick = {() => { setIsEditing(false); setMessageText(referenceToEditBox?.current?.value || ''); saveToDatabaseHandler(referenceToEditBox?.current?.value || '', id); }} >
                     <i className="ri-save-fill"></i>
                   </div>
-                  <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] mr-4 text-white hover:cursor-pointer" onClick = {() => { setIsEditing(false); }} >
+                  <div className="p-2 hover:bg-[#1e5696] bg-[#102E51] rounded-b-lg mx-[0.3rem] mr-4 text-white hover:cursor-pointer" onClick = {() => { setIsEditing(false); }} >
                     <i className="ri-close-fill"></i>
                   </div>
                   </>
               ):(
                 <>
-                  <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white hover:cursor-pointer" onClick = {onDeleteButtonClick} data-message-id = {id}>
+                  <div className="p-2 bg-[#102E51] rounded-b-lg mx-[0.3rem] text-white hover:cursor-pointer" onClick = {onDeleteButtonClick} data-message-id = {id}>
                     <i className="ri-delete-bin-2-fill"></i>
                   </div>
                   <div
-                    className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white cursor-pointer"
+                    className="p-2 bg-[#102E51] rounded-b-lg mx-[0.3rem] text-white cursor-pointer"
                     onClick={() => {
                       navigator.clipboard.writeText(
                         document.getElementById("message")?.textContent ?? ""
@@ -106,7 +107,7 @@ function ChatBubble({
                   >
                     <i className="ri-clipboard-fill"></i>
                   </div>
-                  <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] mr-4 text-white hover:cursor-pointer" onClick = {onEditButtonClick}>
+                  <div className="p-2 bg-[#102E51] rounded-b-lg mx-[0.3rem] mr-4 text-white hover:cursor-pointer" onClick = {onEditButtonClick}>
                     <i className="ri-edit-fill"></i>
                   </div>
                 </>
@@ -114,6 +115,7 @@ function ChatBubble({
           }
           </div>
         </div>
+		</div>
       ) : (
         <div
           className="p-2 text-xl max-w-md"
@@ -131,11 +133,11 @@ function ChatBubble({
               alt="ProfilePicture"
               className="relative w-24 h-2w-24 rounded-full object-scale-down z-10"
             />
-            <div className="relative ml-1 p-2 w-[14rem] flex flex-row justify-start w-fit max-w-[14rem] bg-blue-600 text-white rounded-xl z-0 TAGHERE">
+            <div className="relative ml-1 p-2 w-[14rem] flex flex-row justify-start w-fit max-w-[14rem] bg-blue-600 text-white rounded-lg z-0 TAGHERE">
               <p id="name">{name}</p>
             </div>
           </div>
-          <div className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-xl bg-white w-full p-4">
+          <div className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-lg bg-white w-full p-4">
             <p id="message">{messageText}</p>
           </div>
           <div className="-z-10 w-full flex flex-row justify-end mr-8 -translate-y-[--translateAmt] transition-transform duration-300">

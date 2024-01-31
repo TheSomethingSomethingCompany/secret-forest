@@ -359,3 +359,30 @@ As discussed with the TA, I will be providing some additional notes regarding my
 ## Peer Review
 ![week 14](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/291b753c-a425-49ba-9ea0-d8b4987283c6)
 
+**Week**: 15
+
+**Work Period**: 15 January 2024 - 21 January 2024
+
+## Individual Objectives
+
+- Worked on the dockerization of the application. Created `Dockerfiles` for any required service and updated the `docker-compose.yml` to work accordingly. Had to research and understand the concpets of how docker works and the datails of writitng and updating a docker files in preparation for deployment. Also had some difficulty regarding the ports and the environment variables which were solved. Then started work on first steps of deployment to AWS ECS with Fargate.
+
+## Active Tasks
+
+- Research and understand how docker works and how to dockerize
+	- Dockerize Database
+ 	- Dockerize ExpressJS
+	- Dockerize NextJS
+ - Started working on AWS deployment with Fargate
+   
+## Status of Tasks
+
+- Research and understand how docker works and how to dockerize - Completed
+	- Dockerize Database
+ 	- Dockerize ExpressJS
+	- Dockerize NextJS
+ - Started working on AWS deployment with Fargate - In Progress
+
+
+## Peer Review
+![week 15](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/7ef7aae1-2580-498c-b263-78bcf0a9106b)
