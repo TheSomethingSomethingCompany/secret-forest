@@ -32,21 +32,25 @@ router.post('/api', upload.single('file'), async(req,res) => {
     console.log('req.body', req.body)
     console.log('req.file', req.file)
 
-    const params = {
-        Bucket: bucketName, //upload will happen to this s3 bucket
-        Key: req.file.originalname, //name of the file that is on the user's computer
-        Body: req.file.buffer,  //buffer contains the actual binary data of the file
-        ContentType: req.file.mimetype, //the type of the file in question
-    }
-    const command = new PutObjectCommand(params)
-
-    await s3Object.send(command);
-
-    await db.none('INSERT INTO files("memberID", "fileName") VALUES ($1, $2)', [memberID, req.file.originalname]); 
-    //inserts image name and associates it with the current user. 
-    //currently this serves no purpose but will be needed when retrieving images from s3 with signed URLs
+    if(req.file){
+        
+        const params = {
+            Bucket: bucketName, //upload will happen to this s3 bucket
+            Key: req.file.originalname, //name of the file that is on the user's computer
+            Body: req.file.buffer,  //buffer contains the actual binary data of the file
+            ContentType: req.file.mimetype, //the type of the file in question
+        }
+        const command = new PutObjectCommand(params)
     
-    res.json({status:200, message:"image saved successfuly??"});
+        await s3Object.send(command);
+    
+        await db.none('INSERT INTO files("memberID", "fileName") VALUES ($1, $2)', [memberID, req.file.originalname]); 
+        //inserts image name and associates it with the current user. 
+        //currently this serves no purpose but will be needed when retrieving images from s3 with signed URLs
+        
+        res.json({status:200, message:"image saved successfuly??"});
+    
+    }
 })
 
 module.exports = router

@@ -5,7 +5,6 @@ import { useState } from "react";
 import fileUpload from "./api/fileUpload.js";
 
 
-
 export default function main(){
 
   const [file, setFile] = useState(null);
@@ -25,9 +24,9 @@ export default function main(){
     
     var response = await fileUpload(formData)
     if(response.status == 200){
-      alert("file uploaded successfuly!");
+      // alert("file uploaded successfuly!");
     }else{
-      alert("no response from server");
+      // alert("no response from server");
     }
   }
 
@@ -47,9 +46,6 @@ return(
 
 
 )
-
-
-
 
 }
 
