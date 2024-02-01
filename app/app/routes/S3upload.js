@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../db-connection.js");
 const multer = require("multer");
 // const S3Client = require("@aws-sdk/client-s3");
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const dotenv = require("dotenv");
 dotenv.config();
 
