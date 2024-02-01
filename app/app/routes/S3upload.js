@@ -12,11 +12,13 @@ const bucketName = process.env.BUCKET_NAME
 const bucketRegion = process.env.BUCKET_REGION
 const accessKey = process.env.ACCESS_KEY
 const secretAccessKey = process.env.SECRET_ACCESS_KEY
+const sessionToken = process.env.SESSION_TOKEN
 
 const s3Object = new S3Client({ //creates a s3 object given the environment variables
     credentials:{
         accessKeyId: accessKey,
         secretAccessKey: secretAccessKey,
+        sessionToken: sessionToken,
     },
     region: bucketRegion
 });
@@ -44,7 +46,7 @@ router.post('/api', upload.single('file'), async(req,res) => {
     
         await s3Object.send(command);
     
-        await db.none('INSERT INTO files("memberID", "fileName") VALUES ($1, $2)', [memberID, req.file.originalname]); 
+        // await db.none('INSERT INTO files("memberID", "fileName") VALUES ($1, $2)', [memberID, req.file.originalname]); 
         //inserts image name and associates it with the current user. 
         //currently this serves no purpose but will be needed when retrieving images from s3 with signed URLs
         
