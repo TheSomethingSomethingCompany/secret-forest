@@ -6,7 +6,22 @@ router.post("/api", async (req, res) => {
   
 
   const {fullName, country, address, bio, username, email, id} = req.body;
+
   try {
+
+    const uniqueUserName = await db.any(
+      `SELECT "memberID" FROM member WHERE username = $1`, [username]
+    );
+
+    if (uniqueUserName.length > 1){
+      res.json({ status: 404, message: 'This username is already being used' });
+    }
+
+    else if (uniqueUserName.length === 1 && uniqueUserName[0].memberID !== id) {
+      res.json({ status: 404, message: 'This username is already being used'});
+    }
+
+    else {
     const updateProfileInfo = await db.none(
       `UPDATE profile SET "name" = $1, "country" = $2, "address" = $3, "bio" = $4 WHERE "memberID" = $5`, 
       [fullName, country, address, bio, id]
@@ -23,6 +38,8 @@ router.post("/api", async (req, res) => {
       message: "User Info Successfully Updated",
       pgErrorObject: null,
     });
+      }
+
   } catch (error) {
     console.log("[ERROR NAME]:\n" + error.name);
     console.log(
@@ -45,6 +62,7 @@ router.post("/api", async (req, res) => {
       },
     });
   }
+  
 });
 
 module.exports = router;

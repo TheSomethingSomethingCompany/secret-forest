@@ -47,7 +47,6 @@ import updateProfileInfo from "../api/saveProfileData";
     useEffect(() => {fetchData();}, []);
     useEffect(() => {setTempProfile({ ...profile });}, [profile]);
 
-
     
 
     
