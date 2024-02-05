@@ -236,3 +236,60 @@ Satanshu Mishra: `SatanshuMishra`
 ### Burn-Up Chart
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/286c04bc-63ce-4311-a5b9-551a552e56c9)
 
+
+**Term 2 - Week 4 (Week 17)**: 29/01/2024 - 04/02/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Research object detection in OpenCV
+- Research object detection with AWS Rekognition
+- Implement recording user video and audio for file upload
+- Reformat file upload page
+- Work on Edit Profile Page
+- Work on deployment to AWS Fargate using ECS
+- Fixed routing from sign-in to dashboard
+- Redesign sign-in page to standardize
+- Redesign create profile to match sign-in aesthetic
+- Added checkbox if user read terms and conditions
+- Added further validation for sign-up
+- Fixed sign-in bugs
+- Discussed security implementations (JWT vs Sessions)
+    - Decided to go with session data after weighing pros and cons
+- Started exploring session data to update page components without refresh
+- Facilitaed file upload to AWS S3 bucket from within our app
+
+## Accomplishments
+
+- Research object detection in OpenCV - `Completed`
+- Research object detection with AWS Rekognition - `In-Progress`
+- Implement recording user video and audio for file upload - `Completed`
+- Reformat file upload page - `Completed`
+- Work on Edit Profile Page - `In-Progress`
+- Work on deployment to AWS Fargate using ECS - `Halted`
+- Fixed routing from sign-in to dashboard - `Completed`
+- Redesign sign-in page to standardize - `Completed`
+- Redesign create profile to match sign-in aesthetic - `In-Progress`
+- Added checkbox if user read terms and conditions - `Completed`
+- Added further validation for sign-up - `Completed`
+- Fixed sign-in bugs - `Completed`
+- Discussed security implementations (JWT vs Sessions) - `Completed`
+    - Decided to go with session data after weighing pros and cons
+- Started exploring session data to update page components without refresh - `In-Progress`
+- Facilitaed file upload to AWS S3 bucket from within our app - `In-Progres` (AWS access key issue only)
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/3e9528f6-3915-4ad3-9b96-7d2d996f264a)
+
