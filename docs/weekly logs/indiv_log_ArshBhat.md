@@ -340,3 +340,41 @@
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/a593d6d1-d7c2-4ee8-8d96-55138e5a1e85)
 
 
+# Personal Log - Arsh Bhat
+
+**Week**: 17
+**Week**: `29-01-2024` - `04-02-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Code option for user to screen record videos to upload
+  - Create a new window with a preview screen for users to see themselves while recording
+  - Code ability to record audio as well
+  - Fix audio drop issues
+  - Style Start/Stop buttons and adjust page layout due to them
+- Research on object detection and blurring
+  My Research began with understanding how blurring works on a deeper level. I read about face detection using the OpenCV library and got a browser environment code for detecting faces in video capture. However, when I tried implementing the same strategy into my Node.js environment, it was incompatible with the latest version. I also read that the same code could only process 1 image at a time and not a continuous video on my laptop. I read about more and more algorithms and understood that performing face detection locally is simply too time-consuming. Hence, I switched to a third-party API-based method, Amazon Rekognition. I researched more and understood that I had to send this video file as an S3 bucket. After that, we will use a lambda function and recognize faces. I will be implementing that this week.
+- Code ability to detect and blur out faces in user-input videos
+ 
+## Active Tasks
+- Code option for user to screen record videos to upload
+  - Create a new window with a preview screen for users to see themselves while recording
+  - Code ability to record audio as well
+  - Fix audio drop issues
+  - Style Start/Stop buttons and adjust page layout due to them
+- Research on object detection and blurring
+- Code ability to detect and blur out faces in user-input videos
+  
+## Status of Tasks
+
+- Code option for user to screen record videos to upload
+  - Create a new window with a preview screen for users to see themselves while recording - `COMPLETED`
+  - Code ability to record audio as well - `COMPLETED`
+  - Fix audio drop issues - `COMPLETED`
+  - Style Start/Stop buttons and adjust page layout due to them - `COMPLETED`
+- Research on object detection and blurring - `COMPLETED`
+- Code ability to detect and blur out faces in user-input videos - `IN-PROGRESS`
+
+## Peer Review
+
+
