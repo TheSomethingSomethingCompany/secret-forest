@@ -460,9 +460,9 @@ Wasn't able to work on the project that much as I mentioned in the peer evals
 
 - Refine edit profile page 
   - check if current user is the same as the profile they are viewing (In-progress)
-  - check that the username is unique (In-progress)
+  - check that the username is unique (Completed)
   - check that required information is not left blank (Completed)
-  - add profile image change functionality (In-progress)
+  - add profile image change functionality (On Hold)
   - add occupational tags change functionality (In-progress)
 - Address feedback made from peer testing 
   - fix bio display so that there is no text overflow (Completed)
