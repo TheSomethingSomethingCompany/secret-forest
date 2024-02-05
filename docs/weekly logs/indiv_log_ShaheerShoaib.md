@@ -624,5 +624,32 @@
 ## Peer Review
 <img width="709" alt="2024-01-26_23-05-42" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/16afc746-fa56-4f86-903e-76b37da63291">
 
+**Work Period**: 28/01/2024 - 4/02/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Implement storing occupaton tags specified in create profile page to the database
+- Implement storing profile picture specified in create page in the database, and locally on express server via multer
+- Implement creating a chat with a user from a search result via the UI
+- Research differences between JWT and Session Data
+    - JWT is essentially a different approach to session data, where data associated with a user is stored within an object on the client side, which is initially created on the server side and signed.
+    - The idea is that the server will verify and read the data from the JWT to essentially get access to user information via the database, such as a user id
+    - This nullifies the need for session data as session data would typically store the user id
+    - As a result, the load on the server is offloaded as it doesn't need to manage sessions
+    - However, it is still susceptible to Stored XSS attacks, just like session data via session keys.
+    - Given that we have already implemented session data on all of our routes, it doesn't seem prevelant to switch over to JWT, given that they both are susceptible to the same security issues
+- Assist Yafei with the Edit Profile page
+  
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Implement storing occupaton tags specified in create profile page to the database
+- Implement storing profile picture specified in create page in the database, and locally on express server via multer
+- Implement creating a chat with a user from a search result via the UI
+- Research differences between JWT and Session Data
+- Assist Yafei with the Edit Profile page
+  
+## Peer Review
+<img width="1065" alt="2024-02-05_04-44-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f94fc06b-1c56-4a02-b530-e3f905dad9af">
+
 
 

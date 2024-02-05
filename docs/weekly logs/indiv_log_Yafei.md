@@ -434,6 +434,44 @@ Wasn't able to work on the project that much as I mentioned in the peer evals
 
 
 
+**Term 2 Week: 4** 
+**Work Period**: `29-01-2024` - `04-02-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Refine Edit Page
+- Address feedback made from peer testing
+
+## Active Tasks
+
+- Refine edit profile page
+  - check if current user is the same as the profile they are viewing
+  - check that the username is unique
+  - check that required information is not left blank
+  - add profile image change functionality
+  - add occupational tags change functionality
+- Address feedback made from peer testing
+  - fix bio display so that there is no text overflow
+  - adjust labels and layout of the edit information form so that the design looks more consistent 
+
+
+## Status of Tasks
+
+- Refine edit profile page 
+  - check if current user is the same as the profile they are viewing (In-progress)
+  - check that the username is unique (Completed)
+  - check that required information is not left blank (Completed)
+  - add profile image change functionality (On Hold)
+  - add occupational tags change functionality (In-progress)
+- Address feedback made from peer testing 
+  - fix bio display so that there is no text overflow (Completed)
+  - adjust labels and layout of the edit information form so that the design looks more consistent (Completed) 
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/8ef7912d-4733-4c71-8437-d9ea203407be)
+
 
 
 
