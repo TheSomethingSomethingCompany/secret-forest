@@ -430,3 +430,41 @@ after that issue was resolved i continued the deployment process by following tu
 
 ## Peer Review
 ![week 16](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/f504db9e-9166-41de-96c9-6dddc4ea615c)
+
+---------------------------
+
+**Week**: 17
+
+**Work Period**: 29 January 2024 - 4 February 2024
+
+## Individual Objectives
+
+At the start of this week Shaheer was working on video uploading to the database within our app but found out that our database is unbale to facilitate the storage of video files. From this he approached me saying that the only optimal solution to our video storage problem is to store the videos within AWS S3 buckets. Due to the importance of this feature to our project, i decided to put deployment to the side and focus on this. I had to research and understand S3 and how it would be integrated within our app. I also had to refamiliarize myself with our app is has been a while since i have coded a full feature as my focus has been AWS for a while now. I ended up coding our server endpoint, the API and the client front end. As of now, the feature works on that one page i have created but our objective is to get this feature integrated within our chats page (similar to the upload video button in whatsapp chat). Although it is working as intended there is one small issue which is the credentials needed to connect our app to the S3 bucket. right now i am using my own account's personal access and secret keys which i input into our `.env` file and that facilitates the connection. the problem is that these account access keys are rotated every 15-20 mins and cannot be placed and forgotten about in the code (as in everytime someone wants to use the app they need to enter the new keys). The only solutions i have found to fix this is the creation of IAM users and give them S3 access which would produce static/unchanging keys but the AWS accounts provisioned to us by the client dont have the permissions to create IAM users. I have asked around in class and the discord and am very puzzled as to how this problem can be solved. my target is to get this issue solved by next week and get it out the way because everything else regarding the upload works (to my current knowledge). below is a picture of the first file successfuly uploaded from within our app to S3 bucket
+
+![s3](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/9f8f6b2d-59fc-4dd2-8df8-d6e843f250fb)
+
+
+There was also an unexpected and weird issue that was encountered regarding docker once again. The app (both frontend with next and backend with express) would not reload/rerender on saving a change within the code which is what normally happens. Running the app as we have previously made it work as intended which was puzzling. I updated, restared and deleted all images and volumes associated along with my computer but to no avail. Yafei mentioned he is encountering the same issue but what is confusing is that Shaheer and Satanshu say that it works perfectly for them, as if they were running it manualy. This issue took some research to be done into it but to no avail regarding finding a solution for it (i think it may be an OS thing since yafei and i use windows while satanshu and shaheer use mac)
+
+
+
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+- Research and understand file upload to S3 buckets from within app
+- Develop endpoints and frontend implementation to facilitate S3 bucket upload
+- Find solution to rotating credentials issue
+- Fix the weird docker issue
+   
+## Status of Tasks
+
+- App deployment to ECS with Fargate - Halted
+- Research and understand file upload to S3 buckets from within app - Completed
+- Develop endpoints and frontend implementation to facilitate S3 bucket upload - Completed
+- Find solution to rotating credentials issue - In Progress
+- Fix the weird docker issue - In Progress
+
+
+## Peer Review
+![week 17](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/af391e08-283b-4df2-b4ad-5014d34b13a5)
