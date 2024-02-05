@@ -265,7 +265,10 @@ Satanshu Mishra: `SatanshuMishra`
     - Decided to go with session data after weighing pros and cons
 - Started exploring session data to update page components without refresh
 - Facilitaed file upload to AWS S3 bucket from within our app
-
+- Implemented uploading of profile pictures
+- Implemented creating chats with users via UI
+- Implemented insertion of occupation tags
+  
 ## Accomplishments
 
 - Research object detection in OpenCV - `Completed`
@@ -284,6 +287,9 @@ Satanshu Mishra: `SatanshuMishra`
     - Decided to go with session data after weighing pros and cons
 - Started exploring session data to update page components without refresh - `In-Progress`
 - Facilitaed file upload to AWS S3 bucket from within our app - `In-Progres` (AWS access key issue only)
+  - Implemented uploading of profile pictures - `Completed`
+- Implemented creating chats with users via UI - `Completed`
+- Implemented insertion of occupation tags - `Completed`
 
 
 ## Test Report
