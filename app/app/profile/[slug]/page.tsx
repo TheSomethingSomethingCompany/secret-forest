@@ -95,7 +95,11 @@ import updateProfileInfo from "../api/saveProfileData";
               setProfile({ ...tempProfile });
               console.log("save changes: ", tempProfile)
           }
-          else
+          else if (response.status == 404) {
+            alert("The username you selected is already taken. Please choose a different one.")
+
+          }
+          else 
           {
            alert("Sorry, we were unable to update your profile. Please try again.")
           }
