@@ -82,6 +82,9 @@ import updateProfileInfo from "../api/saveProfileData";
         };
     };
 
+    const router = useRouter();
+
+
     // Handler for the Save Changes button
     async function handleSave(e: { preventDefault: () => void; }) {
       setIsEditing(false);
@@ -93,7 +96,9 @@ import updateProfileInfo from "../api/saveProfileData";
           {
               alert("Updated Your Profile");
               setProfile({ ...tempProfile });
-              console.log("save changes: ", tempProfile)
+              console.log("save changes: ", tempProfile);
+              router.push('/profile/' + tempProfile.userName);
+
           }
           else if (response.status == 404) {
             alert("The username you selected is already taken. Please choose a different one.")
