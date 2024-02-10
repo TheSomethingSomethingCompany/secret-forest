@@ -14,6 +14,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Logo from "@/app/images/TheSomethingSomethingCompanyLogoV2.svg";
 import { useWebSocket } from "../contexts/WebSocketContext";
+import RootLayout from "../layout";
 
 // TYPE DEFINITION OF USER PROPS
 type userauthprops = {
@@ -199,7 +200,7 @@ export default function UserAuthentication({ params }: userauthprops) {
 	};
 
 	return (
-		<>
+		<RootLayout hideNavbar={true}>
 			<section className="z-50 w-screen p-10 flex flex-row justify-between items-center text-[1rem]">
 				<Link href={"./"}>
 					<Image
@@ -449,6 +450,6 @@ export default function UserAuthentication({ params }: userauthprops) {
 					</div>
 				</section>
 			)}
-		</>
+		</RootLayout>
 	);
 }
