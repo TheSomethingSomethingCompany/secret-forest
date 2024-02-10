@@ -189,7 +189,7 @@ export default function UserAuthentication({ params }: userauthprops) {
 				sendMessage("signedIn", {});
 				//router.push("/createProfile");
 			} else {
-				sendMessage({ action: "signedIn", body: {} });
+				sendMessage("signedIn", {});
 				//setLoggedIn(response);
 				//router.push("/searchpage");
 			}
