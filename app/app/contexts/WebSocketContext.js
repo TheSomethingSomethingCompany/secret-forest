@@ -22,6 +22,7 @@ export const WebSocketProvider = ({ children }) => {
 
 		// WHEN RECEIVE A MESSAGE FROM THE SERVER, CHECK TYPE AND PERFORM APPROPRIATE ACTION
 		ws.current.onmessage = (event) => {
+			console.log("[Session | Client] Message Received: ", event.data);
 			const message = JSON.parse(event.data);
 			switch (message.type) {
 				case "userStatus":

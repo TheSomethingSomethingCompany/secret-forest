@@ -116,7 +116,7 @@ interface LayoutProps {
 
 export default function RootLayout({
 	children,
-	hideNavbar = false,
+/* 	hideNavbar = false, */
 }: LayoutProps) {
 	return (
 		<html lang="en">
@@ -126,7 +126,7 @@ export default function RootLayout({
 					//<div className="snow2"></div>
 				}
 				<WebSocketProvider>
-					{!hideNavbar && <Navbar isLoggedIn={true} />}
+					<Navbar isLoggedIn={true} />
 					<div>{children}</div>
 				</WebSocketProvider>
 			</body>
