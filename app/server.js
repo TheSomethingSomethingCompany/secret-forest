@@ -81,6 +81,7 @@ server.listen(HTTP_PORT, () => {
 	console.log("Server started on http://localhost:6969");
 });
 
+
 /** WEB SOCKET SERVER | CHATS */
 wss.on("connection", (ws, req) => {
 	console.log("New client connected on websocket server");

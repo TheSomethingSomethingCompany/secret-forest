@@ -5,6 +5,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
 import localFont from "next/font/local";
+import { WebSocketProvider } from "./contexts/WebSocketContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -120,8 +121,10 @@ export default function RootLayout({
 					//<div className="snow"></div>
 					//<div className="snow2"></div>
 				}
-				<Navbar isLoggedIn={true} />
-				<div>{children}</div>
+				<WebSocketProvider>
+					<Navbar isLoggedIn={true} />
+					<div>{children}</div>
+				</WebSocketProvider>
 			</body>
 		</html>
 	);
