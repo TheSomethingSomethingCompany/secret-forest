@@ -31,7 +31,7 @@ import updateProfileInfo from "../api/saveProfileData";
       console.log(memberData);
       
       const profileData: any = await FetchProfileData({
-        id: memberData.data.memberID,
+        id: memberData.data.memberID
       });
       
       setProfile({
@@ -43,6 +43,8 @@ import updateProfileInfo from "../api/saveProfileData";
         email: memberData.data.email,
         memberId: memberData.data.memberID });
     }
+
+    const router = useRouter();
 
     useEffect(() => {fetchData();}, []);
     useEffect(() => {setTempProfile({ ...profile });}, [profile]);
@@ -81,8 +83,6 @@ import updateProfileInfo from "../api/saveProfileData";
             id: tempProfile.memberId
         };
     };
-
-    const router = useRouter();
 
 
     // Handler for the Save Changes button
