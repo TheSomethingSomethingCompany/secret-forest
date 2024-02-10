@@ -24,11 +24,18 @@ import updateProfileInfo from "../api/saveProfileData";
 
     });
 
+    const [isUser, setIsUser] = useState(false);
+
 
     const fetchData = async () => {
 
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
+      if (memberData.status == 202) {
+        setIsUser(true);
+      } else {
+        setIsUser(false);
+      }
       
       const profileData: any = await FetchProfileData({
         id: memberData.data.memberID
@@ -146,7 +153,8 @@ import updateProfileInfo from "../api/saveProfileData";
       </div>
 
       {/*Div for the right box that allows users to edit their profile information*/}
-      <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10">
+      {isUser ? (
+        <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10">
         <div className="space-y-2 min-w-64">
           {/*First Name*/}
           <div>
@@ -249,6 +257,11 @@ import updateProfileInfo from "../api/saveProfileData";
         
         
       </div>
+
+      ) : (
+        <div></div>
+      )}
+      
       
     </section>
   );
