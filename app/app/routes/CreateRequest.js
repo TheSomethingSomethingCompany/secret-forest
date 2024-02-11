@@ -24,7 +24,7 @@ router.post('/api', async (req, res) => {
         {
             const toMemberID = toUsernameQuery.memberID; // An array of rows is returned, which each row being an object with a memberID property. The first row is the only row, so we can access it with [0], and then access the memberID property with .memberID
             
-            // Check if request already exists, where fromNen
+            // Check if request already exists
             const requestExists = await db.oneOrNone(`
             SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2) OR ("fromMemberID" = $2 AND "toMemberID" = $1)
             `, [fromMemberID, toMemberID]); // The left side of the OR is if the logged in user has sent a request to the other user, and the right side is if the other user has sent a request to the logged in user
@@ -36,10 +36,24 @@ router.post('/api', async (req, res) => {
 
             else
             {
-                await db.none(`
-                INSERT INTO request("fromMemberID", "toMemberID") VALUES ($1, $2)
-                `, [toMemberID, fromMemberID]);
-                res.json({ status: 201, message: 'Created request successfully'});
+                // Before we insert the request, we need to check if a chat already exists between the two members
+                const chatExists = await db.oneOrNone(`
+                SELECT * FROM chat WHERE ("memberID1" = $1 AND "memberID2" = $2) OR ("memberID1" = $2 AND "memberID2" = $1)
+                `, [memberID1, memberID2]);
+    
+                if(chatExists.length != null)
+                {
+                    res.json({ status: 409, message: 'Chat already exists' });
+                }
+
+                else
+                {
+                    // If the chat does not exist, then we can insert the request
+                    await db.none(`
+                    INSERT INTO request("fromMemberID", "toMemberID") VALUES ($1, $2)
+                    `, [toMemberID, fromMemberID]);
+                    res.json({ status: 201, message: 'Created request successfully'});
+                }
             }
         }
         
