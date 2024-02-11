@@ -6,7 +6,6 @@ router.post('/api', async (req, res) => {
     
     try
     {
-        
         const toMemberID = req.session.loggedInUserMemberID; // The logged in user is the one that is trying to accept the request, so we will use their memberID
         const fromUsername = req.body.username; // The username from the request body is the user that the logged in user is trying to accept the request from
        
