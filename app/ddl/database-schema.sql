@@ -63,6 +63,16 @@ CREATE TABLE chat(
   	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE request(
+  "requestID" SERIAL PRIMARY KEY,
+  "fromMemberID" uuid NOT NULL,
+  "toMemberID" uuid NOT NULL,
+  FOREIGN KEY ("fromMemberID") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE,    
+  FOREIGN KEY ("toMemberID") REFERENCES member("memberID")
+  	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE message(
   "messageID" SERIAL PRIMARY KEY,
   "chatID" int NOT NULL,
