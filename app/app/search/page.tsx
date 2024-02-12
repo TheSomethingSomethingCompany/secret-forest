@@ -41,7 +41,7 @@ export default function Home() {
         fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, op: op, hasOnlyTags}).then((res) => {
           setSearchResults(res);
         });
-      }
+    }
 
       function onCheckBoxChange(){
         setHasOnlyTags(!hasOnlyTags);

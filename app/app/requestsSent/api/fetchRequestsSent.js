@@ -1,5 +1,5 @@
-export async function fetchRequestsSent(){
-    const response = await fetch('http://localhost:6969/fetchRequestsSent/api', {
+export async function fetchRequestsSent({searchQ, op}){
+    const response = await fetch(`http://localhost:6969/fetchRequestsSent/api?searchQ=${encodeURIComponent(searchQ)}&op=${encodeURIComponent(op)}`, {
         credentials: "include",
     });
 
@@ -9,4 +9,4 @@ export async function fetchRequestsSent(){
     return resBody.data;
 }
 
-export default fetchRequestsSent;
+export default fetchRequestsSent; 
