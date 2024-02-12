@@ -1,9 +1,8 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import "remixicon/fonts/remixicon.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import DropMenu from "./DropMenu";
 
@@ -12,39 +11,46 @@ import Penguin from "../../images/ExamplePenguin.jpeg";
 
 import SessionCheck from "@/app/auth/api/sessionCheck";
 
+import { useWebSocket } from "@/app/contexts/WebSocketContext";
+
 type NavBarProps = {
-	isLoggedIn: boolean;
+	isLoggedIn?: boolean;
 };
 
 export default function Navbar({ isLoggedIn }: NavBarProps) {
+	const router = useRouter();
+	const { userStatus } = useWebSocket();
+
 	const [isOpen, setIsOpen] = useState(false);
 	const [disableDropdown, setDisableDropdown] = useState(false);
-	var [loggedIn, setLoggedIn] = useState(false);
+	const [check, setCheck] = useState(false);
 
-	useEffect(() => {
-		const checkSession = async () => {
-			try {
-				const response = await SessionCheck();
-				console.log(response);
-				if (response.status == 201) {
-					setLoggedIn(true);
-					console.log("User is logged in!");
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		};
+	//var [loggedIn, setLoggedIn] = useState(false);
 
-		checkSession();
-		//setLoggedIn(isLoggedIn);
-		// if (window.localStorage.getItem("loggedIn")) {
-		//   setLoggedIn(true);
-		// }
-	}, []);
-
-	useEffect(() => {
-		if (!loggedIn) window.localStorage.removeItem("loggedIn");
-	}, [loggedIn]);
+	// useEffect(() => {
+	// 	const checkSession = async () => {
+	// 		try {
+	// 			const response = await SessionCheck();
+	// 			console.log(response);
+	// 			if (response.status == 201) {
+	// 				setLoggedIn(true);
+	// 				console.log("User is logged in!");
+	// 			}
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	};
+	//
+	// 	checkSession();
+	// 	//setLoggedIn(isLoggedIn);
+	// 	// if (window.localStorage.getItem("loggedIn")) {
+	// 	//   setLoggedIn(true);
+	// 	// }
+	// }, []);
+	//
+	// useEffect(() => {
+	// 	if (!loggedIn) window.localStorage.removeItem("loggedIn");
+	// }, [loggedIn]);
 
 	return (
 		<nav className="sticky top-0 left-0 z-50 w-screen px-8 py-4 flex flex-row justify-between items-center text-[1rem]">
@@ -56,15 +62,15 @@ export default function Navbar({ isLoggedIn }: NavBarProps) {
 					></Image>
 				</Link>
 			</section>
-			{!loggedIn && (
+			{userStatus === "signedOut" && (
 				<section>
 					<section className="flex flex-row justify-end items-center">
-						<Link
+						<div
 							className="font-bold my-4 mx-8 border-b-4 border-transparent translate-y-1 hover:border-blue-600 transition-all duration-200 ease-in-out"
-							href={"./auth?signin=true"}
+							onClick={() => router.push("/auth")}
 						>
 							LOG IN
-						</Link>
+						</div>
 						<Link
 							className="font-bold text-white bg-[#009C93] hover:bg-[#00877f] p-4 rounded-xl transition-all duration-200 ease-in-out"
 							href={"./auth?signin=false"}
@@ -74,9 +80,15 @@ export default function Navbar({ isLoggedIn }: NavBarProps) {
 					</section>
 				</section>
 			)}
-			{loggedIn && (
+			{userStatus === "signedIn" && (
 				<section>
 					<section className="flex flex-row justify-end items-center">
+						<div
+							className="font-bold my-4 mx-8 border-b-4 border-transparent translate-y-1 hover:border-blue-600 transition-all duration-200 ease-in-out"
+							onClick={() => router.push("/sandbox")}
+						>
+							SANDBOX
+						</div>
 						<Link
 							className="font-bold my-4 mx-8 border-b-4 border-transparent translate-y-1 hover:border-blue-600 transition-all duration-200 ease-in-out"
 							href={"./"}
