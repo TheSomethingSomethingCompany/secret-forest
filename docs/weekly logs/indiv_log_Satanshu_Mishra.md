@@ -424,4 +424,31 @@ Reasoning for the Aesthetic Redegin of the Chat's Page:
 ## Peer Review
 <img width="1080" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/09f0a3f9-aeec-4d18-a6e8-6477a1d48f61">
 
+**Week**: 16 - 17
+
+**Work Period**: 28 January 2024 - 11 February 2024
+
+## Individual Objectives
+
+- Standardize designs on User Auth pages (Sign-In, Sign-Up, Create Profile)
+- Estabilish robust session handling.
+- Estabilish functionality to update Components dynamically on session state change.
+
+## Active Tasks
+
+- Standardize designs on User Auth pages (Sign-In, Sign-Up, Create Profile)
+- Estabilish robust session handling.
+- Estabilish functionality to update Components dynamically on session state change.
+
+## Status of Tasks
+
+- Standardize designs on User Auth pages (Sign-In, Sign-Up, Create Profile)  - `Complete`
+- Estabilish robust session handling  - `Complete`
+- Estabilish functionality to update Components dynamically on session state change `In-Progress`
+
+**Estabilishing functionality to update Components Dyamically**:
+Please see issues [#150](https://github.com/COSC-499-W2023/year-long-project-team-10/issues/150) & [#158](https://github.com/COSC-499-W2023/year-long-project-team-10/issues/158) for more information and specific tasks. Effective session management has been one of our key goals since the start of this project. So much of the functionality in our website is guided by the user's state, it is important to use it in a manner that allows for optimal and functional session management. Updating component (and page) states based on session data has been one of the many challenges plaguing us for some time now. We wanted implement components that updated dynamically each time session state changed without the need of a Localstorage or cookie variable that may be vaunrable to browser-side manipulation. During the course of my research, I discovered that Next.js's router.push function enabled a behaviour that didn't reset our layout. Furthermore, though web-sockets, it was possible to dynamically update a variable that would control state for components on the client side. So, I created a global web-socket context and placed it in layout where all childern in the website would be able to access it. Then using the functions I defined, I can update the state of a variable which is used by components to manage their state.
+
+## Peer Review
+<img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/8c07b581-c233-481a-b815-3e8b4d67c82d">
 
