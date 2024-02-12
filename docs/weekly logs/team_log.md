@@ -321,6 +321,8 @@ Satanshu Mishra: `SatanshuMishra`
  - Research Face Blurring Using AWS Rekognition
  - Research Solutions Regarding S3 File Upload
  - Research Deployment Solutions in Regards to Other App Configurations
+ - Fix Authentication and Establish a way for Components to dynamically updated with state changes.
+ - Update consistency of design with User Auth pages.
   
 ## Accomplishments
 
@@ -333,6 +335,7 @@ Satanshu Mishra: `SatanshuMishra`
 - Research Face Blurring Using AWS Rekognition - `In-Progress`
 - Research Solutions Regarding S3 File Upload - `In-Progress`
 - Research Deployment Solutions in Regards to Other App Configurations - `Completed`
+- Fix Authentication and Establish a way for Components to dynamically updated with state changes. - `In-Progress`
 
 
 ## Test Report
