@@ -1,5 +1,5 @@
 "use client";
-import OccupationTags from "../../components/occupationTags/OccupationTags";
+import OccupationTags from "@/app/components/occupationTags/OccupationTags";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import fetchUserData from "../api/fetchUserData";
@@ -19,6 +19,7 @@ import updateProfileInfo from "../api/saveProfileData";
       address: "Loading",
       biography: "Loading",
       email: "Loadig",
+      currentTags: [],
       memberId: ""
 
 
@@ -48,6 +49,7 @@ import updateProfileInfo from "../api/saveProfileData";
         address: profileData.data.address,
         biography: profileData.data.bio,
         email: memberData.data.email,
+        currentTags: profileData.data.tags,
         memberId: memberData.data.memberID });
     }
 
@@ -124,15 +126,16 @@ import updateProfileInfo from "../api/saveProfileData";
 
 
   return (
-    <section className="m-8 flex flex-row justify-evenly">
+    <div className="relative">
+    <section className="m-8 flex flex-row justify-evenly border-2">
       {/*Div for the left box that displays how the user's profile will look like when people view their profile*/}
-      <div className="flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
+      <div className="relative flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
         <img
           className="rounded-full w-72 h-72"
           src={Penguin.src}
           alt="Profile Picture"
         />
-        <div className="my-6">
+        <div className="my-4">
           <h1 className="font-bold text-4xl py-1">{profile.fullName}</h1>
           <h2 className="font-normal text-xl py-1">@ {profile.userName}</h2>
           <h2 className="font-light text-lg py-1 flex flex-row">
@@ -141,8 +144,10 @@ import updateProfileInfo from "../api/saveProfileData";
           </h2>
         </div>
         <div className="my-2">
-          <h2 className="text-xl font-light py-1 break-words">{profile.biography}</h2>
-          
+          <h2 className="text-xl font-light py-1 break-words">{profile.currentTags.join(', ')}</h2>  
+        </div>
+        <div className="my-2">
+          <h2 className="text-xl font-light py-1 break-words">{profile.biography}</h2>  
         </div>
         <div className="my-2">
           <h2 className="text-lg py-1 flex flex-row">
@@ -220,6 +225,16 @@ import updateProfileInfo from "../api/saveProfileData";
               readOnly={!isEditing}
             />
           </div>
+          {/*Tags*/}
+          <div>
+            <label className="font-bold text-xl mt-2">
+              Tags:  
+            </label>
+            <input className="w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
+              
+              readOnly={!isEditing}
+            />
+          </div>
 
           {/*Bio*/}
           <div>
@@ -234,6 +249,7 @@ import updateProfileInfo from "../api/saveProfileData";
               cols={30}
             />
           </div>
+
           
           {/*Buttons*/}
          {isEditing ? (
@@ -258,12 +274,11 @@ import updateProfileInfo from "../api/saveProfileData";
         
       </div>
 
-      ) : (
-        <div></div>
-      )}
+      ) : null} {/*eventually add a request chat button here?*/}
       
       
     </section>
+    </div>
   );
 }
 
