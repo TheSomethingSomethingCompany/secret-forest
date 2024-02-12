@@ -75,6 +75,25 @@ server.use("/sessionCheck", sessionCheck);
 const saveProfileDatsRoutes = require("./app/routes/SaveProfileData");
 server.use("/saveProfileData", saveProfileDatsRoutes);
 
+const fetchRequestsReceivedRoutes = require("./app/routes/requests/FetchRequestsReceived");
+server.use("/fetchRequestsReceived", fetchRequestsReceivedRoutes);
+
+const fetchRequestsSentRoutes = require("./app/routes/requests/FetchRequestsSent");
+server.use("/fetchRequestsSent", fetchRequestsSentRoutes);
+
+const sendRequestRoutes = require("./app/routes/requests/SendRequest");
+server.use("/sendRequest", sendRequestRoutes);
+
+const declineRequestRoutes = require("./app/routes/requests/DeclineRequest");
+server.use("/declineRequest", declineRequestRoutes);
+
+const cancelRequestRoutes = require("./app/routes/requests/CancelRequest");
+server.use("/cancelRequest", cancelRequestRoutes);
+
+const acceptRequestRoutes = require("./app/routes/requests/AcceptRequest");
+server.use("/acceptRequest", acceptRequestRoutes);
+
+
 
 server.listen(HTTP_PORT, () => {
   console.log("Server started on http://localhost:6969");

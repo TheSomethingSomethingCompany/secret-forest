@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db-connection.js")
+const db = require("../../db-connection.js")
 
-router.post('/api', async (req, res) => {
+router.get('/api', async (req, res) => {
     
     try
     {
@@ -13,17 +13,19 @@ router.post('/api', async (req, res) => {
 
         // Retrieve the requests of the logged in user by username
         const requests = await db.any(`
-        SELECT member.username 
-        FROM request JOIN member ON request."fromMember" = member."memberID"
-        WHERE "toMember" = $1
+        SELECT member."username", profile."name", profile."country" 
+        FROM request 
+        JOIN member ON request."fromMemberID" = member."memberID"
+        JOIN profile ON member."memberID" = profile."memberID"
+        WHERE "toMemberID" = $1
         `, [memberID]);
-        res.json({ status: 200, message: 'Retrieved requests successfully', requests: requests});
+        res.json({ status: 200, message: 'Retrieved requests received successfully', data: requests});
 
     }
         
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to retrieve requests'});
+        res.json({ status: 500, message: 'Failed to retrieve received requests'});
     }
 });
 

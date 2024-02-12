@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db-connection.js")
+const db = require("../../db-connection.js")
 
 router.post('/api', async (req, res) => {
     
