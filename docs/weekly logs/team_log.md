@@ -299,3 +299,45 @@ Satanshu Mishra: `SatanshuMishra`
 ### Burn-Up Chart
 ![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/3e9528f6-3915-4ad3-9b96-7d2d996f264a)
 
+
+**Term 2 - Week 5 (Week 18)**: 05/02/2024 - 11/02/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Complete Edit Profile Page
+    - Facilitate Edit Tags
+    - Verify Editing User Identity
+- Fix Issues Regarding File Upload Page
+- Research Lambda Functions
+    - Configure S3 on 2 Machines
+ - Research Face Blurring Using AWS Rekognition
+ - Research Solutions Regarding S3 File Upload
+ - Research Deployment Solutions in Regards to Other App Configurations
+  
+## Accomplishments
+
+- Complete Edit Profile Page - `Completed`
+    - Facilitate Edit Tags
+    - Verify Editing User Identity
+- Fix Issues Regarding File Upload Page - `Completed`
+- Research Lambda Functions - `In-Progress`
+    - Configure S3 on 2 Machines - `Completed`
+- Research Face Blurring Using AWS Rekognition - `In-Progress`
+- Research Solutions Regarding S3 File Upload - `In-Progress`
+- Research Deployment Solutions in Regards to Other App Configurations - `Completed`
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/51e35d2a-439f-4794-b4ef-29c1aee6c2cc)
