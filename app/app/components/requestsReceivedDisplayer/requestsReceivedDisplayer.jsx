@@ -29,7 +29,7 @@ function requestsReceivedDisplayer({requestsReceivedResults, setRequestsReceived
 
   return (
     <div className = "flex w-full flex-col items-center">
-      <h1 className = "text-2xl font-bold">Requests Sent</h1>
+      <h1 className = "text-2xl font-bold">Requests Received</h1>
       <div className = "flex w-1/2 flex-col items-center">
       {requestsReceivedResults.map((request) => {
         return (
