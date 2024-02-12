@@ -240,8 +240,8 @@ import updateProfileInfo from "../api/saveProfileData";
              Tags:  
            </label>
            <OccupationTags
-             id = "occupation-tags"
-             inputName = "occupation"
+             id = "occupationTags"
+             inputName = "occupationTags"
              currentTags = {currentTags}
              setTags = {setTags}
              inputFieldStyles = "w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"

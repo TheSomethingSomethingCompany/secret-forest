@@ -7,6 +7,7 @@ router.post("/api", async (req, res) => {
 
   const {fullName, country, address, bio, username, email, tags, id} = req.body;
   const occupationTagsAsArray = JSON.parse(tags);
+  console.log("TAGS: " + occupationTagsAsArray);
 
   try {
 
@@ -33,14 +34,19 @@ router.post("/api", async (req, res) => {
       );
 
       for (let tag of occupationTagsAsArray) {
-          await t.none('INSERT INTO tag("tagName") VALUES($1) ON CONFLICT DO NOTHING', [tag]);
+          await t.none(`INSERT INTO tag("tagName") VALUES($1) ON CONFLICT DO NOTHING`, [tag]);
       }
-      
-      const tagIDs = await t.any('SELECT "tagID" FROM tag WHERE "tagName" = any($1)', [occupationTagsAsArray]); // Retrieve tagIDs for each tag in occupationTags
+
+
+      await t.none(`DELETE FROM user_tag WHERE "memberID" = $1`,[id]);
+
+      const tagIDs = await t.any(`SELECT "tagID" FROM tag WHERE "tagName" = any($1)`, [occupationTagsAsArray]); 
 
       for (let tagIDsRow of tagIDs) {
-        await t.none('UPDATE user_tag SET "memberID" = $1, "tagID" = $2 WHERE "memberID" = $1 ON CONFLICT DO NOTHING', [id, tagIDsRow.tagID]); // Insert tagIDs into user_tag table
+          await t.none(`INSERT INTO user_tag("memberID", "tagID") VALUES($1, $2)`, [id, tagIDsRow.tagID]);
       }
+
+
       
   });
 
@@ -48,7 +54,7 @@ router.post("/api", async (req, res) => {
     console.log("[SUCCESS]: USER INFO UPDATED");
 
     res.json({
-      data: { ...t }, 
+      //data: { ...t }, 
       status: 202,
       message: "User Info Successfully Updated",
       pgErrorObject: null,
