@@ -1,5 +1,5 @@
-export async function fetchSearchResults(data){
-    const response = await fetch('http://localhost:6969/declineRequest/api', {
+export async function cancelRequest(data){
+    const response = await fetch('http://localhost:6969/cancelRequest/api', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -14,4 +14,4 @@ export async function fetchSearchResults(data){
     return resBody.data;
    }
 
-   export default fetchSearchResults;
+   export default cancelRequest;

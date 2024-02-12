@@ -1,4 +1,4 @@
-export async function fetchSearchResults(data){
+export async function acceptRequest(data){
     const response = await fetch('http://localhost:6969/acceptRequest/api', {
         method: 'POST',
         headers: {
@@ -14,4 +14,4 @@ export async function fetchSearchResults(data){
     return resBody.data;
    }
 
-   export default fetchSearchResults;
+   export default acceptRequest;;
