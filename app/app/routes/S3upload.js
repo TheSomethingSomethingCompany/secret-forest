@@ -10,16 +10,16 @@ dotenv.config();
 // get the environment variables from the .env file
 const bucketName = process.env.BUCKET_NAME
 const bucketRegion = process.env.BUCKET_REGION
-const accessKey = process.env.ACCESS_KEY
-const secretAccessKey = process.env.SECRET_ACCESS_KEY
-const sessionToken = process.env.SESSION_TOKEN
+// const accessKey = process.env.ACCESS_KEY
+// const secretAccessKey = process.env.SECRET_ACCESS_KEY
+// const sessionToken = process.env.SESSION_TOKEN
 
 const s3Object = new S3Client({ //creates a s3 object given the environment variables
-    credentials:{
-        accessKeyId: accessKey,
-        secretAccessKey: secretAccessKey,
-        sessionToken: sessionToken,
-    },
+    // credentials:{
+    //     accessKeyId: accessKey,
+    //     secretAccessKey: secretAccessKey,
+    //     sessionToken: sessionToken,
+    // },
     region: bucketRegion
 });
 
@@ -44,7 +44,15 @@ router.post('/api', upload.single('file'), async(req,res) => {
         }
         const command = new PutObjectCommand(params)
     
-        await s3Object.send(command);
+        // await s3Object.send(command);
+
+        try {
+            await s3Object.send(command);
+            res.json({status: 200, message: "Image saved successfully."});
+        } catch (error) {
+            console.error("Error uploading image to S3:", error);
+            res.status(500).json({status: 500, message: "Failed to save image."});
+        }
     
         // await db.none('INSERT INTO files("memberID", "fileName") VALUES ($1, $2)', [memberID, req.file.originalname]); 
         //inserts image name and associates it with the current user. 
@@ -52,6 +60,8 @@ router.post('/api', upload.single('file'), async(req,res) => {
         
         res.json({status:200, message:"image saved successfuly??"});
     
+    } else {
+        res.status(400).json({status: 400, message: "No file provided."});
     }
 })
 
