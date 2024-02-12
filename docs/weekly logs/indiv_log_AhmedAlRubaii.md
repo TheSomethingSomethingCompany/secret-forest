@@ -468,3 +468,36 @@ There was also an unexpected and weird issue that was encountered regarding dock
 
 ## Peer Review
 ![week 17](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/af391e08-283b-4df2-b4ad-5014d34b13a5)
+
+---------------------------
+
+**Week**: 18
+
+**Work Period**: 5 February 2024 - 11 February 2024
+
+## Individual Objectives
+
+This week was mostly spent on troubleshooting and trying to understand various error/ failure points within the project, specificaly what I have been working on. The first point of concern was getting the rotating credentials issue sorted which has taken a while to get an appropriate response. Due to not getting anything useful from the internet or from the discord group, I emailed the client in which he provided advice on searching and using presigned URL for putting and retrieving items from an S3 bucket rather than having hard-coded credentials. This took some time to research in order to understand what presigned URLs are, how they work and how they can be implemented. During this time, Seth from group 3 (i think) replied to me in discord advicing the use of adjusting the task role and task execution role within fargate during deployment which would provide that fargate instance with an associated IAM role as if it was hard coded by myelf. From his response I again also had to research, understand and know how this would apply to our project. So far from the research I have done, it seems that Seth's solution is more viable and applicable. This means that I will need to adjust the code within our server to accomodate this 'within AWS' call to S3, but will also require me to work on deployment once again as it is all related to getting the app hosted on AWS. My goal is now to attempt deployment once again to fargate, taking into account the different factors and variables that need to be taken into account to make sure that our app is able to make AWS API calls to S3. I have also explained and provided assistance to Arsh in getting him up to speed on some AWS aspects as he will also be working on AWS using other services. 
+
+
+
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+- Research Presigned URLs
+- Research Task Execution Roles
+- Research new deployment strategies
+- Assist Arsh with AWS
+  
+## Status of Tasks
+
+- App deployment to ECS with Fargate - Re-Iniated
+- Research Presigned URLs - Completed
+- Research Task Execution Roles - Completed
+- Research new deployment strategies - In Progress
+- Assist Arsh with AWS - Completed
+
+
+## Peer Review
+![week 18](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/0f6d0f4b-06ca-4e5f-bebc-bd6a0dd4704f)
