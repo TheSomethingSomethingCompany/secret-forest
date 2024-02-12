@@ -652,4 +652,36 @@
 <img width="1065" alt="2024-02-05_04-44-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f94fc06b-1c56-4a02-b530-e3f905dad9af">
 
 
+**Work Period**: 04/02/2024 - 11/02/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Fully complete backend functionality of the "Request For Chat" feature, along with all appropriate security checks 
+      - Sending Request
+      - Accepting Request
+      - Decline Request
+      - Cancelling Sent Request
+      - Fetching Requests Received
+      - Fetching Requests Sent
+- Fully complete middleman/controller methods to make api calls to each route
+- Complete basic design of components displaying requests sent and requests received, along with buttons appropriate to each component controlling accepting, deleting, and cancelling
+  - Specifically, requests received component has buttons for accepting and declining requests with the appropriate middleman methods attached, and requests sent component has a cancel button with the appropriate middleman method attached, as well.
+  
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Fully complete backend functionality of the "Request For Chat" feature, along with all appropriate security checks 
+      - Sending Request
+      - Accepting Request
+      - Decline Request
+      - Cancelling Sent Request
+      - Fetching Requests Received
+      - Fetching Requests Sent
+- Fully complete middleman/controller methods to make api calls to each route
+- Complete basic design of components displaying requests sent and requests received, along with buttons appropriate to each component controlling accepting, deleting, and cancelling
+  - Specifically, requests received component has buttons for accepting and declining requests with the appropriate middleman methods attached, and requests sent component has a cancel button with the appropriate middleman method attached, as well.
+  
+## Peer Review
+<img width="1065" alt="2024-02-05_04-44-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f94fc06b-1c56-4a02-b530-e3f905dad9af">
+
+
 
