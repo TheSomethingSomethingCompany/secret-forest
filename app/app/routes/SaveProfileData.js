@@ -5,7 +5,8 @@ const db = require("../db-connection.js");
 router.post("/api", async (req, res) => {
   
 
-  const {fullName, country, address, bio, username, email, id} = req.body;
+  const {fullName, country, address, bio, username, email, tags, id} = req.body;
+  const occupationTagsAsArray = JSON.parse(tags);
 
   try {
 
@@ -22,18 +23,32 @@ router.post("/api", async (req, res) => {
     }
 
     else {
-    const updateProfileInfo = await db.none(
-      `UPDATE profile SET "name" = $1, "country" = $2, "address" = $3, "bio" = $4 WHERE "memberID" = $5`, 
-      [fullName, country, address, bio, id]
-    );
-    const updateMemberInfo = await db.none(
+    await db.tx(async t => {
+      await t.none(
+        `UPDATE profile SET "name" = $1, "country" = $2, "address" = $3, "bio" = $4 WHERE "memberID" = $5`, 
+        [fullName, country, address, bio, id]
+      );
+      await t.none(
         `UPDATE member SET "email" = $1, "username" = $2 WHERE "memberID" = $3`, [email, username, id]
-    );
+      );
+
+      for (let tag of occupationTagsAsArray) {
+          await t.none('INSERT INTO tag("tagName") VALUES($1) ON CONFLICT DO NOTHING', [tag]);
+      }
+      
+      const tagIDs = await t.any('SELECT "tagID" FROM tag WHERE "tagName" = any($1)', [occupationTagsAsArray]); // Retrieve tagIDs for each tag in occupationTags
+
+      for (let tagIDsRow of tagIDs) {
+        await t.none('UPDATE user_tag SET "memberID" = $1, "tagID" = $2 WHERE "memberID" = $1 ON CONFLICT DO NOTHING', [id, tagIDsRow.tagID]); // Insert tagIDs into user_tag table
+      }
+      
+  });
+
 
     console.log("[SUCCESS]: USER INFO UPDATED");
 
     res.json({
-      data: { ...updateProfileInfo, ...updateMemberInfo }, 
+      data: { ...t }, 
       status: 202,
       message: "User Info Successfully Updated",
       pgErrorObject: null,

@@ -10,6 +10,10 @@ import FetchProfileData from "../api/fetchProfileData";
 import updateProfileInfo from "../api/saveProfileData";
 
   function EditProfile({params}: {params: {slug: string}}){
+
+    const [currentTags, setTags] = useState(
+      []
+    );
     
 
     const [profile, setProfile] = useState({
@@ -21,8 +25,6 @@ import updateProfileInfo from "../api/saveProfileData";
       email: "Loadig",
       currentTags: [],
       memberId: ""
-
-
     });
 
     const [isUser, setIsUser] = useState(false);
@@ -51,7 +53,11 @@ import updateProfileInfo from "../api/saveProfileData";
         email: memberData.data.email,
         currentTags: profileData.data.tags,
         memberId: memberData.data.memberID });
+
+      setTags(profileData.data.tags);
     }
+
+
 
     const router = useRouter();
 
@@ -76,6 +82,7 @@ import updateProfileInfo from "../api/saveProfileData";
     const handleCancel = () => {
       setIsEditing(false);
       setTempProfile({ ...profile });
+      setTags(profile.currentTags);
       console.log("cancel changes");
     };
 
@@ -89,6 +96,7 @@ import updateProfileInfo from "../api/saveProfileData";
             bio: tempProfile.biography,
             username: tempProfile.userName,
             email: tempProfile.email,
+            tags: JSON.stringify(currentTags),
             id: tempProfile.memberId
         };
     };
@@ -226,15 +234,30 @@ import updateProfileInfo from "../api/saveProfileData";
             />
           </div>
           {/*Tags*/}
+          {isEditing ? (
+           <div>
+           <label className="font-bold text-xl mt-2">
+             Tags:  
+           </label>
+           <OccupationTags
+             id = "occupation-tags"
+             inputName = "occupation"
+             currentTags = {currentTags}
+             setTags = {setTags}
+             inputFieldStyles = "w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
+             textSize = "text-lg"
+             tagColor= "bg-blue-500"
+             placeHolder= "Enter tags here"/>
+         </div>
+         ) : (
           <div>
-            <label className="font-bold text-xl mt-2">
-              Tags:  
-            </label>
-            <input className="w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
-              
-              readOnly={!isEditing}
-            />
-          </div>
+          <label className="font-bold text-xl mt-2">
+            Tags:  
+          </label>
+          <h2 className="text-xl font-light py-1 break-words">{profile.currentTags.join(', ')}</h2>   
+        </div>
+         )}
+
 
           {/*Bio*/}
           <div>
