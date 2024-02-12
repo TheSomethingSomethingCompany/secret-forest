@@ -13,7 +13,9 @@ function requestsReceivedDisplayer({requestsReceivedResults}){
             return (
             <div className = "flex items-center justify-between w-3/4 p-3 my-2 bg-white shadow-lg rounded-md">
                 <p className = "text-lg font-bold">{request.username}</p>
+                <br></br>
                 <p className = "text-lg font-bold">{request.name}</p>
+                <br></br>
                 <p className = "text-lg font-bold">{request.country}</p>
                 <div className = "flex items-center">
                 <button className = "bg-green-400 p-2 rounded-md text-white font-bold">Accept</button>

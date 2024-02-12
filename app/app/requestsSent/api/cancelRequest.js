@@ -9,7 +9,6 @@ export async function cancelRequest(data){
     });
 
     let resBody = await response.json(); // Retrieve response body and turn into JSON object
-    console.log("[RESPONSE BODY SEARCH RESULTS]:") 
     console.log(resBody);
     return resBody.data;
    }
