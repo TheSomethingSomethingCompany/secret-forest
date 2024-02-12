@@ -9,7 +9,6 @@ export async function acceptRequest(data){
     });
 
     let resBody = await response.json(); // Retrieve response body and turn into JSON object
-    console.log("[RESPONSE BODY SEARCH RESULTS]:") 
     console.log(resBody);
     return resBody.data;
    }
