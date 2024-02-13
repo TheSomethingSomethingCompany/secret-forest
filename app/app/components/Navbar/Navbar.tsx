@@ -23,60 +23,33 @@ export default function Navbar({ isLoggedIn }: NavBarProps) {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [disableDropdown, setDisableDropdown] = useState(false);
-	const [check, setCheck] = useState(false);
-
-	//var [loggedIn, setLoggedIn] = useState(false);
-
-	// useEffect(() => {
-	// 	const checkSession = async () => {
-	// 		try {
-	// 			const response = await SessionCheck();
-	// 			console.log(response);
-	// 			if (response.status == 201) {
-	// 				setLoggedIn(true);
-	// 				console.log("User is logged in!");
-	// 			}
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	};
-	//
-	// 	checkSession();
-	// 	//setLoggedIn(isLoggedIn);
-	// 	// if (window.localStorage.getItem("loggedIn")) {
-	// 	//   setLoggedIn(true);
-	// 	// }
-	// }, []);
-	//
-	// useEffect(() => {
-	// 	if (!loggedIn) window.localStorage.removeItem("loggedIn");
-	// }, [loggedIn]);
 
 	return (
 		<nav className="sticky top-0 left-0 z-50 w-screen px-8 py-4 flex flex-row justify-between items-center text-[1rem]">
+			{/* LOGO SECTION (LEFT) */}
 			<section>
-				<Link href={"./"}>
+				<div className="hover:cursor-pointer" onClick={() => router.push("./")}>
 					<Image
 						src={Logo}
 						alt={"TheSomethingSomethingCompany"}
 					></Image>
-				</Link>
+				</div>
 			</section>
 			{userStatus === "signedOut" && (
 				<section>
 					<section className="flex flex-row justify-end items-center">
 						<div
-							className="font-bold my-4 mx-8 border-b-4 border-transparent translate-y-1 hover:border-blue-600 transition-all duration-200 ease-in-out"
-							onClick={() => router.push("/auth")}
+							className="font-bold my-4 mx-8 border-b-4 border-transparent translate-y-1 hover:border-black transition-all duration-200 ease-in-out hover:cursor-pointer"
+							onClick={() => router.push("/auth?signin=true")}
 						>
 							LOG IN
 						</div>
-						<Link
-							className="font-bold text-white bg-[#009C93] hover:bg-[#00877f] p-4 rounded-xl transition-all duration-200 ease-in-out"
-							href={"./auth?signin=false"}
+						<div
+							className="font-bold text-white bg-[#0085FF] hover:bg-[#006FD5] p-4 rounded-xl transition-all duration-200 ease-in-out hover:cursor-pointer"
+							onClick={() => router.push("./auth?signin=false")}
 						>
 							GET STARTED FOR FREE
-						</Link>
+						</div>
 					</section>
 				</section>
 			)}
