@@ -474,6 +474,45 @@ Wasn't able to work on the project that much as I mentioned in the peer evals
 
 
 
+**Term 2 Week: 5** 
+**Work Period**: `05-02-2024` - `11-02-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Refine Edit Page
+
+
+## Active Tasks
+
+- Refine edit profile page
+  - check if current user is the same as the profile they are viewing
+  - send notification to user if username is already taken
+  - re-route the page to the correct username if user changes their username
+  - add occupation tags change front-end functionality
+    - complete back end functionality   
+
+
+
+## Status of Tasks
+
+- Refine edit profile page
+  - check if current user is the same as the profile they are viewing (Completed)
+  - send notification to user if username is already taken (Completed)
+  - re-route the page to the correct username if user changes their username (Completed)
+  - add occupation tags change front-end functionality (Completed)
+    - complete back end functionality (In-progress)
+
+Orginally I thought I completed both front-end and back-end functionality for the occupation tags
+but I realize that the back-end logic is more complex and need a bit more time and get team input and 
+advise. 
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/01874812-f6b2-496f-8f9b-e79fcdafab4f)
+
+
+
 
 
 

@@ -378,3 +378,39 @@
 ## Peer Review
 
 ![Screenshot (40)](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/723d3867-8ea0-415b-8de3-6c3ca7b34653)
+
+# Personal Log - Arsh Bhat
+
+**Week**: 18
+**Week**: `05-02-2024` - `11-02-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Fix issues with the Upload Video window
+  - Fix issues with node_modules and running js
+  - Fix audio drop issues
+- Incorporate front-end Upload Video code with backend S3 file storage (Ahmed's code)
+- Research on object detection and blurring
+  I began with researching on s3 and lambda functions. I was able to configure AWS on my laptop. I practice creating S3 buckets via terminal and sending files to those buckets. I further researched setting up Lambda function triggers so that the moment a file arrives in my AWS S3 bucket, it automatically triggers object detection. I will be implementing it this week.
+- Code ability to detect and blur out faces in user-input videos
+ 
+## Active Tasks
+- Fix issues with the Upload Video window
+  - Fix issues with node_modules and running js
+  - Fix audio drop issues
+- Incorporate front-end Upload Video code with backend S3 file storage (Ahmed's code)
+- Research on object detection and blurring
+- Code ability to detect and blur out faces in user-input videos
+  
+## Status of Tasks
+
+- Fix issues with the Upload Video window - `COMPLETED`
+  - Fix issues with node_modules and running js - `COMPLETED`
+  - Fix audio drop issues - `COMPLETED`
+- Incorporate front-end Upload Video code with backend S3 file storage (Ahmed's code) - `IN-PROGRESS`
+- Research on object detection and blurring - `COMPLETED`
+  I began with researching on s3 and lambda functions. I was able to configure AWS on my laptop. I practice creating S3 buckets via terminal and sending files to those buckets. I further researched setting up Lambda function triggers so that the moment a file arrives in my AWS S3 bucket, it automatically triggers object detection. I will be implementing it this week.
+- Code ability to detect and blur out faces in user-input videos - `IN-PROGRESS`
+
+## Peer Review
+![Screenshot (44)](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/9c9e9137-6e3c-4474-bbb1-e80947fca667)
