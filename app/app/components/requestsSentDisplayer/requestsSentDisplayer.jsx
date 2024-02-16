@@ -26,6 +26,7 @@ function requestsSentDisplayer({requestsSentResults, setRequestsSentResults, can
             <div className = "w-full">
             <p className = "text-lg font-bold">Username: {request.username}</p>
             <p className = "text-lg font-bold">Name: {request.name}</p>
+            <p className = "text-lg font-bold">Email: {request.email}</p>
             <p className = "text-lg font-bold">Country: {request.country}</p>
             </div>
             <div className = "flex items-center">
