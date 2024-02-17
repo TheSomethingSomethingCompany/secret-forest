@@ -1,5 +1,6 @@
-export async function fetchRequestsReceived(){
-    const response = await fetch('http://localhost:6969/fetchRequestsReceived/api', {
+export async function fetchRequestsReceived({searchQ, op}){
+
+    const response = await fetch(`http://localhost:6969/fetchRequestsReceived/api?searchQ=${encodeURIComponent(searchQ)}&op=${encodeURIComponent(op)}`, {
         credentials: "include",
     });
 

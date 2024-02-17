@@ -1,5 +1,5 @@
 "use client";
-
+import OccupationTags from "@/app/components/occupationTags/OccupationTags";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import fetchUserData from "../api/fetchUserData";
@@ -9,44 +9,41 @@ import ProfileFetch from "@/app/types/ProfileFetch";
 import FetchProfileData from "../api/fetchProfileData";
 import updateProfileInfo from "../api/saveProfileData";
 
-/*function EditProfile({ params }: { params: { slug: string } }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [biography, setBiography] = useState("");
-  const [profilePicture, setProfilePicture] = useState("");
-  const [country, setCountry] = useState("");
-
-  const router = useRouter();
-  useEffect(() => {
-    const memberData = fetchData();
-  });
-*/
   function EditProfile({params}: {params: {slug: string}}){
+
+    const [currentTags, setTags] = useState(
+      []
+    );
     
-    const userId = params.slug;
 
-    // Temporary data for the profile
     const [profile, setProfile] = useState({
-      fullName: "",
-      userName: "",
-      country: "",
-      address: "",
-      biography: "",
-      email: "",
+      fullName: "Loading",
+      userName: "Loading",
+      country: "Loading",
+      address: "Loading",
+      biography: "Loading",
+      email: "Loadig",
+      currentTags: [],
       memberId: ""
-
-
     });
+
+    const [isUser, setIsUser] = useState(false);
 
 
     const fetchData = async () => {
+
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
+      if (memberData.status == 202) {
+        setIsUser(true);
+      } else {
+        setIsUser(false);
+      }
       
       const profileData: any = await FetchProfileData({
-        id: memberData.data.memberID,
+        id: memberData.data.memberID
       });
+      
       setProfile({
         fullName: memberData.data.name, 
         userName: memberData.data.username,
@@ -54,11 +51,20 @@ import updateProfileInfo from "../api/saveProfileData";
         address: profileData.data.address,
         biography: profileData.data.bio,
         email: memberData.data.email,
+        currentTags: profileData.data.tags,
         memberId: memberData.data.memberID });
+
+      setTags(profileData.data.tags);
     }
+
+
+
+    const router = useRouter();
 
     useEffect(() => {fetchData();}, []);
     useEffect(() => {setTempProfile({ ...profile });}, [profile]);
+
+    
 
     
     // Temporary state to hold changes while editing
@@ -76,6 +82,7 @@ import updateProfileInfo from "../api/saveProfileData";
     const handleCancel = () => {
       setIsEditing(false);
       setTempProfile({ ...profile });
+      setTags(profile.currentTags);
       console.log("cancel changes");
     };
 
@@ -89,9 +96,11 @@ import updateProfileInfo from "../api/saveProfileData";
             bio: tempProfile.biography,
             username: tempProfile.userName,
             email: tempProfile.email,
+            tags: JSON.stringify(currentTags),
             id: tempProfile.memberId
         };
     };
+
 
     // Handler for the Save Changes button
     async function handleSave(e: { preventDefault: () => void; }) {
@@ -104,29 +113,37 @@ import updateProfileInfo from "../api/saveProfileData";
           {
               alert("Updated Your Profile");
               setProfile({ ...tempProfile });
-             console.log("save changes: ", tempProfile)
+              console.log("save changes: ", tempProfile);
+              router.push('/profile/' + tempProfile.userName);
+
           }
-          else
+          else if (response.status == 404) {
+            alert("The username you selected is already taken. Please choose a different one.")
+
+          }
+          else 
           {
            alert("Sorry, we were unable to update your profile. Please try again.")
           }
       }
       else {
+        alert("Please ensure that the name, country, address, and username boxes are not left empty!");
         console.log("Something went wrong");
       }
     };
 
 
   return (
-    <section className="m-8 flex flex-row justify-evenly">
+    <div className="relative">
+    <section className="m-8 flex flex-row justify-evenly border-2">
       {/*Div for the left box that displays how the user's profile will look like when people view their profile*/}
-      <div className="flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
+      <div className="relative flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
         <img
           className="rounded-full w-72 h-72"
           src={Penguin.src}
           alt="Profile Picture"
         />
-        <div className="my-6">
+        <div className="my-4">
           <h1 className="font-bold text-4xl py-1">{profile.fullName}</h1>
           <h2 className="font-normal text-xl py-1">@ {profile.userName}</h2>
           <h2 className="font-light text-lg py-1 flex flex-row">
@@ -135,8 +152,10 @@ import updateProfileInfo from "../api/saveProfileData";
           </h2>
         </div>
         <div className="my-2">
-          <h2 className="text-xl font-light py-1">{profile.biography}</h2>
-          
+          <h2 className="text-xl font-light py-1 break-words">{profile.currentTags.join(', ')}</h2>  
+        </div>
+        <div className="my-2">
+          <h2 className="text-xl font-light py-1 break-words">{profile.biography}</h2>  
         </div>
         <div className="my-2">
           <h2 className="text-lg py-1 flex flex-row">
@@ -147,14 +166,15 @@ import updateProfileInfo from "../api/saveProfileData";
       </div>
 
       {/*Div for the right box that allows users to edit their profile information*/}
-      <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10">
-        <div className="space-y-2">
+      {isUser ? (
+        <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10">
+        <div className="space-y-2 min-w-64">
           {/*First Name*/}
           <div>
             <label className="font-bold text-xl mt-2">
              Name:
             </label>
-            <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
+            <input className="w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
               type="text"
               value={tempProfile.fullName}
               required
@@ -168,7 +188,7 @@ import updateProfileInfo from "../api/saveProfileData";
             <label className="font-bold text-xl mt-2">
               User Name:  
             </label>
-            <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
+            <input className="w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
               type="text"
               value={tempProfile.userName}
               onChange={(e) => setTempProfile({ ...tempProfile, userName: e.target.value })}
@@ -180,7 +200,7 @@ import updateProfileInfo from "../api/saveProfileData";
             <label className="font-bold text-xl mt-2">
               Email:  
             </label>
-            <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
+            <input className="w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
               type="email"
               value={tempProfile.email}
               onChange={(e) => setTempProfile({ ...tempProfile, email: e.target.value })}
@@ -193,7 +213,7 @@ import updateProfileInfo from "../api/saveProfileData";
             <label className="font-bold text-xl mt-2">
               Country:  
             </label>
-            <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
+            <input className="w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
               type="text"
               value={tempProfile.country}
               onChange={(e) => setTempProfile({ ...tempProfile, country: e.target.value })}
@@ -206,20 +226,45 @@ import updateProfileInfo from "../api/saveProfileData";
             <label className="font-bold text-xl mt-2">
               Address:  
             </label>
-            <input className="max-w-sm border-2 border-gray-800 rounded-xl font-normal text-xl p-1"
+            <input className="w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
               type="text"
               value={tempProfile.address}
               onChange={(e) => setTempProfile({ ...tempProfile, address: e.target.value })}
               readOnly={!isEditing}
             />
           </div>
+          {/*Tags*/}
+          {isEditing ? (
+           <div>
+           <label className="font-bold text-xl mt-2">
+             Tags:  
+           </label>
+           <OccupationTags
+             id = "occupationTags"
+             inputName = "occupationTags"
+             currentTags = {currentTags}
+             setTags = {setTags}
+             inputFieldStyles = "w-full border-2 border-gray-800 rounded-xl font-normal text-xl p-1 block"
+             textSize = "text-lg"
+             tagColor= "bg-blue-500"
+             placeHolder= "Enter tags here"/>
+         </div>
+         ) : (
+          <div>
+          <label className="font-bold text-xl mt-2">
+            Tags:  
+          </label>
+          <h2 className="text-xl font-light py-1 break-words">{profile.currentTags.join(', ')}</h2>   
+        </div>
+         )}
+
 
           {/*Bio*/}
           <div>
             <label className="font-bold text-xl mt-2">
                Bio:
             </label>
-            <textarea className="max-w-sm max-h-md border-2 border-gray-800 rounded-xl font-normal text-lg p-1 mt-1 resize-none"
+            <textarea className="w-full max-h-md border-2 border-gray-800 rounded-xl font-normal text-lg p-1 mt-1 resize-none block"
               value={tempProfile.biography}
               onChange={(e) => setTempProfile({ ...tempProfile, biography: e.target.value })}
               readOnly={!isEditing}
@@ -227,6 +272,7 @@ import updateProfileInfo from "../api/saveProfileData";
               cols={30}
             />
           </div>
+
           
           {/*Buttons*/}
          {isEditing ? (
@@ -250,8 +296,12 @@ import updateProfileInfo from "../api/saveProfileData";
         
         
       </div>
+
+      ) : null} {/*eventually add a request chat button here?*/}
+      
       
     </section>
+    </div>
   );
 }
 
