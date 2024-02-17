@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import * as Yup from "yup";
 import SignUp from "./api/signup";
@@ -11,18 +11,12 @@ import SignIn from "./api/signin";
 import Input from "@/app/components/formComponents/Input";
 import Member from "@/app/types/Member";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import Logo from "@/app/images/TheSomethingSomethingCompanyLogoV2.svg";
-import { useWebSocket } from "../contexts/WebSocketContext";
-import RootLayout from "../layout";
+import { useWebSocket } from "../../contexts/WebSocketContext";
 
-// TYPE DEFINITION OF USER PROPS
-type userauthprops = {
-	params: { slug: string };
-};
-
-export default function UserAuthentication({ params }: userauthprops) {
+export default function UserAuthentication() {
 	const { isConnected, sendMessage } = useWebSocket();
+	sendMessage("hideNavigation", {});
 
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -31,20 +25,18 @@ export default function UserAuthentication({ params }: userauthprops) {
 	const [terms, setTerms] = useState(false);
 	const [highlightTerms, setHighlightTerms] = useState(false);
 
+	// USE EFFECT TO DETERMINE IF SIGN-IN OR SIGN-UP IS SHOWN
+
 	useEffect(() => {
 		if (searchParams.has("signin")) {
 			searchParams.get("signin") === "true"
 				? setShowSignIn(true)
 				: setShowSignIn(false);
-			router.replace("/auth");
+			//router.replace("/auth");
 		} else {
 			setShowSignIn(false);
 		}
 	}, []);
-
-	useEffect(() => {
-		console.log("Terms: " + terms);
-	}, [terms]);
 
 	// FORMIK LOGIC
 
@@ -178,7 +170,6 @@ export default function UserAuthentication({ params }: userauthprops) {
 				password: values.password,
 				isEmail: emailRegex.test(values.identifier),
 			};
-			const isEmail = emailRegex.test(values.identifier);
 
 			const response = await SignIn(body);
 
@@ -202,14 +193,11 @@ export default function UserAuthentication({ params }: userauthprops) {
 	return (
 		<>
 			<section className="z-50 w-screen p-10 flex flex-row justify-between items-center text-[1rem]">
-				<Link href={"./"}>
-					<Image
-						src={Logo}
-						alt={"TheSomethingSomethingCompany"}
-					></Image>
-				</Link>
+				<div onClick={() => router.push("./")}>
+					<Image src={Logo} alt={"TheSomethingSomethingCompany"} />
+				</div>
 			</section>
-			{showSignIn ? (
+			{showSignIn === true && (
 				<section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 w-full h-[40rem]">
 					<div className="flex flex-col justify-center items-start py-0 px-20 w-full h-full">
 						<h1 className="font-bold text-6xl mb-4">Sign In</h1>
@@ -277,7 +265,8 @@ export default function UserAuthentication({ params }: userauthprops) {
 						/>
 					</div>
 				</section>
-			) : (
+			)}
+			{showSignIn === false && (
 				<section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 h-fit w-full">
 					<div className="hidden tablet:flex flex-col justify-center items-center p-20 w-fit h-full bg-green-600">
 						<div className="w-full">

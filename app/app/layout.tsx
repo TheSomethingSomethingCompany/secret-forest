@@ -1,7 +1,4 @@
-"use client";
-
 import "./globals.css";
-// import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
 import localFont from "next/font/local";
@@ -111,13 +108,9 @@ const metropolis = localFont({
 
 interface LayoutProps {
 	children: React.ReactNode;
-	hideNavbar?: boolean; // Optional prop to control Navbar visibility
 }
 
-export default function RootLayout({
-	children,
-/* 	hideNavbar = false, */
-}: LayoutProps) {
+export default function RootLayout({ children }: LayoutProps) {
 	return (
 		<html lang="en">
 			<body className={`${metropolis.className} relative min-h-screen`}>
@@ -126,7 +119,7 @@ export default function RootLayout({
 					//<div className="snow2"></div>
 				}
 				<WebSocketProvider>
-					<Navbar isLoggedIn={true} />
+					<Navbar />
 					<div>{children}</div>
 				</WebSocketProvider>
 			</body>

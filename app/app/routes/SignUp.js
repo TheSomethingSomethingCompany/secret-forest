@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require("../db-connection.js");
 const cryptojs = require("crypto-js");
 const HmacSHA256 = cryptojs.HmacSHA256;
+const DOMPurify = require('isomorphic-dompurify');
 
 router.post("/api", async (req, res) => {
   console.log(req.body);
@@ -22,11 +23,11 @@ router.post("/api", async (req, res) => {
     await db.none(
       'INSERT INTO member("name", "username", "email", "password", "isOrg") VALUES($1, $2, $3, $4, $5)',
       [
-        name,
-        username,
-        email,
+        DOMPurify(name),
+        DOMPurify(username),
+        DOMPurify(email),
         HmacSHA256(
-          password,
+          DOMPurify(password),
           "230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"
         ).toString(),
         isorganization,

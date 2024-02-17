@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import "remixicon/fonts/remixicon.css";
@@ -16,6 +18,8 @@ import { useWebSocket } from "@/app/contexts/WebSocketContext";
 type NavBarProps = {
 	isLoggedIn?: boolean;
 };
+
+/* useClient(); */
 
 export default function Navbar({ isLoggedIn }: NavBarProps) {
 	const router = useRouter();
