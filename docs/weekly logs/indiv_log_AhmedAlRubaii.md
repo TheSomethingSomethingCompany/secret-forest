@@ -359,8 +359,6 @@ As discussed with the TA, I will be providing some additional notes regarding my
 ## Peer Review
 ![week 14](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/291b753c-a425-49ba-9ea0-d8b4987283c6)
 
----------------------------
-
 **Week**: 15
 
 **Work Period**: 15 January 2024 - 21 January 2024
@@ -388,6 +386,7 @@ As discussed with the TA, I will be providing some additional notes regarding my
 
 ## Peer Review
 ![week 15](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/7ef7aae1-2580-498c-b263-78bcf0a9106b)
+
 
 ---------------------------
 

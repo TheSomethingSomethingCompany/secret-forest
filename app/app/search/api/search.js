@@ -1,5 +1,5 @@
 export async function fetchSearchResults(data){
-    const response = await fetch('http://localhost:6969/FetchSearchResults/api', {
+    const response = await fetch('http://localhost:6969/fetchSearchResults/api', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -17,6 +17,7 @@ CREATE TABLE profile (
     "country" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "bio" TEXT,
+    "pfpPath" TEXT, 
     FOREIGN KEY ("memberID") REFERENCES member("memberID")
         ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -32,7 +33,7 @@ CREATE TABLE security_question (
 
 CREATE TABLE tag(
   "tagID" SERIAL PRIMARY KEY,
-  "tagName" TEXT NOT NULL
+  "tagName" TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE user_tag(
@@ -59,6 +60,16 @@ CREATE TABLE chat(
   FOREIGN KEY ("memberID1") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE,    
   FOREIGN KEY ("memberID2") REFERENCES member("memberID")
+  	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE request(
+  "requestID" SERIAL PRIMARY KEY,
+  "fromMemberID" uuid NOT NULL,
+  "toMemberID" uuid NOT NULL,
+  FOREIGN KEY ("fromMemberID") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE,    
+  FOREIGN KEY ("toMemberID") REFERENCES member("memberID")
   	ON DELETE CASCADE ON UPDATE CASCADE
 );
 

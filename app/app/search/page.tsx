@@ -2,6 +2,7 @@
 import SearchBar from "../components/searchBar/Searchbar";
 import OccupationTags from "../components/occupationTags/OccupationTags";
 import fetchSearchResults from "./api/search";
+import createChat from "./api/createChat";
 import React, { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -40,10 +41,16 @@ export default function Home() {
         fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, op: op, hasOnlyTags}).then((res) => {
           setSearchResults(res);
         });
-      }
+    }
 
       function onCheckBoxChange(){
         setHasOnlyTags(!hasOnlyTags);
+      }
+
+      function createChatWithUser(username){
+        createChat({username: username}).then((res) => {
+          console.log(res);
+        });
       }
 
   return (
@@ -59,7 +66,7 @@ export default function Home() {
     <p className="text-lg mb-2">Email: {result.email}</p>
     <p className="text-lg mb-2">Name: {result.name}</p>
     <p className="text-lg">Tags: {result.tags.join(', ')}</p>
-  </div>
+    <button onClick={() => createChatWithUser(result.username)}>Create Chat</button>  </div>
 ))}
     </main>
     

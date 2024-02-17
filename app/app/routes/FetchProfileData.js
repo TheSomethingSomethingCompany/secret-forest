@@ -18,7 +18,12 @@ router.post("/api", async (req, res) => {
       });
     }
     const profile = await db.one(
-      `SELECT "name", "country", "bio" FROM profile WHERE "memberID" = $1`,
+      `SELECT profile."name", profile."country", profile."address", profile."bio", array_agg(tag."tagName") as "tags"
+      FROM profile
+      LEFT JOIN user_tag ON profile."memberID" = user_tag."memberID"
+      LEFT JOIN tag ON user_tag."tagID" = tag."tagID"
+      WHERE profile."memberID" = $1
+      GROUP BY profile."name", profile."country", profile."address", profile."bio"`,
       [id]
     );
 
@@ -31,6 +36,7 @@ router.post("/api", async (req, res) => {
     //     pgErrorObject: null,
     //   });
     // }
+
 
     console.log("[SUCCESS]: PROFILE FETCHED SUCCESSFUL");
 
