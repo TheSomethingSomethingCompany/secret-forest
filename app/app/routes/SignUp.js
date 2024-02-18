@@ -16,7 +16,7 @@ router.post("/api", async (req, res) => {
 				data: null,
 				status: 400,
 				message:
-					"Missing Fields. Please ensure all fields are filled out.",
+					"Looks like you missed a few spots. Please double-check the form.",
 				pgErrorObject: null,
 			});
 		}
@@ -26,38 +26,42 @@ router.post("/api", async (req, res) => {
 		const pureName = DOMPurify.sanitize(name, sanitizationConfig);
 		const pureUsername = DOMPurify.sanitize(username, sanitizationConfig);
 		const pureEmail = DOMPurify.sanitize(email, sanitizationConfig);
-		
-		if(pureName === ""){
+		const purePassword = DOMPurify.sanitize(password, sanitizationConfig);
+
+		if (pureName === "") {
 			return res.json({
 				data: null,
-				status: 400,
-				message:
-					"Please enter a valid Name.",
+				status: 422,
+				message: "Your input for 'First and Last Name' could not be processed due to security concerns. Please simplify your entries and resubmit.",
 				pgErrorObject: null,
 			});
-	
 		}
 
-		if(pureUsername === ""){
+		if (pureUsername === "") {
 			return res.json({
 				data: null,
-				status: 400,
-				message:
-					"Please enter a valid Username.",
+				status: 422,
+				message: "Your input for 'Username' could not be processed due to security concerns. Please simplify your entries and resubmit.",
 				pgErrorObject: null,
 			});
-
 		}
 
-		if(pureEmail === ""){
+		if (pureEmail === "") {
 			return res.json({
 				data: null,
-				status: 400,
-				message:
-					"Please enter a valid Email.",
+				status: 422,
+				message: "Your input for 'Email' could not be processed due to security concerns. Please simplify your entries and resubmit.",
 				pgErrorObject: null,
 			});
+		}
 
+		if (purePassword === "") {
+			return res.json({
+				data: null,
+				status: 422,
+				message: "Your input for 'Password' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				pgErrorObject: null,
+			});
 		}
 
 		await db.none(
