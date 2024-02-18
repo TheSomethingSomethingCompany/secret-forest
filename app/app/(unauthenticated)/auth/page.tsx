@@ -91,6 +91,7 @@ export default function UserAuthentication() {
 				.required(
 					"You cannot leave this field empty! Please enter your password."
 				),
+			confirmpassword: Yup.string().required("You cannot leave this field empty! Please confirm your password.")
 		}),
 	});
 
@@ -142,7 +143,7 @@ export default function UserAuthentication() {
 				throw new Error("Passwords do not match! Please try again!");
 			}
 			const body: Member = {
-				name: values.firstname + values.lastname,
+				name: values.firstname + " " + values.lastname,
 				username: values.username,
 				email: values.email,
 				password: values.password,
@@ -153,8 +154,8 @@ export default function UserAuthentication() {
 
 			console.log("Successs");
 			console.log(response);
-
-			router.push("/createProfile");
+	
+			/* router.push("/createProfile"); */
 		} catch (error) {
 			console.log(error);
 		}
@@ -418,6 +419,9 @@ export default function UserAuthentication() {
 								<button
 									className="h-fit my-2 p-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
 									type="submit"
+									onClick={() => {
+										console.log("Submitted Clocked!");
+									}}
 								>
 									Sign Up
 								</button>
@@ -427,6 +431,7 @@ export default function UserAuthentication() {
 									</p>
 									<button
 										className="h-fit p-2 my-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
+										type="button"
 										onClick={() =>
 											setShowSignIn(!showSignIn)
 										}
