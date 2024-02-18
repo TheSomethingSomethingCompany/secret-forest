@@ -6,6 +6,8 @@ const cryptojs = require("crypto-js");
 const HmacSHA256 = cryptojs.HmacSHA256;
 const WebSocket = require("ws");
 
+const DOMPurify = require("isomorphic-dompurify");
+
 router.post("/api", async (req, res) => {
 	console.log(req.body);
 
@@ -19,6 +21,31 @@ router.post("/api", async (req, res) => {
 				message: "Please fill all required fields",
 			});
 		}
+
+		if (pureIdentifier === "") {
+			return res.json({
+				data: null,
+				status: 422,
+				message: "Your input for 'Username or Email' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				pgErrorObject: null,
+			});
+		}
+
+		if (purePassword === "") {
+			return res.json({
+				data: null,
+				status: 422,
+				message: "Your input for 'Password' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				pgErrorObject: null,
+			});
+		}
+
+		const sanitizationConfig = { ALLOWED_TAGS: [], KEEP_CONTENT: false };
+		const pureIdentifier = DOMPurify.sanitize(identifier, sanitizationConfig);
+		const purePassword = DOMPurify.sanitize(password, sanitizationConfig);
+
+
+
 		let member = await db.one(
 			isEmail
 				? 'SELECT "memberID" FROM member WHERE "email" = $1 AND "password" = $2'
