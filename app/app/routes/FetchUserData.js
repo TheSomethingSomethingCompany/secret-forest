@@ -20,7 +20,7 @@ router.post("/api", async (req, res) => {
     }
 
     // DEBUG LINE
-    console.log("[FETCHUSERDATA | username]: ", slug);
+    console.log("[FETCH USER DATA | username]: ", slug);
 
     // Retrieve the user data, along with memberID. It is only used to check if the user is the logged in user. It will be deleted after the check.
   

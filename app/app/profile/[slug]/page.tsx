@@ -165,6 +165,12 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
       });
     }
 
+    // Create function handle going to chat, which just redirects to the chat page
+    function handleGoToChat() {
+      router.push('/chats');
+    }
+
+
 
   return (
     <div className="relative">
@@ -332,7 +338,7 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
 
       ) : null} 
 
-\      {/* Buttons */}
+    {/* Buttons */}
 {!isUser && (
   <div>
     {hasRequest === 0 && hasChat === 0 && (
@@ -369,6 +375,19 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
         </button>
       </div>
     )}
+
+    {hasRequest === 0 && hasChat === 1 && (
+      <div>
+        <button 
+        className="bg-blue-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleGoToChat}
+        >
+          Go To Chat
+        </button>
+
+      </div>
+    )}
+
   </div>
 )}
       
