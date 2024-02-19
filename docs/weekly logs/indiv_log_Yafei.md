@@ -512,6 +512,51 @@ advise.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/01874812-f6b2-496f-8f9b-e79fcdafab4f)
 
 
+**Term 2 Week: 6** 
+**Work Period**: `12-02-2024` - `18-02-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Finish Edit Page
+- Explore options for storing profile images
+- Exploring idea to add loading screen 
+
+
+## Active Tasks
+
+- Finish Edit Page
+  - complete the backend functionality for customizing tags
+- Explore options for storing profile images
+  - Implment and use a file system to help store images and reduce workload for the database
+  - Or, wait until we have AWS and S3 and use S3 to help store images
+    - I think waiting to have S3 running for videos and images would be better but I will first discuss with the team
+- Exploring idea to add loading screen
+  - Deciding if its worth implmenting
+    - can be good to have in regards to user experience. (if loading is taking a while for the user than it's a good idea to show that the site is loading instead of the user staring at a blank screen)
+    - I will get the rest of the teams input   
+
+
+## Status of Tasks
+
+- Finish Edit Page (Completed)
+  - complete the backend functionality for customizing tags
+- Explore options for storing profile images (In-progress)
+  - Implment and use a file system to help store images and reduce workload for the database
+  - Or, wait until we have AWS and S3 and use S3 to help store images
+    - I think waiting to have S3 running for videos and images would be better but I will first discuss with the team
+- Exploring idea to add loading screen (In-progress)
+  - Deciding if its worth implmenting
+    - can be good to have in regards to user experience. (if loading is taking a while for the user than it's a good idea to show that the site is loading instead of the user staring at a blank screen)
+    - I will get the rest of the teams input  
+
+
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/f82ccbbe-b8f5-4fc3-a202-228622fcdda1)
+
+
 
 
 
