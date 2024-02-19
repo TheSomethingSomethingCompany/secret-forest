@@ -501,3 +501,35 @@ This week was mostly spent on troubleshooting and trying to understand various e
 
 ## Peer Review
 ![week 18](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/0f6d0f4b-06ca-4e5f-bebc-bd6a0dd4704f)
+
+
+---------------------------
+
+**Week**: 19
+
+**Work Period**: 12 February 2024 - 18 February 2024
+
+## Individual Objectives
+
+This week i have restarted work on the deployment process. However all the work i have done previously seems to have been invalidated/ not working as it should be so i have had to reinitialize all the AWS components that i have previously worked on. New errors have also arisen regarding the deployment process, specificaly network, VPC, subnent and load balancer issues which i have spent some time researching in order to find a solution for properly. most have been solved but there are a few that need some more understanding of the aws fargate deployment architecture to know how to solve properly. the target by the end of reading break is to have deployment complete, even if there are issues with connectivity and app functionality, since i have midterms after reading break and that may be all i can work on. furthermore, the rest of the features for our project are almost complete so the rest of the team will also hopefuly be transitioning to aws work soon to take some load off regarding deployment and get it done faster and in a more complete manner. 
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+- Research VPC and its purpose
+- Troubleshoot Load Balance error
+- Troubleshoot ECR issue
+- Troubleshoot target group issue
+    
+## Status of Tasks
+
+- App deployment to ECS with Fargate - In Progress
+- Research VPC and its purpose - Complete
+- Troubleshoot Load Balance error - Complete
+- Troubleshoot ECR issue - Complete
+- Troubleshoot target group issue - In Progress
+
+
+## Peer Review
+![week 19](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/4c602cf8-7418-4949-9618-66d70bfa4da4)
+
