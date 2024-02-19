@@ -156,6 +156,7 @@ export default function UserAuthentication({ params }: userauthprops) {
 				password: values.password,
 				isorganization: false,
 			};
+	
 
 			const response = await SignUp(body);
 

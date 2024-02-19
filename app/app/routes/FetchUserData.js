@@ -22,10 +22,18 @@ router.post("/api", async (req, res) => {
     // DEBUG LINE
     console.log("[FETCHUSERDATA | username]: ", slug);
 
+    // Retrieve the user data, along with memberID. It is only used to check if the user is the logged in user. It will be deleted after the check.
     const user = await db.one(
-      `SELECT "memberID", "email", "name", "username" FROM member WHERE "username" = $1`,
+      `SELECT member."memberID", member."username", member."email", profile."name", profile."country", profile."address", profile."bio", array_agg(tag."tagName") as "tags"
+      FROM profile
+      JOIN member ON profile."memberID" = member."memberID"
+      JOIN user_tag ON profile."memberID" = user_tag."memberID"
+      JOIN tag ON user_tag."tagID" = tag."tagID"
+      WHERE member."username" = $1
+      GROUP BY member."memberID", member."username", member."email", profile."name", profile."country", profile."address", profile."bio"`,
       [slug]
     );
+
 
     // DEBUG LINE
     console.log("[FETCHUSERDATA | USER FETCHED]: ", user);
@@ -39,6 +47,8 @@ router.post("/api", async (req, res) => {
 
     if (checkID == memberID1) {
       console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
+      console.log("[USER]: ", user);
+      console.log("[MATCH] -> UserID: " + checkID + " Session UserID: " + memberID1);
       res.json({
         data: { ...user },
         status: 202,
@@ -47,6 +57,8 @@ router.post("/api", async (req, res) => {
       });
     } else if (checkID != memberID1) {
       console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
+      console.log("[USER]: ", user);
+      console.log("[DOESN'T MATCH] -> UserID: " + checkID + " Session UserID: " + memberID1);
       res.json({
         data: { ...user },
         status: 200,

@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import fetchUserData from "../api/fetchUserData";
 import MemberFetch from "@/app/types/MemberFetch";
 import Penguin from "../../images/ExamplePenguin.jpeg";
-import ProfileFetch from "@/app/types/ProfileFetch";
-import FetchProfileData from "../api/fetchProfileData";
 import updateProfileInfo from "../api/saveProfileData";
 
   function EditProfile({params}: {params: {slug: string}}){
@@ -24,7 +22,6 @@ import updateProfileInfo from "../api/saveProfileData";
       biography: "Loading",
       email: "Loadig",
       currentTags: [],
-      memberId: ""
     });
 
     const [isUser, setIsUser] = useState(false);
@@ -35,26 +32,25 @@ import updateProfileInfo from "../api/saveProfileData";
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
       if (memberData.status == 202) {
+        console.log("User found");
         setIsUser(true);
       } else {
+        console.log("User not found");
         setIsUser(false);
       }
       
-      const profileData: any = await FetchProfileData({
-        id: memberData.data.memberID
-      });
-      
+
       setProfile({
         fullName: memberData.data.name, 
         userName: memberData.data.username,
-        country: profileData.data.country,
-        address: profileData.data.address,
-        biography: profileData.data.bio,
+        country: memberData.data.country,
+        address: memberData.data.address,
+        biography: memberData.data.bio,
         email: memberData.data.email,
-        currentTags: profileData.data.tags,
-        memberId: memberData.data.memberID });
+        currentTags: memberData.data.tags || [] as string[] // Add a default value for tags
+      });
 
-      setTags(profileData.data.tags);
+      setTags(memberData.data.tags);
     }
 
 
@@ -97,7 +93,6 @@ import updateProfileInfo from "../api/saveProfileData";
             username: tempProfile.userName,
             email: tempProfile.email,
             tags: JSON.stringify(currentTags),
-            id: tempProfile.memberId
         };
     };
 

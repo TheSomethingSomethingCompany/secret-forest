@@ -65,8 +65,6 @@ server.use("/signin", signinRoutes);
 const fetchUserDataRoutes = require("./app/routes/FetchUserData");
 server.use("/fetchUserData", fetchUserDataRoutes);
 
-const fetchProfileDataRoutes = require("./app/routes/FetchProfileData");
-server.use("/fetchProfileData", fetchProfileDataRoutes);
 
 const fetchSearchResultsRoutes = require("./app/routes/FetchSearchResults");
 server.use("/fetchSearchResults", fetchSearchResultsRoutes);
