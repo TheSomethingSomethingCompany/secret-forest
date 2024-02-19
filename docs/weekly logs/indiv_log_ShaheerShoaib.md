@@ -650,6 +650,7 @@
 **GitHub Account**: `shaheershoaib`
 
 ## Individual Objectives
+
 - Implement storing occupaton tags specified in create profile page to the database
 - Implement storing profile picture specified in create page in the database, and locally on express server via multer
 - Implement creating a chat with a user from a search result via the UI
@@ -690,7 +691,6 @@
   - Specifically, requests received component has buttons for accepting and declining requests with the appropriate middleman methods attached, and requests sent component has a cancel button with the appropriate middleman method attached, as well.
   
 ## Status of Tasks: `All Tasks Listed Completed`
-
 - Fully complete backend functionality of the "Request For Chat" feature, along with all appropriate security checks 
       - Sending Request
       - Accepting Request
@@ -704,6 +704,31 @@
   
 ## Peer Review
 <img width="1065" alt="2024-02-05_04-44-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f94fc06b-1c56-4a02-b530-e3f905dad9af">
+
+**Work Period**: 11/02/2024 - 18/02/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Improve security of Edit Profile page
+  - Ensure memberIDs aren't being stored anywhere in the frontend
+  - Combine 2 separate routes into one route that utilizes session data specifically
+- Implement Send Request feature, completing request for chat feature of website
+- Discuss next steps with team
+  - Decide task priorities with team
+  - Ensure team moves forward to specifically working on AWS and Deployment
+  
+## Status of Tasks: `All Tasks Listed Completed`
+- Improve security of Edit Profile page
+  - Ensure memberIDs aren't being stored anywhere in the frontend
+  - Combine 2 separate routes into one route that utilizes session data specifically
+- Implement Send Request feature, completing request for chat feature of website
+- Discuss next steps with team
+  - Decide task priorities with team
+  - Ensure team moves forward to specifically working on AWS and Deployment
+  
+## Peer Review
+<img width="1067" alt="2024-02-19_00-49-30" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7aa933c9-ed34-4587-83f6-df4544436d95">
+
 
 
 
