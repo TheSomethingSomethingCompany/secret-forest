@@ -6,6 +6,10 @@ import fetchUserData from "../api/fetchUserData";
 import MemberFetch from "@/app/types/MemberFetch";
 import Penguin from "../../images/ExamplePenguin.jpeg";
 import updateProfileInfo from "../api/saveProfileData";
+import sendRequest from "../api/sendRequest";
+import acceptRequest from "../../requestsReceived/api/acceptRequest";
+import declineRequest from "../../requestsReceived/api/declineRequest";
+import cancelRequest from "../../requestsSent/api/cancelRequest";
 
   function EditProfile({params}: {params: {slug: string}}){
 
@@ -26,11 +30,15 @@ import updateProfileInfo from "../api/saveProfileData";
 
     const [isUser, setIsUser] = useState(false);
 
+    const [hasRequest, setHasRequest] = useState(-1);
+    const [hasChat, setHasChat] = useState(-1);
 
     const fetchData = async () => {
 
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
+  
+
       if (memberData.status == 202) {
         console.log("User found");
         setIsUser(true);
@@ -38,6 +46,9 @@ import updateProfileInfo from "../api/saveProfileData";
         console.log("User not found");
         setIsUser(false);
       }
+
+      setHasChat(memberData.data.hasChat);
+      setHasRequest(memberData.data.hasRequest);
       
 
       setProfile({
@@ -126,6 +137,33 @@ import updateProfileInfo from "../api/saveProfileData";
         console.log("Something went wrong");
       }
     };
+
+
+    function handleSendRequest() {
+      sendRequest({username: profile.userName}).then((res) => {
+        setHasRequest(1);
+      });
+
+    }
+
+    function handleCancelRequest() {
+      cancelRequest({username: profile.userName}).then((res) => {
+        setHasRequest(0);
+      });
+    }
+
+    function handleAcceptRequest() {
+      acceptRequest({username: profile.userName}).then((res) => {
+        setHasRequest(0);
+        setHasChat(1);
+      });
+    }
+
+    function handleDeclineRequest() {
+      declineRequest({username: profile.userName}).then((res) => {
+        setHasRequest(0);
+      });
+    }
 
 
   return (
@@ -292,7 +330,49 @@ import updateProfileInfo from "../api/saveProfileData";
         
       </div>
 
-      ) : null} {/*eventually add a request chat button here?*/}
+      ) : null} 
+
+\      {/* Buttons */}
+{!isUser && (
+  <div>
+    {hasRequest === 0 && hasChat === 0 && (
+      <button 
+      className="bg-blue-400 p-2 rounded-md text-white font-bold"
+      onClick = {handleSendRequest}
+      >
+        Send Request
+      </button>
+    )}
+
+    {hasRequest === 1 && hasChat === 0 && (
+      <button 
+      className="bg-red-400 p-2 rounded-md text-white font-bold"
+      onClick = {handleCancelRequest}
+      >
+        Cancel Request
+      </button>
+    )}
+
+    {hasRequest === 2 && hasChat === 0 && (
+      <div>
+        <button 
+        className="bg-green-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleAcceptRequest}
+        >
+          Accept Request
+        </button>
+        <button 
+        className="bg-red-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleDeclineRequest}
+        >
+          Decline Request
+        </button>
+      </div>
+    )}
+  </div>
+)}
+      
+    
       
       
     </section>
