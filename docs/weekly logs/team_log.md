@@ -346,3 +346,66 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 ![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/51e35d2a-439f-4794-b4ef-29c1aee6c2cc)
+
+
+**Term 2 - Week 6 (Week 19)**: 12/02/2024 - 18/02/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Research PFP Image Storage Options
+- Look into Loading Screen Feature
+- Edit Profile Refactoring and Security Improvements
+    - Removed MemberID from Frontend
+    - Change Routing for Enhanced Security
+    - General Refactoring and Code Clean-up
+- Send a Request Implemented
+- Research Rekognition Video Blurring and Editing (AWS startVideoDetection)
+- Code Lambda Function to Trigger on S3 Upload
+- Restart implementation process
+    - Set up correct ECS cluster
+    - Set up correct VPC and Security groups
+- Understand and Fix issue regarding Load Balancer Target Groups and Health Check pings
+- Reorganize Directories to Organize Routes in a Structured Manner
+- Generalize Root Layout and Initialize 2 Child Layouts for Specific Groups
+- Begin Implementing Purification of Form Inputs in Backend Scripts
+- Look into Implementing a Standardized Logging System to Monitor App Functions
+    - Research AWS Cloudwatch
+    - Research Pine
+  
+## Accomplishments
+
+- Research PFP Image Storage Options - `In Progress`
+- Look into Loading Screen Feature - `In Progress`
+- Edit Profile Refactoring and Security Improvements - `Complete`
+    - Removed MemberID from Frontend
+    - Change Routing for Enhanced Security
+    - General Refactoring and Code Clean-up
+- Send a Request Implemented - `Complete`
+- Research Rekognition Video Blurring and Editing (AWS startVideoDetection) - `Complete`
+- Code Lambda Function to Trigger on S3 Upload - `In Progress`
+- Restart implementation process - `In Progress`
+    - Set up correct ECS cluster
+    - Set up correct VPC and Security groups
+- Understand and Fix issue regarding Load Balancer Target Groups and Health Check pings - `Complete`
+- Reorganize Directories to Organize Routes in a Structured Manner - `In Progress`
+- Generalize Root Layout and Initialize 2 Child Layouts for Specific Groups - `Complete`
+- Begin Implementing Purification of Form Inputs in Backend Scripts - `In Progress`
+- Look into Implementing a Standardized Logging System to Monitor App Functions - `In Progress`
+    - Research AWS Cloudwatch
+    - Research Pine
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/ebbc1fac-2dbc-4ca6-9907-ce80dd085c63)
