@@ -111,16 +111,14 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
     // Handler for the Save Changes button
     async function handleSave(e: { preventDefault: () => void; }) {
       setIsEditing(false);
-  
+      tempProfile.currentTags = currentTags;
       if(tempProfile.fullName != "" && tempProfile.country != "" && tempProfile.address != "" && tempProfile.userName != "")
       {
           var response = await updateProfileInfo(formDataAsJSON());
           if(response.status == 202)
           {
-              alert("Updated Your Profile");
               setProfile({ ...tempProfile });
               console.log("save changes: ", tempProfile);
-              router.push('/profile/' + tempProfile.userName);
 
           }
           else if (response.status == 404) {
