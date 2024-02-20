@@ -25,7 +25,7 @@ router.post("/api", async (req, res) => {
     // Retrieve the user data, along with memberID. It is only used to check if the user is the logged in user. It will be deleted after the check.
   
   
-    const user = await db.one(
+    const user = await db.oneOrNone(
       `SELECT member."memberID", member."username", member."email", profile."name", profile."country", profile."address", profile."bio", array_agg(tag."tagName") as "tags"
       FROM profile
       JOIN member ON profile."memberID" = member."memberID"
@@ -36,104 +36,114 @@ router.post("/api", async (req, res) => {
       [slug]
     );
 
+    if(user == null)
+    {
+      console.log("[USER NOT FOUND]-> Username: "+ slug);
+      console.log("[LOG RESPONSE]:\n" + JSON.stringify({
+        data: null,
+        status: 404,
+        message: "User Not Found",
+        pgErrorObject: null,
+      }));
 
-    // DEBUG LINE
-    console.log("[FETCH USER DATA | USER FETCHED]: ", user);
-
-    const loggedInUserID = req.session.loggedInUserMemberID;
-    const queriedUserID = user.memberID;
-
-    console.log("CHECKID: " + queriedUserID + " Logged In User ID: " + loggedInUserID);
-
-    
-
-    if (queriedUserID == loggedInUserID) {
-
-      delete user.memberID; // Delete the memberID from the user object
-
-
-      //DEBUGGING
-      console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
-      console.log("[USER]: ", user);
-      console.log("[MATCH] -> UserID: " + queriedUserID + " Session UserID: " + loggedInUserID);
-      // END DEBUGGING
-
-      // If the user queried is the logged in user, then we don't need to check if the user has a chat or request.
-      user.hasChat = null;
-      user.hasRequest = null;
-      console.log("[USER HAS REQUEST]: ", user.hasRequest);
-      console.log("[USER HAS CHAT]: ", user.hasChat);
-
-
-
-      res.json({
-        data: { ...user },
-        status: 202,
-        message: "User Fetch Successful",
+      return res.json({
+        data: null,
+        status: 404,
+        message: "User Not Found",
         pgErrorObject: null,
       });
-    } 
+    }
+
     else
     {
-      delete user.memberID; // Delete the memberID from the user object
-      
-      
-      // DEBUGGING
-      console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
-      console.log("[USER]: ", user);
-      console.log("[DOESN'T MATCH] -> UserID: " + queriedUserID + " Session UserID: " + loggedInUserID);
-      // END DEBUGGING
+      // DEBUG LINE
+      console.log("[FETCH USER DATA | USER FETCHED]: ", user);
+
+      const loggedInUserID = req.session.loggedInUserMemberID;
+      const queriedUserID = user.memberID;
+      delete user.memberID; // Delete the memberID from the user object as it should not be sent to the client.
 
 
-      // Check if the user has sent or received a request
-      let requestData = await db.oneOrNone(`
-      SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2) OR ("fromMemberID" = $2 AND "toMemberID" = $1)
-      `, [loggedInUserID, queriedUserID]);
-
-      let hasRequest = 0; // 0 = No request, 1 = Sent request, 2 = Received request
-
-      if(requestData != null)
+      if (queriedUserID == loggedInUserID) 
       {
-        console.log("[REQUEST DATA]: ", requestData);
-        if(requestData.fromMemberID == loggedInUserID)
+        //DEBUGGING
+        console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
+        console.log("[USER]: ", user);
+        console.log("[MATCH] -> UserID: " + queriedUserID + " Session UserID: " + loggedInUserID);
+        // END DEBUGGING
+
+        // If the user queried is the logged in user, then we don't need to check if the user has a chat or request.
+        user.hasChat = null;
+        user.hasRequest = null;
+        console.log("[USER HAS REQUEST]: ", user.hasRequest);
+        console.log("[USER HAS CHAT]: ", user.hasChat);
+
+
+
+        res.json({
+          data: { ...user },
+          status: 202,
+          message: "User Fetch Successful",
+          pgErrorObject: null,
+        });
+      } 
+      else
+      {        
+        // DEBUGGING
+        console.log("[SUCCESS]: USER FETCHED SUCCESSFUL");
+        console.log("[USER]: ", user);
+        console.log("[DOESN'T MATCH] -> UserID: " + queriedUserID + " Session UserID: " + loggedInUserID);
+        // END DEBUGGING
+
+
+        // Check if the user has sent or received a request
+        let requestData = await db.oneOrNone(`
+        SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2) OR ("fromMemberID" = $2 AND "toMemberID" = $1)
+        `, [loggedInUserID, queriedUserID]);
+
+        let hasRequest = 0; // 0 = No request, 1 = Sent request, 2 = Received request
+        if(requestData != null)
         {
-          hasRequest = 1;
+          console.log("[REQUEST DATA]: ", requestData);
+          if(requestData.fromMemberID == loggedInUserID)
+          {
+            hasRequest = 1;
+          }
+
+          else // requestData.toMemberID == loggedInUserID
+          {
+            hasRequest = 2;
+          }
+
         }
 
-        else if(requestData.toMemberID == loggedInUserID)
+        // Check if the user has a chat
+        let chatData = await db.oneOrNone(`
+        SELECT * FROM chat WHERE ("memberID1" = $1 AND "memberID2" = $2) OR ("memberID1" = $2 AND "memberID2" = $1)
+        `, [loggedInUserID, queriedUserID]);
+        console.log("[CHAT DATA]: ", chatData);
+
+        let hasChat = 0; // 0 = No chat, 1 = Chat exists
+        if(chatData != null) // Chat exists
         {
-          hasRequest = 2;
+          hasChat = 1;
         }
 
-      }
+        // Add the hasRequest and hasChat properties to the user object
+        user.hasRequest = hasRequest;
+        user.hasChat = hasChat;
 
-      // Check if the user has a chat
-      let chatData = await db.oneOrNone(`
-      SELECT * FROM chat WHERE ("memberID1" = $1 AND "memberID2" = $2) OR ("memberID1" = $2 AND "memberID2" = $1)
-      `, [loggedInUserID, queriedUserID]);
-      console.log("[CHAT DATA]: ", chatData);
+        console.log("[USER HAS REQUEST]: ", user.hasRequest);
+        console.log("[USER HAS CHAT]: ", user.hasChat);
 
-      let hasChat = 0; // 0 = No chat, 1 = Chat exists
-
-      if(chatData != null)
-      {
-        hasChat = 1;
-      }
-
-      // Add the hasRequest and hasChat properties to the user object
-      user.hasRequest = hasRequest;
-      user.hasChat = hasChat;
-
-      console.log("[USER HAS REQUEST]: ", user.hasRequest);
-      console.log("[USER HAS CHAT]: ", user.hasChat);
-
-      res.json({
-        data: { ...user },
-        status: 200,
-        message: "User Fetch Successful",
-        pgErrorObject: null,
-      });
-    } 
+        res.json({
+          data: { ...user },
+          status: 200,
+          message: "User Fetch Successful",
+          pgErrorObject: null,
+        });
+      } 
+    }
 
 
   } catch (error) {
