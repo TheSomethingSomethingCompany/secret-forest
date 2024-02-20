@@ -8,18 +8,14 @@ import { useRouter } from "next/navigation";
 
 import DropMenu from "./DropMenu";
 
-import Logo from "../../images/TheSomethingSomethingCompanyLogoV2.svg";
+import Logo from "../../images/TheSomethingSomethingCompanyLogoV3.svg";
 import Penguin from "../../images/ExamplePenguin.jpeg";
-
-import SessionCheck from "@/app/auth/api/sessionCheck";
 
 import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
 type NavBarProps = {
 	isLoggedIn?: boolean;
 };
-
-/* useClient(); */
 
 export default function Navbar({ isLoggedIn }: NavBarProps) {
 	const router = useRouter();
@@ -32,7 +28,10 @@ export default function Navbar({ isLoggedIn }: NavBarProps) {
 		<nav className="sticky top-0 left-0 z-50 w-screen px-8 py-4 flex flex-row justify-between items-center text-[1rem]">
 			{/* LOGO SECTION (LEFT) */}
 			<section>
-				<div className="hover:cursor-pointer" onClick={() => router.push("./")}>
+				<div
+					className="hover:cursor-pointer"
+					onClick={() => router.push("./")}
+				>
 					<Image
 						src={Logo}
 						alt={"TheSomethingSomethingCompany"}

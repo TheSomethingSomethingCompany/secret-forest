@@ -11,7 +11,7 @@ import SignIn from "./api/signin";
 import Input from "@/app/components/formComponents/Input";
 import Member from "@/app/types/Member";
 import { useSearchParams } from "next/navigation";
-import Logo from "@/app/images/TheSomethingSomethingCompanyLogoV2.svg";
+import Logo from "@/app/images/TheSomethingSomethingCompanyLogoV3.svg";
 import { useWebSocket } from "../../contexts/WebSocketContext";
 
 export default function UserAuthentication() {
@@ -32,7 +32,6 @@ export default function UserAuthentication() {
 			searchParams.get("signin") === "true"
 				? setShowSignIn(true)
 				: setShowSignIn(false);
-			//router.replace("/auth");
 		} else {
 			setShowSignIn(false);
 		}
@@ -45,16 +44,12 @@ export default function UserAuthentication() {
 
 	const formik = useFormik({
 		initialValues: {
-			firstname: "e.g., John",
-			lastname: "e.g., Doe",
 			username: "e.g., johndoe",
 			email: "e.g., example@email.com",
 			password: "",
 			confirmpassword: "",
 		},
 		onSubmit: (values: {
-			firstname: string;
-			lastname: string;
 			username: string;
 			email: string;
 			password: string;
@@ -65,16 +60,6 @@ export default function UserAuthentication() {
 
 		// SCHEMA VALIDATION
 		validationSchema: Yup.object({
-			firstname: Yup.string()
-				.matches(/^[aA-zZ\s]+$/, "Please enter a valid firstname")
-				.required(
-					"You cannot leave this field empty! Please enter your firstname"
-				),
-			lastname: Yup.string()
-				.matches(/^[aA-zZ\s]+$/, "Please enter a valid lastname")
-				.required(
-					"You cannot leave this field empty! Please enter your  lastname"
-				),
 			username: Yup.string().required(
 				"You cannot leave this field empty! Please enter a username"
 			),
@@ -127,8 +112,6 @@ export default function UserAuthentication() {
 	});
 
 	const submitSignUpData = async (values: {
-		firstname: string;
-		lastname: string;
 		username: string;
 		email: string;
 		password: string;
@@ -143,19 +126,12 @@ export default function UserAuthentication() {
 				throw new Error("Passwords do not match! Please try again!");
 			}
 			const body: Member = {
-				name: values.firstname + " " + values.lastname,
 				username: values.username,
 				email: values.email,
-				password: values.password,
-				isorganization: false,
+				password: values.password,	
 			};
-
 			const response = await SignUp(body);
-
-			console.log("Successs");
 			console.log(response);
-	
-			/* router.push("/createProfile"); */
 		} catch (error) {
 			console.log(error);
 		}
@@ -171,20 +147,13 @@ export default function UserAuthentication() {
 				password: values.password,
 				isEmail: emailRegex.test(values.identifier),
 			};
-
 			const response = await SignIn(body);
-
 			console.log("Logged In Successfully!");
 			console.log(response);
 			if (response.status == 205) {
-				console.log("MESSAGE!");
-				console.log("CONNECTION STATUS: ", isConnected);
 				sendMessage("signedIn", {});
-				//router.push("/createProfile");
 			} else {
 				sendMessage("signedIn", {});
-				//setLoggedIn(response);
-				//router.push("/searchpage");
 			}
 		} catch (error) {
 			console.log(error);
@@ -293,34 +262,6 @@ export default function UserAuthentication() {
 							className="flex flex-col items-start my-4 w-full"
 							onSubmit={formik.handleSubmit}
 						>
-							<Input
-								label={
-									formik.touched.firstname &&
-									formik.errors.firstname
-										? formik.errors.firstname
-										: "Firstname"
-								}
-								type="text"
-								id="firstname"
-								name="firstname"
-								placeholder={formik.values.firstname}
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<Input
-								label={
-									formik.touched.lastname &&
-									formik.errors.lastname
-										? formik.errors.lastname
-										: `Lastname`
-								}
-								type="text"
-								id="lastname"
-								name="lastname"
-								placeholder={formik.values.lastname}
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
 							<Input
 								label={
 									formik.touched.username &&

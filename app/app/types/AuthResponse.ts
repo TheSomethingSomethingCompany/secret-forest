@@ -1,4 +1,4 @@
-export default interface SignUpResponse {
+export default interface AuthResponse {
   data: {
     id: string;
   } | null;
