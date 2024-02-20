@@ -44,8 +44,6 @@ router.post("/api", async (req, res) => {
 		const pureIdentifier = DOMPurify.sanitize(identifier, sanitizationConfig);
 		const purePassword = DOMPurify.sanitize(password, sanitizationConfig);
 
-
-
 		let member = await db.one(
 			isEmail
 				? 'SELECT "memberID" FROM member WHERE "email" = $1 AND "password" = $2'
