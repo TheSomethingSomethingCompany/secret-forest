@@ -11,7 +11,7 @@ router.post("/api", async (req, res) => {
 	const { username, email, password } = req.body;
 	try {
 		// CHECK IF INPUTS ARE EMPTY. IF SO, THROW ERROR.
-		if (username === "" || email == "" || password == "") {
+		if (username === "" || email === "" || password === "") {
 			return res.json({
 				data: null,
 				status: 400,
@@ -54,13 +54,15 @@ router.post("/api", async (req, res) => {
 			});
 		}
 
+		console.log(process.env.PASS_HASH);
+
 		await db.none(
 			'INSERT INTO member("username", "email", "password") VALUES($1, $2, $3)',
 			[
-				username,
-				email,
+				pureUsername,
+				pureEmail,
 				HmacSHA256(
-					password,
+					purePassword,
 					"230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"
 				).toString(),
 			]

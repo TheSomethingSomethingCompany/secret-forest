@@ -1,4 +1,3 @@
-import { WebSocketProvider } from "@/app/contexts/WebSocketContext";
 import Navbar from "@/app/components/Navbar/Navbar";
 
 interface LayoutProps {
@@ -7,9 +6,9 @@ interface LayoutProps {
 
 export default function ROWLayout({ children }: LayoutProps) {
 	return (
-		<WebSocketProvider>
+		<>
 			<Navbar />
 			{children}
-		</WebSocketProvider>
+		</>
 	);
 }

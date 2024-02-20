@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import { WebSocketProvider } from "./contexts/WebSocketContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -108,7 +109,7 @@ interface LayoutProps {
 	children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: LayoutProps) {
+export default function RootyLayout({ children }: LayoutProps) {
 	return (
 		<html lang="en">
 			<body className={`${metropolis.className} relative min-h-screen`}>
@@ -116,7 +117,9 @@ export default function RootLayout({ children }: LayoutProps) {
 					//<div className="snow"></div>
 					//<div className="snow2"></div>
 				}
-				<div>{children}</div>
+				<WebSocketProvider>
+					<div>{children}</div>
+				</WebSocketProvider>
 			</body>
 		</html>
 	);
