@@ -40,11 +40,22 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
   
 
       if (memberData.status == 202) {
-        console.log("User found");
+        console.log("User found, and is the logged in user.");
         setIsUser(true);
-      } else {
-        console.log("User not found");
+      }
+      else if(memberData.status == 200) {
+        console.log("User found, but not the logged in user.");
         setIsUser(false);
+      } 
+      else if(memberData.status == 404) {
+        console.log("User not found");
+        router.push('/404');
+        setIsUser(false);
+      }
+      else {
+        console.log("Error");
+        setIsUser(false);
+        router.push('/404');
       }
 
       setHasChat(memberData.data.hasChat);
