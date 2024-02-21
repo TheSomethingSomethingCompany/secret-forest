@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import fetchUserData from "../api/fetchUserData";
 import MemberFetch from "@/app/types/MemberFetch";
-import Penguin from "../../images/ExamplePenguin.jpeg";
+import Penguin from "@/app/images/ExamplePenguin.jpeg";
 import updateProfileInfo from "../api/saveProfileData";
 import sendRequest from "../api/sendRequest";
 import acceptRequest from "../../requestsReceived/api/acceptRequest";

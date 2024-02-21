@@ -1,6 +1,6 @@
 "use client"
-import SearchBar from "../components/searchBar/Searchbar";
-import OccupationTags from "../components/occupationTags/OccupationTags";
+import SearchBar from "@/app/components/searchBar/Searchbar";
+import OccupationTags from "@/app/components/occupationTags/OccupationTags";
 import fetchSearchResults from "./api/search";
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
