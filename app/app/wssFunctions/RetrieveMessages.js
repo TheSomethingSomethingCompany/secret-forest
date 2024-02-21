@@ -26,7 +26,11 @@ async function handleRetrievingMessages(req, res){
         else
         {
             const chatMessages = await db.any(`
-            SELECT "chatID", "messageID", "message", "name", CASE WHEN member."memberID" = $2 THEN true ELSE false END AS "isYou" from member JOIN message on member."memberID" = message."senderID" WHERE "chatID" = $1
+            SELECT "chatID", "messageID", "message", "name", CASE WHEN message."senderID" = $2 THEN true ELSE false END AS "isYou" 
+            FROM member 
+            JOIN message on member."memberID" = message."senderID" 
+            JOIN profile on message."senderID" = profile."memberID"
+            WHERE "chatID" = $1
                 `, [chatID, memberID]);
             
             console.log(chatMessages);
