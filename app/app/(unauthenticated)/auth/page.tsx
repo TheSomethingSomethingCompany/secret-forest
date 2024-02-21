@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import * as Yup from "yup";
 import SignUp from "./api/signup";
@@ -11,18 +11,12 @@ import SignIn from "./api/signin";
 import Input from "@/app/components/formComponents/Input";
 import Member from "@/app/types/Member";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import Logo from "@/app/images/TheSomethingSomethingCompanyLogoV2.svg";
-import { useWebSocket } from "../contexts/WebSocketContext";
-import RootLayout from "../layout";
+import Logo from "@/app/images/TheSomethingSomethingCompanyLogoV3.svg";
+import { useWebSocket } from "../../contexts/WebSocketContext";
 
-// TYPE DEFINITION OF USER PROPS
-type userauthprops = {
-	params: { slug: string };
-};
-
-export default function UserAuthentication({ params }: userauthprops) {
+export default function UserAuthentication() {
 	const { isConnected, sendMessage } = useWebSocket();
+	sendMessage("hideNavigation", {});
 
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -31,20 +25,17 @@ export default function UserAuthentication({ params }: userauthprops) {
 	const [terms, setTerms] = useState(false);
 	const [highlightTerms, setHighlightTerms] = useState(false);
 
+	// USE EFFECT TO DETERMINE IF SIGN-IN OR SIGN-UP IS SHOWN
+
 	useEffect(() => {
 		if (searchParams.has("signin")) {
 			searchParams.get("signin") === "true"
 				? setShowSignIn(true)
 				: setShowSignIn(false);
-			router.replace("/auth");
 		} else {
 			setShowSignIn(false);
 		}
 	}, []);
-
-	useEffect(() => {
-		console.log("Terms: " + terms);
-	}, [terms]);
 
 	// FORMIK LOGIC
 
@@ -53,16 +44,12 @@ export default function UserAuthentication({ params }: userauthprops) {
 
 	const formik = useFormik({
 		initialValues: {
-			firstname: "e.g., John",
-			lastname: "e.g., Doe",
 			username: "e.g., johndoe",
 			email: "e.g., example@email.com",
 			password: "",
 			confirmpassword: "",
 		},
 		onSubmit: (values: {
-			firstname: string;
-			lastname: string;
 			username: string;
 			email: string;
 			password: string;
@@ -73,16 +60,6 @@ export default function UserAuthentication({ params }: userauthprops) {
 
 		// SCHEMA VALIDATION
 		validationSchema: Yup.object({
-			firstname: Yup.string()
-				.matches(/^[aA-zZ\s]+$/, "Please enter a valid firstname")
-				.required(
-					"You cannot leave this field empty! Please enter your firstname"
-				),
-			lastname: Yup.string()
-				.matches(/^[aA-zZ\s]+$/, "Please enter a valid lastname")
-				.required(
-					"You cannot leave this field empty! Please enter your  lastname"
-				),
 			username: Yup.string().required(
 				"You cannot leave this field empty! Please enter a username"
 			),
@@ -99,6 +76,7 @@ export default function UserAuthentication({ params }: userauthprops) {
 				.required(
 					"You cannot leave this field empty! Please enter your password."
 				),
+			confirmpassword: Yup.string().required("You cannot leave this field empty! Please confirm your password.")
 		}),
 	});
 
@@ -134,8 +112,6 @@ export default function UserAuthentication({ params }: userauthprops) {
 	});
 
 	const submitSignUpData = async (values: {
-		firstname: string;
-		lastname: string;
 		username: string;
 		email: string;
 		password: string;
@@ -150,19 +126,12 @@ export default function UserAuthentication({ params }: userauthprops) {
 				throw new Error("Passwords do not match! Please try again!");
 			}
 			const body: Member = {
-				name: values.firstname + values.lastname,
 				username: values.username,
 				email: values.email,
-				password: values.password,
-				isorganization: false,
+				password: values.password,	
 			};
-
 			const response = await SignUp(body);
-
-			console.log("Successs");
 			console.log(response);
-
-			router.push("/createProfile");
 		} catch (error) {
 			console.log(error);
 		}
@@ -178,21 +147,13 @@ export default function UserAuthentication({ params }: userauthprops) {
 				password: values.password,
 				isEmail: emailRegex.test(values.identifier),
 			};
-			const isEmail = emailRegex.test(values.identifier);
-
 			const response = await SignIn(body);
-
 			console.log("Logged In Successfully!");
 			console.log(response);
 			if (response.status == 205) {
-				console.log("MESSAGE!");
-				console.log("CONNECTION STATUS: ", isConnected);
 				sendMessage("signedIn", {});
-				//router.push("/createProfile");
 			} else {
 				sendMessage("signedIn", {});
-				//setLoggedIn(response);
-				//router.push("/searchpage");
 			}
 		} catch (error) {
 			console.log(error);
@@ -202,14 +163,11 @@ export default function UserAuthentication({ params }: userauthprops) {
 	return (
 		<>
 			<section className="z-50 w-screen p-10 flex flex-row justify-between items-center text-[1rem]">
-				<Link href={"./"}>
-					<Image
-						src={Logo}
-						alt={"TheSomethingSomethingCompany"}
-					></Image>
-				</Link>
+				<div onClick={() => router.push("./")}>
+					<Image src={Logo} alt={"TheSomethingSomethingCompany"} />
+				</div>
 			</section>
-			{showSignIn ? (
+			{showSignIn === true && (
 				<section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 w-full h-[40rem]">
 					<div className="flex flex-col justify-center items-start py-0 px-20 w-full h-full">
 						<h1 className="font-bold text-6xl mb-4">Sign In</h1>
@@ -277,7 +235,8 @@ export default function UserAuthentication({ params }: userauthprops) {
 						/>
 					</div>
 				</section>
-			) : (
+			)}
+			{showSignIn === false && (
 				<section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 h-fit w-full">
 					<div className="hidden tablet:flex flex-col justify-center items-center p-20 w-fit h-full bg-green-600">
 						<div className="w-full">
@@ -303,34 +262,6 @@ export default function UserAuthentication({ params }: userauthprops) {
 							className="flex flex-col items-start my-4 w-full"
 							onSubmit={formik.handleSubmit}
 						>
-							<Input
-								label={
-									formik.touched.firstname &&
-									formik.errors.firstname
-										? formik.errors.firstname
-										: "Firstname"
-								}
-								type="text"
-								id="firstname"
-								name="firstname"
-								placeholder={formik.values.firstname}
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
-							<Input
-								label={
-									formik.touched.lastname &&
-									formik.errors.lastname
-										? formik.errors.lastname
-										: `Lastname`
-								}
-								type="text"
-								id="lastname"
-								name="lastname"
-								placeholder={formik.values.lastname}
-								onChange={formik.handleChange}
-								onBlur={formik.handleBlur}
-							/>
 							<Input
 								label={
 									formik.touched.username &&
@@ -429,6 +360,9 @@ export default function UserAuthentication({ params }: userauthprops) {
 								<button
 									className="h-fit my-2 p-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
 									type="submit"
+									onClick={() => {
+										console.log("Submitted Clocked!");
+									}}
 								>
 									Sign Up
 								</button>
@@ -438,6 +372,7 @@ export default function UserAuthentication({ params }: userauthprops) {
 									</p>
 									<button
 										className="h-fit p-2 my-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
+										type="button"
 										onClick={() =>
 											setShowSignIn(!showSignIn)
 										}

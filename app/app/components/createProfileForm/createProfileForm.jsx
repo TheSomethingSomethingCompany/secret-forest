@@ -3,7 +3,7 @@ import OccupationTags from "../occupationTags/OccupationTags";
 import defaultProfilePicture from "../../images/defaultProfilePicture.jpg";
 import editIcon from "../../images/pencil-solid.svg";
 import { useState } from "react";
-import { createAProfile } from "../../createProfile/api/createAProfile.js";
+import { createAProfile } from "@/app/(unauthenticated)/createProfile/api/createAProfile.js";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/legacy/image";
