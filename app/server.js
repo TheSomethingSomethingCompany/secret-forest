@@ -43,9 +43,6 @@ server.use(sessionMiddleWare);
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js
 server.use("/createAProfile", createProfileRoutes); // Any time /createAProfile is put within URL, you tell express to utilize the routes present in createProfileRoutes = './routes/Profile'
 
-const createChatRoutes = require("./app/routes/CreateChat");
-server.use("/createChat", createChatRoutes);
-
 const retrieveChatsRoutes = require("./app/routes/RetrieveChats"); // Express will use the routes present in RetrieveChats.js
 server.use("/retrieveChats", retrieveChatsRoutes); //Express will map /retrieveChats to ./app/routes/RetrieveChats, while will contain the corresponding routes.
 //  /api must be specifically mentioned after /retrieveChats in order to get the corresponding routes. /api is not necessary to have in the routes, but it is good practice to have it.
@@ -65,8 +62,6 @@ server.use("/signin", signinRoutes);
 const fetchUserDataRoutes = require("./app/routes/FetchUserData");
 server.use("/fetchUserData", fetchUserDataRoutes);
 
-const fetchProfileDataRoutes = require("./app/routes/FetchProfileData");
-server.use("/fetchProfileData", fetchProfileDataRoutes);
 
 const fetchSearchResultsRoutes = require("./app/routes/FetchSearchResults");
 server.use("/fetchSearchResults", fetchSearchResultsRoutes);

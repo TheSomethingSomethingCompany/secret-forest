@@ -4,6 +4,7 @@ export async function updateProfileInfo(data){
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(data),
         cache: "no-cache",
+        credentials: "include",
     });
 
     let resBody = await response.json(); 
