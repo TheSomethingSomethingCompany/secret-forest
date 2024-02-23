@@ -112,7 +112,7 @@ interface LayoutProps {
 export default function RootyLayout({ children }: LayoutProps) {
 	return (
 		<html lang="en">
-			<body className={`${metropolis.className} relative min-h-screen`}>
+			<body className={`${inter.className} relative min-h-screen`}>
 				{
 					//<div className="snow"></div>
 					//<div className="snow2"></div>
