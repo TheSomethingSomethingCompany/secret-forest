@@ -82,3 +82,13 @@ CREATE TABLE message(
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE blocked_user{
+  "blocked_user_ID" SERIAL PRIMARY KEY,
+  "blockerMemberID" uuid NOT NULL,
+  "blockedMemberID" uuid NOT NULL,
+  FOREIGN KEY ("memberID1") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY ("memberID2") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE 
+};
+
