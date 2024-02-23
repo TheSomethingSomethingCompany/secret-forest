@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import ChatBubble from "../components/conversations/ChatBubble";
-import Img from "../images/ExamplePenguin.jpeg";
+import ChatBubble from "@/app/components/conversations/ChatBubble";
+import Img from "@/app/images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
 import { useRef, useEffect, useState, use } from "react";
