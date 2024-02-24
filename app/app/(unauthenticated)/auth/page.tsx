@@ -167,11 +167,6 @@ export default function UserAuthentication() {
 
 	return (
 		<section style={{ "--translation": showSignIn ? "50%" : "0%", "--b-r": showSignIn ? "0" : "0.5rem", "--b-l": showSignIn ? "0.5rem" : "0" } as any} className="flex flex-col justify-center items-center mx-10">
-			<section className="bg-white z-50 w-screen p-10 flex flex-row justify-between items-center text-[1rem]">
-				<div onClick={() => router.push("./")}>
-					<Image src={Logo} alt={"TheSomethingSomethingCompany"} />
-				</div>
-			</section>
 			<section className="relative flex flex-row w-full justify-center items-center rounded-lg shadow-lg">	
 				<section className="flex flex-col justify-center items-center p-0 m-0 w-full h-[40rem] overflow-hidden">
 					<div className="flex flex-col justify-center items-start py-0 px-20 w-full h-full">

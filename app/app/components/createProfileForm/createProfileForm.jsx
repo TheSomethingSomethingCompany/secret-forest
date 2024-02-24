@@ -1,13 +1,15 @@
 "use client";
 import OccupationTags from "../occupationTags/OccupationTags";
-import defaultProfilePicture from "../../images/defaultProfilePicture.jpg";
+import defaultProfilePicture from "@/public/profile-pictures/1.svg";
 import editIcon from "../../images/pencil-solid.svg";
 import { useState } from "react";
-import { createAProfile } from "@/app/(unauthenticated)/createProfile/api/createAProfile.js";
+import { createAProfile } from "../../(unauthenticated)/createProfile/api/createAProfile.js";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/legacy/image";
 import Input from "../formComponents/Input";
+
+
 
 function CreateProfileForm() {
 	const [imageFile, setImageFile] = useState(defaultProfilePicture);
@@ -32,8 +34,6 @@ function CreateProfileForm() {
 					id="labels-and-inputs-container"
 					className="flex w-full flex-row items-center"
 				>
-					{" "}
-					{/* Ensures the labels div and the inputs div are side-by-side */}
 					<ProfilePicture
 						imageFile={imageFile}
 						setImageFile={setImageFile}
