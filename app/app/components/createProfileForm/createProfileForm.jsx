@@ -4,53 +4,30 @@ import defaultProfilePicture from "@/public/profile-pictures/1.svg";
 import editIcon from "../../images/pencil-solid.svg";
 import { useState } from "react";
 import { createAProfile } from "../../(unauthenticated)/createProfile/api/createAProfile.js";
+import getRandomProfilePicture from "@/app/scripts/getRandomProfilePicture";
+import 'remixicon/fonts/remixicon.css';
+
 import { useRouter } from "next/navigation";
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Input from "../formComponents/Input";
 
 
 
 function CreateProfileForm() {
-	const [imageFile, setImageFile] = useState(defaultProfilePicture);
-	const [currentTags, setTags] = useState(
-		[]
-	); /* Send this as a reference to OccupationTags */
-	/* OccupationTags will be able to modify currentTags as needed, but CreateProfileForm has access to it */
-	/* Given that currentTags is an object, any change to it in OccupationTags will be reflected in memory */
-	const [fullName, setFullName] = useState("");
-	const [country, setCountry] = useState("");
-	const [address, setAddress] = useState("");
-	const [bio, setBio] = useState("");
 
 	return (
 		<>
 			<form
 				method="POST"
-				className="m-4 p-4 flex flex-col justify-center relative overflow-y-auto w-full h-auto bg-white"
+				className="mx-6"
 			>
 				<CreateProfileHeader />
 				<div
 					id="labels-and-inputs-container"
 					className="flex w-full flex-row items-center"
 				>
-					<ProfilePicture
-						imageFile={imageFile}
-						setImageFile={setImageFile}
-					/>
-					<FormLabelsAndInputs
-						imageFile={imageFile}
-						fullName={fullName}
-						setFullName={setFullName}
-						country={country}
-						setCountry={setCountry}
-						address={address}
-						setAddress={setAddress}
-						bio={bio}
-						setBio={setBio}
-						currentTags={currentTags}
-						setTags={setTags}
-					/>
+					<FormLabelsAndInputs />
 				</div>
 			</form>
 		</>
@@ -59,16 +36,20 @@ function CreateProfileForm() {
 
 function CreateProfileHeader() {
 	return (
-		<div className="w-full flex flex-row justify-left">
-			<h1 className="font-semibold mobile:text-[2rem] tablet:text-[3rem] desktop:text-[4rem]">
-				Create Your Profile
+		<section className="w-full flex flex-col items-start">
+			<h1 className="font-bold text-6xl pb-4 text-[#343a40]">
+				Tell Others About Yourself	
 			</h1>
-		</div>
+			<p className="text-xl font-light pb-8 text-[#343a40]">
+				Complete your profile to let others know who you are.	
+			</p>
+		</section>	
 	);
 }
 
-function FormLabelsAndInputs({ imageFile }) {
+function FormLabelsAndInputs() {
 	const router = useRouter();
+	const [imageFile, setImageFile] = useState(getRandomProfilePicture());
 	const [currentTags, setTags] = useState(
 		[]
 	); /* Send this as a reference to OccupationTags */
@@ -183,7 +164,10 @@ function FormLabelsAndInputs({ imageFile }) {
 	}
 
 	return (
-		<section className="flex flex-col w-full">
+		<section className="rounded-lg shadow-lg p-6 w-full">
+			<div className="flex flex-col items-start w-full">
+				<h4 className="font-bold font-xl py-4 text-[#343a40]">PERSONAL DETAILS</h4>
+
 			<FlexLabelAndTextInput
 				labelVal={fullNameLabelHTML}
 				inputName="fullName"
@@ -191,37 +175,34 @@ function FormLabelsAndInputs({ imageFile }) {
 				onChangeFunction={onFullNameChange}
 				placeHolder="e.g., John Wilfred Doe"
 			/>
-			<FlexLabelAndTextInput
-				labelVal={countryLabelHTML}
-				inputName="country"
-				required={true}
-				onChangeFunction={onCountryChange}
-				placeHolder="e.g, Canada"
-			/>
-			<FlexLabelAndTextInput
-				labelVal={addressLabelHTML}
-				inputName="address"
-				required={true}
-				onChangeFunction={onAddressChange}
-				placeHolder="e.g, 111 Wellington St."
-			/>
-			{
-			//<Input label="Occupation Tags:" type="text" id="occupationTags" name="occupationTags" placeholder="e.g., Software Engineer" />
-				//<OccupationTags
-				//	id="occupationTags"
-				//	inputName="occupationTags"
-				//	inputFieldStyles="w-3/4 h-[2.5rem] rounded-md p-2 text-[1.25rem]"
-				//	placeHolder="e.g, Software Engineer"
-				//	tagColor="bg-green-500"
-				//	currentTags={currentTags}
-				//	setTags={setTags}
-				///>
-			}
+			<div className="flex flex-row justify-evenly w-full">
+				<div className="pr-2 w-full">
+					<FlexLabelAndTextInput
+						labelVal={countryLabelHTML}
+						inputName="country"
+						required={true}
+						onChangeFunction={onCountryChange}
+						placeHolder="e.g, Canada"
+					/>
+				</div>
+				<div className="pl-2 w-full">
+					<FlexLabelAndTextInput
+						labelVal={addressLabelHTML}
+						inputName="address"
+						required={true}
+						onChangeFunction={onAddressChange}
+						placeHolder="e.g, 111 Wellington St."
+					/>
+				</div>
+			</div>
+					<h4 className="font-bold font-xl py-4 text-[#343a40]">PROFILE PICTURE</h4>
+					<ProfilePicture
+						setImageFile={setImageFile}
+					/>
 			<FlexLabelAndOtherInput
 				labelVal="Occupation Tags:"
 				inputName="occupationTags"
 			>
-				{" "}
 				<OccupationTags
 					id="occupationTags"
 					inputName="occupationTags"
@@ -243,6 +224,7 @@ function FormLabelsAndInputs({ imageFile }) {
 				></textarea>{" "}
 			</FlexLabelAndOtherInput>
 			<FormButtons onSubmitHandler={onSubmit} />
+			</div>
 		</section>
 	);
 }
@@ -266,12 +248,7 @@ function FlexLabelAndOtherInput(props) {
 
 function FlexLabelAndTextInput(props) {
 	return (
-		<div className="w-full mx-4 px-4 flex flex-col justify-start items-start">
-			{
-				//<label htmlFor = {props.inputName} cum = {props.inputName} className="font-semibold mb-2 hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]" dangerouslySetInnerHTML={props.labelVal}></label>  {/* "for" attribute specified what input a label is associated by providing the ID of the input*/}
-				//<br></br>
-				//<input id = {props.inputName}  type = "text" className = "bg-[#f4f4f5] hover:bg-[#e4e4e7] py-2 px-3 flex flex-col w-full rounded-xl hover:cursor-text my-2 text-md" name = {props.inputName} required = {props.required}  onChange = {props.onChangeFunction} onBlur = {props.onChangeFunction} placeholder = {props.placeHolder}></input>
-			}
+		<div className="w-full">
 			<Input
 				label={props.labelVal}
 				dsh={props.labelVal}
@@ -304,8 +281,8 @@ function FormButtons({ onSubmitHandler }) {
 	);
 }
 
-function ProfilePicture({ imaageFile, setImageFile }) {
-	const [image, setImage] = useState(defaultProfilePicture);
+function ProfilePicture({ setImageFile }) {
+	const [image, setImage] = useState(getRandomProfilePicture());
 
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
@@ -319,57 +296,25 @@ function ProfilePicture({ imaageFile, setImageFile }) {
 		}
 	};
 
-	const handleEditButtonClick = function (e) {
-		e.preventDefault();
-		document.getElementById("edit-pfp").click();
-	};
-
 	function Picture() {
 		return (
-			<div
-				className="relative w-[20vw] h-[20vw]"
-				style={{
-					maxWidth: "300px",
-					maxHeight: "300px",
-					minWidth: "10rem",
-					minHeight: "10rem",
-				}}
-			>
-				<Image
-					id="pfp"
-					src={image}
-					alt="Profile Preview"
-					layout="fill"
-					objectFit="cover"
-					className="rounded-full"
-				/>
-			</div>
-		);
-	}
-
-	function EditPictureButton() {
-		return (
-			<div
-				id="edit-pfp-button-container"
-				className="relative w-[2vw] h-[2vw] max-h-[70px] max-w-[70px]"
-			>
-				<button id="edit-pfp-button">
-					<Image
-						src={editIcon}
-						layout="fill"
-						objectFit="cover"
-						alt="Edit"
-						onClick={handleEditButtonClick}
-					></Image>
-				</button>
-				<input
-					id="edit-pfp"
-					type="file"
-					accept="image/*"
-					onChange={handleImageChange}
-					className="hidden"
-				/>
-			</div>
+					<div className="flex flex-row w-full items-center">
+						<div className="pr-2">
+							<Image id="pfp" className="rounded-full" src={image} alt="Picture" width={100} height={100} />
+						</div>
+						<div className="ml-4 flex flex-row flex-1 items-center">
+							<div className="pr-1">
+								<input type="file" id="edit-pfp" accept="image/jpeg, image/png, image/svg+xml" onChange={handleImageChange} hidden/>
+								<label htmlFor="edit-pfp" className="inline-block bg-green-200 text-green-800 border-green-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-green-300 transition-all ease-in-out duration-300">Upload New Picture</label>
+							</div>
+							<div className="pl-1 pr-1">
+								<button type="button" className="h-full bg-red-200 text-red-800 border-red-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-red-300 transition-all ease-in-out duration-300">Remove</button>
+							</div>
+							<div className="pl-1">
+								<button type="button" className="h-full bg-blue-200 text-blue-800 border-blue-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-blue-300 transition-all ease-in-out duration-300"><i className="ri-restart-line"></i></button>
+							</div>
+						</div>
+					</div>
 		);
 	}
 
@@ -379,7 +324,6 @@ function ProfilePicture({ imaageFile, setImageFile }) {
 			className="w-full h-fullpx flex flex-col justify-center items-center"
 		>
 			<Picture />
-			<EditPictureButton />
 		</div>
 	);
 }
