@@ -4,9 +4,7 @@ CREATE TABLE member (
   "memberID" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "email" TEXT UNIQUE NOT NULL,
   "username" TEXT UNIQUE NOT NULL,
-  "name" TEXT NOT NULL,
-  "password" TEXT NOT NULL,
-  "isOrg" BOOLEAN DEFAULT FALSE
+  "password" TEXT NOT NULL
 );
 
 
@@ -67,6 +65,16 @@ CREATE TABLE chat(
   FOREIGN KEY ("memberID1") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE,    
   FOREIGN KEY ("memberID2") REFERENCES member("memberID")
+  	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE request(
+  "requestID" SERIAL PRIMARY KEY,
+  "fromMemberID" uuid NOT NULL,
+  "toMemberID" uuid NOT NULL,
+  FOREIGN KEY ("fromMemberID") REFERENCES member("memberID")
+    ON DELETE CASCADE ON UPDATE CASCADE,    
+  FOREIGN KEY ("toMemberID") REFERENCES member("memberID")
   	ON DELETE CASCADE ON UPDATE CASCADE
 );
 

@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "__tests__/createProfile.test.mjs"
-, "app/search/api/search.js", "app/components/searchBar/Searchbar.jsx", "app/search/page.tsx"  ],
+, "app/(restofthewebsite)/search/api/search.js", "app/components/searchBar/Searchbar.jsx", "app/(restofthewebsite)/search/page.tsx", "app/profile/api/saveProfileData.js", "app/requestsReceived/page.tsx"  ],
   "exclude": ["node_modules"]
 }

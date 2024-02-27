@@ -363,6 +363,155 @@ Current design idea for edit profile
 ![term2w1](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/034be2a0-4e7e-4e28-8dee-6e8ca0e6e7e8)
 
 
+**Term 2 Week: 2** 
+**Work Period**: `15-01-2024` - `21-01-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Design Edit Page
+  - Work on Frontend design
+  - Work on Backend functionality 
+
+## Active Tasks
+
+- Design Edit Page
+  - Work on Frontend design
+  - Work on Backend functionality
+
+
+## Status of Tasks
+
+- Design Edit Page
+  - Work on Frontend design (Completed)
+  - Work on Backend functionality (In-progress)
+
+
+Wasn't able to work on the project that much as I mentioned in the peer evals
+
+## Peer Review
+
+![T2-W2](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/0db85594-af27-4f95-89db-c7641d48cedf)
+
+**Term 2 Week: 3** 
+**Work Period**: `22-01-2024` - `28-01-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Design Edit Page
+
+## Active Tasks
+
+- Design Edit Page
+  - Complete a basic level of backend functionality with express js
+    - Fetch profile information
+    - Update changes to profile information
+  - Refine edit profile page
+    - check if current user is the same as the profile they are viewing
+    - check that the username is unique
+    - check that required information is not left blank
+    - add profile image change functionality
+    - add occupational tags change functionality   
+
+
+## Status of Tasks
+
+- Design Edit Page
+  - Complete a basic level of backend functionality with express js (Completed)
+    - Fetch profile information
+    - Update changes to profile information
+  - Refine edit profile page (In-progress)
+    - check if current user is the same as the profile they are viewing
+    - check that the username is unique
+    - check that required information is not left blank
+    - add profile image change functionality
+    - add occupational tags change functionality 
+
+
+
+## Peer Review
+![term2week3](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/09c31bab-d0ea-4a81-8cd0-792c025ac530)
+
+
+
+**Term 2 Week: 4** 
+**Work Period**: `29-01-2024` - `04-02-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Refine Edit Page
+- Address feedback made from peer testing
+
+## Active Tasks
+
+- Refine edit profile page
+  - check if current user is the same as the profile they are viewing
+  - check that the username is unique
+  - check that required information is not left blank
+  - add profile image change functionality
+  - add occupational tags change functionality
+- Address feedback made from peer testing
+  - fix bio display so that there is no text overflow
+  - adjust labels and layout of the edit information form so that the design looks more consistent 
+
+
+## Status of Tasks
+
+- Refine edit profile page 
+  - check if current user is the same as the profile they are viewing (In-progress)
+  - check that the username is unique (Completed)
+  - check that required information is not left blank (Completed)
+  - add profile image change functionality (On Hold)
+  - add occupational tags change functionality (In-progress)
+- Address feedback made from peer testing 
+  - fix bio display so that there is no text overflow (Completed)
+  - adjust labels and layout of the edit information form so that the design looks more consistent (Completed) 
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/8ef7912d-4733-4c71-8437-d9ea203407be)
+
+
+
+**Term 2 Week: 5** 
+**Work Period**: `05-02-2024` - `11-02-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Refine Edit Page
+
+
+## Active Tasks
+
+- Refine edit profile page
+  - check if current user is the same as the profile they are viewing
+  - send notification to user if username is already taken
+  - re-route the page to the correct username if user changes their username
+  - add occupation tags change front-end functionality
+    - complete back end functionality   
+
+
+
+## Status of Tasks
+
+- Refine edit profile page
+  - check if current user is the same as the profile they are viewing (Completed)
+  - send notification to user if username is already taken (Completed)
+  - re-route the page to the correct username if user changes their username (Completed)
+  - add occupation tags change front-end functionality (Completed)
+    - complete back end functionality (In-progress)
+
+Orginally I thought I completed both front-end and back-end functionality for the occupation tags
+but I realize that the back-end logic is more complex and need a bit more time and get team input and 
+advise. 
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/01874812-f6b2-496f-8f9b-e79fcdafab4f)
+
 
 
 

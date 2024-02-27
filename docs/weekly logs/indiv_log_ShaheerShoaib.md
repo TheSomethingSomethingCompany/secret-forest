@@ -564,10 +564,11 @@
 ## Peer Review
 <img width="881" alt="2023-12-04_00-12-24" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/cd31ef63-a9ab-4c2a-9087-3849c4bd1352">
 
-**Work Period**: 08/01/2024 - 08/01/2024
+**Work Period**: 15/01/2024 - 21/01/2024
 **GitHub Account**: `shaheershoaib`
 
 ## Individual Objectives
+
 
 - Research Websockets, and How To Implement In Express
 - Implement Real Asynchronous Live Messaging Via WebSockets, and Corresponding Documentation
@@ -590,9 +591,119 @@
     - Implemented via an event-based broadcast algorithm
 - Provide Feedback On Proposed Designs For Website
 - Assisted Teammate (Arsh) With Integrating Video Upload Into Website
+- Finish Backend For Search Page
+- Complete Design Of Search Page
+  
+## Active Tasks - 
+
+- Finish Backend For Search Page
+- Complete Design Of Search Page
+
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Finish Backend For Search Page
+- Complete Design Of Search Page
 
 ## Peer Review
 <img width="1065" alt="2024-01-14_23-40-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/e9f4990f-c33c-4d51-8adc-ddffb4a31de2">
+
+**Work Period**: 22/01/2024 - 28/01/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+
+- Implement option to filter search results such that each profile consists at least all of the tags mentioned in the filter (conjunctive)
+- Discover, isolate, and resolve issues related to Docker
+      - Fixed docker networking issue preventing express container from connecting to postgres container
+      - Fixed docker issue preventing WebSockets, and thus live chatting, from working at all
+- Extend create profile route to additionally insert tags into the database
+- Extend create profile route to additionally save uploaded profile pictures locally in express server
+- Assist Yafei with implementing Edit Profile route, resulting in its successful completion
+- Work on implementing video submissions in live chats
+  
+## Active Tasks - 
+
+- Implement option to filter search results such that each profile consists at least all of the tags mentioned in the filter (conjunctive)
+- Discover, isolate, and resolve issues related to Docker
+      - Fixed docker networking issue preventing express container from connecting to postgres container
+      - Fixed docker issue preventing WebSockets, and thus live chatting, from working at all
+- Extend create profile route to additionally insert tags into the database
+- Extend create profile route to additionally save uploaded profile pictures locally in express server
+- Assist Yafei with implementing Edit Profile route, resulting in its successful completion
+- Work on implementing video submissions in live chats
+  
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Implement option to filter search results such that each profile consists at least all of the tags mentioned in the filter (conjunctive)
+- Discover, isolate, and resolve issues related to Docker
+      - Fixed docker networking issue preventing express container from connecting to postgres container
+      - Fixed docker issue preventing WebSockets, and thus live chatting, from working at all
+- Extend create profile route to additionally insert tags into the database
+- Extend create profile route to additionally save uploaded profile pictures locally in express server
+- Assist Yafei with implementing Edit Profile route, resulting in its successful completion
+- Work on implementing video submissions in live chats - `In-Progress`
+
+## Peer Review
+<img width="709" alt="2024-01-26_23-05-42" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/16afc746-fa56-4f86-903e-76b37da63291">
+
+**Work Period**: 28/01/2024 - 4/02/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Implement storing occupaton tags specified in create profile page to the database
+- Implement storing profile picture specified in create page in the database, and locally on express server via multer
+- Implement creating a chat with a user from a search result via the UI
+- Research differences between JWT and Session Data
+    - JWT is essentially a different approach to session data, where data associated with a user is stored within an object on the client side, which is initially created on the server side and signed.
+    - The idea is that the server will verify and read the data from the JWT to essentially get access to user information via the database, such as a user id
+    - This nullifies the need for session data as session data would typically store the user id
+    - As a result, the load on the server is offloaded as it doesn't need to manage sessions
+    - However, it is still susceptible to Stored XSS attacks, just like session data via session keys.
+    - Given that we have already implemented session data on all of our routes, it doesn't seem prevelant to switch over to JWT, given that they both are susceptible to the same security issues
+- Assist Yafei with the Edit Profile page
+  
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Implement storing occupaton tags specified in create profile page to the database
+- Implement storing profile picture specified in create page in the database, and locally on express server via multer
+- Implement creating a chat with a user from a search result via the UI
+- Research differences between JWT and Session Data
+- Assist Yafei with the Edit Profile page
+  
+## Peer Review
+<img width="1065" alt="2024-02-05_04-44-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f94fc06b-1c56-4a02-b530-e3f905dad9af">
+
+
+**Work Period**: 04/02/2024 - 11/02/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Fully complete backend functionality of the "Request For Chat" feature, along with all appropriate security checks 
+      - Sending Request
+      - Accepting Request
+      - Decline Request
+      - Cancelling Sent Request
+      - Fetching Requests Received
+      - Fetching Requests Sent
+- Fully complete middleman/controller methods to make api calls to each route
+- Complete basic design of components displaying requests sent and requests received, along with buttons appropriate to each component controlling accepting, deleting, and cancelling
+  - Specifically, requests received component has buttons for accepting and declining requests with the appropriate middleman methods attached, and requests sent component has a cancel button with the appropriate middleman method attached, as well.
+  
+## Status of Tasks: `All Tasks Listed Completed`
+
+- Fully complete backend functionality of the "Request For Chat" feature, along with all appropriate security checks 
+      - Sending Request
+      - Accepting Request
+      - Decline Request
+      - Cancelling Sent Request
+      - Fetching Requests Received
+      - Fetching Requests Sent
+- Fully complete middleman/controller methods to make api calls to each route
+- Complete basic design of components displaying requests sent and requests received, along with buttons appropriate to each component controlling accepting, deleting, and cancelling
+  - Specifically, requests received component has buttons for accepting and declining requests with the appropriate middleman methods attached, and requests sent component has a cancel button with the appropriate middleman method attached, as well.
+  
+## Peer Review
+<img width="1065" alt="2024-02-05_04-44-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f94fc06b-1c56-4a02-b530-e3f905dad9af">
 
 
 

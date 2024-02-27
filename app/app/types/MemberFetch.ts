@@ -4,6 +4,10 @@ export default interface MemberFetch {
     name: string;
     email: string;
     memberID: string;
+    country: string;
+    bio: string;
+    address: string;
+    tags: never[];
   };
   pgErrorObject: any;
   status: number;
