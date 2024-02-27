@@ -1,10 +1,10 @@
 "use client"
-import RequestsReceivedDisplayer from "../components/requestsReceivedDisplayer/RequestsReceivedDisplayer";
+import RequestsReceivedDisplayer from "@/app/components/requestsReceivedDisplayer/RequestsReceivedDisplayer";
 import fetchRequestsReceived from "./api/fetchRequestsReceived";
 import acceptRequest from "./api/acceptRequest";
 import declineRequest from "./api/declineRequest";
 import React, { useEffect, useState} from 'react';
-import SearchBar from "../components/searchBar/SearchBar";
+import SearchBar from "@/app/components/searchBar/SearchBar";
 
 export default function Home() {
    

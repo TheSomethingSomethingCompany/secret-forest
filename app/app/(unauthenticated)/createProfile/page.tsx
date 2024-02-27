@@ -1,5 +1,5 @@
 "use client"
-import CreateProfileForm from "../components/createProfileForm/createProfileForm";
+import CreateProfileForm from "@/app/components/createProfileForm/createProfileForm";
 import React, { useEffect } from 'react';
 
 export default function Home() {

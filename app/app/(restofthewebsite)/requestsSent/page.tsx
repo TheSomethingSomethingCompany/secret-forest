@@ -1,6 +1,6 @@
 "use client"
-import RequestsSentDisplayer from "../components/requestsSentDisplayer/RequestsSentDisplayer";
-import SearchBar from "../components/searchBar/SearchBar";
+import RequestsSentDisplayer from "@/app/components/requestsSentDisplayer/RequestsSentDisplayer";
+import SearchBar from "@/app/components/searchBar/SearchBar";
 import fetchRequestsSent from "./api/fetchRequestsSent";
 import cancelRequest from "./api/cancelRequest";
 import React, { useEffect, useState} from 'react';

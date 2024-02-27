@@ -6,28 +6,56 @@ const cryptojs = require("crypto-js");
 const HmacSHA256 = cryptojs.HmacSHA256;
 const WebSocket = require("ws");
 
+const DOMPurify = require("isomorphic-dompurify");
+
 router.post("/api", async (req, res) => {
 	console.log(req.body);
 
 	const { identifier, password, isEmail } = req.body;
 	try {
-		console.log("[SIGN-IN]: IN TRY");
-		if (identifier == "" || password == "") {
-			console.log("[SIGN-IN]: EMPTY FIELDS");
+		// CHECK IF INPUTS ARE EMPTY. IF SO, THROW ERROR.
+		if (identifier === "" || password === "") {
 			return res.json({
+				data: null,
+				status: 400,
+				message:
+					"Looks like you missed a few spots. Please double-check the form.",
+				pgErrorObject: null,
+			});
+
+		}
+
+		const sanitizationConfig = { ALLOWED_TAGS: [], KEEP_CONTENT: false };
+		const pureIdentifier = DOMPurify.sanitize(identifier, sanitizationConfig);
+		const purePassword = DOMPurify.sanitize(password, sanitizationConfig);
+
+		if (pureIdentifier === "") {
+			return res.json({
+				data: null,
 				status: 422,
-				message: "Please fill all required fields",
+				message: "Your input for 'Username or Email' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				pgErrorObject: null,
 			});
 		}
+
+		if (purePassword === "") {
+			return res.json({
+				data: null,
+				status: 422,
+				message: "Your input for 'Password' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				pgErrorObject: null,
+			});
+		}
+
 		let member = await db.one(
 			isEmail
 				? 'SELECT "memberID" FROM member WHERE "email" = $1 AND "password" = $2'
 				: 'SELECT "memberID" FROM member WHERE "username" = $1 AND "password" = $2',
 			[
-				identifier,
+				pureIdentifier,
 				HmacSHA256(
-					password,
-					"230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"
+					purePassword,
+					"230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"	
 				).toString(),
 			]
 		);

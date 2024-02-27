@@ -1,8 +1,10 @@
+"use client";
 import React, { createContext, useContext, useEffect, useState, useRef } from "react";
+
 
 const WebSocketContext = createContext({
 	isConnected: false,
-	sendMessage: () => {},
+	sendMessage: () => {}, 
 	userStatus: "signedOut",
 });
 

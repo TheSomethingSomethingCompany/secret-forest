@@ -2,7 +2,7 @@
 import React from "react";
 import PenguinC from "@/app/images/PenguinC.jpeg";
 import { useEffect, useRef } from "react";
-import ChatBubble from "../components/conversations/ChatBubble";
+import ChatBubble from "../../components/conversations/ChatBubble";
 
 function page() {
     const inputRef = useRef(null);
