@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import fetchUserData from "../api/fetchUserData";
 import MemberFetch from "@/app/types/MemberFetch";
-import Penguin from "../../images/ExamplePenguin.jpeg";
-import ProfileFetch from "@/app/types/ProfileFetch";
-import FetchProfileData from "../api/fetchProfileData";
+import Penguin from "@/app/images/ExamplePenguin.jpeg";
 import updateProfileInfo from "../api/saveProfileData";
+import sendRequest from "../api/sendRequest";
+import acceptRequest from "../../requestsReceived/api/acceptRequest";
+import declineRequest from "../../requestsReceived/api/declineRequest";
+import cancelRequest from "../../requestsSent/api/cancelRequest";
 
   function EditProfile({params}: {params: {slug: string}}){
 
@@ -24,37 +26,53 @@ import updateProfileInfo from "../api/saveProfileData";
       biography: "Loading",
       email: "Loadig",
       currentTags: [],
-      memberId: ""
     });
 
     const [isUser, setIsUser] = useState(false);
 
+    const [hasRequest, setHasRequest] = useState(-1);
+    const [hasChat, setHasChat] = useState(-1);
 
     const fetchData = async () => {
 
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
+  
+
       if (memberData.status == 202) {
+        console.log("User found, and is the logged in user.");
         setIsUser(true);
-      } else {
+      }
+      else if(memberData.status == 200) {
+        console.log("User found, but not the logged in user.");
+        setIsUser(false);
+      } 
+      else if(memberData.status == 404) {
+        console.log("User not found");
+        router.push('/404');
         setIsUser(false);
       }
+      else {
+        console.log("Error");
+        setIsUser(false);
+        router.push('/404');
+      }
+
+      setHasChat(memberData.data.hasChat);
+      setHasRequest(memberData.data.hasRequest);
       
-      const profileData: any = await FetchProfileData({
-        id: memberData.data.memberID
-      });
-      
+
       setProfile({
         fullName: memberData.data.name, 
         userName: memberData.data.username,
-        country: profileData.data.country,
-        address: profileData.data.address,
-        biography: profileData.data.bio,
+        country: memberData.data.country,
+        address: memberData.data.address,
+        biography: memberData.data.bio,
         email: memberData.data.email,
-        currentTags: profileData.data.tags,
-        memberId: memberData.data.memberID });
+        currentTags: memberData.data.tags || [] as string[] // Add a default value for tags
+      });
 
-      setTags(profileData.data.tags);
+      setTags(memberData.data.tags);
     }
 
 
@@ -97,7 +115,6 @@ import updateProfileInfo from "../api/saveProfileData";
             username: tempProfile.userName,
             email: tempProfile.email,
             tags: JSON.stringify(currentTags),
-            id: tempProfile.memberId
         };
     };
 
@@ -105,16 +122,14 @@ import updateProfileInfo from "../api/saveProfileData";
     // Handler for the Save Changes button
     async function handleSave(e: { preventDefault: () => void; }) {
       setIsEditing(false);
-  
+      tempProfile.currentTags = currentTags;
       if(tempProfile.fullName != "" && tempProfile.country != "" && tempProfile.address != "" && tempProfile.userName != "")
       {
           var response = await updateProfileInfo(formDataAsJSON());
           if(response.status == 202)
           {
-              alert("Updated Your Profile");
               setProfile({ ...tempProfile });
               console.log("save changes: ", tempProfile);
-              router.push('/profile/' + tempProfile.userName);
 
           }
           else if (response.status == 404) {
@@ -131,6 +146,39 @@ import updateProfileInfo from "../api/saveProfileData";
         console.log("Something went wrong");
       }
     };
+
+
+    function handleSendRequest() {
+      sendRequest({username: profile.userName}).then((res) => {
+        setHasRequest(1);
+      });
+
+    }
+
+    function handleCancelRequest() {
+      cancelRequest({username: profile.userName}).then((res) => {
+        setHasRequest(0);
+      });
+    }
+
+    function handleAcceptRequest() {
+      acceptRequest({username: profile.userName}).then((res) => {
+        setHasRequest(0);
+        setHasChat(1);
+      });
+    }
+
+    function handleDeclineRequest() {
+      declineRequest({username: profile.userName}).then((res) => {
+        setHasRequest(0);
+      });
+    }
+
+    // Create function handle going to chat, which just redirects to the chat page
+    function handleGoToChat() {
+      router.push('/chats');
+    }
+
 
 
   return (
@@ -297,7 +345,62 @@ import updateProfileInfo from "../api/saveProfileData";
         
       </div>
 
-      ) : null} {/*eventually add a request chat button here?*/}
+      ) : null} 
+
+    {/* Buttons */}
+{!isUser && (
+  <div>
+    {hasRequest === 0 && hasChat === 0 && (
+      <button 
+      className="bg-blue-400 p-2 rounded-md text-white font-bold"
+      onClick = {handleSendRequest}
+      >
+        Send Request
+      </button>
+    )}
+
+    {hasRequest === 1 && hasChat === 0 && (
+      <button 
+      className="bg-red-400 p-2 rounded-md text-white font-bold"
+      onClick = {handleCancelRequest}
+      >
+        Cancel Request
+      </button>
+    )}
+
+    {hasRequest === 2 && hasChat === 0 && (
+      <div>
+        <button 
+        className="bg-green-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleAcceptRequest}
+        >
+          Accept Request
+        </button>
+        <button 
+        className="bg-red-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleDeclineRequest}
+        >
+          Decline Request
+        </button>
+      </div>
+    )}
+
+    {hasRequest === 0 && hasChat === 1 && (
+      <div>
+        <button 
+        className="bg-blue-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleGoToChat}
+        >
+          Go To Chat
+        </button>
+
+      </div>
+    )}
+
+  </div>
+)}
+      
+    
       
       
     </section>

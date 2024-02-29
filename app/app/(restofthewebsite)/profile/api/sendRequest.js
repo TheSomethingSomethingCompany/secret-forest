@@ -1,5 +1,5 @@
-export async function createChat(data){
-    const response = await fetch('http://localhost:6969/createChat/api', {
+export async function sendRequest(data){
+    const response = await fetch('http://localhost:6969/sendRequest/api', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -9,9 +9,8 @@ export async function createChat(data){
     });
 
     let resBody = await response.json(); // Retrieve response body and turn into JSON object
-    console.log("[RESPONSE BODY FOR CREATE CHAT]:") 
     console.log(resBody);
     return resBody.data;
    }
 
-   export default createChat;
+   export default sendRequest;
