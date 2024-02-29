@@ -5,15 +5,16 @@ const db = require("../db-connection.js");
 router.post("/api", async (req, res) => {
   
 
-  const {fullName, country, address, bio, username, email, tags, id} = req.body;
+  const {fullName, country, address, bio, username, email, tags} = req.body;
   const occupationTagsAsArray = JSON.parse(tags);
   console.log("TAGS: " + occupationTagsAsArray);
+  const id = req.session.loggedInUserMemberID;
 
   try {
 
-    const uniqueUserName = await db.any(
-      `SELECT "memberID" FROM member WHERE username = $1`, [username]
-    );
+    // Check if the username is unique, except for the user's own username by excluding the logged in user's memberID in the query
+    const uniqueUserName = await db.any(`SELECT * FROM member WHERE "username" = $1 AND "memberID"!=$2`, [username, id]);
+    
 
     if (uniqueUserName.length > 1){
       res.json({ status: 404, message: 'This username is already being used' });
@@ -41,13 +42,11 @@ router.post("/api", async (req, res) => {
       await t.none(`DELETE FROM user_tag WHERE "memberID" = $1`,[id]);
 
       const tagIDs = await t.any(`SELECT "tagID" FROM tag WHERE "tagName" = any($1)`, [occupationTagsAsArray]); 
-
+      console.log("[TAG IDS]: " + tagIDs);
       for (let tagIDsRow of tagIDs) {
           await t.none(`INSERT INTO user_tag("memberID", "tagID") VALUES($1, $2)`, [id, tagIDsRow.tagID]);
       }
 
-
-      
   });
 
 

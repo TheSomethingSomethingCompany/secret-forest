@@ -11,10 +11,10 @@ export default function LandingPage() {
       <div className="w-screen h-[2550px] relative bg-white">
         <div className="w-full h-[630px] top-[184px] absolute">
           <div className="w-full h-[550px] top-[400px] md:top-[300px] tablet:top-[177px] relative bg-yellow-200" />
-          <div className="w-1/4 tablet:w-3/4 h-[182px] ml-5 top-0 absolute text-left text-black text-4xl font-normal font-['Inter']">
+          <div className="w-1/4 tablet:w-3/4 h-[182px] ml-5 top-0 absolute text-left text-black text-4xl font-bold">
             The Safest Way to connect with the professionals online.
           </div>
-          <div className="w-[100px] sm:w-auto h-9 right-0 mr-10 top-[91px] absolute text-center text-black text-2xl font-bold font-['Inter'] hover:text-teal-300">
+          <div className="w-[100px] sm:w-auto h-9 right-0 mr-10 top-[91px] absolute text-center text-black text-2xl font-bold  hover:text-teal-300">
             <a href="/signin">Get Started Here</a>
           </div>
         </div>
