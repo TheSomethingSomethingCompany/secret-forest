@@ -5,7 +5,7 @@ import editIcon from "../../images/pencil-solid.svg";
 import { useState } from "react";
 import { createAProfile } from "../../(unauthenticated)/createProfile/api/createAProfile.js";
 import getRandomProfilePicture from "@/app/scripts/getRandomProfilePicture";
-import 'remixicon/fonts/remixicon.css';
+import "remixicon/fonts/remixicon.css";
 
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -13,15 +13,10 @@ import Image from "next/image";
 import Input from "../formComponents/Input";
 
 
-
 function CreateProfileForm() {
-
 	return (
 		<>
-			<form
-				method="POST"
-				className="mx-6"
-			>
+			<form method="POST" className="mx-6">
 				<CreateProfileHeader />
 				<div
 					id="labels-and-inputs-container"
@@ -38,12 +33,12 @@ function CreateProfileHeader() {
 	return (
 		<section className="w-full flex flex-col items-start">
 			<h1 className="font-bold text-6xl pb-4 text-[#343a40]">
-				Tell Others About Yourself	
+				Tell Others About Yourself
 			</h1>
 			<p className="text-xl font-light pb-8 text-[#343a40]">
-				Complete your profile to let others know who you are.	
+				Complete your profile to let others know who you are.
 			</p>
-		</section>	
+		</section>
 	);
 }
 
@@ -149,9 +144,11 @@ function FormLabelsAndInputs() {
 	async function onSubmit(e) {
 		e.preventDefault();
 		if (fullName != "" && country != "" && address != "") {
+			console.log("ProfileImage: ", imageFile);
+
 			var response = await createAProfile(collectFormData());
 			if (response.status == 201) {
-				router.push("/chats"); // Code for this page has not been written yet
+				// router.push("/chats"); // Code for this page has not been written yet
 			} else if (response.status == 401) {
 				alert("You have not signed up yet. Please sign up first.");
 				router.push("/SignUp");
@@ -166,64 +163,72 @@ function FormLabelsAndInputs() {
 	return (
 		<section className="rounded-lg shadow-lg p-6 w-full">
 			<div className="flex flex-col items-start w-full">
-				<h4 className="font-bold font-xl py-4 text-[#343a40]">PERSONAL DETAILS</h4>
+				<h4 className="font-bold font-xl py-4 text-[#343a40]">
+					PERSONAL DETAILS
+				</h4>
 
-			<FlexLabelAndTextInput
-				labelVal={fullNameLabelHTML}
-				inputName="fullName"
-				required={true}
-				onChangeFunction={onFullNameChange}
-				placeHolder="e.g., John Wilfred Doe"
-			/>
-			<div className="flex flex-row justify-evenly w-full">
-				<div className="pr-2 w-full">
-					<FlexLabelAndTextInput
-						labelVal={countryLabelHTML}
-						inputName="country"
-						required={true}
-						onChangeFunction={onCountryChange}
-						placeHolder="e.g, Canada"
-					/>
-				</div>
-				<div className="pl-2 w-full">
-					<FlexLabelAndTextInput
-						labelVal={addressLabelHTML}
-						inputName="address"
-						required={true}
-						onChangeFunction={onAddressChange}
-						placeHolder="e.g, 111 Wellington St."
-					/>
-				</div>
-			</div>
-					<h4 className="font-bold font-xl py-4 text-[#343a40]">PROFILE PICTURE</h4>
-					<ProfilePicture
-						setImageFile={setImageFile}
-					/>
-			<FlexLabelAndOtherInput
-				labelVal="Occupation Tags:"
-				inputName="occupationTags"
-			>
-				<OccupationTags
-					id="occupationTags"
-					inputName="occupationTags"
-					inputFieldStyles="w-3/4 h-[2.5rem] rounded-md p-2 text-[1.25rem]"
-					placeHolder="e.g, Software Engineer"
-					tagColor="bg-green-500"
-					currentTags={currentTags}
-					setTags={setTags}
+				<FlexLabelAndTextInput
+					labelVal={fullNameLabelHTML}
+					inputName="fullName"
+					required={true}
+					onChangeFunction={onFullNameChange}
+					placeHolder="e.g., John Wilfred Doe"
 				/>
-			</FlexLabelAndOtherInput>
-			<FlexLabelAndOtherInput labelVal="Bio:" inputName="bio">
-				{" "}
-				<textarea
-					id="bio"
-					className="mobile:h-auto text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2"
-					name="bio"
-					placeholder="e.g, I have a Bachelor's degree in computer science and am an avid learner. While I love working in software, when not at work, you can find me in the great outdoors."
-					onChange={onBioChange}
-				></textarea>{" "}
-			</FlexLabelAndOtherInput>
-			<FormButtons onSubmitHandler={onSubmit} />
+				<div className="flex flex-row justify-evenly w-full">
+					<div className="pr-2 w-full">
+						<FlexLabelAndTextInput
+							labelVal={countryLabelHTML}
+							inputName="country"
+							required={true}
+							onChangeFunction={onCountryChange}
+							placeHolder="e.g, Canada"
+						/>
+					</div>
+					<div className="pl-2 w-full">
+						<FlexLabelAndTextInput
+							labelVal={addressLabelHTML}
+							inputName="address"
+							required={true}
+							onChangeFunction={onAddressChange}
+							placeHolder="e.g, 111 Wellington St."
+						/>
+					</div>
+				</div>
+				<h4 className="font-bold font-xl py-4 text-[#343a40]">
+					PROFILE PICTURE
+				</h4>
+				<ProfilePicture setImageFile={setImageFile} />
+				<FlexLabelAndOtherInput
+					labelVal="OCCUPATION TAGS"
+					inputName="occupationTags"
+				>
+					<OccupationTags
+						id="occupationTags"
+						inputName="occupationTags"
+						inputFieldStyles="rounded-sm p-2 text-lg"
+						placeHolder="e.g, Software Engineer"
+						currentTags={currentTags}
+						setTags={setTags}
+					/>
+				</FlexLabelAndOtherInput>
+				<FlexLabelAndOtherInput labelVal="BIOGRAPHY" inputName="bio">
+					{" "}
+					<textarea
+						id="bio"
+						className="mobile:h-auto text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2"
+						name="bio"
+						placeholder="e.g, I have a Bachelor's degree in computer science and am an avid learner. While I love working in software, when not at work, you can find me in the great outdoors."
+						onChange={onBioChange}
+					></textarea>{" "}
+				</FlexLabelAndOtherInput>
+			</div>
+			<div className="w-full flex flex-row justify-end">
+				<button
+					className="h-fit p-2 my-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
+					onClick={onSubmit}
+				>
+					Create Profile
+				</button>
 			</div>
 		</section>
 	);
@@ -231,12 +236,12 @@ function FormLabelsAndInputs() {
 
 function FlexLabelAndOtherInput(props) {
 	return (
-		<div className="w-full mt-10 mb-10 flex flex-col items-center">
+		<div className="w-full mt-10 mb-10 flex flex-col items-start">
 			{" "}
 			{/* Flex box ensures that the occupation tags can keep growing while pushing down the bio*/}
 			<label
 				htmlFor={props.inputName}
-				className="font-semibold mb-2 hover:cursor-text mobile:text-[1rem] tablet:text-[1.25rem] desktop:text-[1.25rem]"
+				className="font-bold font-xl py-4 text-[#343a40]"
 			>
 				{props.labelVal}
 			</label>
@@ -263,24 +268,6 @@ function FlexLabelAndTextInput(props) {
 	);
 }
 
-function FormButtons({ onSubmitHandler }) {
-	return (
-		<div className="flex mobile:w-full mobile:flex-col-reverse mobile:items-center mobile:space-y-reverse mobile:space-y-5 desktop:w-3/4 desktop:space-x-52 desktop:space-y-0 desktop:flex-row desktop:justify-center ">
-			{" "}
-			{/* space-y puts margin top on the seocnd, third, fourth, etc elements. But, if col-reversed, the margin-top property still remains. You'll need to specify space-y-reverse to ensure the correct order of margin-top*/}
-			<button className="h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out w-3/4">
-				Go Back
-			</button>
-			<button
-				className="h-fit my-2 p-2 text-xl font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out w-3/4"
-				onClick={onSubmitHandler}
-			>
-				Create Profile
-			</button>
-		</div>
-	);
-}
-
 function ProfilePicture({ setImageFile }) {
 	const [image, setImage] = useState(getRandomProfilePicture());
 
@@ -298,23 +285,51 @@ function ProfilePicture({ setImageFile }) {
 
 	function Picture() {
 		return (
-					<div className="flex flex-row w-full items-center">
-						<div className="pr-2">
-							<Image id="pfp" className="rounded-full" src={image} alt="Picture" width={100} height={100} />
-						</div>
-						<div className="ml-4 flex flex-row flex-1 items-center">
-							<div className="pr-1">
-								<input type="file" id="edit-pfp" accept="image/jpeg, image/png, image/svg+xml" onChange={handleImageChange} hidden/>
-								<label htmlFor="edit-pfp" className="inline-block bg-green-200 text-green-800 border-green-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-green-300 transition-all ease-in-out duration-300">Upload New Picture</label>
-							</div>
-							<div className="pl-1 pr-1">
-								<button type="button" className="h-full bg-red-200 text-red-800 border-red-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-red-300 transition-all ease-in-out duration-300">Remove</button>
-							</div>
-							<div className="pl-1">
-								<button type="button" className="h-full bg-blue-200 text-blue-800 border-blue-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-blue-300 transition-all ease-in-out duration-300"><i className="ri-restart-line"></i></button>
-							</div>
-						</div>
+			<div className="flex flex-row w-full items-center">
+				<div className="pr-2">
+					<Image
+						id="pfp"
+						className="rounded-full"
+						src={image}
+						alt="Picture"
+						width={100}
+						height={100}
+					/>
+				</div>
+				<div className="ml-4 flex flex-row flex-1 items-center">
+					<div className="pr-1">
+						<input
+							type="file"
+							id="edit-pfp"
+							accept="image/jpeg, image/png, image/svg+xml"
+							onChange={handleImageChange}
+							hidden
+						/>
+						<label
+							htmlFor="edit-pfp"
+							className="inline-block bg-green-200 text-green-800 border-green-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-green-300 transition-all ease-in-out duration-300"
+						>
+							Upload New Picture
+						</label>
 					</div>
+					<div className="pl-1 pr-1">
+						<button
+							type="button"
+							className="h-full bg-red-200 text-red-800 border-red-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-red-300 transition-all ease-in-out duration-300"
+						>
+							Remove
+						</button>
+					</div>
+					<div className="pl-1">
+						<button
+							type="button"
+							className="h-full bg-blue-200 text-blue-800 border-blue-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-blue-300 transition-all ease-in-out duration-300"
+						>
+							<i className="ri-restart-line"></i>
+						</button>
+					</div>
+				</div>
+			</div>
 		);
 	}
 
