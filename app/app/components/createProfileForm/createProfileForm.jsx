@@ -12,7 +12,6 @@ import React from "react";
 import Image from "next/image";
 import Input from "../formComponents/Input";
 
-
 function CreateProfileForm() {
 	return (
 		<>
@@ -175,7 +174,7 @@ function FormLabelsAndInputs() {
 					placeHolder="e.g., John Wilfred Doe"
 				/>
 				<div className="flex flex-row justify-evenly w-full">
-					<div className="pr-2 w-full">
+					<div className="mr-2 pr-2 w-full">
 						<FlexLabelAndTextInput
 							labelVal={countryLabelHTML}
 							inputName="country"
@@ -184,7 +183,7 @@ function FormLabelsAndInputs() {
 							placeHolder="e.g, Canada"
 						/>
 					</div>
-					<div className="pl-2 w-full">
+					<div className="ml-2 pl-2 w-full">
 						<FlexLabelAndTextInput
 							labelVal={addressLabelHTML}
 							inputName="address"
@@ -215,7 +214,7 @@ function FormLabelsAndInputs() {
 					{" "}
 					<textarea
 						id="bio"
-						className="mobile:h-auto text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2"
+						className="mobile:h-auto w-full text-black rounded-md text-[1.25rem] resize-none p-2"
 						name="bio"
 						placeholder="e.g, I have a Bachelor's degree in computer science and am an avid learner. While I love working in software, when not at work, you can find me in the great outdoors."
 						onChange={onBioChange}
