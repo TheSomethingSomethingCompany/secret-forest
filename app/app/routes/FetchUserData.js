@@ -101,8 +101,8 @@ router.post("/api", async (req, res) => {
         SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2) OR ("fromMemberID" = $2 AND "toMemberID" = $1)
         `, [loggedInUserID, queriedUserID]);
 
-        let hasRequest = 0; // 0 = No request, 1 = Sent request, 2 = Received request
-        if(requestData != null)
+        let hasRequest = 0; // 0 = No request, 1 = Sent request, 2 = Received request, 3 = Logged in user blocked the other user, 4 = Other user blocked the logged in user
+        if(requestData != null) // If the requestData is not null, then a request exists
         {
           console.log("[REQUEST DATA]: ", requestData);
           if(requestData.fromMemberID == loggedInUserID)
@@ -116,17 +116,48 @@ router.post("/api", async (req, res) => {
           }
 
         }
+        else // If the requestData is null, then it is possible that the logged in user has blocked the other user, or the other user has blocked the logged in user
+        {
+          // Check if the logged in user has blocked the other user
+          let blockData = await db.oneOrNone(`
+          SELECT * FROM blocked_user WHERE "blockerMemberID" = $1 AND "blockedMemberID" = $2
+          `, [loggedInUserID, queriedUserID]);
+          console.log("[BLOCK DATA ASSOCIATED WITH LOGGED IN USER BLOCKING QUERIED USER]: ", blockData);
+          if(blockData != null) // If the blockData is not null, then the logged in user has blocked the other user
+          {
+            hasRequest = 3;
+          }
+
+          else
+          {
+            // Check if the other user has blocked the logged in user
+            let blockData = await db.oneOrNone(`
+            SELECT * FROM blocked_user WHERE "blockerMemberID" = $2 AND "blockedMemberID" = $1
+            `, [loggedInUserID, queriedUserID]);
+            console.log("[BLOCK DATA ASSOCIATED WITH QUERIED USER BLOCKING LOGGED IN USER]: ", blockData);
+            if(blockData != null)
+            {
+              hasRequest = 4;
+            }
+          }
+
+        } // End of else block for requestData == null. If there is no block, then there is simply no request.
 
         // Check if the user has a chat
-        let chatData = await db.oneOrNone(`
-        SELECT * FROM chat WHERE ("memberID1" = $1 AND "memberID2" = $2) OR ("memberID1" = $2 AND "memberID2" = $1)
-        `, [loggedInUserID, queriedUserID]);
-        console.log("[CHAT DATA]: ", chatData);
-
         let hasChat = 0; // 0 = No chat, 1 = Chat exists
-        if(chatData != null) // Chat exists
+
+        if(hasRequest == 0) // If and only if the user does not have a request, or they haven't blocked eachother, then we can check if the user has a chat
         {
-          hasChat = 1;
+          let chatData = await db.oneOrNone(`
+          SELECT * FROM chat WHERE ("memberID1" = $1 AND "memberID2" = $2) OR ("memberID1" = $2 AND "memberID2" = $1)
+          `, [loggedInUserID, queriedUserID]);
+          console.log("[CHAT DATA]: ", chatData);
+
+
+          if(chatData != null) // Chat exists
+          {
+            hasChat = 1;
+          }
         }
 
         // Add the hasRequest and hasChat properties to the user object

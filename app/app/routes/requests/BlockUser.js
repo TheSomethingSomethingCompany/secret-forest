@@ -24,7 +24,7 @@ router.post('/api', async (req, res) => {
 
             // Check if the two users have already blocked each other
             const blockExists = await db.oneOrNone(`
-            SELECT * FROM block WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
+            SELECT * FROM blocked_user WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
             `, [blockerMemberID, blockedMemberID]);
             if(blockExists != null)
             {
@@ -47,7 +47,7 @@ router.post('/api', async (req, res) => {
 
                     // Finally, insert the two memberIDs into the block table
                     await t.none(`
-                    INSERT INTO block("blockerMemberID", "blockedMemberID") VALUES ($1, $2)
+                    INSERT INTO blocked_user("blockerMemberID", "blockedMemberID") VALUES ($1, $2)
                     `, [blockerMemberID, blockedMemberID]);
 
                 });
