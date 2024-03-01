@@ -34,7 +34,7 @@ router.post('/api', async (req, res) => {
 
                 // Check if the the two users have not already blocked each other
                 const blockExists = await db.oneOrNone(`
-                SELECT * FROM block WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
+                SELECT * FROM blocked_user WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
                 `, [fromMemberID, toMemberID]);
 
                 if(blockExists != null)

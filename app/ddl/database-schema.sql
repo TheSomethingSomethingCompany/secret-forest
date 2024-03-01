@@ -8,7 +8,6 @@ CREATE TABLE member (
 );
 
 
-
 CREATE TABLE profile (
     "memberID" UUID PRIMARY KEY,
     "name" TEXT NOT NULL,
@@ -82,13 +81,13 @@ CREATE TABLE message(
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE blocked_user{
-  "blocked_user_ID" SERIAL PRIMARY KEY,
+CREATE TABLE blocked_user(
+  "blockID" SERIAL PRIMARY KEY,
   "blockerMemberID" uuid NOT NULL,
   "blockedMemberID" uuid NOT NULL,
-  FOREIGN KEY ("memberID1") REFERENCES member("memberID")
+  FOREIGN KEY ("blockerMemberID") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY ("memberID2") REFERENCES member("memberID")
+  FOREIGN KEY ("blockedMemberID") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE 
-};
+);
 

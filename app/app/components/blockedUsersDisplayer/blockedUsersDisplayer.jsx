@@ -1,7 +1,7 @@
 "use client";
 
 
-function blockedUsersDisplayer({blockedUsersResults, setBlockedUsersResults, unblockUserAPI}){
+function BlockedUsersDisplayer({blockedUsersResults, setBlockedUsersResults, unblockUserAPI}){
 /* Data is expected to be received as an array of JSON objects containing the usernames */
 
 
@@ -40,4 +40,4 @@ function blockedUsersDisplayer({blockedUsersResults, setBlockedUsersResults, unb
   );
 };
 
-export default blockedUsersDisplayer;
+export default BlockedUsersDisplayer;
