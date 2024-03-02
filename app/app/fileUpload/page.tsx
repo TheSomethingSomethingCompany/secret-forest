@@ -24,9 +24,11 @@ export default function main(){
     
     var response = await fileUpload(formData)
     if(response.status == 200){
-      // alert("file uploaded successfuly!");
+      alert("file uploaded successfuly!");
+    }else if(response.status == 400){
+      alert("No file provided!");
     }else{
-      // alert("no response from server");
+      alert("no response from server");
     }
   }
 
