@@ -89,3 +89,11 @@ CREATE TABLE message(
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE file(
+  "fileID" SERIAL PRIMARY KEY,
+  "messageID" int NOT NULL,
+  "fileName" TEXT NOT NULL,
+  FOREIGN KEY ("messageID") REFERENCES message("messageID")
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+

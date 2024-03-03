@@ -5,17 +5,18 @@ import Img from "@/app/images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
 import { useRef, useEffect, useState, use } from "react";
-
 export default function Chats() {
   
   const [chatsList, setChatsList] = useState([]);
   const [messagesList, setMessagesList] = useState([]);
   const [message, setMessage] = useState("");
+  const [file, setFile] = useState(null);
     
   // Create a WebSocket connection to the server
   
   const ws = useRef(null);
   const chatID = useRef("");
+  
 
   useEffect(() => {
     ws.current = new WebSocket('ws://localhost:7979');
@@ -97,7 +98,8 @@ export default function Chats() {
 
   async function onSendMessage() {
     console.log("SENDING MESSAGE: " + message);
-    const dataToSendToWSS = JSON.stringify({action: "insertMessage", body:{  chatID: chatID.current, message: message }});
+    console.log("CURRENT CHAT ID: " + chatID.current);
+    const dataToSendToWSS = JSON.stringify({action: "insertMessage", body:{  chatID: chatID.current, message: message, file: file}});
     ws.current.send(dataToSendToWSS);
     setMessage("");
   }
@@ -152,10 +154,31 @@ export default function Chats() {
     prevMessagesListLength.current = messagesList.length;
   }, [messagesList]);
 
+  function onFileChange(e){
+    const file = e.target.files[0];
+    toBase64(file).then(base64File => {
+      const fileObject = {
+        originalName: file.name,
+        mimetype: file.type,
+        fileData: base64File
+      };
+      setFile(fileObject);
+      console.log(fileObject);
+    });
+  }
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  }
+
   return (
     <section className="m-4 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-[50rem] bg-gray-100">
       {/* First, we need to make an api call to the RetrieveChats route */}
-
       <div className = "flex flex-col itmes-center col-span-1 overflow-y-scroll">
 
         {
@@ -167,7 +190,7 @@ export default function Chats() {
             : 
             (chatsList.map((chat) => {
             return (
-              <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full"> {/* A single chat */}
+              <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full hover:cursor-pointer hover:bg-gray-200"> {/* A single chat */}
                 <div className="flex flex-row justify-between flex-1 p-4">
                   <div className="p-2">
                     <img
@@ -223,6 +246,9 @@ export default function Chats() {
         </div>
         <div className="p-2">
           <div className="flex flex-row justify-between items-center p-2">
+            <input type="file"
+            onChange = {onFileChange}
+            />
             <input
               type="text"
               className="w-full h-12 rounded-lg shadow-md drop-shadow-md p-2 m-2"
