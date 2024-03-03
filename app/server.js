@@ -75,6 +75,9 @@ server.use("/saveProfileData", saveProfileDatsRoutes);
 const uploads3Routes = require("./app/routes/S3upload");
 server.use("/S3upload", uploads3Routes);
 
+const s3GetRoutes = require("./app/routes/S3get");
+server.use("/S3get", s3GetRoutes);
+
 const fetchRequestsReceivedRoutes = require("./app/routes/requests/FetchRequestsReceived");
 server.use("/fetchRequestsReceived", fetchRequestsReceivedRoutes);
 
