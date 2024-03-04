@@ -8,8 +8,10 @@ RUN npm install
 
 RUN npm update
 
+RUN npm install -g nodemon
+
 COPY . .
 
 EXPOSE 6969
 
-CMD node server.js
+CMD nodemon server.js
