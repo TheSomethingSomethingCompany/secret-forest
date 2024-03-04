@@ -10,6 +10,7 @@ import sendRequest from "../api/sendRequest";
 import acceptRequest from "../../requestsReceived/api/acceptRequest";
 import declineRequest from "../../requestsReceived/api/declineRequest";
 import cancelRequest from "../../requestsSent/api/cancelRequest";
+import GetProfilePicture from "../../getProfilePicture/api/getPFP";
 
   function EditProfile({params}: {params: {slug: string}}){
 
@@ -33,11 +34,13 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
     const [hasRequest, setHasRequest] = useState(-1);
     const [hasChat, setHasChat] = useState(-1);
 
+    //pfp
+    const [pfpInfo, setPfpInfo] = useState(``);
+
     const fetchData = async () => {
 
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
-  
 
       if (memberData.status == 202) {
         console.log("User found, and is the logged in user.");
@@ -60,6 +63,10 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
 
       setHasChat(memberData.data.hasChat);
       setHasRequest(memberData.data.hasRequest);
+
+      const pfpPath = await GetProfilePicture({username: memberData.data.username});
+      setPfpInfo(pfpPath.data);
+      console.log("PFP PATH: " + pfpInfo + " " + pfpPath.data);
       
 
       setProfile({
@@ -73,6 +80,7 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
       });
 
       setTags(memberData.data.tags);
+
     }
 
 
@@ -81,6 +89,7 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
 
     useEffect(() => {fetchData();}, []);
     useEffect(() => {setTempProfile({ ...profile });}, [profile]);
+    //useEffect(() => {GetProfilePicture({username : profile.userName});});
 
     
 
@@ -188,7 +197,7 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
       <div className="relative flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
         <img
           className="rounded-full w-72 h-72"
-          src={Penguin.src}
+          src={pfpInfo}
           alt="Profile Picture"
         />
         <div className="my-4">

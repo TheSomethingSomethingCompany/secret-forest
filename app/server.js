@@ -90,6 +90,9 @@ server.use("/cancelRequest", cancelRequestRoutes);
 const acceptRequestRoutes = require("./app/routes/requests/AcceptRequest");
 server.use("/acceptRequest", acceptRequestRoutes);
 
+const getProfilePictureRoutes = require("./app/routes/GetProfilePicture");
+server.use("/getPFP", getProfilePictureRoutes);
+
 server.listen(HTTP_PORT, () => {
 	console.log("Server started on http://localhost:6969");
 });
