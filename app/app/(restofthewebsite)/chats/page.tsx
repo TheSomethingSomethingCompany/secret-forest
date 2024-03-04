@@ -11,6 +11,7 @@ export default function Chats() {
   const [messagesList, setMessagesList] = useState([]);
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
+  const [shouldBlur, setShouldBlur] = useState(false);
     
   // Create a WebSocket connection to the server
   
@@ -99,7 +100,13 @@ export default function Chats() {
   async function onSendMessage() {
     console.log("SENDING MESSAGE: " + message);
     console.log("CURRENT CHAT ID: " + chatID.current);
-    const dataToSendToWSS = JSON.stringify({action: "insertMessage", body:{  chatID: chatID.current, message: message, file: file}});
+    const body = {
+      chatID: chatID.current,
+      message: message,
+      file: file,
+      shouldBlur: shouldBlur
+    };
+    const dataToSendToWSS = JSON.stringify({action: "insertMessage", body: body});
     ws.current.send(dataToSendToWSS);
     setMessage("");
   }
@@ -246,9 +253,17 @@ export default function Chats() {
         </div>
         <div className="p-2">
           <div className="flex flex-row justify-between items-center p-2">
-            <input type="file"
-            onChange = {onFileChange}
-            />
+            <div className = "grid grid-cols-2">
+              <input type="file"
+              onChange = {onFileChange}
+              className = "col-span-2 w-full h-12 rounded-lg shadow-md drop-shadow-md p-2 m-2"
+              />
+              <input
+              type="checkbox"
+              onChange = {(e) => setShouldBlur(e.target.checked)}
+              />
+              <p>Blur?</p>
+            </div>
             <input
               type="text"
               className="w-full h-12 rounded-lg shadow-md drop-shadow-md p-2 m-2"
@@ -261,6 +276,7 @@ export default function Chats() {
                 }
               }}
               value={message}
+              disabled={file != null}
             />
             <button
               id="sendButton"

@@ -9,11 +9,12 @@ dotenv.config();
 
 
 // get the environment variables from the .env file
-const bucketName = process.env.BUCKET_NAME
-const bucketRegion = process.env.BUCKET_REGION
-const accessKey = "ASIAQ23K775APXV4O6VO";
-const secretAccessKey = "sz4kAR/k7d+MTB6WcX8yocxJcuQT6H3wYeBithOG";
-const sessionToken = "IQoJb3JpZ2luX2VjEF4aDGNhLWNlbnRyYWwtMSJGMEQCIGQhiKKpjt8m96Y3sFznXBbhopfe2uzTe6bl5IksdT1OAiBVFheCKzQvGhPn3kucdSHNvI0v63OV8GL+i4jMPY0eMiqWAwhXEAAaDDA1NzY2OTU4MjY1NiIMEmiLPBUrOqI0wsjUKvMCG1VvpWYHKA17cLWIYa0gg8YDni80toDnNrhnvyE5V5igmdxZ821WgtRhMSdGJhR6ICsK+e6+hP+EmZLQYUa7H+UGLsh7gf40Gea+rOY2Z7b4q5VPa8THv3vQhL12EmsiWLsRQl/YZhOLk7WQrEWrL9K8/JpAefubUifAJ1URQmgriW0uFJhvNfkj9JYD3Yzz2OgohPJyxgGvi7xdstPBmUi2byUchs+Dm1tAxD2vPgiAOvkCRStWy+lZ37vSym99T3At29HibVtkAmBdl64nwhuamJwMQV3svqa2p3nWkhRp8pn69cft9Njz+4YB/dLGKrCLT9zB9DY2zom6mkRthfcN7bQpAmNrAEIMY7+bY4lI+/jr3Klu+eHSZ9oq0arBEizMQbx+kTxQ/g1wpC2dx+IjXXuIKZE229jVAdj0XOlYpHZFhq7Cmw78LaGsZWkkVz9PUec4qUANZkSLH9UMfuLLQtDtc8uoH65ao/O5Dz/uaM8wjqiQrwY6pwF5X4iw68u9pqXiEKEpd6iIZkM2pIIu5anoLAjY5P9WDHOXQn1T0/3zzTMMV8+nJ7z35I2NYRovG7OS7WdN/FRVWQCQF3/KOSO+f1cP168+cLtXEvyj9bS1CVKxaR3UrUEtdHXUKaV99B0WUK+n/b/3cEeSBvwycrQJA53mVmZszgsEFugYP295VtXPHBsvebKWLzVIyEhl+EMBdULeKbbghsyx5rCCGQ==";
+const outputBucketName = process.env.OUTPUT_BUCKET_NAME;
+const inputBucketName = process.env.INPUT_BUCKET_NAME;
+const bucketRegion = process.env.BUCKET_REGION // Region is the same for both input and output buckets
+const accessKey = process.env.ACCESS_KEY;
+const secretAccessKey = process.env.SECRET_ACCESS_KEY;
+const sessionToken = process.env.SESSION_TOKEN;
 
 const s3Object = new S3Client({ //creates a s3 object given the environment variables
     credentials:{
@@ -32,6 +33,8 @@ async function handleInsertingMessage (req, res){
         const chatID = req.body.chatID;
         let message = req.body.message;
         let file = req.body.file;
+        let shouldBlur = req.body.shouldBlur;
+        console.log("bam");
         console.log("REQUEST FOR INSERT MESSAGE WITH CHATID: " + chatID + "" + " AND MESSAGE: " + message + "" + " AND MEMBERID: " + memberID + "");
 
         // First, we must ensure that the user is a member of the chat, in order to prevent unauthorized insertion of chat messages by other users not in the chat.
@@ -46,8 +49,7 @@ async function handleInsertingMessage (req, res){
 
         else
         {
-            console.log("[REQ FILE]", req.file);
-
+            
             if(file)
             {
                 console.log('[UPLOADED FILE]');
@@ -57,7 +59,7 @@ async function handleInsertingMessage (req, res){
                 const base64Data = base64File.replace(/^data:\w+\/\w+;base64,/, '');
                 const buffer = Buffer.from(base64Data, 'base64');
                 const params = {
-                    Bucket: bucketName, //upload will happen to this s3 bucket
+                    Bucket: shouldBlur ? inputBucketName: outputBucketName, //upload will happen to this s3 bucket
                     Key: uniqueFilename, //name of the file that is on the user's computer
                     Body: buffer,  //buffer contains the actual binary data of the file
                     ContentType: mimeType, //the type of the file in question
@@ -66,6 +68,7 @@ async function handleInsertingMessage (req, res){
             
                 // await s3Object.send(command);
                 try {
+
                     await s3Object.send(command);
                     message = uniqueFilename; // If the image is successfully uploaded to S3, then we will insert the filename into the message column of the message table
                 } catch (error) {
