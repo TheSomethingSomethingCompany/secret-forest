@@ -196,7 +196,7 @@ import GetProfilePicture from "../../getProfilePicture/api/getPFP";
       {/*Div for the left box that displays how the user's profile will look like when people view their profile*/}
       <div className="relative flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
         <img
-          className="rounded-full w-72 h-72"
+          className="rounded-full w-100 h-100"
           src={pfpInfo}
           alt="Profile Picture"
         />

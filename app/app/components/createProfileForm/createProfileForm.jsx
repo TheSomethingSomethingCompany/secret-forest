@@ -312,18 +312,12 @@ function ProfilePicture({ setImageFile }) {
 							Upload New Picture
 						</label>
 					</div>
-					<div className="pl-1 pr-1">
-						<button
-							type="button"
-							className="h-full bg-red-200 text-red-800 border-red-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-red-300 transition-all ease-in-out duration-300"
-						>
-							Remove
-						</button>
-					</div>
+
 					<div className="pl-1">
 						<button
 							type="button"
 							className="h-full bg-blue-200 text-blue-800 border-blue-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-blue-300 transition-all ease-in-out duration-300"
+							onClick={() => setImage(getRandomProfilePicture())}
 						>
 							<i className="ri-restart-line"></i>
 						</button>
