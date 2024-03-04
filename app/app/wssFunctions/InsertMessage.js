@@ -50,6 +50,14 @@ async function handleInsertingMessage (req, res){
         else
         {
             
+
+            // Insert the message into the database, and return the messageID of the inserted message.
+            const messageID = await db.one(`
+            INSERT into message ("chatID", "senderID", "message") 
+            VALUES ($1, $2, $3)
+            RETURNING "messageID"
+                `, [chatID, memberID, message]);    
+            
             if(file)
             {
                 console.log('[UPLOADED FILE]');
@@ -67,26 +75,28 @@ async function handleInsertingMessage (req, res){
                 const command = new PutObjectCommand(params)
             
                 // await s3Object.send(command);
-                try {
-
+                try 
+                {
                     await s3Object.send(command);
-                    message = uniqueFilename; // If the image is successfully uploaded to S3, then we will insert the filename into the message column of the message table
-                } catch (error) {
+                } 
+                catch (error) 
+                {
                     console.error("Error uploading image to S3:", error);
                     res.status(500).json({status: 500, message: "Failed to save image."});
                 }
-                
+                // Insert the fileName into the "file" table in the database.
+                await db.none('INSERT INTO file("messageID", "fileName") VALUES ($1, $2)', [messageID, uniqueFilename]); 
             }
 
-            await db.none(`
-            INSERT into message ("chatID", "senderID", "message") VALUES ($1, $2, $3)
-                `, [chatID, memberID, message]);    
-            res.json({ status: 201, message: 'Successfully inserted message', action: 'insertMessage'});
+            // If message is inserted successfully, and if a file is uploaded and it too is inserted successfully, then return a status 200.
+            res.json({ status: 200, message: 'Message inserted successfully', action: 'insertMessage' });
+
         }
 
     } 
     catch(error)
     {
+        console.error("Error inserting message:", error); 
         res.json({ status: 500, message: 'Failed to insert message',  action: 'insertMessage'});
     }
 

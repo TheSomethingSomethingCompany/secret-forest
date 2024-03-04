@@ -1,4 +1,24 @@
 const db = require("../db-connection.js")
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+const {getSignedUrl} = require("@aws-sdk/s3-request-presigner")
+
+const dotenv = require("dotenv");
+dotenv.config();
+
+const bucketName = process.env.BUCKET_NAME
+const bucketRegion = process.env.BUCKET_REGION
+const accessKey = process.env.ACCESS_KEY
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+const sessionToken = process.env.SESSION_TOKEN
+
+const s3Object = new S3Client({ //creates a s3 object given the environment variables
+    credentials:{
+        accessKeyId: accessKey,
+        secretAccessKey: secretAccessKey,
+        sessionToken: sessionToken,
+    },
+    region: bucketRegion
+});
 
 async function handleRetrievingMessages(req, res){
     
@@ -42,6 +62,34 @@ async function handleRetrievingMessages(req, res){
             }
             else 
             {
+
+                try // For each message, if the message has a .extension, then we need to get the signed URL for the image.
+                {
+                    for (let i = 0; i < chatMessages.length; i++)
+                    {
+                        const message = chatMessages[i];
+                        const messageID = message.messageID;
+                        const hasExtension = await db.any(`
+                        SELECT * FROM message WHERE "messageID" = $1 AND "extension" IS NOT NULL
+                            `, [messageID]);
+                        
+                        if(hasExtension.length > 0)
+                        {
+                            const filename = messageID + "." + message.extension;
+                            const params = {
+                                Bucket: bucketName, //upload will happen to this s3 bucket
+                                Key: filename, //name of the file that is on the user's computer
+                            }
+                            const command = new GetObjectCommand(params);
+                            const seconds = 3600
+                            const url = await getSignedUrl(s3Object, command, { expiresIn: seconds });
+                            chatMessages[i].url = url;
+                        }
+                    }
+                    
+                }
+
+
                 res.json({ status: 201, message: 'Retrieved messages', chatMessages: chatMessages, action: 'retrieveMessages' });
             }
         }
