@@ -414,3 +414,39 @@
 
 ## Peer Review
 ![Screenshot (44)](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/9c9e9137-6e3c-4474-bbb1-e80947fca667)
+
+# Personal Log - Arsh Bhat
+
+**Week**: 21
+**Week**: `26-02-2024` - `03-03-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Research how to detect faces on stored videos in S3
+  - Research startFaceDetection
+  - Configuring AWS services and permissions
+- Setup facial blurring using aws
+  - research aws cdk
+  - research docker containers
+  - setup all the required services
+  - deploy assets for blurring
+  - Testing of application
+
+## Active Tasks
+- Research how to detect faces on stored videos in S3
+- Setup facial blurring using aws
+
+## Status of Tasks
+- Research how to detect faces on stored videos in S3 - `COMPLETED`
+  - Research startFaceDetection - `COMPLETED`
+  - Configuring AWS services and permissions - `COMPLETED`
+- Setup facial blurring using aws
+  - research AWS CDK - `COMPLETED`
+  - research docker containers - `COMPLETED`
+  - setup all the required services - `COMPLETED`
+  - deploy assets for blurring - `IN-PROGRESS`
+  - Testing of application - `IN-PROGRESS`
+
+## Peer Review
+<img width="537" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/1f267b12-56d2-45b2-94c6-40f5c4a97fe8">
+
