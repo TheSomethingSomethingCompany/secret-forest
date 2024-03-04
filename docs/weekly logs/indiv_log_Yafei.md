@@ -556,6 +556,60 @@ advise.
 ## Peer Review
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/f82ccbbe-b8f5-4fc3-a202-228622fcdda1)
 
+**Term 2 Week: 8** 
+**Work Period**: `26-02-2024` - `03-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Check if user is using a default image or are uploading their own image
+  - Upload image to file system
+  - Get and view correct profile image
+    - For nav bar
+    - For edit profile page
+    - For chats 
+  - Be able to change the profile image in the edit profile page   
+
+
+## Active Tasks
+
+- Work on profile image functionality 
+  - Check if user is using a default image or are uploading their own image 
+  - Upload image to file system 
+  - Get and view correct profile image
+    - For nav bar
+    - For edit profile page
+    - For chats 
+  - Be able to change the profile image in the edit profile page   
+- Explore options for storing profile images
+  - Use the file system to help store images and reduce workload for the database
+- Exploring idea to add loading screen
+   
+
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Check if user is using a default image or are uploading their own image (Completed)
+  - Upload image to file system (Completed)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (In-Progress)
+    - For edit profile page (Completed)
+    - For chats (In-Progress)
+  - Be able to change the profile image in the edit profile page (In-Progress)   
+- Explore options for storing profile images (Completed)
+  - Use the file system to help store images and reduce workload for the database
+- Exploring idea to add loading screen (Completed)
+
+NOTE: I synced my branch with the branch Satanshu was working on as he already had the updated UI for the pages I will working on. So on the draft pull
+request I made, there is code that is there that is Satanshu's. I only wrote the code that facilitates the profile image uploading and viewing. 
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/52a87c9d-3bbb-4bef-97a7-3e113ad41060)
+
+
+
 
 
 
