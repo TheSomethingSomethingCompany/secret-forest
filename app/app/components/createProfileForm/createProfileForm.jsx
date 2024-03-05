@@ -312,7 +312,6 @@ function ProfilePicture({ setImageFile }) {
 							Upload New Picture
 						</label>
 					</div>
-
 					<div className="pl-1">
 						<button
 							type="button"
