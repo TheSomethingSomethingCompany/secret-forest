@@ -58,16 +58,16 @@ export default function Navbar() {
 		>
 			{/* LOGO SECTION (LEFT) */}
 			<section>
-				<div
+				<a
 					className="hover:cursor-pointer"
-					onClick={() => router.push("./")}
+					href="/"
 				>
 					<Image
 						src={Logo}
 						alt={"TheSomethingSomethingCompany"}
 						width={190}
 					></Image>
-				</div>
+				</a>
 			</section>
 			{userStatus === "signedOut" && (
 				<section>

@@ -35,7 +35,7 @@ export default function LandingPage() {
 				start: "top 500px", // Start animation when image is ~70% in view
 				end: "bottom 500px", // End when the image leaves the viewport
 				scrub: true, // Link animation progress to scroll
-				markers: true,
+				markers: false,
 				pin: false, // Pin the image
 				pinSpacing: false, // Prevent extra space at the bottom
 			},
@@ -47,7 +47,7 @@ export default function LandingPage() {
 				start: "top 80%", // Adjust start percentage
 				end: "bottom 500px",
 				scrub: true,
-				markers: true,
+				markers: false,
 				pin: false, // Pin the image
 				pinSpacing: false, // Prevent extra space at the bottom
 			},
@@ -59,7 +59,7 @@ export default function LandingPage() {
 				start: "top bottom", // Start when the top of the section hits the bottom of the viewport
 				end: "bottom top", // End when the bottom of the section hits the top of the viewport
 				scrub: true,
-				markers: true,
+				markers: false,
 				pin: false, // Pin the image
 				pinSpacing: false, // Prevent extra space at the bottom
 			},
@@ -130,7 +130,7 @@ export default function LandingPage() {
 	}, []);
 
 	return (
-		<main className="flex flex-col justify-start items-center border-[1px] border-black w-full">
+		<main className="flex flex-col justify-start items-center border-[1px] border-transparent w-full">
 			{/*  NOTE: OPENING SECTION */}
 			<section
 				ref={textContainerRefS}
@@ -149,7 +149,7 @@ export default function LandingPage() {
 				</div>
 				<div
 					ref={imageRef}
-					className="w-full flex flex-row justify-center items-center border-[2px] border-black"
+					className="w-full flex flex-row justify-center items-center border-[2px] border-transparent"
 				>
 					<img
 						src={PlaceHolderWebsite.src}
@@ -195,7 +195,7 @@ export default function LandingPage() {
 				</div>
 				<div
 					ref={imageRefB}
-					className="w-full flex flex-row justify-center items-center border-[1px] scale-y-150 -translate-x-[120%] border-black"
+					className="w-full flex flex-row justify-center items-center border-[1px] scale-y-150 -translate-x-[120%] border-transparent"
 				>
 					<img
 						src={PlaceHolderWebsite.src}

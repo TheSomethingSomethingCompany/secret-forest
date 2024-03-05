@@ -11,10 +11,12 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import Input from "../formComponents/Input";
+import { useWebSocket } from "../../contexts/WebSocketContext";
 
 function CreateProfileForm() {
+	const { isConnected, sendMessage } = useWebSocket();
 	return (
-		<>
+		<>	
 			<form method="POST" className="mx-6">
 				<CreateProfileHeader />
 				<div
@@ -141,16 +143,16 @@ function FormLabelsAndInputs() {
 	}
 
 	async function onSubmit(e) {
-		e.preventDefault();
+		e.preventDefault();	
 		if (fullName != "" && country != "" && address != "") {
 			console.log("ProfileImage: ", imageFile);
 
 			var response = await createAProfile(collectFormData());
 			if (response.status == 201) {
-				// router.push("/chats"); // Code for this page has not been written yet
+				router.push("/chats", true, { shallow: false }); 
 			} else if (response.status == 401) {
 				alert("You have not signed up yet. Please sign up first.");
-				router.push("/SignUp");
+				router.push("/auth?signin=false");
 			} else {
 				alert(
 					"Sorry, we were unable to create your profile. Please try again."

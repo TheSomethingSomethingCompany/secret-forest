@@ -5,9 +5,10 @@ import Img from "@/app/images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
 import { useRef, useEffect, useState, use } from "react";
+import { useWebSocket } from "../../contexts/WebSocketContext";
 
 export default function Chats() {
-  
+  const { isConnected, sendMessage } = useWebSocket();
   const [chatsList, setChatsList] = useState([]);
   const [messagesList, setMessagesList] = useState([]);
   const [message, setMessage] = useState("");
@@ -19,7 +20,6 @@ export default function Chats() {
 
   useEffect(() => {
     ws.current = new WebSocket('ws://localhost:7979');
-  
 
     ws.current.onopen = () => {
       console.log('WebSocket connection opened');
@@ -60,6 +60,7 @@ export default function Chats() {
         }
 
       }
+		sendMessage("signedIn", {});
     }
       
     ws.current.onclose = () => {
