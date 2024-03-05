@@ -34,7 +34,6 @@ async function handleInsertingMessage (req, res){
         let message = req.body.message;
         let file = req.body.file;
         let shouldBlur = req.body.shouldBlur;
-        console.log("bam");
         console.log("REQUEST FOR INSERT MESSAGE WITH CHATID: " + chatID + "" + " AND MESSAGE: " + message + "" + " AND MEMBERID: " + memberID + "");
 
         // First, we must ensure that the user is a member of the chat, in order to prevent unauthorized insertion of chat messages by other users not in the chat.
@@ -52,11 +51,12 @@ async function handleInsertingMessage (req, res){
             
 
             // Insert the message into the database, and return the messageID of the inserted message.
-            const messageID = await db.one(`
+            const messageRes = await db.one(`
             INSERT into message ("chatID", "senderID", "message") 
             VALUES ($1, $2, $3)
             RETURNING "messageID"
                 `, [chatID, memberID, message]);    
+            const messageID = messageRes.messageID;
             
             if(file)
             {

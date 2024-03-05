@@ -11,6 +11,7 @@ type props = {
   id: string;
   name: string;
   message: string;
+  signedURL: string;
   profilePicture: string;
   hasAttachment: boolean;
   attachment?: string;
@@ -24,6 +25,7 @@ function ChatBubble({
   id,
   name,
   message,
+  signedURL,
   profilePicture,
   hasAttachment,
   attachment,
@@ -76,7 +78,14 @@ function ChatBubble({
               <p id="message">{messageText}</p>
             )}
 
+              {signedURL && (
+                <img
+                  src={signedURL}
+                  alt="Signed Image"
+                  />
+              )}
           </div>
+        
 
           {/* This is the div that contains the buttons. It is hidden by default, and is shown when the mouse hovers over the chat bubble. */}
           <div className="-z-10 w-full flex flex-row justify-start mx-4 -translate-y-[--translateAmt] transition-transform duration-300">
@@ -139,6 +148,12 @@ function ChatBubble({
           </div>
           <div className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-lg bg-white w-full p-4">
             <p id="message">{messageText}</p>
+            {signedURL && (
+                <img
+                  src={signedURL}
+                  alt="Signed Image"
+                  />
+              )}
           </div>
           <div className="-z-10 w-full flex flex-row justify-end mr-8 -translate-y-[--translateAmt] transition-transform duration-300">
             <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white cursor-not-allowed">

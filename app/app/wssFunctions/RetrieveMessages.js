@@ -1,6 +1,6 @@
 const db = require("../db-connection.js")
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const {getSignedUrl} = require("@aws-sdk/s3-request-presigner")
+const {getSignedUrl} = require("@aws-sdk/s3-request-presigner");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -46,17 +46,17 @@ async function handleRetrievingMessages(req, res){
         else
         {
             const chatMessagesAndFileNames = await db.any(`
-            SELECT "chatID", "messageID", "message", "name", "fileName", CASE WHEN message."senderID" = $2 THEN true ELSE false END AS "isYou" 
+            SELECT message."chatID", message."messageID", message."message", profile."name", file."fileName", CASE WHEN message."senderID" = $2 THEN true ELSE false END AS "isYou" 
             FROM member 
             JOIN message on member."memberID" = message."senderID" 
             JOIN profile on message."senderID" = profile."memberID"
-            LEFT JOIN files on message."messageID" = file."messageID"
+            LEFT JOIN file on message."messageID" = file."messageID"
             WHERE "chatID" = $1
                 `, [chatID, memberID]);
             
             console.log(chatMessagesAndFileNames);
 
-            if (chatMessages.length === 0)
+            if (chatMessagesAndFileNames.length === 0)
             {
                 res.json({ status: 422, message: 'No messages found', action: 'retrieveMessages'});
                 return;
@@ -88,22 +88,7 @@ async function handleRetrievingMessages(req, res){
                         try
                         {
                             const url = await getSignedUrl(s3Object, command, { expiresIn: seconds });
-                            if(url != null)
-                            {
-                                // If the message was originally empty, then we will just display the signed URL
-                                if(chatMessagesAndFileNames[i].message === "")
-                                {
-                                    chatMessagesAndFileNames[i].message = url;
-                                }
-                                else
-                                {
-                                    chatMessagesAndFileNames[i].message = chatMessagesAndFileNames[i].message + ":\n" + url;
-                                }
-                            }
-                            else
-                            {
-                                chatMessagesAndFileNames[i].message = chatMessagesAndFileNames[i].message + ":\n" + "file not found";
-                            }
+                            chatMessagesAndFileNames[i].signedURL = url; // Add the signed URL to the object
 
                         }
                         catch(error) 
@@ -113,9 +98,8 @@ async function handleRetrievingMessages(req, res){
                         }
                         
                     }
-                    delete chatMessagesAndFileNames[i].fileName;
                 }
-                chatMessages = chatMessagesAndFileNames;
+                const chatMessages = chatMessagesAndFileNames;
                 res.json({ status: 201, message: 'Retrieved messages', chatMessages: chatMessages, action: 'retrieveMessages' });
             }
         }
@@ -123,6 +107,7 @@ async function handleRetrievingMessages(req, res){
     } 
     catch(error)
     {
+        console.log("Error retrieving messages:", error);
         res.json({ status: 500, message: 'Failed to retrieve messages' , action: 'retrieveMessages'});
     }
 

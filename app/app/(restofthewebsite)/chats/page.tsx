@@ -235,6 +235,7 @@ export default function Chats() {
             </div>)
             :(messagesList.map((message) => {
               return (
+                <>
                 <ChatBubble
                 key = {message.messageID + message.message}
                   id={message.messageID}
@@ -245,7 +246,10 @@ export default function Chats() {
                   isYou={message.isYou}
                   onDeleteButtonClick = {onDeleteButtonClick}
                   saveToDatabaseHandler={saveToDatabaseHandler}
+                  signedURL={message.signedURL ? message.signedURL : null}
                 />
+                { /* <img src = {message.signedURL} alt = "Image" className = "w-[10rem] h-[10rem]"/> */ }
+                </>
               )
             }))
           }
@@ -276,7 +280,6 @@ export default function Chats() {
                 }
               }}
               value={message}
-              disabled={file != null}
             />
             <button
               id="sendButton"
