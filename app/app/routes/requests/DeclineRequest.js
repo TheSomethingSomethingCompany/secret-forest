@@ -21,7 +21,7 @@ router.post('/api', async (req, res) => {
         }
         else
         {
-            const fromMemberID = fromUsernameQuery.memberID; // An array of rows is returned, which each row being an object with a memberID property. The first row is the only row, so we can access it with [0], and then access the memberID property with .memberID
+            const fromMemberID = fromUsernameQuery.memberID; 
             
             // Check if request actually exists
             const requestExists = await db.oneOrNone(`
