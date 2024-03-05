@@ -50,6 +50,13 @@ CREATE TABLE profile_picture (
     	on delete cascade on update cascade
 );
 
+CREATE TABLE files (
+    "memberID" uuid,
+    "fileName" TEXT,
+    foreign key ("memberID") references member("memberID")
+    	on delete cascade on update cascade
+);
+
 CREATE TABLE chat(
   "chatID" SERIAL PRIMARY KEY,
   "memberID1" uuid NOT NULL,
@@ -81,6 +88,15 @@ CREATE TABLE message(
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
+CREATE TABLE file(
+  "fileID" SERIAL PRIMARY KEY,
+  "messageID" int NOT NULL,
+  "fileName" TEXT NOT NULL,
+  FOREIGN KEY ("messageID") REFERENCES message("messageID")
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE blocked_user(
   "blockID" SERIAL PRIMARY KEY,
   "blockerMemberID" uuid NOT NULL,
@@ -89,5 +105,6 @@ CREATE TABLE blocked_user(
     ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY ("blockedMemberID") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE 
+
 );
 
