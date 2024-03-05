@@ -25,7 +25,7 @@ function page() {
 
 
   return (
-	<div className="flex flex-row w-screen chat-height justify-center items-start px-8 py-4 z-50">
+	<div className="flex flex-row w-screen h-auto chat-height justify-center items-start px-8 py-4 z-50">
 		<section className="rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
 			<div className="flex flex-row outline-black w-auto shadow rounded-lg h-fit px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center">
 				<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>

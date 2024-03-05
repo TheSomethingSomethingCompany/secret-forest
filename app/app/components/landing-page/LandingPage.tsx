@@ -1,58 +1,230 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import Navbar from "../Navbar/Navbar";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import PlaceHolderWebsite from "@/public/PlaceholderWebsite.svg";
+import Greetings from "@/public/Greetings.svg";
 
 export default function LandingPage() {
-  return (
-    <>
-      {/* <Navbar/> */}
-      <div className="w-screen h-[2550px] relative bg-white">
-        <div className="w-full h-[630px] top-[184px] absolute">
-          <div className="w-full h-[550px] top-[400px] md:top-[300px] tablet:top-[177px] relative bg-yellow-200" />
-          <div className="w-1/4 tablet:w-3/4 h-[182px] ml-5 top-0 absolute text-left text-black text-4xl font-bold">
-            The Safest Way to connect with the professionals online.
-          </div>
-          <div className="w-[100px] sm:w-auto h-9 right-0 mr-10 top-[91px] absolute text-center text-black text-2xl font-bold  hover:text-teal-300">
-            <a href="/signin">Get Started Here</a>
-          </div>
-        </div>
+	const imageRef = useRef(null);
+	const imageRefB = useRef(null);
+	const imageRefC = useRef(null);
+	const textContainerRefS = useRef(null);
+	const textContainerRef = useRef(null);
+	const textContainerRefB = useRef(null);
+	const textContainerRefC = useRef(null);
 
-        <div className="w-full h-[800px] top-[900px] absolute">
-          <div className="w-full h-[800px] relative bg-sky-300" />
-          <div className="w-1/8 h-[74px] ml-10 md:right-12 mr-20 top-[121px] absolute text-black text-4xl text-center font-normal font-['Inter']">
-            Verified Professionals
-          </div>
-          <div className="w-3/4 md:w-1/2 tablet:w-[494px] ml-10 md:right-12 top-[210px] absolute text-left text-black text-2xl font-light font-['Inter']">
-            Want expert consultation on your figertips? Be assured with our
-            foolproof, ID verification check.
-          </div>
-          <div className="w-[300px] h-9 md:right-12 md:mr-7 ml-10 top-[450px] absolute text-left text-black text-2xl font-bold font-['Inter'] hover:text-purple-600">
-            <a href="/signin">Find Experts Now</a>
-          </div>
-        </div>
+	useEffect(() => {
+		const tlInitial = gsap.timeline();
+		tlInitial.to(
+			textContainerRefS.current,
+			{
+				y: "10%",
+				opacity: 1,
+				duration: 1.5,
+			},
+			"-=0.7"
+		);
 
-        <div className="w-full h-[800px] top-[1700px] absolute">
-          <div className="w-full h-[800px] left-0 top-0 absolute bg-black" />
-          <div className="w-1/8 tablet:w-1/2 h-[74px] left-10 top-[106px] absolute text-white text-4xl font-normal font-['Inter']">
-            Facial Blurring
-          </div>
-          <div className="w-1/2 md:w-3/4 tablet:w-1/2 md:w-1/4 left-10 top-[195px] absolute text-white text-2xl font-light font-['Inter']">
-            Want to keep things private? Hide your face with our trademark,
-            Anonymous Mode
-          </div>
-          <div className="hidden md:block w-[200px] h-[200px] tablet:w-[567px] tablet:h-[567px] ml-5 right-5 top-[250px] tablet:top-[121px] absolute bg-white" />
-        </div>
+		gsap.registerPlugin(ScrollTrigger);
 
-        {/* <div className="w-[1512px] h-[800px] left-0 top-[2500px] absolute">
-                <div className="w-[1512px] h-[800px] left-0 top-0 absolute bg-fuchsia-600" />
-                <div className="w-[665px] h-[74px] left-[784px] top-[121px] absolute text-white text-6xl font-normal font-['Inter']">Data Encryption</div>
-                <div className="w-[494px] left-[817px] top-[210px] absolute text-white text-[40px] font-light font-['Inter']">Want to keep your chats secure? We got you with our unique data encryption system. </div>
-                <div className="w-[205px] h-9 left-[894px] top-[514px] absolute text-center text-black text-2xl font-normal font-['Inter']">Start Now</div>
-                <div className="w-[567px] h-[558px] left-[126px] top-[123px] absolute bg-green-400" />
-            </div> */}
-      </div>
-    </>
-  );
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: imageRef.current, // Target the image section
+				start: "top 500px", // Start animation when image is ~70% in view
+				end: "bottom 500px", // End when the image leaves the viewport
+				scrub: true, // Link animation progress to scroll
+				markers: false,
+				pin: false, // Pin the image
+				pinSpacing: false, // Prevent extra space at the bottom
+			},
+		});
+
+		const tl2 = gsap.timeline({
+			scrollTrigger: {
+				trigger: imageRefB.current, // Target second image
+				start: "top 80%", // Adjust start percentage
+				end: "bottom 500px",
+				scrub: true,
+				markers: false,
+				pin: false, // Pin the image
+				pinSpacing: false, // Prevent extra space at the bottom
+			},
+		});
+
+		const tl3 = gsap.timeline({
+			scrollTrigger: {
+				trigger: imageRefC.current, // Assuming you add this class to your section
+				start: "top bottom", // Start when the top of the section hits the bottom of the viewport
+				end: "bottom top", // End when the bottom of the section hits the top of the viewport
+				scrub: true,
+				markers: false,
+				pin: false, // Pin the image
+				pinSpacing: false, // Prevent extra space at the bottom
+			},
+		});
+
+		//  NOTE: ANIMATION FOR SECTION 1 IMAGE
+		tl.to(
+			imageRef.current,
+			{
+				scale: 1.05,
+				y: "25%",
+				duration: 20,
+			},
+			"+=1"
+		)
+			.to(
+				imageRef.current,
+				{
+					scale: 1.1,
+					y: "40%",
+					x: "50%",
+					duration: 20,
+				},
+				"+=5"
+			)
+			.to(
+				textContainerRef.current,
+				{
+					opacity: 1,
+					x: "0",
+					y: "-200%",
+					duration: 10,
+				},
+				"-=10"
+			);
+
+		//  NOTE: ANIMATION FOR SECTION 2 IMAGE
+
+		tl2.to(
+			imageRefB.current,
+			{
+				x: "-20%",
+				duration: 20,
+			},
+			"+=1"
+		).to(
+			textContainerRefB.current,
+			{
+				opacity: 1,
+				x: "0",
+				y: "20%",
+				duration: 10,
+			},
+			"-=4"
+		);
+
+		tl3.to(imageRefC.current, {
+			y: "-100%",
+			duration: 3.5,
+		}).to(
+			textContainerRefC.current,
+			{
+				y: "-50%",
+				duration: 2,
+			},
+			"-=1"
+		);
+	}, []);
+
+	return (
+		<main className="flex flex-col justify-start items-center border-[1px] border-transparent w-full">
+			{/*  NOTE: OPENING SECTION */}
+			<section
+				ref={textContainerRefS}
+				className="relative w-full flex flex-col justify-center items-center py-20 px-40 opacity-0"
+			>
+				<div className="w-full mb-10">
+					<h1 className="text-[80px] font-bold text-[#111B21] leading-tight">
+						Secure Communication,
+						<br />
+						Without Compromise
+					</h1>
+					<p className="text-[40px] font-light text-black leading-snug max-w-[1000px]">
+						Experience the freedom of truly secure communication.
+						Your conversations are yours alone.
+					</p>
+				</div>
+				<div
+					ref={imageRef}
+					className="w-full flex flex-row justify-center items-center border-[2px] border-transparent"
+				>
+					<img
+						src={PlaceHolderWebsite.src}
+						className="w-[80%] h-auto"
+						alt="Placeholder Website"
+					/>
+				</div>
+			</section>
+			{/*  NOTE: MODERN DESIGN */}
+			<section className="relative w-full flex flex-col justify-center items-start py-10 px-40 h-screen">
+				<div ref={textContainerRef} className="w-[60%] opacity-0">
+					<h2 className="bg-gradient-to-r from-cyan-500 to-blue-500 font-bold text-[22px] text-transparent inline-block bg-clip-text">
+						Modern Design
+					</h2>
+					<h1 className="text-[40px] font-bold text-[#111B21]">
+						Communication, Elevated
+					</h1>
+					<p className="text-3xl font-normal text-black leading-10 max-w-[800px]">
+						Ditch the clunky interfaces and experience the future of
+						secure communication. Powerful protection meets
+						effortless design, making it easy to connect and
+						collaborate without sacrificing privacy.
+					</p>
+				</div>
+			</section>
+			{/*  NOTE: SECURITY & PRIVACY */}
+			<section className="relative w-full flex flex-row-reverse justify-start items-center py-10 px-40 h-screen -translate-y-[50%]">
+				<div
+					ref={textContainerRefB}
+					className="flex flex-col justify-center items-start opacity-0"
+				>
+					<h2 className="bg-gradient-to-r from-blue-500 to-pink-500 font-bold text-[22px] text-transparent inline-block bg-clip-text">
+						Security & Privacy
+					</h2>
+					<h1 className="text-[40px] font-bold text-[#111B21]">
+						Speak freely
+					</h1>
+					<p className="text-3xl font-normal text-black leading-10 max-w-[800px]">
+						Your secrets are safe with us. Top-notch encryption
+						means your messages stay between you and your friends
+						(and maybe some penguins 😉).
+					</p>
+				</div>
+				<div
+					ref={imageRefB}
+					className="w-full flex flex-row justify-center items-center border-[1px] scale-y-150 -translate-x-[120%] border-transparent"
+				>
+					<img
+						src={PlaceHolderWebsite.src}
+						className="w-[80%] h-auto"
+						alt="Placeholder Website"
+					/>
+				</div>
+			</section>
+			{/*  NOTE: STAYING CONNECTED */}
+			<section className="relative flex flex-col justify-center items-center align-middle py-20 px-40 h-screen -translate-y-[50%]">
+				<div ref={textContainerRefC} className="translate-y-10 z-50">
+					<h1 className="text-[40px] font-bold text-[#111B21]">
+						Stay Connected, Wherever You Go
+					</h1>
+					<p className="text-3xl font-normal text-black leading-10 max-w-[800px]">
+						Anytime, Anywhere. Your Messages, Always Yours.
+					</p>
+				</div>
+				<div>
+					<img
+						src={Greetings.src}
+						className="absolute bottom-0 left-0 w-full h-auto transition-transform translate-y-8 z-0"
+						alt="Placeholder Website"
+						ref={imageRefC}
+					/>
+				</div>
+			</section>
+			{/*  NOTE: FOOTER */}
+			<footer></footer>
+		</main>
+	);
 }

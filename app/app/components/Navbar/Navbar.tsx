@@ -58,16 +58,16 @@ export default function Navbar() {
 		>
 			{/* LOGO SECTION (LEFT) */}
 			<section>
-				<div
+				<a
 					className="hover:cursor-pointer"
-					onClick={() => router.push("/")}
+					href="/"
 				>
 					<Image
 						src={Logo}
 						alt={"TheSomethingSomethingCompany"}
 						width={190}
 					></Image>
-				</div>
+				</a>
 			</section>
 			{userStatus === "signedOut" && (
 				<section>
@@ -90,6 +90,12 @@ export default function Navbar() {
 			{userStatus === "signedIn" && (
 				<section>
 					<section className="flex flex-row justify-end items-center text-[16px]">
+						<div
+							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-[#57606a] hover:bg-[#eaedf1] translate-y-1 border-[1px] rounded-sm transition-all duration-200 ease-in-out hover:cursor-pointer"
+							onClick={() => router.push("/search")}
+						>
+							 < i className="ri-search-2-fill text-[22px]"></i> 
+						</div>
 						<div
 							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-[#57606a] hover:bg-[#eaedf1] translate-y-1 border-[1px] rounded-sm transition-all duration-200 ease-in-out hover:cursor-pointer"
 							onClick={() => router.push("/chats")}

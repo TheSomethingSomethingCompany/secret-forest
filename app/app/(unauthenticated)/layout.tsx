@@ -8,7 +8,7 @@ interface LayoutProps {
 export default function AuthLayout({ children }: LayoutProps) {
 	return <>
 			<section className="bg-white z-50 w-screen p-10 flex flex-row justify-between items-center text-[1rem]">
-				<a href="./">
+				<a href="/">
 					<Image src={Logo} alt={"TheSomethingSomethingCompany"} />
 				</a>
 			</section>
