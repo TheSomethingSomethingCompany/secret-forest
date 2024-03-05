@@ -12,6 +12,7 @@ import React from "react";
 import Image from "next/image";
 import Input from "../formComponents/Input";
 
+
 function CreateProfileForm() {
 	return (
 		<>
@@ -174,7 +175,7 @@ function FormLabelsAndInputs() {
 					placeHolder="e.g., John Wilfred Doe"
 				/>
 				<div className="flex flex-row justify-evenly w-full">
-					<div className="mr-2 pr-2 w-full">
+					<div className="pr-2 w-full">
 						<FlexLabelAndTextInput
 							labelVal={countryLabelHTML}
 							inputName="country"
@@ -183,7 +184,7 @@ function FormLabelsAndInputs() {
 							placeHolder="e.g, Canada"
 						/>
 					</div>
-					<div className="ml-2 pl-2 w-full">
+					<div className="pl-2 w-full">
 						<FlexLabelAndTextInput
 							labelVal={addressLabelHTML}
 							inputName="address"
@@ -214,7 +215,7 @@ function FormLabelsAndInputs() {
 					{" "}
 					<textarea
 						id="bio"
-						className="mobile:h-auto w-full text-black rounded-md text-[1.25rem] resize-none p-2"
+						className="mobile:h-auto text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2"
 						name="bio"
 						placeholder="e.g, I have a Bachelor's degree in computer science and am an avid learner. While I love working in software, when not at work, you can find me in the great outdoors."
 						onChange={onBioChange}
@@ -311,18 +312,11 @@ function ProfilePicture({ setImageFile }) {
 							Upload New Picture
 						</label>
 					</div>
-					<div className="pl-1 pr-1">
-						<button
-							type="button"
-							className="h-full bg-red-200 text-red-800 border-red-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-red-300 transition-all ease-in-out duration-300"
-						>
-							Remove
-						</button>
-					</div>
 					<div className="pl-1">
 						<button
 							type="button"
 							className="h-full bg-blue-200 text-blue-800 border-blue-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-blue-300 transition-all ease-in-out duration-300"
+							onClick={() => setImage(getRandomProfilePicture())}
 						>
 							<i className="ri-restart-line"></i>
 						</button>
