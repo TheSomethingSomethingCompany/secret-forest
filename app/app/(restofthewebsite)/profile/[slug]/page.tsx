@@ -11,6 +11,8 @@ import acceptRequest from "../../requestsReceived/api/acceptRequest";
 import declineRequest from "../../requestsReceived/api/declineRequest";
 import cancelRequest from "../../requestsSent/api/cancelRequest";
 import GetProfilePicture from "../../getProfilePicture/api/getPFP";
+import blockUser from "../api/blockUser";
+import unblockUser from "../../blockedUsers/api/unblockUser";
 
   function EditProfile({params}: {params: {slug: string}}){
 
@@ -182,6 +184,20 @@ import GetProfilePicture from "../../getProfilePicture/api/getPFP";
         setHasRequest(0);
       });
     }
+
+    function handleBlockUser() {
+      blockUser({username: profile.userName}).then((res) => {
+        setHasRequest(3);
+      });
+    }
+
+    function handleUnblockUser() {
+      unblockUser({username: profile.userName}).then((res) => {
+        setHasRequest(0);
+      });
+    }
+
+  
 
     // Create function handle going to chat, which just redirects to the chat page
     function handleGoToChat() {
@@ -359,16 +375,17 @@ import GetProfilePicture from "../../getProfilePicture/api/getPFP";
     {/* Buttons */}
 {!isUser && (
   <div>
-    {hasRequest === 0 && hasChat === 0 && (
+    {hasRequest === 0 && (
       <button 
       className="bg-blue-400 p-2 rounded-md text-white font-bold"
       onClick = {handleSendRequest}
       >
         Send Request
       </button>
+
     )}
 
-    {hasRequest === 1 && hasChat === 0 && (
+    {hasRequest === 1 && (
       <button 
       className="bg-red-400 p-2 rounded-md text-white font-bold"
       onClick = {handleCancelRequest}
@@ -377,7 +394,7 @@ import GetProfilePicture from "../../getProfilePicture/api/getPFP";
       </button>
     )}
 
-    {hasRequest === 2 && hasChat === 0 && (
+    {hasRequest === 2 &&(
       <div>
         <button 
         className="bg-green-400 p-2 rounded-md text-white font-bold"
@@ -393,8 +410,23 @@ import GetProfilePicture from "../../getProfilePicture/api/getPFP";
         </button>
       </div>
     )}
+    {hasRequest === 3 &&(
+      <div>
+        <button 
+        className="bg-blue-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleUnblockUser}
+        >
+          Unblock User
+        </button>
+      </div>
+    )}
+    {hasRequest === 4 &&(
+      <div>
+        <p>This user has blocked you.</p>
+      </div>
+    )}
 
-    {hasRequest === 0 && hasChat === 1 && (
+    {hasChat === 1 && (
       <div>
         <button 
         className="bg-blue-400 p-2 rounded-md text-white font-bold"
@@ -405,6 +437,25 @@ import GetProfilePicture from "../../getProfilePicture/api/getPFP";
 
       </div>
     )}
+
+    {hasRequest === -1 && (
+      <div>
+        <p>loading...</p>
+      </div>
+    )}
+    
+    { (hasRequest === 0 || hasRequest == 1 || hasRequest == 2 || hasChat == 1) &&  (
+      <div>
+        <button
+        className="bg-red-400 p-2 rounded-md text-white font-bold"
+        onClick = {handleBlockUser}
+        >
+          Block User
+        </button>
+      </div>
+    )}
+
+    
 
   </div>
 )}
