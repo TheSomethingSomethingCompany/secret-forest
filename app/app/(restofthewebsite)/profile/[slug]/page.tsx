@@ -10,6 +10,7 @@ import sendRequest from "../api/sendRequest";
 import acceptRequest from "../../requestsReceived/api/acceptRequest";
 import declineRequest from "../../requestsReceived/api/declineRequest";
 import cancelRequest from "../../requestsSent/api/cancelRequest";
+import GetProfilePicture from "../../getProfilePicture/api/getPFP";
 import blockUser from "../api/blockUser";
 import unblockUser from "../../blockedUsers/api/unblockUser";
 
@@ -35,11 +36,13 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
     const [hasRequest, setHasRequest] = useState(-1);
     const [hasChat, setHasChat] = useState(-1);
 
+    //pfp
+    const [pfpInfo, setPfpInfo] = useState(``);
+
     const fetchData = async () => {
 
       const memberData: MemberFetch = await fetchUserData({ ...params });
       console.log(memberData);
-  
 
       if (memberData.status == 202) {
         console.log("User found, and is the logged in user.");
@@ -62,6 +65,10 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
 
       setHasChat(memberData.data.hasChat);
       setHasRequest(memberData.data.hasRequest);
+
+      const pfpPath = await GetProfilePicture({username: memberData.data.username});
+      setPfpInfo(pfpPath.data);
+      console.log("PFP PATH: " + pfpInfo + " " + pfpPath.data);
       
 
       setProfile({
@@ -75,6 +82,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
       });
 
       setTags(memberData.data.tags);
+
     }
 
 
@@ -83,6 +91,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
 
     useEffect(() => {fetchData();}, []);
     useEffect(() => {setTempProfile({ ...profile });}, [profile]);
+    //useEffect(() => {GetProfilePicture({username : profile.userName});});
 
     
 
@@ -203,8 +212,8 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
       {/*Div for the left box that displays how the user's profile will look like when people view their profile*/}
       <div className="relative flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
         <img
-          className="rounded-full w-72 h-72"
-          src={Penguin.src}
+          className="rounded-full w-100 h-100"
+          src={pfpInfo}
           alt="Profile Picture"
         />
         <div className="my-4">

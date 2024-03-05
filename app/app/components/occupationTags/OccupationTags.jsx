@@ -48,7 +48,7 @@ function OccupationTags({
 				name={inputName}
 				placeholder={placeHolder}
 			></input>{" "}
-			<div id="tags-container" className="flex flex-wrap">
+			<div id="tags-container" className="flex flex-wrap mt-2">
 				{currentTags.map((tag) => (
 					<div
 						key={tag}
