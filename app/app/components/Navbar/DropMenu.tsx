@@ -12,6 +12,7 @@ type DropMenuProps = {
 /* font-normal my-4 mx-[8px] border-b-4 border-transparent translate-y-1 transition-all duration-200 ease-in-out hover:cursor-pointer flex flex-row items-center justify-center */
 
 function DropMenu({ isOpen }: DropMenuProps) {
+
 	const router = useRouter();
 	return (
 		<>
@@ -60,6 +61,7 @@ function DropMenu({ isOpen }: DropMenuProps) {
 			)}
 		</>
 	);
+
 }
 
 export default DropMenu;

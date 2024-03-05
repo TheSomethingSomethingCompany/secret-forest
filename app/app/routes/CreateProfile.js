@@ -4,17 +4,20 @@ const db = require("../db-connection.js");
 const path = require("path");
 const multer = require("multer");
 
-var currentDate = null;
+
+var pfpName = null;
 var fileExt = null;
 const storage = multer.diskStorage({
-	destination: "./app/uploads", // Store the file in this directory
+	destination: "./public/pfp-uploads", // Store the file in this directory
 	filename: function (req, file, cb) {
-		currentDate = Date.now(); // Get the current date and time in milliseconds
+		pfpName = req.session.signUpMemberID;
 		fileExt = path.extname(file.originalname); // Get the file extension of the uploaded file
-		cb(null, currentDate + fileExt); // Since file names are not guaranteed to be unique, we will use the current date and time in milliseconds as the file name, along with the file extension, such as .jpg or .png.                                                        // Also, cb is just a callback that takes in the first argument as null, and the second argument as the file name that we want to use for the uploaded file.
+		cb(null, pfpName + fileExt); // Since file names are not guaranteed to be unique, we will use the current date and time in milliseconds as the file name, along with the file extension, such as .jpg or .png.                                                        // Also, cb is just a callback that takes in the first argument as null, and the second argument as the file name that we want to use for the uploaded file.
 	},
 });
+
 const upload = multer({ storage: storage }); // "profilePicture" is the name of the file input field in the form
+
 
 router.post("/api", upload.single("profilePicture"), async (req, res) => {
 	// ./createAProfile/api will utilize this route. /api isn't necessary, but it makes it apparent that this is a route call.
@@ -31,6 +34,7 @@ router.post("/api", upload.single("profilePicture"), async (req, res) => {
 		console.log(req.body);
 		const { fullName, country, address, bio, occupationTags } = req.body;
 		const occupationTagsAsArray = JSON.parse(occupationTags);
+		const pfpString = req.body.profilePicture;
 
 		try {
 			if (fullName == "" || country == "" || address == "") {
@@ -39,10 +43,18 @@ router.post("/api", upload.single("profilePicture"), async (req, res) => {
 					message: "Please enter all required fields",
 				});
 			} else {
-				if (req.file == null)
-					// If user did not upload a profile picture, then set the profile picture path to be the default profile picture
-					pfpPath = "defaultProfilePicture.png";
-				else pfpPath = currentDate + fileExt; // Set the profile picture path to be the current date and time in milliseconds, along with the file extension
+				// Setting the pfpPath for the profile relation
+				console.log("[FILE] | " + pfpString); //DEBUG LINE
+				if (req.file == null){
+					const parts = pfpString.split('/');
+					const imgName = parts[parts.length - 1];
+					pfpPath = imgName;
+					console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
+				} else {
+					pfpPath = memberID + fileExt;
+					console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
+				}
+
 
 				await db.tx(async (t) => {
 					// Use transactions to ensure that all queries are executed successfully, or else rollback all queries

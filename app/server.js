@@ -96,6 +96,9 @@ server.use("/cancelRequest", cancelRequestRoutes);
 const acceptRequestRoutes = require("./app/routes/requests/AcceptRequest");
 server.use("/acceptRequest", acceptRequestRoutes);
 
+const getProfilePictureRoutes = require("./app/routes/GetProfilePicture");
+server.use("/getPFP", getProfilePictureRoutes);
+
 const blockUserRoutes = require("./app/routes/requests/BlockUser");
 server.use("/blockUser", blockUserRoutes);
 
@@ -104,6 +107,7 @@ server.use("/unblockUser", unblockUserRoutes);
 
 const fetchBlockedUsersRoutes = require("./app/routes/requests/FetchBlockedUsers");
 server.use("/fetchBlockedUsers", fetchBlockedUsersRoutes);
+
 
 server.listen(HTTP_PORT, () => {
 	console.log("Server started on http://localhost:6969");
