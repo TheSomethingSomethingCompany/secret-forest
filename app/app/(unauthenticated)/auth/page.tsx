@@ -371,7 +371,7 @@ export default function UserAuthentication() {
 						</div>
 						<div className="w-full my-10">
 							<p className="text-xl text-white font-normal pb-8">	
-								Alreadt have an account yet? Head over and sign in below!
+								Already have an account? Head over and sign in below!
 							</p>
 						
 							<div className="w-full flex flex-row justify-center items-center">

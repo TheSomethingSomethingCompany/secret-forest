@@ -60,7 +60,7 @@ export default function Navbar() {
 			<section>
 				<div
 					className="hover:cursor-pointer"
-					onClick={() => router.push("./")}
+					onClick={() => router.push("/")}
 				>
 					<Image
 						src={Logo}
