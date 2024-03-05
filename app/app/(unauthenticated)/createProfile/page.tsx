@@ -1,10 +1,15 @@
 "use client"
 import CreateProfileForm from "@/app/components/createProfileForm/createProfileForm";
+import Image from "next/image";
 import React, { useEffect } from 'react';
+import Penguin from "../../../public/profile-pictures/1.svg";
+import getRandomProfilePicture from "@/app/scripts/getRandomProfilePicture";
+import Input from "../../components/formComponents/Input";
+import 'remixicon/fonts/remixicon.css';
 
-export default function Home() {
-   
-    useEffect(() => {
+export default function CreateProfile() {
+	//<Image src={getRandomProfilePicture()} alt="Picture" width={250} height={250} />
+      useEffect(() => {
       document.body.classList.add('h-full');
       
       // Clean up function
@@ -13,11 +18,10 @@ export default function Home() {
       };
     }, []);
 
-  return (
 
-    <main className = "w-full h-full flex justify-center items-center">
-      <CreateProfileForm />
-    </main>
-    
+return (
+    <main className="bg-[#fbfcff] p-10"> 
+			<CreateProfileForm />
+	</main>
   );
 }

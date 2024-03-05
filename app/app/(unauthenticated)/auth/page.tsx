@@ -132,6 +132,9 @@ export default function UserAuthentication() {
 			};
 			const response = await SignUp(body);
 			console.log(response);
+			if(response.status === 201)
+				router.push("/createProfile");
+
 		} catch (error) {
 			console.log(error);
 		}
@@ -152,8 +155,10 @@ export default function UserAuthentication() {
 			console.log(response);
 			if (response.status == 205) {
 				sendMessage("signedIn", {});
+				router.push("/createProfile");
 			} else {
 				sendMessage("signedIn", {});
+				router.push("/chats");
 			}
 		} catch (error) {
 			console.log(error);
@@ -161,14 +166,9 @@ export default function UserAuthentication() {
 	};
 
 	return (
-		<>
-			<section className="z-50 w-screen p-10 flex flex-row justify-between items-center text-[1rem]">
-				<div onClick={() => router.push("./")}>
-					<Image src={Logo} alt={"TheSomethingSomethingCompany"} />
-				</div>
-			</section>
-			{showSignIn === true && (
-				<section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 w-full h-[40rem]">
+		<section style={{ "--translation": showSignIn ? "50%" : "0%", "--b-r": showSignIn ? "0" : "0.5rem", "--b-l": showSignIn ? "0.5rem" : "0" } as any} className="flex flex-col justify-center items-center mx-10">
+			<section className="relative flex flex-row w-full justify-center items-center rounded-lg shadow-lg">	
+				<section className="flex flex-col justify-center items-center p-0 m-0 w-full h-[40rem] overflow-hidden">
 					<div className="flex flex-col justify-center items-start py-0 px-20 w-full h-full">
 						<h1 className="font-bold text-6xl mb-4">Sign In</h1>
 						<form
@@ -193,69 +193,19 @@ export default function UserAuthentication() {
 								onChange={formikSignIn.handleChange}
 								onBlur={formikSignIn.handleBlur}
 							/>
-							<div className="w-full flex flex-row-reverse justify-between items-end my-4">
+							<div className="w-full flex flex-row justify-end items-center my-4">
 								<button
 									className="h-fit my-2 p-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
 									type="submit"
 								>
 									Sign In
 								</button>
-								<div className="flex flex-col items-start">
-									<p className="text-lg font-normal pb-2">
-										Not a member?
-									</p>
-									<button
-										className="h-fit p-2 my-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
-										onClick={() =>
-											setShowSignIn(!showSignIn)
-										}
-									>
-										Sign Up
-									</button>
-								</div>
 							</div>
 						</form>
 					</div>
-					<div className="hidden tablet:flex flex-col justify-center items-center p-20 w-full h-full bg-blue-600">
-						<div className="w-full">
-							<h1 className="text-6xl text-white font-black pb-4">
-								Welcome Back!
-							</h1>
-							<p className="text-3xl text-white font-normal pb-8">
-								Sign in to start connecting with people around
-								the world.
-							</p>
-						</div>
-						<Image
-							className="my-10"
-							src="/signinundraw.svg"
-							width={500}
-							height={500}
-							alt="signup"
-						/>
-					</div>
 				</section>
-			)}
-			{showSignIn === false && (
-				<section className="grid grid-cols-1 tablet:grid-cols-2 p-0 m-0 h-fit w-full">
-					<div className="hidden tablet:flex flex-col justify-center items-center p-20 w-fit h-full bg-green-600">
-						<div className="w-full">
-							<h1 className="text-6xl text-white font-black pb-4">
-								Join our Community!
-							</h1>
-							<p className="text-3xl text-white font-normal pb-8">
-								Connect with people around the world without
-								worrying about your privacy.
-							</p>
-						</div>
-						<Image
-							className="my-10"
-							src="/signupundraw.svg"
-							width={600}
-							height={600}
-							alt="signup"
-						/>
-					</div>
+			
+				<section className="flex flex-row justify-center items-center p-0 m-0 h-fit w-full">
 					<div className="flex flex-col justify-center items-start p-20 w-full h-full">
 						<h1 className="font-bold text-6xl mb-4">Sign Up</h1>
 						<form
@@ -356,35 +306,90 @@ export default function UserAuthentication() {
 									</p>
 								</div>
 							</div>
-							<div className="w-full flex flex-row-reverse justify-between items-end">
-								<button
-									className="h-fit my-2 p-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
-									type="submit"
-									onClick={() => {
-										console.log("Submitted Clocked!");
-									}}
-								>
-									Sign Up
-								</button>
-								<div className="flex flex-col items-start">
-									<p className="text-lg font-normal pb-2">
-										Have an account? Sign-In below!
-									</p>
+							<div className="w-full flex flex-row justify-end items-center">
+
 									<button
 										className="h-fit p-2 my-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
-										type="button"
+										type="submit"
+									>
+										Sign Up
+									</button>
+							</div>
+						</form>
+					</div>
+				</section>
+					<div className="flex flex-col items-center absolute p-20 text-white bg-[#1b2845] top-[0] rounded-r-[--b-l] rounded-l-[--b-r] left-[--translation] w-[50%] h-full overflow-hidden z-40 transition-all duration-1000 ease-in-out">
+					{
+						showSignIn ? (
+							<>
+						<div className="w-full my-10">
+							<h1 className="text-6xl text-white font-black pb-4">
+								Welcome Back!
+							</h1>
+							<p className="text-xl text-white font-normal pb-8">
+								Sign in to start connecting with people around
+								the world.
+							</p>
+						</div>
+						<div className="flex justify-center items-center w-full">
+							<hr className="flex-1 h-[1px] bg-black mx-[10px]"/>
+							<span className="font-bold">OR</span> 
+							<hr className="flex-1 h-[1px] bg-black mx-[10px]"/>
+						</div>
+						<div className="w-full my-10">
+							<p className="text-xl text-white font-normal pb-8">	
+								Don't have an account yet? Don't worry! You can sign up below:
+							</p>
+							<div className="w-full flex flex-row justify-center items-center">
+								<button
+										className="h-fit p-2 my-2 text-lg font-normal rounded-lg border-2 border-white hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
+										onClick={() =>
+											setShowSignIn(!showSignIn)
+										}
+									>
+										Sign Up
+									</button>
+									</div>
+						</div>
+						</>
+
+						) : (
+						<>
+						<div className="w-full my-10">
+							<h1 className="text-6xl text-white font-black pb-4">
+								Join our Community!	
+							</h1>
+							<p className="text-xl text-white font-normal pb-8">
+								Connect with people around the world without
+								worrying about your privacy.
+							</p>
+						</div>
+						<div className="flex justify-center items-center w-full">
+							<hr className="flex-1 h-[1px] bg-black mx-[10px]"/>
+							<span className="font-bold">OR</span> 
+							<hr className="flex-1 h-[1px] bg-black mx-[10px]"/>
+						</div>
+						<div className="w-full my-10">
+							<p className="text-xl text-white font-normal pb-8">	
+								Alreadt have an account yet? Head over and sign in below!
+							</p>
+						
+							<div className="w-full flex flex-row justify-center items-center">
+								<button
+										className="h-fit p-2 my-2 text-lg font-normal rounded-lg border-2 border-white hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
 										onClick={() =>
 											setShowSignIn(!showSignIn)
 										}
 									>
 										Sign In
 									</button>
-								</div>
-							</div>
-						</form>
+									</div>
+									</div>
+						</>
+						)
+					}
 					</div>
 				</section>
-			)}
-		</>
+		</section>
 	);
 }

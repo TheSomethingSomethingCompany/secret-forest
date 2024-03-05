@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Navbar from "./components/Navbar/Navbar";
 import localFont from "next/font/local";
 import { WebSocketProvider } from "./contexts/WebSocketContext";
 
@@ -107,16 +108,16 @@ const metropolis = localFont({
 
 interface LayoutProps {
 	children: React.ReactNode;
+
 }
 
-export default function RootyLayout({ children }: LayoutProps) {
+export default function RootLayout({
+	children,
+
+}: LayoutProps) {
 	return (
 		<html lang="en">
-			<body className={`${metropolis.className} relative min-h-screen`}>
-				{
-					//<div className="snow"></div>
-					//<div className="snow2"></div>
-				}
+			<body className={`${metropolis.className} relative`}>
 				<WebSocketProvider>
 					<div>{children}</div>
 				</WebSocketProvider>

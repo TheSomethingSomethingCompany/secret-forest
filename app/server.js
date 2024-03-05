@@ -96,6 +96,15 @@ server.use("/cancelRequest", cancelRequestRoutes);
 const acceptRequestRoutes = require("./app/routes/requests/AcceptRequest");
 server.use("/acceptRequest", acceptRequestRoutes);
 
+const blockUserRoutes = require("./app/routes/requests/BlockUser");
+server.use("/blockUser", blockUserRoutes);
+
+const unblockUserRoutes = require("./app/routes/requests/UnblockUser");
+server.use("/unblockUser", unblockUserRoutes);
+
+const fetchBlockedUsersRoutes = require("./app/routes/requests/FetchBlockedUsers");
+server.use("/fetchBlockedUsers", fetchBlockedUsersRoutes);
+
 server.listen(HTTP_PORT, () => {
 	console.log("Server started on http://localhost:6969");
 });

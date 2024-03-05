@@ -29,5 +29,6 @@
     ".next/types/**/*.ts",
     "__tests__/createProfile.test.mjs"
 , "app/(restofthewebsite)/search/api/search.js", "app/components/searchBar/Searchbar.jsx", "app/(restofthewebsite)/search/page.tsx", "app/profile/api/saveProfileData.js", "app/requestsReceived/page.tsx", "app/(restofthewebsite)/chats/page.tsx"  ],
+, "app/(restofthewebsite)/search/api/search.js", "app/components/searchBar/Searchbar.jsx", "app/(restofthewebsite)/search/page.tsx", "app/profile/api/saveProfileData.js", "app/requestsReceived/page.tsx", "app/(restofthewebsite)/requests/page.jsx"  ],
   "exclude": ["node_modules"]
 }
