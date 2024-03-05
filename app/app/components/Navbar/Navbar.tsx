@@ -92,6 +92,12 @@ export default function Navbar() {
 					<section className="flex flex-row justify-end items-center text-[16px]">
 						<div
 							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-[#57606a] hover:bg-[#eaedf1] translate-y-1 border-[1px] rounded-sm transition-all duration-200 ease-in-out hover:cursor-pointer"
+							onClick={() => router.push("/search")}
+						>
+							 < i className="ri-search-2-fill text-[22px]"></i> 
+						</div>
+						<div
+							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-[#57606a] hover:bg-[#eaedf1] translate-y-1 border-[1px] rounded-sm transition-all duration-200 ease-in-out hover:cursor-pointer"
 							onClick={() => router.push("/chats")}
 						>
 							 < i className="ri-at-line text-[22px]"></i> 
