@@ -4,11 +4,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN pnpm install
+RUN npm install
 
-RUN pnpm update
+RUN npm update
 
-RUN pnpm install -g nodemon
+RUN npm install -g nodemon
 
 COPY . .
 
