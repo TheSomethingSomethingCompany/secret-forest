@@ -10,7 +10,7 @@ import acceptRequest from "./api/acceptRequest";
 import declineRequest from "./api/declineRequest";
 import fetchBlockedUsers from "./api/fetchBlockedUsers";
 import unblockUser from "./api/unblockUser";
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 
 export default function Home() {
    
@@ -24,29 +24,33 @@ export default function Home() {
     }, []);
 
     // We need to make an api call to fetch the requests sent by the user.
-    const [results, setResults ] = useState([]);
+    const results = useRef(null);
+    const mode = useRef("sent");
     const [searchQ, setSearchQ] = useState("");
     const [searchBy, setSearchBy] = useState("name");
-    const [mode, setMode] = useState("sent"); // received, sent, or blocked 
-
+    const [rerender, setRerender] = useState(false);
 
     function fetchResultsByMode({searchQ: searchQ, op: op})
     {
-        switch(mode)
+        
+        switch(mode.current)
         {
             case "received":
                 fetchRequestsReceived({searchQ: searchQ, op: op}).then((res) => {
-                    setResults(res);
+                    results.current = res;
+                    setRerender(prev => !prev);
                 });
                 break;
             case "sent":
                 fetchRequestsSent({searchQ: searchQ, op: op}).then((res) => {
-                    setResults(res);
+                    results.current = res;
+                    setRerender(prev => !prev)
                 });
                 break;
             case "blocked":
                 fetchBlockedUsers({searchQ: searchQ, op: op}).then((res) => {
-                    setResults(res);
+                    results.current = res;
+                   setRerender(prev => !prev);
                 });
                 break;
         }
@@ -56,6 +60,7 @@ export default function Home() {
     useEffect(() => {
         fetchResultsByMode({searchQ: "", op: 0});
     }, []);
+
 
     function onSearch(){
       let op = 0;
@@ -69,11 +74,16 @@ export default function Home() {
       fetchResultsByMode({searchQ: searchQ, op: op});
     }
      
-    function setModeHandler(mode){
-      setMode(mode);
+    function setModeHandler(newMode){
+      results.current = null; // Clear the results and show a loading spinner or something
+      mode.current = newMode;
       fetchResultsByMode({searchQ: "", op: 0});
-      setResults([]);
     }
+
+    function setResults(data){
+        results.current = data;
+    }
+
   
 
   return (
@@ -85,9 +95,9 @@ export default function Home() {
       <button onClick={() => setModeHandler("sent")} className={`mr-4 ${mode === 'sent' ? 'text-blue-500' : ''}`}>Sent</button>
       <button onClick={() => setModeHandler("blocked")} className={`mr-4 ${mode === 'blocked' ? 'text-blue-500' : ''}`}>Blocked</button>
     </div>
-      {mode === 'sent' && <RequestsSentDisplayer requestsSentResults={results} setRequestsSentResults={setResults} cancelRequestAPI={cancelRequest} />}
-      {mode === 'received' && <RequestsReceivedDisplayer requestsReceivedResults={results} setRequestsReceivedResults={setResults} acceptRequestAPI={acceptRequest} declineRequestAPI={declineRequest} />}
-      {mode === 'blocked' && <BlockedUsersDisplayer blockedUsersResults={results} setBlockedUsersResults={setResults} unblockUserAPI={unblockUser} />}
+      {mode.current === 'sent' && results.current && <RequestsSentDisplayer requestsSentResults={results.current} setRequestsSentResults={setResults} cancelRequestAPI={cancelRequest} />}
+      {mode.current === 'received' && results.current && <RequestsReceivedDisplayer requestsReceivedResults={results.current} setRequestsReceivedResults={setResults} acceptRequestAPI={acceptRequest} declineRequestAPI={declineRequest} />}
+      {mode.current === 'blocked' && results.current && <BlockedUsersDisplayer blockedUsersResults={results.current} setBlockedUsersResults={setResults} unblockUserAPI={unblockUser} />}
            
       </main>
     
