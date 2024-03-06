@@ -43,19 +43,6 @@ CREATE TABLE user_tag(
   	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE profile_picture (
-    "memberID" uuid,
-    image bytea,
-    foreign key ("memberID") references member("memberID")
-    	on delete cascade on update cascade
-);
-
-CREATE TABLE files (
-    "memberID" uuid,
-    "fileName" TEXT,
-    foreign key ("memberID") references member("memberID")
-    	on delete cascade on update cascade
-);
 
 CREATE TABLE chat(
   "chatID" SERIAL PRIMARY KEY,
@@ -105,6 +92,5 @@ CREATE TABLE blocked_user(
     ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY ("blockedMemberID") REFERENCES member("memberID")
     ON DELETE CASCADE ON UPDATE CASCADE 
-
 );
 
