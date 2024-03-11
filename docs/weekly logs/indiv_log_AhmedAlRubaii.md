@@ -568,3 +568,30 @@ This week I worked closley with Shaheer to bring him up to speed with all things
 ## Peer Review
 ![week 21](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/adb9b50f-e171-48d9-b29b-b6521eefee35)
 
+---------------------------
+
+**Week**: 22
+
+**Work Period**: 4 March 2024 - 10 March 2024
+
+## Individual Objectives
+
+This week i helped in the presentation aspect of our application. i helped in finding any errors and making sure that application was running prior to the peer testing session. i was also involved with troubleshooting an issue with the requests recieved and sent page which then shaheer got to fixing after we discovered what was causing the issue. i have then done some research into lambda and rekognition in order to assist arsh with setting up the video blurring aspect of the app. lastly i have redeployed the latest version of the app to aws. 
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+- Troubleshoot request page issue
+- Research and understand lambda and rekognition
+
+    
+## Status of Tasks
+
+- App deployment to ECS with Fargate -- Completed
+- Manual testing of the deployed app -- In Progress
+- Troubleshoot request page issue -- Completed
+- Research and understand lambda and rekognition -- In Progress
+
+
+## Peer Review
+![week 22](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/bf2b5725-d7dc-412c-bbe4-4c5b57de3ee6)
