@@ -494,7 +494,10 @@ Satanshu Mishra: `SatanshuMishra`
   - Test other teams' project
 - Set Up Facial Blurring Using AWS Rekognition + Lambda
     - Deploy Assets
-  
+- Implemented PFP Functionality
+  - Retrieval of PFP from the File System
+  - Edit/Change PFP from the Edit Profile Page
+- Display User Info In Nav Bar   
 
   
 ## Accomplishments
@@ -504,7 +507,10 @@ Satanshu Mishra: `SatanshuMishra`
   - Test other teams' project -- Complete
 - Set Up Facial Blurring Using AWS Rekognition + Lambda -- In Progress
     - Deploy Assets -- In Progress
-
+- Implemented PFP Functionality -- In Progress
+  - Retrieval of PFP from the File System -- In Progress
+  - Edit/Change PFP from the Edit Profile Page -- In Progress
+- Display User Info In Nav Bar -- In Progress
 
 ## Test Report
 <img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
