@@ -476,3 +476,38 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 ![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/3dc83c3e-bf05-4e75-8876-eed719d41761)
+
+**Term 2 - Week 9 (Week 22)**: 04/03/2024 - 10/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Complete Peer Testing 2
+  - Present Project to other teams
+  - Test other teams' project
+- Set Up Facial Blurring Using AWS Rekognition + Lambda
+    - Deploy Assets
+  
+
+  
+## Accomplishments
+
+- Complete Peer Testing 2 -- Complete
+  - Present Project to other teams -- Complete
+  - Test other teams' project -- Complete
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- In Progress
+    - Deploy Assets -- In Progress
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
