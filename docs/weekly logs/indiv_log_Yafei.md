@@ -606,9 +606,45 @@ request I made, there is code that is there that is Satanshu's. I only wrote the
 
 
 ## Peer Review
-![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/52a87c9d-3bbb-4bef-97a7-3e113ad41060)
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/2e0ecc77-553b-4907-9149-597a95b4df4d)
 
 
+**Term 2 Week: 9** 
+**Work Period**: `04-02-2024` - `10-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Check if user is using a default image or are uploading their own image
+  - Upload image to file system
+  - Get and view correct profile image
+    - For nav bar
+    - For edit profile page
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+  - Modify Nav bar so that it shows the currently signed in user's info   
+
+
+## Active Tasks
+
+- Work on profile image functionality 
+  - Get and view correct profile image
+    - For nav bar
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+    - Works with the default images but not with new personal images    
+
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (In-Progress)
+    - For chats (In-Progress)
+  - Be able to change the profile image in the edit profile page (In-Progress)   
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/2e0ecc77-553b-4907-9149-597a95b4df4d)
 
 
 
