@@ -497,7 +497,9 @@ Satanshu Mishra: `SatanshuMishra`
 - Implemented PFP Functionality
   - Retrieval of PFP from the File System
   - Edit/Change PFP from the Edit Profile Page
-- Display User Info In Nav Bar   
+- Display User Info In Nav Bar
+- Fix Requests page displaying incorrect information
+- Fix issues related to the functionality of our website present after Peer Testing 2
 
   
 ## Accomplishments
