@@ -707,6 +707,27 @@
 ## Peer Review
 <img width="1067" alt="2024-02-19_00-49-30" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7aa933c9-ed34-4587-83f6-df4544436d95">
 
+**Work Period**: 03/03/2024 - 10/03/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Fix issue in requests page that did not show the updated data after switching modes (received, sent, blocked)
+- Integrate sending files and retrieving (viewing) files in Live Chats through WebSocket Server
+- Fix issues with configuration files preventing our website from not functioning properly
+- Fix issues pertaining to the general functionality of the website
+  
+## Status of Tasks: `All Tasks Listed Completed`
+- Improve security of Edit Profile page
+  - Ensure memberIDs aren't being stored anywhere in the frontend
+  - Combine 2 separate routes into one route that utilizes session data specifically
+- Implement Send Request feature, completing request for chat feature of website
+- Discuss next steps with team
+  - Decide task priorities with team
+  - Ensure team moves forward to specifically working on AWS and Deployment
+  
+## Peer Review
+<img width="1067" alt="2024-02-19_00-49-30" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7aa933c9-ed34-4587-83f6-df4544436d95">
+
 
 
 
