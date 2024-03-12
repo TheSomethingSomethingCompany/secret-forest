@@ -417,3 +417,113 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 ![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/ebbc1fac-2dbc-4ca6-9907-ce80dd085c63)
+
+
+
+**Term 2 - Week 7 & 8 (Week 20 & 21)**: 19/02/2024 - 03/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Implemented Blocking and Unblocking of Users
+    - Blocks both users from sending requests to each other and deletes any chats between them
+- Implemented Request Sent, Recieve and Blocking in One Page
+- Improved Security of the Requests Functionality
+- Integrated File Upload and Retrieval to S3 Through Web Socket Server
+- Research Face Detection on Stored Videos in S3
+- Set Up Facial Blurring Using AWS Rekognition + Lambda
+    - Research AWS CDK
+    - Set Up All Required Services
+    - Deploy Assets
+- Implemented PFP Functionality
+    - Uploading Chosen Image to the File System
+    - Retrieval of PFP from the File System
+    - Edit/Change PFP from the Edit Profile Page
+- Completed First Wave of Deployemt
+    - Set Up All Necessary Services
+    - Deploy Latest Version of the App
+    - Testing All Services in Deployment Environment
+- Completed Redesign of Create Profile Page
+- Completed Redesign of Home Page
+
+  
+  
+## Accomplishments
+
+- Implemented Blocking and Unblocking of Users -- Complete 
+    - Blocks both users from sending requests to each other and deletes any chats between them
+- Implemented Request Sent, Recieve and Blocking in One Page -- Complete
+- Improved Security of the Requests Functionality -- Complete
+- Integrated File Upload and Retrieval to S3 Through Web Socket Server -- Complete
+- Research Face Detection on Stored Videos in S3 -- Complete
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- In Progress
+    - Research AWS CDK -- Complete
+    - Set Up All Required Services -- Complete
+    - Deploy Assets -- In Progress
+- Implemented PFP Functionality -- In Progress
+    - Uploading Chosen Image to the File System -- Complete
+    - Retrieval of PFP from the File System -- In Progress
+    - Edit/Change PFP from the Edit Profile Page -- In Progress
+- Completed First Wave of Deployemt -- In Progress
+    - Set Up All Necessary Services -- Complete
+    - Deploy Latest Version of the App -- Complete
+    - Testing All Services in Deployment Environment -- In Progress
+- Completed Redesign of Create Profile Page -- Complete
+- Completed Redesign of Home Page -- In Progress
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/3dc83c3e-bf05-4e75-8876-eed719d41761)
+
+**Term 2 - Week 9 (Week 22)**: 04/03/2024 - 10/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Complete Peer Testing 2
+  - Present Project to other teams
+  - Test other teams' project
+- Set Up Facial Blurring Using AWS Rekognition + Lambda
+    - Deploy Assets
+- Implemented PFP Functionality
+  - Retrieval of PFP from the File System
+  - Edit/Change PFP from the Edit Profile Page
+- Display User Info In Nav Bar
+- Fix Requests page displaying incorrect information
+- Fix issues related to the functionality of our website present after Peer Testing 2
+
+  
+## Accomplishments
+
+- Complete Peer Testing 2 -- Complete
+  - Present Project to other teams -- Complete
+  - Test other teams' project -- Complete
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- In Progress
+    - Deploy Assets -- In Progress
+- Implemented PFP Functionality -- In Progress
+  - Retrieval of PFP from the File System -- In Progress
+  - Edit/Change PFP from the Edit Profile Page -- In Progress
+- Display User Info In Nav Bar -- In Progress
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart

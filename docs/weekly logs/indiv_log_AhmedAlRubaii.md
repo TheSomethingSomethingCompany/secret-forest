@@ -532,3 +532,65 @@ This week i have restarted work on the deployment process. However all the work 
 ## Peer Review
 ![week 19](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/4c602cf8-7418-4949-9618-66d70bfa4da4)
 
+---------------------------
+
+**Week**: 20-21
+
+**Work Period**: 19 February 2024 - 3 March 2024
+
+## Individual Objectives
+
+This includes both the reading break and the current week. in the reading break i worked on finalizing all the neccessary conditions to set up the deployment environment. i encountered a lot of network errors which i eventually resolved and was able to successfuly deploy a version of our app on AWS: http://499-new-lb-420614602.ca-central-1.elb.amazonaws.com/home. As of writing, it does not work as i have mistakingly uploaded an image of our server which had a very simple error so the server is not running and almost all functionality is not present. although the error is resolved locally, i have withheld the fixed version from being deployed based on the fact that this week we have gotten a lot of progress doen, so i dont want to build and deploy a version that will be expired in a day or two. either on monday or tuesday when we have gotten the features we are currently working on finished, i will make sure to deploy the most up to date version. this hesitation also stems from the fact that we dont have a steady delivery path to AWS and it entails me having to do docker builds and a manual deployment each time. we can look at getting this process streamlined at a future date but it is not our priority at the moment. 
+
+This week I worked closley with Shaheer to bring him up to speed with all things AWS especially S3 and how it works and how we intend to use it. I aided him in getting the S3 upload in which he then integrated that into the chats page. I then further coded the server code needed to retrieve files from S3 and have provided it for him so that he can integrate that too. I have also assisted Arsh in his research and deployment of the AWS Lambda function which uses Rekognition to blur our videos. currently both he and i and facing some difficulity in getting the code to run which we should be able to solve by the end of next week. this would then unlock our ability to blurr videos and bring us very close to the completion of the app. 
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+	- Completed First Wave of Deployment
+- Troubleshoot Load Balance error
+- Explain and Assist Shaheer with S3 Upload and Retrieve
+- Coded S3 Retrieve Backend
+- Assist in Research and Deployment of Lambda and Recognition with Arsh
+
+    
+## Status of Tasks
+
+- App deployment to ECS with Fargate -- Complete
+	- Completed First Wave of Deployment
+- Troubleshoot Load Balance error -- Complete
+- Explain and Assist Shaheer with S3 Upload and Retrieve -- Complete
+- Coded S3 Retrieve Backend -- Complete
+- Assist in Research and Deployment of Lambda and Recognition with Arsh -- In Progress
+
+
+## Peer Review
+![week 21](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/adb9b50f-e171-48d9-b29b-b6521eefee35)
+
+---------------------------
+
+**Week**: 22
+
+**Work Period**: 4 March 2024 - 10 March 2024
+
+## Individual Objectives
+
+This week i helped in the presentation aspect of our application. i helped in finding any errors and making sure that application was running prior to the peer testing session. i was also involved with troubleshooting an issue with the requests recieved and sent page which then shaheer got to fixing after we discovered what was causing the issue. i have then done some research into lambda and rekognition in order to assist arsh with setting up the video blurring aspect of the app. lastly i have redeployed the latest version of the app to aws. 
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+- Troubleshoot request page issue
+- Research and understand lambda and rekognition
+
+    
+## Status of Tasks
+
+- App deployment to ECS with Fargate -- Completed
+- Manual testing of the deployed app -- In Progress
+- Troubleshoot request page issue -- Completed
+- Research and understand lambda and rekognition -- In Progress
+
+
+## Peer Review
+![week 22](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/bf2b5725-d7dc-412c-bbe4-4c5b57de3ee6)
