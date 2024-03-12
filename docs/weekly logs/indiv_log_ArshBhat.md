@@ -450,3 +450,33 @@
 ## Peer Review
 <img width="537" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/1f267b12-56d2-45b2-94c6-40f5c4a97fe8">
 
+# Personal Log - Arsh Bhat
+
+**Week**: 22
+**Week**: `04-03-2024` - `10-03-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Setup facial blurring using aws
+  - deploy assets for blurring
+  - Testing of application
+- Peer Testing 2
+  - Present project to members from 3 other teams
+  - Watch other team's project presentation
+
+## Active Tasks
+- Setup facial blurring using aws
+- Peer Testing 2
+
+## Status of Tasks
+- Setup facial blurring using aws
+  - deploy assets for blurring - `IN-PROGRESS`
+  - Testing of application - `IN-PROGRESS`
+- Peer Testing 2
+  - Present project to members from 3 other teams - `Complete`
+  - Watch other team's project presentation - `Complete`
+
+## Peer Review
+<img width="534" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f6658ee4-346b-4e81-b733-b83337b32748">
+
+
