@@ -648,6 +648,50 @@ request I made, there is code that is there that is Satanshu's. I only wrote the
 
 
 
+**Term 2 Week: 10** 
+**Work Period**: `10-03-2024` - `17-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For nav bar
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+- Modify Nav bar so that it shows the currently signed in user's info   
+
+
+## Active Tasks
+
+- Work on profile image functionality 
+  - Get and view correct profile image
+    - For nav bar
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+    - Works with the default images but not with new personal images
+- Modify Nav bar so that it shows the currently signed in user's info
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (In-Progress)
+    - For chats (Completed)
+  - Be able to change the profile image in the edit profile page (In-Progress)
+- Modify Nav bar so that it shows the currently signed in user's info (In-Progress)   
+
+NOTES:
+- I have been having a issue with uploading new, personal pfp on the edit page that I have been struggling with so my new plan
+  is to finish the other tasks I want to do then go back to fixing that issue.
+- The minimum I wanted to get done this week was the pfps for chats and next week I want to get at least the nav bar showing the logged in users info and pfp.
+- Another task I might be doing soon is a forget password feature
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/cde957e8-57b0-4ea2-967a-ce3202996810)
+
+
+
+
 
 
 
