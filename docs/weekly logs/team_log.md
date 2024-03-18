@@ -535,6 +535,7 @@ Satanshu Mishra: `SatanshuMishra`
 
 - Set Up Facial Blurring Using AWS Rekognition + Lambda
     - Deploy Assets
+    - Integrate and Test
 - Implemented PFP Functionality
   - Retrieval of PFP from the File System
   - Edit/Change PFP from the Edit Profile Page
@@ -547,8 +548,9 @@ Satanshu Mishra: `SatanshuMishra`
   
 ## Accomplishments
 
-- Set Up Facial Blurring Using AWS Rekognition + Lambda -- In Progress
-    - Deploy Assets -- In Progress
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- Compleyed
+    - Deploy Assets -- Completed
+    - Integrate and Test -- In Progress
 - Implemented PFP Functionality
   - Retrieval of PFP from the File System -- Completed
   - Edit/Change PFP from the Edit Profile Page -- In Progress
