@@ -595,3 +595,33 @@ This week i helped in the presentation aspect of our application. i helped in fi
 
 ## Peer Review
 ![week 22](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/bf2b5725-d7dc-412c-bbe4-4c5b57de3ee6)
+
+---------------------------
+
+**Week**: 23
+
+**Work Period**: 11 March 2024 - 17 March 2024
+
+## Individual Objectives
+
+This week was mostly spent on getting the blurring feature implemented and deployed. i encountered quite a few errors and issues with the configuration of the demo repository that had the rekognition blurring functionality. after fixing the runtime configuration, i had to fix the errors that were occuring on the aws side while deploying the services. eventually i was able to launch all the associated services. now a video uploaded to a bucket will be processed by aws rekogntion to blur any faces in the video. unfortunatly i was unable to fully integrate this within the app and test it out to make sure all is in working order (right now i was able to test it through the aws console). the target for next week is to integrate this within the app and make sure all runs smoothly. 
+
+## Active Tasks
+
+- Troubleshoot blur repo deployment
+- Deploy blur repo
+- Integrate functions within our app
+- Manual testing of the deployed app
+
+    
+## Status of Tasks
+
+- Troubleshoot blur repo deployment -- Completed
+- Deploy blur repo -- Completed
+- Integrate functions within our app -- In Progress
+- Manual testing of the deployed app -- In Progress
+
+
+## Peer Review
+![week 23](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/91888460-3f77-4b70-8767-51b67d62c867)
+
