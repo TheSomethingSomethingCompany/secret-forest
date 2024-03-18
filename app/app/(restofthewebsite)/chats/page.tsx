@@ -5,6 +5,7 @@ import Img from "@/app/images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
 import { useRef, useEffect, useState, use } from "react";
+import GetProfilePicture from "../getProfilePicture/api/getPFP";
 
 import { useWebSocket } from "../../contexts/WebSocketContext";
 
@@ -15,6 +16,9 @@ export default function Chats() {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
   const [shouldBlur, setShouldBlur] = useState(false);
+
+  const [loggedInPfp, setLoggedInPfp] = useState(``);
+  const [chatImage, setChatImage] = useState(``);
     
   // Create a WebSocket connection to the server
   
@@ -89,10 +93,17 @@ export default function Chats() {
     let res = await retrieveChats();
     console.log("RESPONSE FROM SERVER FOR CHATS:");
     console.log(res);
-    if(res.data)
+    if(res.data) {
       setChatsList(res.data);
-    else setChatsList([]);
+      const chatData = res.data[0];
+      
+      const pfpPath1 = await GetProfilePicture({username: chatData.loggedInUsername});
+      setLoggedInPfp(pfpPath1.data);
 
+      const imgPath = await GetProfilePicture({username: chatData.username});
+      setChatImage(imgPath.data);
+      
+    }   else setChatsList([]);
   }
 
   async function getMessages(chatID: string) { // We need to specify the chatID since state variables are not updated immediately
@@ -117,9 +128,10 @@ export default function Chats() {
   useEffect(() => {
     getChats();
   }, []);
+  console.log("IMAGE: " + chatImage + "UR IMAGE: " + loggedInPfp); //DEBUG
 
-
-  function onChatClick(e) {
+  
+ function onChatClick(e) {
     console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
     chatID.current = e.currentTarget.dataset.chatId;
     getMessages(chatID.current);
@@ -204,7 +216,7 @@ export default function Chats() {
                 <div className="flex flex-row justify-between flex-1 p-4">
                   <div className="p-2">
                     <img
-                      src={Img.src}
+                      src={chatImage}
                       alt="Example"
                       className="w-24 rounded-full object-scale-down"
                     />
@@ -244,7 +256,8 @@ export default function Chats() {
                   id={message.messageID}
                   name={message.name}
                   message={message.message}
-                  profilePicture={""}
+                  profilePictureYou={loggedInPfp}
+                  profilePictureThem={chatImage}
                   hasAttachment={false}
                   isYou={message.isYou}
                   onDeleteButtonClick = {onDeleteButtonClick}

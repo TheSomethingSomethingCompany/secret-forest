@@ -19,6 +19,13 @@ router.get('/api', async (req, res) => {
             WHERE chatsWithLoggedInUser."memberID2" != $1
         ) as chats JOIN member USING("memberID")
             `, [memberID]);
+
+        const urUsername = await db.one (`
+        SELECT username
+        FROM member
+        WHERE "memberID" = $1`, [memberID]);
+
+
         
         if(chatsWithUsers.length == 0)
         {
@@ -26,7 +33,15 @@ router.get('/api', async (req, res) => {
             return;
         }
 
-        else res.json({ status: 201, message: 'Retrieved chats successfully', data: chatsWithUsers });
+        else{
+            const loggedInUsername = urUsername.username;
+
+            chatsWithUsers.forEach(chat => {
+                chat.loggedInUsername = loggedInUsername;
+            });
+            
+            res.json({ status: 201, message: 'Retrieved chats successfully', data: chatsWithUsers });
+        } 
 
     } 
     catch(error)
