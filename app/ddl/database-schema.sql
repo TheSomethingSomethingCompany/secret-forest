@@ -14,7 +14,6 @@ CREATE TABLE profile (
     "country" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "bio" TEXT,
-    "pfpPath" TEXT, 
     FOREIGN KEY ("memberID") REFERENCES member("memberID")
         ON DELETE CASCADE ON UPDATE CASCADE
 );
