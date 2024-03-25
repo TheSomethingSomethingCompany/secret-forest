@@ -689,6 +689,44 @@ NOTES:
 ## Peer Review
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/cde957e8-57b0-4ea2-967a-ce3202996810)
 
+**Term 2 Week: 11** 
+**Work Period**: `18-03-2024` - `24-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For nav bar
+    - For search bar
+  - Be able to change the profile image in the edit profile page
+- Modify Nav bar so that it shows the currently signed in user's info
+- Implement logout feature 
+
+
+## Active Tasks
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For nav bar
+    - For search bar
+  - Be able to change the profile image in the edit profile page
+- Modify Nav bar so that it shows the currently signed in user's info
+- Implement logout feature 
+
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (Completed)
+    - For search bar (In-Progress)
+  - Be able to change the profile image in the edit profile page (Handed off to Shaheer to finish)
+- Modify Nav bar so that it shows the currently signed in user's info (Completed)
+- Implement logout feature (Completed)  
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/4666ab8d-3308-48e1-864d-53ed34c07b96)
 
 
 
