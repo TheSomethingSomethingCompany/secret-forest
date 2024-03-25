@@ -54,7 +54,7 @@ async function handleRetrievingMessages(req, res){
             WHERE "chatID" = $1
                 `, [chatID, memberID]);
             
-            console.log(chatMessagesAndFileNames);
+            //console.log(chatMessagesAndFileNames);
 
             if (chatMessagesAndFileNames.length === 0)
             {
@@ -100,8 +100,11 @@ async function handleRetrievingMessages(req, res){
                         }
                         
                     }
+
+                    delete chatMessagesAndFileNames[i].fileName; // Delete the fileName property from the object
                 }
                 const chatMessages = chatMessagesAndFileNames;
+                console.log(chatMessages);
                 res.json({ status: 201, message: 'Retrieved messages', chatMessages: chatMessages, action: 'retrieveMessages' });
             }
         }

@@ -78,7 +78,7 @@ function ChatBubble({
               <p id="message">{messageText}</p>
             )}
 
-              {signedURL && attachmentExt &&(
+              {signedURL &&(
                 // THERE NEEDS TO BE A CHECK HERE IF THE FILE IS AN IMAGE OR A VIDEO 
 
                 attachmentExt === 'png' || attachmentExt === 'jpg' || attachmentExt === 'jpeg' || attachmentExt === 'gif' ? (
@@ -89,7 +89,7 @@ function ChatBubble({
                 ) : (
                   <video src={signedURL} 
                   controls 
-                  
+
                   />
                 )
 
@@ -158,11 +158,21 @@ function ChatBubble({
           </div>
           <div className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-lg bg-white w-full p-4">
             <p id="message">{messageText}</p>
-            {signedURL && (
-                <img
+              {signedURL &&(
+                // THERE NEEDS TO BE A CHECK HERE IF THE FILE IS AN IMAGE OR A VIDEO 
+
+                attachmentExt === 'png' || attachmentExt === 'jpg' || attachmentExt === 'jpeg' || attachmentExt === 'gif' ? (
+                  <img
                   src={signedURL}
                   alt="Signed Image"
                   />
+                ) : (
+                  <video src={signedURL} 
+                  controls 
+                  
+                  />
+                )
+
               )}
           </div>
           <div className="-z-10 w-full flex flex-row justify-end mr-8 -translate-y-[--translateAmt] transition-transform duration-300">

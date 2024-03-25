@@ -248,7 +248,7 @@ export default function Chats() {
                   message={message.message}
                   profilePicture={""}
                   hasAttachment={false}
-                  attachmentExt= {message.attachment ? message.attachment : null}
+                  attachmentExt= {message.fileExtension ? message.fileExtension : null}
                   isYou={message.isYou}
                   onDeleteButtonClick = {onDeleteButtonClick}
                   saveToDatabaseHandler={saveToDatabaseHandler}
