@@ -54,7 +54,7 @@ async function handleRetrievingMessages(req, res){
             WHERE "chatID" = $1
                 `, [chatID, memberID]);
             
-            console.log(chatMessagesAndFileNames);
+            //console.log(chatMessagesAndFileNames);
 
             if (chatMessagesAndFileNames.length === 0)
             {
@@ -68,7 +68,8 @@ async function handleRetrievingMessages(req, res){
                 // 3) If it is null, then move on to the next element, and delete the fileName property from the object
                 // 4) If it is not null, then do the following
                     // - Use the fileName to get a signed URL from S3
-                    // - Let the message property be in the following form: <message>: <signedURL> , where <message> is the original message, and <signedURL> is the signed URL from S3
+                    // Create a new property in the object called signedURL, and assign the signed URL to it
+                    // Create a new property in the object called fileExtension, and assign the file extension to it
                     // - Delete the fileName property from the object
                 // 5) Return the chatMessagesAndFileNames array to the client
 
@@ -79,7 +80,7 @@ async function handleRetrievingMessages(req, res){
                         
                         const params = {
                             Bucket: bucketName, //upload will happen to this s3 bucket
-                            Key: chatMessagesAndFileNames[i].fileName, //name of the file that is on the user's computer
+                            Key: chatMessagesAndFileNames[i].fileName, //name of the file on s3
                         }
 
                         const command = new GetObjectCommand(params);
@@ -89,6 +90,7 @@ async function handleRetrievingMessages(req, res){
                         {
                             const url = await getSignedUrl(s3Object, command, { expiresIn: seconds });
                             chatMessagesAndFileNames[i].signedURL = url; // Add the signed URL to the object
+                            chatMessagesAndFileNames[i].fileExtension = chatMessagesAndFileNames[i].fileName.split('.').pop(); // Add the file extension to the object
 
                         }
                         catch(error) 
@@ -98,8 +100,11 @@ async function handleRetrievingMessages(req, res){
                         }
                         
                     }
+
+                    delete chatMessagesAndFileNames[i].fileName; // Delete the fileName property from the object
                 }
                 const chatMessages = chatMessagesAndFileNames;
+                console.log(chatMessages);
                 res.json({ status: 201, message: 'Retrieved messages', chatMessages: chatMessages, action: 'retrieveMessages' });
             }
         }
