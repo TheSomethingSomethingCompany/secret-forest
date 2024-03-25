@@ -584,6 +584,7 @@ Satanshu Mishra: `SatanshuMishra`
 - Implement editing of PFP
 - Display logged-in user info in the navbar
 - Implement log out functionality
+- Update Chats UI
 
   
 ## Accomplishments
@@ -593,7 +594,7 @@ Satanshu Mishra: `SatanshuMishra`
 - Implement editing of PFP -- In Progress
 - Display logged-in user info in the navbar -- Completed
 - Implement log out functionality -- Completed
-
+- Update chats UI -- Completed
 
 
 ## Test Report
