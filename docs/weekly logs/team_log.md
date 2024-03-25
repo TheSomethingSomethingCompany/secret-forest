@@ -564,3 +564,42 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/01f5d84c-b3a5-48cd-8e7a-f97db68e128d)
+
+
+**Term 2 - Week 11 (Week 24)**: 18/03/2024 - 24/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Integrate Rekognition buckets within chats page
+- Testing of deployment environment on Fargate
+- Implement the viewing of images and videos from within the chats
+- Implement editing of PFP
+- Display logged-in user info in the navbar
+- Implement log out functionality
+
+  
+## Accomplishments
+- Integrate Rekognition buckets within chats page -- Completed
+- Testing of deployment environment on Fargate -- In Progress
+- Implement the viewing of images and videos from within the chats -- Completed
+- Implement editing of PFP -- In Progress
+- Display logged-in user info in the navbar -- Completed
+- Implement log out functionality -- Completed
+
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/e1cd676a-6d8b-4de8-9aa8-fbccf30b79a4)
+
