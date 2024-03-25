@@ -625,3 +625,28 @@ This week was mostly spent on getting the blurring feature implemented and deplo
 ## Peer Review
 ![week 23](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/91888460-3f77-4b70-8767-51b67d62c867)
 
+---------------------------
+
+**Week**: 24
+
+**Work Period**: 18 March 2024 - 24 March 2024
+
+## Individual Objectives
+
+This week i worked on testing out the new buckets and implementing them within the chats page. i initially had some issues with sending and getting from the newly created buckets that are connected with the lambdas and rekognition blurring functions but they were eventually solved. next i had to find a way to isolate the file type from the signed url that is provided from aws in order to properly view the file depending on if it is a video or a photo. shaheer then took over from this point by integrating this logic within the chats page. further, there has been some testing on the fargate deployment but unfortunatley due to a surprise midterm (was announced on tuesday for friday) i did not get as much done as i had hoped. 
+
+## Active Tasks
+
+- Integrate functions within our app
+- Manual testing of the deployed app
+
+    
+## Status of Tasks
+
+- Integrate functions within our app -- Completed
+- Manual testing of the deployed app -- In Progress
+
+
+## Peer Review
+![week 24](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/2a8ffad0-c694-41c7-8106-8a17d24d930c)
+
