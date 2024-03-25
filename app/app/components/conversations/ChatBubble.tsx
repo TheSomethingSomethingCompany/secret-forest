@@ -15,7 +15,7 @@ type props = {
   profilePicture: string;
   hasAttachment: boolean;
   attachment?: string;
-  attachmentType?: string;
+  attachmentExt?: string;
   isYou: boolean;
   onDeleteButtonClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   saveToDatabaseHandler: (editedMessage: string, messageID: string) => void;
@@ -29,7 +29,7 @@ function ChatBubble({
   profilePicture,
   hasAttachment,
   attachment,
-  attachmentType,
+  attachmentExt,
   isYou,
   onDeleteButtonClick,
   saveToDatabaseHandler
@@ -78,12 +78,21 @@ function ChatBubble({
               <p id="message">{messageText}</p>
             )}
 
-              {signedURL && (
+              {signedURL && attachmentExt &&(
                 // THERE NEEDS TO BE A CHECK HERE IF THE FILE IS AN IMAGE OR A VIDEO 
-                <img
+
+                attachmentExt === 'png' || attachmentExt === 'jpg' || attachmentExt === 'jpeg' || attachmentExt === 'gif' ? (
+                  <img
                   src={signedURL}
                   alt="Signed Image"
                   />
+                ) : (
+                  <video src={signedURL} 
+                  controls 
+                  
+                  />
+                )
+
               )}
           </div>
         
