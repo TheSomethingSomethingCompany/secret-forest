@@ -10,6 +10,8 @@ import DropMenu from "./DropMenu";
 
 import Logo from "../../images/TheSomethingSomethingCompanyLogoV3.svg";
 import Penguin from "../../images/ExamplePenguin.jpeg";
+import fetchUserInfo from "./api/getUserInfo";
+import GetProfilePicture from "@/app/(restofthewebsite)/getProfilePicture/api/getPFP";
 
 import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
@@ -47,6 +49,25 @@ export default function Navbar() {
 		visible: { opacity: 1, y: 0 },
 		hidden: { opacity: 0, y: "-100%" },
 	};
+
+	const [username, setUsername] = useState([]);
+	const [pfpInfo, setPfpInfo] = useState(``);
+
+	async function getUser() {
+		const res = await fetchUserInfo();
+		console.log("RESPONSE FROM SERVER FOR User:");
+		console.log(res);
+		setUsername(res.data.username);
+		const pfpPath = await GetProfilePicture({username: res.data.username});
+		setPfpInfo(pfpPath.data);
+
+
+	  }
+
+	if (userStatus === "signedIn") {
+		getUser();
+		
+	}
 
 	return (
 		<motion.nav
@@ -109,11 +130,11 @@ export default function Navbar() {
 						>
 							<div className="font-normal my-2 mx-[8px] border-b-4 border-transparent translate-y-1 transition-all duration-200 ease-in-out hover:cursor-pointer flex flex-row items-center justify-center">
 								<i className="ri-corner-left-down-line text-2xl translate-y-2 text-[#57606a]" />
-								<Image
-									src={Penguin}
+								<img
+									src={pfpInfo}
 									alt={"Profile Picture"}
 									className="w-12 h-12 rounded-full"
-								></Image>
+								/>
 							</div>
 							{(
 								<div className="relative">
