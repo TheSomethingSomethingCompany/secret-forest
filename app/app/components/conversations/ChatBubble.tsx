@@ -79,6 +79,7 @@ function ChatBubble({
             )}
 
               {signedURL && (
+                // THERE NEEDS TO BE A CHECK HERE IF THE FILE IS AN IMAGE OR A VIDEO 
                 <img
                   src={signedURL}
                   alt="Signed Image"

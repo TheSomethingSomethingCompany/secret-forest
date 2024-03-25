@@ -9,7 +9,7 @@ const {getSignedUrl} = require("@aws-sdk/s3-request-presigner")
 const dotenv = require("dotenv");
 dotenv.config();
 
-const bucketName = process.env.BUCKET_NAME
+const bucketName = process.env.OUTPUT_BUCKET_NAME
 const bucketRegion = process.env.BUCKET_REGION
 const accessKey = process.env.ACCESS_KEY
 const secretAccessKey = process.env.SECRET_ACCESS_KEY
@@ -44,6 +44,7 @@ router.post("/api", async (req, res) => {
     try{
         const url = await getSignedUrl(s3Object, command, { expiresIn: seconds });
         if(url != null){
+            console.log(url);
             res.json({status: 200, body: url});
         }else{
             res.json({status: 404, body: "file not found"});
