@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import fetchUserInfo from "./api/getUserInfo";
+import logout from "./api/logout";
 
 type DropMenuProps = {
 	isOpen: boolean;
@@ -30,6 +31,14 @@ function DropMenu({ isOpen }: DropMenuProps) {
 		getUser();
 	  }, []);
 	  
+	  async function handleLogout() {
+		const res = await logout();
+		console.log(res);
+		window.location.reload();
+		
+	  };
+
+
 
 	return (
 		<>
@@ -76,6 +85,19 @@ function DropMenu({ isOpen }: DropMenuProps) {
 							</p>
 						</div>
 					</div>
+					<div 
+						onClick = {async () => {
+							await handleLogout(); 
+							router.push("/");
+						  }}
+						className="flex flex-row justify-between items-start hover:bg-gray-50 p-2 rounded-sm select-none hover:cursor-pointer"
+						>
+							<i className="ri-logout-circle-r-line text-2xl m-0 p-0"></i> 
+            				<div className="flex-1 mx-1">
+              					<h4 className="font-bold w-fit">Logout</h4> 
+            				</div>
+					</div>
+
 				</div>
 			)}
 		</>
