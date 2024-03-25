@@ -81,7 +81,7 @@ function ChatBubble({
               {signedURL &&(
                 // THERE NEEDS TO BE A CHECK HERE IF THE FILE IS AN IMAGE OR A VIDEO 
 
-                attachmentExt === 'png' || attachmentExt === 'jpg' || attachmentExt === 'jpeg' || attachmentExt === 'gif' ? (
+                attachmentExt === 'PNG' || attachmentExt === 'png' || attachmentExt === 'jpg' || attachmentExt === 'JPG' || attachmentExt === 'jpeg' || attachmentExt === 'JPEG' || attachmentExt === 'GIF' || attachmentExt === 'gif' ? (
                   <img
                   src={signedURL}
                   alt="Signed Image"
