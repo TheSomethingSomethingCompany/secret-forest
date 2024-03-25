@@ -27,7 +27,6 @@ function ChatBubble({
   message,
   signedURL,
   profilePicture,
-  hasAttachment,
   attachment,
   attachmentType,
   isYou,
