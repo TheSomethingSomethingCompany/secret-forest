@@ -310,7 +310,7 @@ export default function Chats() {
 				</div>
 				<div className="px-4 py-2 my-2 w-full bg-transparent">
 					<div className="flex flex-row outline-black shadow rounded-lg h-fit w-full px-4 py-2 items-center justify-center">
-						<form className="flex-1 flex flex-row h-auto ml-1 items-center">
+						<div className="flex-1 flex flex-row h-auto ml-1 items-center">
 							<div
 								className="relative"
 								onMouseEnter={() => {
@@ -366,7 +366,7 @@ export default function Chats() {
 							>
 								<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
 							</button>
-						</form>
+						</div>
 						{
 							//<kbd>o</kbd>
 						}
