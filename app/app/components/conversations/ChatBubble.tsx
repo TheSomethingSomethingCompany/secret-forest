@@ -155,7 +155,7 @@ function ChatBubble({
               )}
           </div>
           <div className="-z-10 w-full flex flex-row justify-end mr-8 -translate-y-[--translateAmt] transition-transform duration-300">
-            <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white cursor-not-allowed">
+            <div className="p-2 bg-blue-600 rounded-b-lg mx-[0.3rem] text-white hover:cursor-pointer" onClick = {onDeleteButtonClick} data-message-id = {id}>
               <i className="ri-delete-bin-2-fill"></i>
             </div>
             <div
