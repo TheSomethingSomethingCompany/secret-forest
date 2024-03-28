@@ -1,5 +1,4 @@
 "use client";
-import Img from "@/app/images/ExamplePenguin.jpeg";
 import retrieveChats from "./api/retrieveChatsFromServer";
 
 import React from "react";
@@ -7,17 +6,33 @@ import PenguinC from "@/app/images/PenguinC.jpeg";
 import { useState, useEffect, useRef } from "react";
 import ChatBubble from "../../components/conversations/ChatBubble";
 import { useWebSocket } from "../../contexts/WebSocketContext";
-import Image from "next/image";
 import NoChatSelectedSVG from "@/public/noconversationSelected.svg";
 import NoMessagesSVG from "@/public/nomessages.svg";
 import UserConversation from "@/app/components/conversations/UserConversation";
+import ImageCard from "@/app/components/conversations/ImageCard";
 
 export default function Chats() {
 	const { sendMessage } = useWebSocket();
-	const [chatsList, setChatsList] = useState([]);
-	const [messagesList, setMessagesList] = useState([]);
+	const [chatsList, setChatsList] = useState<
+		{
+			chatID: string;
+			profilePicture: string;
+			name: string;
+			username: string;
+		}[]
+	>([]);
+	const [messagesList, setMessagesList] = useState<
+		{
+			messageID: string;
+			message: string;
+			name: string;
+			fileExtension: string;
+			isYou: boolean;
+			signedURL: string;
+		}[]
+	>([]);
 	const [message, setMessage] = useState("");
-	const [file, setFile] = useState(null);
+	const [file, setFile] = useState<any>(null);
 	const [shouldBlur, setShouldBlur] = useState(false);
 	const [showOptions, setShowOptions] = useState(false);
 
@@ -52,7 +67,7 @@ export default function Chats() {
 		ws.current.onopen = () => {
 			console.log("WebSocket connection opened");
 		};
-		ws.current.onmessage = (event) => {
+		ws.current.onmessage = (event: any) => {
 			const response = JSON.parse(event.data);
 			console.log("Message from server: ", response);
 			if (response.broadcast) {
@@ -63,7 +78,7 @@ export default function Chats() {
 					case "retrieveMessages":
 						if (response.status == 201) {
 							//sort the messages by messageID in ascending order
-							response.chatMessages.sort((a, b) =>
+							response.chatMessages.sort((a: any, b: any) =>
 								a.messageID > b.messageID ? 1 : -1
 							);
 
@@ -141,7 +156,7 @@ export default function Chats() {
 		getChats();
 	}, []);
 
-	function onChatClick(e) {
+	function onChatClick(e: any) {
 		console.log(
 			"Clicked on chat with id: " + e.currentTarget.dataset.chatId
 		); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
@@ -149,12 +164,12 @@ export default function Chats() {
 		getMessages(chatID.current);
 	}
 
-	function onSendingMessage(e) {
+	function onSendingMessage(e: any) {
 		setMessage(e.target.value);
 		console.log("MESSAGE: " + message);
 	}
 
-	function onDeleteButtonClick(e) {
+	function onDeleteButtonClick(e: any) {
 		console.log(
 			"Clicked on delete button with message id: " +
 				e.currentTarget.dataset.messageId
@@ -199,7 +214,7 @@ export default function Chats() {
 		prevMessagesListLength.current = messagesList.length;
 	}, [messagesList]);
 
-	function onFileChange(e) {
+	function onFileChange(e: any) {
 		const file = e.target.files[0];
 		toBase64(file).then((base64File) => {
 			const fileObject = {
@@ -212,7 +227,7 @@ export default function Chats() {
 		});
 	}
 
-	function toBase64(file) {
+	function toBase64(file: any) {
 		return new Promise((resolve, reject) => {
 			const reader = new FileReader();
 			reader.readAsDataURL(file);
@@ -246,60 +261,63 @@ export default function Chats() {
 				{chatsList.length != 0 &&
 					chatsList.map((chat) => {
 						return (
-							<UserConversation onChatClick={onChatClick} chatID={chat.chatID} profilePicture={PenguinC.src} name={chat.name} username={chat.username} isPinned={false} newMessages={0} />
+							<UserConversation
+								onChatClick={onChatClick}
+								chatID={chat.chatID}
+								profilePicture={PenguinC.src}
+								name={chat.name}
+								username={chat.username}
+								isPinned={false}
+								newMessages={0}
+							/>
 						);
 					})}
 			</section>
 			<section className="hidden lg:flex flex-col items-start w-full rounded-lg shadow h-full bg-white ml-2">
 				<div className="flex-1 px-4 py-2 p-4 h-full mb-0 w-full">
 					{chatID.current === "" && (
-						<div className="flex flex-col justify-center items-center p-4 border-2 border-transparent rounded-lg h-full">
-							<Image src={NoChatSelectedSVG} width={400} height={400} alt="No Chats Selected" />
-							<div className="max-w-[25rem] flex flex-col justify-center items-center py-10">
-							<h2 className="text-3xl font-medium text-center">
-								No conversation selected	
-							</h2>
-								<p className="text-xl font-light text-center">
-									Looks like you haven’t selected a conversation yet. Select one to start talking.
-								</p>
-							</div>
-						</div>
+						<ImageCard
+							imageSource={NoChatSelectedSVG}
+							alt="No Chats Selected"
+							title="No conversation selected"
+							description="Looks like you haven’t selected a conversation yet. Select one to start talking."
+						/>
 					)}
 					{chatID.current !== "" && messagesList.length !== 0 && (
-						<div className="flex flex-col justify-center items-center p-4 border-2 border-transparent rounded-lg h-full">
-							<Image src={NoMessagesSVG} width={400} height={400} alt="No Messages" />
-							<div className="max-w-[25rem] flex flex-col justify-center items-center py-10">
-							<h2 className="text-3xl font-medium text-center">
-								No messages yet
-							</h2>
-								<p className="text-xl font-light text-center">
-									Looks like you haven’t started a conversation with Satanshu yet. Be the first to say hello 👋!
-								</p>
-							</div>
-						</div>
+						<ImageCard
+							imageSource={NoMessagesSVG}
+							alt="No messages"
+							title="No messages yet"
+							description="Looks like you haven’t started a conversation with Satanshu yet. Be the first to say hello 👋!"
+						/>
 					)}
-					{false && messagesList.map((message) => {
-						return (
-							<ChatBubble
-								key={message.messageID + message.message}
-								id={message.messageID}
-								name={message.name}
-								message={message.message}
-								profilePicture="Smth"
-								attachmentExt={
-									message.fileExtension
-										? message.fileExtension
-										: null
-								}
-								isYou={message.isYou}
-								onDeleteButtonClick={onDeleteButtonClick}
-								saveToDatabaseHandler={saveToDatabaseHandler}
-								signedURL={
-									message.signedURL ? message.signedURL : null
-								}
-							/>
-						);
-					})}
+					{false &&
+						messagesList.map((message) => {
+							return (
+								<ChatBubble
+									key={message.messageID + message.message}
+									id={message.messageID}
+									name={message.name}
+									message={message.message}
+									profilePicture="Smth"
+									attachmentExt={
+										message.fileExtension
+											? message.fileExtension
+											: null
+									}
+									isYou={message.isYou}
+									onDeleteButtonClick={onDeleteButtonClick}
+									saveToDatabaseHandler={
+										saveToDatabaseHandler
+									}
+									signedURL={
+										message.signedURL
+											? message.signedURL
+											: null
+									}
+								/>
+							);
+						})}
 				</div>
 				{chatID.current !== "" && (
 					<div className="px-4 py-2 my-2 w-full bg-transparent">
@@ -317,7 +335,7 @@ export default function Chats() {
 									{showOptions && (
 										<div className="absolute p-4 shadow bg-white bottom-full rounded-lg right-[-100%]">
 											<div className="shadow rounded-lg bg-pink-500 hover:bg-pink-600 hover:cursor-pointer">
-												<label for="fileInput">
+												<label htmlFor="fileInput">
 													<i className="ri-file-upload-fill text-[1.7rem] mr-1 text-white p-4 hover:cursor-pointer"></i>
 												</label>
 												<input

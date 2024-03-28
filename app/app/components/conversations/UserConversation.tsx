@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-	onChatClick: () => void;
+	onChatClick: (e: any) => void;
 	chatID: string;
 	profilePicture: string;
 	name: string;
