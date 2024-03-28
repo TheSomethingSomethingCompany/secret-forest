@@ -7,9 +7,13 @@ import PenguinC from "@/app/images/PenguinC.jpeg";
 import { useState, useEffect, useRef } from "react";
 import ChatBubble from "../../components/conversations/ChatBubble";
 import { useWebSocket } from "../../contexts/WebSocketContext";
+import Image from "next/image";
+import NoChatSelectedSVG from "@/public/noconversationSelected.svg";
+import NoMessagesSVG from "@/public/nomessages.svg";
+import UserConversation from "@/app/components/conversations/UserConversation";
 
 export default function Chats() {
-	const { isConnected, sendMessage } = useWebSocket();
+	const { sendMessage } = useWebSocket();
 	const [chatsList, setChatsList] = useState([]);
 	const [messagesList, setMessagesList] = useState([]);
 	const [message, setMessage] = useState("");
@@ -218,7 +222,7 @@ export default function Chats() {
 	}
 
 	return (
-		<section className="flex flex-row w-full h-auto chat-height justify-center items-start px-8 py-4 z-50">
+		<section className="flex flex-row w-full h-full chat-height justify-center items-start px-8 py-4 z-50">
 			<section className="rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
 				<div className="flex flex-row outline-black w-auto shadow rounded-lg h-fit px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center">
 					<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>
@@ -226,7 +230,7 @@ export default function Chats() {
 						<input
 							ref={inputRef}
 							className="w-full h-full px-2 outline-none"
-							placeholder="Search for user"
+							placeholder="Search for user..."
 						/>
 					</form>
 					<kbd className="bg-black text-white p-2 rounded-lg">k</kbd>
@@ -242,54 +246,39 @@ export default function Chats() {
 				{chatsList.length != 0 &&
 					chatsList.map((chat) => {
 						return (
-							<div
-								className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow"
-								onClick={onChatClick}
-								data-chat-id={chat.chatID}
-							>
-								<div className="flex flex-row justify-start items-center mr-1 max-w-[25rem] overflow-hidden">
-									<img
-										src={PenguinC.src}
-										alt="ProfilePicture"
-										className="relative z-10 max-h-[6rem] max-w-[6rem] min-w-[6rem] min-h-[6rem] h-24 w-24 mr-2 rounded-full object-cover"
-									/>
-									<div className="ml-2 flex flex-col justify-between items-start">
-										<div>
-											<p className="text-[1.35rem] font-bold break-words w-[20rem]">
-												{chat.name}
-											</p>
-											<p className="text-[1.1rem] font-light">
-												@{chat.username}
-											</p>
-										</div>
-										<div>
-											<i className="ri-check-double-fill text-3xl text-gray-400 text-green-600"></i>
-										</div>
-									</div>
-								</div>
-								<div className="flex flex-col justify-between items-center h-full">
-									<i className="ri-pushpin-fill text-[1.7rem]"></i>
-									<span className="relative inline-block">
-										<i className="ri-chat-3-fill text-4xl"></i>
-										<p className="absolute top-[50%] left-[50%] text-white translate-x-[-50%] translate-y-[-50%] font-bold text-[0.9rem]">
-											1
-										</p>
-									</span>
-								</div>
-							</div>
+							<UserConversation onChatClick={onChatClick} chatID={chat.chatID} profilePicture={PenguinC.src} name={chat.name} username={chat.username} isPinned={false} newMessages={0} />
 						);
 					})}
 			</section>
 			<section className="hidden lg:flex flex-col items-start w-full rounded-lg shadow h-full bg-white ml-2">
-				<div className="flex-1 px-4 py-2 p-4 mb-0 w-full overflow-y-scroll">
-					{messagesList.length === 0 && (
-						<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem]">
-							<p className="text-[1rem] font-normal break-words w-[20rem]">
-								Be the first to say hello!
-							</p>
+				<div className="flex-1 px-4 py-2 p-4 h-full mb-0 w-full">
+					{chatID.current === "" && (
+						<div className="flex flex-col justify-center items-center p-4 border-2 border-transparent rounded-lg h-full">
+							<Image src={NoChatSelectedSVG} width={400} height={400} alt="No Chats Selected" />
+							<div className="max-w-[25rem] flex flex-col justify-center items-center py-10">
+							<h2 className="text-3xl font-medium text-center">
+								No conversation selected	
+							</h2>
+								<p className="text-xl font-light text-center">
+									Looks like you haven’t selected a conversation yet. Select one to start talking.
+								</p>
+							</div>
 						</div>
 					)}
-					{messagesList.map((message) => {
+					{chatID.current !== "" && messagesList.length !== 0 && (
+						<div className="flex flex-col justify-center items-center p-4 border-2 border-transparent rounded-lg h-full">
+							<Image src={NoMessagesSVG} width={400} height={400} alt="No Messages" />
+							<div className="max-w-[25rem] flex flex-col justify-center items-center py-10">
+							<h2 className="text-3xl font-medium text-center">
+								No messages yet
+							</h2>
+								<p className="text-xl font-light text-center">
+									Looks like you haven’t started a conversation with Satanshu yet. Be the first to say hello 👋!
+								</p>
+							</div>
+						</div>
+					)}
+					{false && messagesList.map((message) => {
 						return (
 							<ChatBubble
 								key={message.messageID + message.message}
@@ -297,7 +286,11 @@ export default function Chats() {
 								name={message.name}
 								message={message.message}
 								profilePicture="Smth"
-								attachmentExt= {message.fileExtension ? message.fileExtension : null}
+								attachmentExt={
+									message.fileExtension
+										? message.fileExtension
+										: null
+								}
 								isYou={message.isYou}
 								onDeleteButtonClick={onDeleteButtonClick}
 								saveToDatabaseHandler={saveToDatabaseHandler}
@@ -308,70 +301,74 @@ export default function Chats() {
 						);
 					})}
 				</div>
-				<div className="px-4 py-2 my-2 w-full bg-transparent">
-					<div className="flex flex-row outline-black shadow rounded-lg h-fit w-full px-4 py-2 items-center justify-center">
-						<div className="flex-1 flex flex-row h-auto ml-1 items-center">
-							<div
-								className="relative"
-								onMouseEnter={() => {
-									setShowOptions(true);
-								}}
-								onMouseLeave={() => {
-									setShowOptions(false);
-								}}
-							>
-								{showOptions && (
-									<div className="absolute p-4 shadow bg-white bottom-full rounded-lg right-[-100%]">
-										<div className="shadow rounded-lg bg-pink-500 hover:bg-pink-600 hover:cursor-pointer">
-											<label for="fileInput">
-												<i className="ri-file-upload-fill text-[1.7rem] mr-1 text-white p-4 hover:cursor-pointer"></i>
-											</label>
-											<input
-												type="file"
-												onChange={onFileChange}
-												className="hidden"
-												ref={uploadRef}
-												id="fileInput"
-											/>
+				{chatID.current !== "" && (
+					<div className="px-4 py-2 my-2 w-full bg-transparent">
+						<div className="flex flex-row outline-black shadow rounded-lg h-fit w-full px-4 py-2 items-center justify-center">
+							<div className="flex-1 flex flex-row h-auto ml-1 items-center">
+								<div
+									className="relative"
+									onMouseEnter={() => {
+										setShowOptions(true);
+									}}
+									onMouseLeave={() => {
+										setShowOptions(false);
+									}}
+								>
+									{showOptions && (
+										<div className="absolute p-4 shadow bg-white bottom-full rounded-lg right-[-100%]">
+											<div className="shadow rounded-lg bg-pink-500 hover:bg-pink-600 hover:cursor-pointer">
+												<label for="fileInput">
+													<i className="ri-file-upload-fill text-[1.7rem] mr-1 text-white p-4 hover:cursor-pointer"></i>
+												</label>
+												<input
+													type="file"
+													onChange={onFileChange}
+													className="hidden"
+													ref={uploadRef}
+													id="fileInput"
+												/>
+											</div>
 										</div>
-									</div>
-								)}
-								<i className="ri-layout-grid-fill text-[1.7rem] mr-1 hover:cursor-pointer"></i>
-							</div>
-							<div className="flex flex-col justify-start items-start px-4">
-								<p className="font-bold text-[1rem]">Blur Video</p>
+									)}
+									<i className="ri-layout-grid-fill text-[1.7rem] mr-1 hover:cursor-pointer"></i>
+								</div>
+								<div className="flex flex-col justify-start items-start px-4">
+									<p className="font-bold text-[1rem]">
+										Blur Video
+									</p>
+									<input
+										type="checkbox"
+										onChange={(e) =>
+											setShouldBlur(e.target.checked)
+										}
+									/>
+								</div>
 								<input
-									type="checkbox"
-									onChange={(e) =>
-										setShouldBlur(e.target.checked)
-									}
+									className="w-full h-auto px-2 outline-none flex-1"
+									placeholder="Send a message"
+									onChange={onSendingMessage}
+									onKeyDown={(e) => {
+										if (e.key == "Enter") {
+											e.preventDefault();
+											onSendMessage();
+										}
+									}}
+									value={message}
 								/>
+								<button
+									type="button"
+									className="hover:cursor-pointer bg-white p-1 rounded-lg"
+									onClick={onSendMessage}
+								>
+									<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
+								</button>
 							</div>
-							<input
-								className="w-full h-auto px-2 outline-none flex-1"
-								placeholder="Send a message"
-								onChange={onSendingMessage}
-								onKeyDown={(e) => {
-									if (e.key == "Enter") {
-										e.preventDefault();
-										onSendMessage();
-									}
-								}}
-								value={message}
-							/>
-							<button
-								type="button"
-								className="hover:cursor-pointer bg-white p-1 rounded-lg"
-								onClick={onSendMessage}
-							>
-								<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
-							</button>
+							{
+								//<kbd>o</kbd>
+							}
 						</div>
-						{
-							//<kbd>o</kbd>
-						}
 					</div>
-				</div>
+				)}
 			</section>
 		</section>
 	);

@@ -6,9 +6,9 @@ interface LayoutProps {
 
 export default function ROWLayout({ children }: LayoutProps) {
 	return (
-		<>
+		<main className="h-full flex flex-col">
 			<Navbar />
-			{children}
-		</>
+			<div className="flex-1">{children}</div>
+		</main>
 	);
 }

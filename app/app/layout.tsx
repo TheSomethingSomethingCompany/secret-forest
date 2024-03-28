@@ -1,6 +1,5 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Navbar from "./components/Navbar/Navbar";
 import localFont from "next/font/local";
 import { WebSocketProvider } from "./contexts/WebSocketContext";
 
@@ -117,9 +116,9 @@ export default function RootLayout({
 }: LayoutProps) {
 	return (
 		<html lang="en">
-			<body className={`${metropolis.className} relative`}>
+			<body className={`${metropolis.className} relative h-screen`}>
 				<WebSocketProvider>
-					<div>{children}</div>
+					{children}
 				</WebSocketProvider>
 			</body>
 		</html>
