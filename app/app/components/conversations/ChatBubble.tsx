@@ -7,12 +7,14 @@ import PenguinC from "@/app/images/PenguinC.jpeg";
 import Image from "next/image";
 import "remixicon/fonts/remixicon.css";
 
+
 type props = {
   id: string;
   name: string;
   message: string;
   signedURL: string;
-  profilePicture: string;
+  profilePictureYou: string;
+  profilePictureThem: string;
   hasAttachment: boolean;
   attachment?: string;
   attachmentExt?: string;
@@ -26,7 +28,8 @@ function ChatBubble({
   name,
   message,
   signedURL,
-  profilePicture,
+  profilePictureYou,
+  profilePictureThem,
   hasAttachment,
   attachment,
   attachmentExt,
@@ -39,6 +42,7 @@ function ChatBubble({
   const [messageText, setMessageText] = useState(message);
   const referenceToMessageBox = useRef(null);
   const referenceToEditBox = useRef<HTMLInputElement>(null); // Can't use useState otherwise a rerender will be forced on every keystroke of the input field when editing. 
+
 
   /* We need to use the reference to replace its innerHTML with an input box when the edit button is clicked. */
   function onEditButtonClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -65,7 +69,7 @@ function ChatBubble({
               <p id="name">{name}</p>
             </div>
 			<img
-              src={PenguinC.src}
+              src={profilePictureYou}
               alt="ProfilePicture"
               className="relative z-10 min-w-[6rem] min-h-[6rem] max-w-[6rem] max-h-[6rem] h-24 w-24 rounded-full object-cover"
             />
@@ -148,7 +152,7 @@ function ChatBubble({
         >
           <div className="flex flex-row items-end">
             <img
-              src={Penguin.src}
+              src={profilePictureThem}
               alt="ProfilePicture"
               className="relative w-24 h-2w-24 rounded-full object-scale-down z-10"
             />
