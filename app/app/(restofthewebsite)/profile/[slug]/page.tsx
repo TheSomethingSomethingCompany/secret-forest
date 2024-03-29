@@ -282,7 +282,7 @@ import "remixicon/fonts/remixicon.css";
 
       {/*Div for the right box that allows users to edit their profile information*/}
       {isUser ? (
-        <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10">
+        <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10 bg-white">
         <div className="space-y-2 min-w-64">
           {/*First Name*/}
           <div>
@@ -350,7 +350,7 @@ import "remixicon/fonts/remixicon.css";
           </div>
           {/*Tags*/}
           {isEditing ? (
-           <div>
+           <div className="w-full">
            <label className="font-bold text-xl mt-2">
              Tags:  
            </label>
@@ -501,8 +501,6 @@ import "remixicon/fonts/remixicon.css";
 
   </div>
 )}
-      
-    
       
       
     </section>

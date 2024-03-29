@@ -37,7 +37,7 @@ function OccupationTags({
 	};
 
 	return (
-		<>
+ 		<section className="max-w-[20rem] flex flex-col">
 			<input
 				id={id}
 				type="text"
@@ -47,16 +47,19 @@ function OccupationTags({
 				onInput={onInputChange}
 				name={inputName}
 				placeholder={placeHolder}
-			></input>{" "}
-			<div id="tags-container" className="flex flex-wrap mt-2">
-				{currentTags.map((tag) => (
+			>
+			</input>
+			{" "}
+			 <div id="tags-container" className="tag flex flex-row justify-start item-center flex-wrap max-w-[20rem]"> 
+
+				 {currentTags.map((tag) => (
 					<div
 						key={tag}
-						className={`p-2 m-2 bg-blue-500 rounded-lg flex justify-center items-center flex-nowrap bg-white border-[1px] border-black`}
+						className="p-2 m-2 rounded-lg flex justify-center items-center flex-nowrap bg-white border-[1px] border-black"
 					>
 						<p
 							id={tag.replace(/\s+/g, "")}
-							className={`whitespace-pre-wrap break-words ${textSize}`}
+							className={`whitespace-pre-wrap w-1/2 break-words ${textSize}`}
 						>
 							{tag}
 						</p>{" "}
@@ -68,10 +71,16 @@ function OccupationTags({
 							x
 						</button>
 					</div>
-				))}
-			</div>
-		</>
+				))} 
+
+		</div>
+
+		</section>
+
+
+	
 	);
+
 }
 
 export default OccupationTags;

@@ -18,7 +18,7 @@ export default function Chats() {
   const [shouldBlur, setShouldBlur] = useState(false);
 
   const [loggedInPfp, setLoggedInPfp] = useState(``);
-  const [chatImage, setChatImage] = useState(``);
+  const [chatsProfilePictures, setChatsProfilePictures] = useState([]);
     
   // Create a WebSocket connection to the server
   
@@ -95,14 +95,23 @@ export default function Chats() {
     console.log(res);
     if(res.data) {
       setChatsList(res.data);
-      const chatData = res.data[0];
-      
-      const pfpPath1 = await GetProfilePicture({username: chatData.loggedInUsername});
+      const loggedInUsername = res.data[0].loggedInUsername;
+      const pfpPath1 = await GetProfilePicture({username: loggedInUsername});
       setLoggedInPfp(pfpPath1.data);
 
-      const imgPath = await GetProfilePicture({username: chatData.username});
-      setChatImage(imgPath.data);
+
+      const chatsProfilePicturesContainer = [];
+      for(let i = 0; i < res.data.length; i++){
+        console.log("Username: " + res.data[i].username);
+        const pfpPath = await GetProfilePicture({username: res.data[i].username});
+        console.log("PFP: " + pfpPath.data);
+        chatsProfilePicturesContainer.push(pfpPath.data);
+      }
       
+      setChatsProfilePictures(chatsProfilePicturesContainer);
+      console.log("Chats Images: " + chatsProfilePicturesContainer);
+
+      // Get the profile picture for each chat      
     }   else setChatsList([]);
   }
 
@@ -128,7 +137,6 @@ export default function Chats() {
   useEffect(() => {
     getChats();
   }, []);
-  console.log("IMAGE: " + chatImage + "UR IMAGE: " + loggedInPfp); //DEBUG
 
   
  function onChatClick(e) {
@@ -210,13 +218,13 @@ export default function Chats() {
               <h2 className = "text-xl font-normal"> Start a conversation with someone! </h2> 
             </div>)
             : 
-            (chatsList.map((chat) => {
+            (chatsList.map((chat, index) => {
             return (
               <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full hover:cursor-pointer hover:bg-gray-200"> {/* A single chat */}
                 <div className="flex flex-row justify-between flex-1 p-4">
                   <div className="p-2">
                     <img
-                      src={chatImage}
+                      src={chatsProfilePictures[index]}
                       alt="Example"
                       className="w-24 rounded-full object-scale-down"
                     />
