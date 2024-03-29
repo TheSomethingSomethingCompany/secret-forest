@@ -17,7 +17,7 @@ type props = {
   profilePictureThem: string;
   hasAttachment: boolean;
   attachment?: string;
-  attachmentType?: string;
+  attachmentExt?: string;
   isYou: boolean;
   onDeleteButtonClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   saveToDatabaseHandler: (editedMessage: string, messageID: string) => void;
@@ -32,7 +32,7 @@ function ChatBubble({
   profilePictureThem,
   hasAttachment,
   attachment,
-  attachmentType,
+  attachmentExt,
   isYou,
   onDeleteButtonClick,
   saveToDatabaseHandler
@@ -82,11 +82,21 @@ function ChatBubble({
               <p id="message">{messageText}</p>
             )}
 
-              {signedURL && (
-                <img
+              {signedURL &&(
+                // THERE NEEDS TO BE A CHECK HERE IF THE FILE IS AN IMAGE OR A VIDEO 
+
+                attachmentExt === 'PNG' || attachmentExt === 'png' || attachmentExt === 'jpg' || attachmentExt === 'JPG' || attachmentExt === 'jpeg' || attachmentExt === 'JPEG' || attachmentExt === 'GIF' || attachmentExt === 'gif' ? (
+                  <img
                   src={signedURL}
                   alt="Signed Image"
                   />
+                ) : (
+                  <video src={signedURL} 
+                  controls 
+
+                  />
+                )
+
               )}
           </div>
         
@@ -152,11 +162,21 @@ function ChatBubble({
           </div>
           <div className="relative z-10 mt-2 shadow-md drop-shadow-md rounded-lg bg-white w-full p-4">
             <p id="message">{messageText}</p>
-            {signedURL && (
-                <img
+              {signedURL &&(
+                // THERE NEEDS TO BE A CHECK HERE IF THE FILE IS AN IMAGE OR A VIDEO 
+
+                attachmentExt === 'png' || attachmentExt === 'jpg' || attachmentExt === 'jpeg' || attachmentExt === 'gif' ? (
+                  <img
                   src={signedURL}
                   alt="Signed Image"
                   />
+                ) : (
+                  <video src={signedURL} 
+                  controls 
+                  
+                  />
+                )
+
               )}
           </div>
           <div className="-z-10 w-full flex flex-row justify-end mr-8 -translate-y-[--translateAmt] transition-transform duration-300">

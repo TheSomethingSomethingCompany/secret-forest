@@ -9,11 +9,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // get the environment variables from the .env file
-const bucketName = process.env.BUCKET_NAME
+const bucketName = process.env.INPUT_BUCKET_NAME
 const bucketRegion = process.env.BUCKET_REGION
-const accessKey = "ASIAQ23K775AEHOUMXF5";
-const secretAccessKey = "8xgEvuavENiY8ILygidtX+OjrTui3c1rsgATZ4Uc";
-const sessionToken = "IQoJb3JpZ2luX2VjEEUaDGNhLWNlbnRyYWwtMSJHMEUCIQCI/23leNvd7sbvvACTgHwCSPDlqkgu76/o+izL7EutKgIgEp1oOgYIsjdTsZUhwa4sHCyMF+92rHWkITXC4j7XmvcqlgMIPhAAGgwwNTc2Njk1ODI2NTYiDJGhRkZbxTuu1f2u0irzAp05MEu20oFooUNpXj3cMAgHtQrvNbArn1oFnOqQCCp9thqsJMRgWCps0wQptr/4tt8mdNaGYa4M5z+/EIBzOYwriaTd3jr478M+xPCI2kdWM5F1tewULOOB7XUIZG1SqMqA++6znmWNLQhMM9GKEB97p0/GL1z1ngajTy3MP8+G9EW7YyJ0bSvs+6Z411F2fHJPDwpxQ4xi/c+sGSwgcOsoo1nTjcBOPXNnIxz8SiRp8ScEryivtKyMcmVOcj4TMpdTT7TLtBZfA38j4W7FSDjCldRZ4SSS8Ml4Wi8ZdOaCjVr5kepSRSZzLEkHf6dZJ1WGOJ/vIBbPafUUtZL2Ir8sKuI+Qj3T4XFRg7PZVU8eu40B+uaReOyWt6/jgFyWZGAp6FM5foU2yYlT/u2UE5h8a4lNFXXcH9olnvPIWbUCzTHdFSXNSG3oXCpUNLZ4mUhDDSoHQjvSf2X4b2zpkvIPfWcF5bUNvtist0z4fF/E+GpGMODiiq8GOqYBlmIvjRgJe7OayON4AEAE4AisJamrH3iK/vZJ7bBtqo8SochQiwRpFhUIWI/eO3uW0I0T9ODJJhP+eVxTafCR6jUkyrTrHZjjC4eFyz0TYZRvodQOJAlOg6K9u2DdnuQ9v5Fp7d1JGvMGfTYvKf0JB5rXwK8vkWIdZy/7T0j1XmPWe8wADk9ht/U6JYCDpkEfBJgWEeIvVqy/RvTANdACeH6Trh+LTw==";
+const accessKey = process.env.ACCESS_KEY
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+const sessionToken = process.env.SESSION_TOKEN
 
 const s3Object = new S3Client({ //creates a s3 object given the environment variables
     credentials:{

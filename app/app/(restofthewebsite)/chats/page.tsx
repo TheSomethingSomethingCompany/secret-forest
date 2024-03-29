@@ -206,6 +206,8 @@ export default function Chats() {
     });
   }
 
+
+
   return (
     <section className="m-4 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-[50rem] bg-gray-100">
       {/* First, we need to make an api call to the RetrieveChats route */}
@@ -267,6 +269,7 @@ export default function Chats() {
                   profilePictureYou={loggedInPfp}
                   profilePictureThem={chatImage}
                   hasAttachment={false}
+                  attachmentExt= {message.fileExtension ? message.fileExtension : null}
                   isYou={message.isYou}
                   onDeleteButtonClick = {onDeleteButtonClick}
                   saveToDatabaseHandler={saveToDatabaseHandler}
