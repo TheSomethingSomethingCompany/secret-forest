@@ -594,3 +594,58 @@ This week i helped in the presentation aspect of our application. i helped in fi
 
 ## Peer Review
 ![week 22](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/bf2b5725-d7dc-412c-bbe4-4c5b57de3ee6)
+
+---------------------------
+
+**Week**: 23
+
+**Work Period**: 11 March 2024 - 17 March 2024
+
+## Individual Objectives
+
+This week was mostly spent on getting the blurring feature implemented and deployed. i encountered quite a few errors and issues with the configuration of the demo repository that had the rekognition blurring functionality. after fixing the runtime configuration, i had to fix the errors that were occuring on the aws side while deploying the services. eventually i was able to launch all the associated services. now a video uploaded to a bucket will be processed by aws rekogntion to blur any faces in the video. unfortunatly i was unable to fully integrate this within the app and test it out to make sure all is in working order (right now i was able to test it through the aws console). the target for next week is to integrate this within the app and make sure all runs smoothly. 
+
+## Active Tasks
+
+- Troubleshoot blur repo deployment
+- Deploy blur repo
+- Integrate functions within our app
+- Manual testing of the deployed app
+
+    
+## Status of Tasks
+
+- Troubleshoot blur repo deployment -- Completed
+- Deploy blur repo -- Completed
+- Integrate functions within our app -- In Progress
+- Manual testing of the deployed app -- In Progress
+
+
+## Peer Review
+![week 23](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/91888460-3f77-4b70-8767-51b67d62c867)
+
+---------------------------
+
+**Week**: 24
+
+**Work Period**: 18 March 2024 - 24 March 2024
+
+## Individual Objectives
+
+This week i worked on testing out the new buckets and implementing them within the chats page. i initially had some issues with sending and getting from the newly created buckets that are connected with the lambdas and rekognition blurring functions but they were eventually solved. next i had to find a way to isolate the file type from the signed url that is provided from aws in order to properly view the file depending on if it is a video or a photo. shaheer then took over from this point by integrating this logic within the chats page. further, there has been some testing on the fargate deployment but unfortunatley due to a surprise midterm (was announced on tuesday for friday) i did not get as much done as i had hoped. 
+
+## Active Tasks
+
+- Integrate functions within our app
+- Manual testing of the deployed app
+
+    
+## Status of Tasks
+
+- Integrate functions within our app -- Completed
+- Manual testing of the deployed app -- In Progress
+
+
+## Peer Review
+![week 24](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/2a8ffad0-c694-41c7-8106-8a17d24d930c)
+

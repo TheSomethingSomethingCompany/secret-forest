@@ -527,3 +527,88 @@ Satanshu Mishra: `SatanshuMishra`
 <img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
 
 ### Burn-Up Chart
+
+
+**Term 2 - Week 10 (Week 23)**: 11/03/2024 - 17/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Set Up Facial Blurring Using AWS Rekognition + Lambda
+    - Deploy Assets
+    - Integrate and Test
+- Implemented PFP Functionality
+  - Retrieval of PFP from the File System
+  - Edit/Change PFP from the Edit Profile Page
+  - Retrieval of PFPs in Chats
+- Forgot Password Functionality 
+- Display User Info In Nav Bar
+- Fix Requests page displaying incorrect information
+- Fix issues related to the functionality of our website present after Peer Testing 2
+
+  
+## Accomplishments
+
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- Compleyed
+    - Deploy Assets -- Completed
+    - Integrate and Test -- In Progress
+- Implemented PFP Functionality
+  - Retrieval of PFP from the File System -- Completed
+  - Edit/Change PFP from the Edit Profile Page -- In Progress
+  - Retrieval of PFPs in Chats -- Completed
+- Forgot Password Functionality -- In progress
+- Display User Info In Nav Bar -- In Progress
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/01f5d84c-b3a5-48cd-8e7a-f97db68e128d)
+
+
+**Term 2 - Week 11 (Week 24)**: 18/03/2024 - 24/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Integrate Rekognition buckets within chats page
+- Testing of deployment environment on Fargate
+- Implement the viewing of images and videos from within the chats
+- Implement editing of PFP
+- Display logged-in user info in the navbar
+- Implement log out functionality
+- Update Chats UI
+
+  
+## Accomplishments
+- Integrate Rekognition buckets within chats page -- Completed
+- Testing of deployment environment on Fargate -- In Progress
+- Implement the viewing of images and videos from within the chats -- Completed
+- Implement editing of PFP -- In Progress
+- Display logged-in user info in the navbar -- Completed
+- Implement log out functionality -- Completed
+- Update chats UI -- Completed
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/e1cd676a-6d8b-4de8-9aa8-fbccf30b79a4)
+

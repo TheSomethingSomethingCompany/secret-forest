@@ -518,3 +518,23 @@ After conducting some research, I found that two of the most popular loggers use
 ## Peer Review
 <img width="1076" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/95500887-1e96-495c-a9ac-d02a24f33ec5">
 
+**Week**: 24
+
+**Work Period**: 18 March 2024 - 24 March 2024
+
+## Individual Objectives
+
+- Complete Chats UI Update.
+
+## Active Tasks
+
+- Complete Chats UI Update
+
+
+## Status of Tasks
+
+- Chats UI Update -- Completed
+
+
+## Peer Review
+<img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/d08495e6-b460-4c50-ab56-8fab6e0ebf80">
