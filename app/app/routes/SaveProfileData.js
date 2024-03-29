@@ -1,11 +1,33 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db-connection.js");
+const multer = require("multer");
+const fs = require("fs");
 
-router.post("/api", async (req, res) => {
+
+var pfpName = null;
+var fileExt = null;
+const storage = multer.diskStorage({
+	destination: "./public/pfp-uploads", // Store the file in this directory
+	filename: function (req, file, cb) {
+		pfpName = req.session.signUpMemberID;
+		fileExt = path.extname(file.originalname); // Get the file extension of the uploaded file
+    const filePath = `./public/pfp-uploads/${pfpName}${fileExt}`;
+
+    if (fs.existsSync(filePath)) { // if on existing/ older file is already save, remove it to make room for the new one
+      fs.unlinkSync(filePath)
+    }
+		cb(null, pfpName + fileExt);
+	},
+});
+
+const upload = multer({ storage: storage }); 
+
+
+router.post("/api", upload.single("pfp"), async (req, res) => {
   
 
-  const {fullName, country, address, bio, username, email, tags} = req.body;
+  const {fullName, country, address, bio, username, email, tags, pfp} = req.body;
   const occupationTagsAsArray = JSON.parse(tags);
   console.log("TAGS: " + occupationTagsAsArray);
   const id = req.session.loggedInUserMemberID;
@@ -25,10 +47,22 @@ router.post("/api", async (req, res) => {
     }
 
     else {
+
+      // Setting the pfpPath for the profile relation
+      console.log("[FILE] | " + pfp); //DEBUG LINE
+      if (req.file == null){
+        const parts = pfp.split('/');
+        const imgName = parts[parts.length - 1];
+        pfpPath = imgName;
+        console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
+      } else {
+        pfpPath = id + fileExt;
+        console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
+      }
     await db.tx(async t => {
       await t.none(
-        `UPDATE profile SET "name" = $1, "country" = $2, "address" = $3, "bio" = $4 WHERE "memberID" = $5`, 
-        [fullName, country, address, bio, id]
+        `UPDATE profile SET "name" = $1, "country" = $2, "address" = $3, "bio" = $4, "pfpPath" = $5 WHERE "memberID" = $6`, 
+        [fullName, country, address, bio, pfpPath, id]
       );
       await t.none(
         `UPDATE member SET "email" = $1, "username" = $2 WHERE "memberID" = $3`, [email, username, id]

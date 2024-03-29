@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import fetchUserData from "../api/fetchUserData";
 import MemberFetch from "@/app/types/MemberFetch";
-import Penguin from "@/app/images/ExamplePenguin.jpeg";
 import updateProfileInfo from "../api/saveProfileData";
 import sendRequest from "../api/sendRequest";
 import acceptRequest from "../../requestsReceived/api/acceptRequest";
@@ -13,6 +12,8 @@ import cancelRequest from "../../requestsSent/api/cancelRequest";
 import GetProfilePicture from "../../getProfilePicture/api/getPFP";
 import blockUser from "../api/blockUser";
 import unblockUser from "../../blockedUsers/api/unblockUser";
+import getRandomProfilePicture from "@/app/scripts/getRandomProfilePicture";
+import "remixicon/fonts/remixicon.css";
 
   function EditProfile({params}: {params: {slug: string}}){
 
@@ -38,6 +39,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
 
     //pfp
     const [pfpInfo, setPfpInfo] = useState(``);
+    const [tempPfp, setTempPfp] = useState(``);
 
     const fetchData = async () => {
 
@@ -68,7 +70,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
 
       const pfpPath = await GetProfilePicture({username: memberData.data.username});
       setPfpInfo(pfpPath.data);
-      console.log("PFP PATH: " + pfpInfo + " " + pfpPath.data);
+      console.log("PFP PATH: " + pfpInfo + " " + pfpPath.data); //DEBUG LINE
       
 
       setProfile({
@@ -86,13 +88,13 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
     }
 
 
-
     const router = useRouter();
 
     useEffect(() => {fetchData();}, []);
     useEffect(() => {setTempProfile({ ...profile });}, [profile]);
-    //useEffect(() => {GetProfilePicture({username : profile.userName});});
-
+    useEffect(() => {setTempPfp(pfpInfo);}, [pfpInfo]);
+    
+    console.log("pfpInfo: " + pfpInfo + "|| tempPfp: " + tempPfp); //DEBUG LINE
     
 
     
@@ -112,6 +114,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
       setIsEditing(false);
       setTempProfile({ ...profile });
       setTags(profile.currentTags);
+      setTempPfp(pfpInfo);
       console.log("cancel changes");
     };
 
@@ -126,6 +129,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
             username: tempProfile.userName,
             email: tempProfile.email,
             tags: JSON.stringify(currentTags),
+            pfp : tempPfp
         };
     };
 
@@ -140,6 +144,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
           if(response.status == 202)
           {
               setProfile({ ...tempProfile });
+              setPfpInfo(tempPfp);
               console.log("save changes: ", tempProfile);
 
           }
@@ -197,12 +202,22 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
       });
     }
 
-  
-
     // Create function handle going to chat, which just redirects to the chat page
     function handleGoToChat() {
       router.push('/chats');
     }
+
+    const handlePfpChange = (e) => {
+      const file = e.target.files[0];
+      setTempPfp(file);
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setTempPfp(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
 
 
 
@@ -213,9 +228,36 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
       <div className="relative flex flex-col justify-start max-w-sm border-2 border-gray-400 rounded-xl p-10">
         <img
           className="rounded-full w-100 h-100"
-          src={pfpInfo}
+          src={tempPfp}
           alt="Profile Picture"
         />
+        {/*change pfp*/}
+        {isEditing ? (
+           <div>
+              <label
+                htmlFor="edit-pfp"
+                className="inline-block bg-green-200 text-green-800 border-green-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-green-300 transition-all ease-in-out duration-300"
+              >
+                Upload New Picture
+              </label>
+              <input
+							type="file"
+							id="edit-pfp"
+							accept="image/jpeg, image/png, image/svg+xml"
+							onChange={handlePfpChange}
+							hidden
+						/>
+              <button 
+              type="button"
+							className="h-full bg-blue-200 text-blue-800 border-blue-200 border-[1px] p-2 cursor-pointer rounded-sm hover:bg-blue-300 transition-all ease-in-out duration-300"
+							onClick={() => setTempPfp(getRandomProfilePicture())}
+						>
+              <i className="ri-restart-line"></i>
+              </button>
+            </div>
+         ) : (
+            <div></div>
+         )}
         <div className="my-4">
           <h1 className="font-bold text-4xl py-1">{profile.fullName}</h1>
           <h2 className="font-normal text-xl py-1">@ {profile.userName}</h2>
@@ -240,7 +282,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
 
       {/*Div for the right box that allows users to edit their profile information*/}
       {isUser ? (
-        <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10">
+        <div className="flex-1 ml-4 max-w-md border-2 border-gray-400 rounded-xl p-10 bg-white">
         <div className="space-y-2 min-w-64">
           {/*First Name*/}
           <div>
@@ -308,7 +350,7 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
           </div>
           {/*Tags*/}
           {isEditing ? (
-           <div>
+           <div className="w-full">
            <label className="font-bold text-xl mt-2">
              Tags:  
            </label>
@@ -459,8 +501,6 @@ import unblockUser from "../../blockedUsers/api/unblockUser";
 
   </div>
 )}
-      
-    
       
       
     </section>

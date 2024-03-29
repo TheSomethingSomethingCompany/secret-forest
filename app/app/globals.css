@@ -73,4 +73,10 @@
   body {
     @apply bg-background text-foreground;
   }
+
 }
+.tag{
+  display: flex;
+  flex-wrap: wrap;
+}
+

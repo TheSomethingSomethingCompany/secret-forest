@@ -108,6 +108,12 @@ server.use("/unblockUser", unblockUserRoutes);
 const fetchBlockedUsersRoutes = require("./app/routes/requests/FetchBlockedUsers");
 server.use("/fetchBlockedUsers", fetchBlockedUsersRoutes);
 
+const getUserInfoRoutes = require("./app/routes/GetUserInfo");
+server.use("/getUserInfo", getUserInfoRoutes);
+
+const logoutRoutes = require("./app/routes/Logout");
+server.use("/logout", logoutRoutes)
+
 
 server.listen(HTTP_PORT, () => {
 	console.log("Server started on http://localhost:6969");
