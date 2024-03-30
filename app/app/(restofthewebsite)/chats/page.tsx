@@ -427,9 +427,9 @@ export default function Chats() {
 					)}
 				</section>
 			</section>
-			<section className="flex lg:hidden flex-row w-full h-full chat-height justify-center items-start px-8 py-4 z-50 bg-white">
+			<section className="flex lg:hidden flex-row w-full h-full max-h-screen overflow-hidden chat-height justify-center items-start px-8 py-4 z-50 bg-white">
 				{chatID.current === "" && (
-					<section className="rounded-lg shadow-lg w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
+					<section className="flex-1 flex flex-col rounded-lg shadow-lg w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
 						<div className="flex flex-row outline-black w-auto shadow rounded-lg h-fit px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center">
 							<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>
 							<form className="flex-1 h-auto ml-1">
@@ -443,6 +443,7 @@ export default function Chats() {
 								k
 							</kbd>
 						</div>
+						<div className="flex-1 overflow-y-scroll overflow-x-hidden">
 						{chatsList.length == 0 && (
 							<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
 								<p className="text-[1rem] font-normal break-words w-[20rem]">
@@ -467,11 +468,12 @@ export default function Chats() {
 									/>
 								);
 							})}
+							</div>
 					</section>
 				)}
 				{chatID.current !== "" && (
-					<section className="rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-[80%] mr-2 bg-white">
-						<div className="flex flex-row outline-black w-auto shadow rounded-lg h-fit px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center bg-white">
+					<section className="flex flex-col rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full max-h-full mr-2 bg-white">
+						<div className="flex-grow-0 flex-shrink-0 flex flex-row outline-black w-auto shadow rounded-lg px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center bg-white">
 							<div
 								className="p-2 shadow bg-black h-8 w-8 rounded flex flex-col justify-center items-center hover:cursor-pointer"
 								onClick={() => {
@@ -501,8 +503,7 @@ export default function Chats() {
 								</p>
 							</div>
 						</div>
-						<div className="flex flex-col h-[88%] max-h-[88%] overflow-scroll">
-							<div className="max-h-full h-[80%] overflow-scroll px-2">
+						<div className="flex-1  overflow-scroll px-2">
 							{chatID.current !== "" &&
 								messagesList.length === 0 && (
 									<ImageCard
@@ -548,71 +549,70 @@ export default function Chats() {
 									/>
 								);
 							})}
-							</div>
-							<div className="flex flex-row outline-black shadow rounded-lg h-fit w-auto px-4 py-2 m-4 items-center justify-center bg-white">
-								<div className="flex-1 flex flex-row h-auto ml-1 items-center">
-									<div
-										className="relative"
-										onMouseEnter={() => {
-											setShowOptions(true);
-										}}
-										onMouseLeave={() => {
-											setShowOptions(false);
-										}}
-									>
-										{showOptions && (
-											<div className="absolute p-4 shadow bg-white bottom-full rounded-lg right-[-100%]">
-												<div className="shadow rounded-lg bg-pink-500 hover:bg-pink-600 hover:cursor-pointer">
-													<label htmlFor="fileInput">
-														<i className="ri-file-upload-fill text-[1.7rem] mr-1 text-white p-4 hover:cursor-pointer"></i>
-													</label>
-													<input
-														type="file"
-														onChange={onFileChange}
-														className="hidden"
-														ref={uploadRef}
-														id="fileInput"
-													/>
-												</div>
+						</div>
+						<div className="flex-grow-0 flex-shrink-0 flex flex-row outline-black shadow rounded-lg w-auto px-4 py-2 m-4 items-center justify-center bg-white">
+							<div className="flex-1 flex flex-row h-auto ml-1 items-center">
+								<div
+									className="relative"
+									onMouseEnter={() => {
+										setShowOptions(true);
+									}}
+									onMouseLeave={() => {
+										setShowOptions(false);
+									}}
+								>
+									{showOptions && (
+										<div className="absolute p-4 shadow bg-white bottom-full rounded-lg right-[-100%]">
+											<div className="shadow rounded-lg bg-pink-500 hover:bg-pink-600 hover:cursor-pointer">
+												<label htmlFor="fileInput">
+													<i className="ri-file-upload-fill text-[1.7rem] mr-1 text-white p-4 hover:cursor-pointer"></i>
+												</label>
+												<input
+													type="file"
+													onChange={onFileChange}
+													className="hidden"
+													ref={uploadRef}
+													id="fileInput"
+												/>
 											</div>
-										)}
-										<i className="ri-layout-grid-fill text-[1.7rem] mr-1 hover:cursor-pointer"></i>
-									</div>
-									<div className="flex flex-col justify-start items-start px-4">
-										<p className="font-bold text-[1rem]">
-											Blur
-										</p>
-										<input
-											type="checkbox"
-											onChange={(e) =>
-												setShouldBlur(e.target.checked)
-											}
-										/>
-									</div>
-									<input
-										className="w-full h-auto outline-none flex-1 mr-2 border-[1px] border-black p-2 rounded-lg"
-										placeholder="Send a message"
-										onChange={onSendingMessage}
-										onKeyDown={(e) => {
-											if (e.key == "Enter") {
-												e.preventDefault();
-												onSendMessage();
-											}
-										}}
-										value={message}
-									/>
-									<button
-										type="button"
-										className="hover:cursor-pointer bg-white p-1 rounded-lg"
-										onClick={onSendMessage}
-									>
-										<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
-									</button>
+										</div>
+									)}
+									<i className="ri-layout-grid-fill text-[1.7rem] mr-1 hover:cursor-pointer"></i>
 								</div>
-								{
-									//<kbd>o</kbd>
-								}
+								<div className="flex flex-col justify-start items-start px-4">
+									<p className="font-bold text-[1rem]">
+										Blur
+									</p>
+									<input
+										type="checkbox"
+										onChange={(e) =>
+											setShouldBlur(e.target.checked)
+										}
+									/>
+								</div>
+								<input
+									className="w-full h-auto outline-none flex-1 mr-2 border-[1px] border-black p-2 rounded-lg"
+									placeholder="Send a message"
+									onChange={onSendingMessage}
+									onKeyDown={(e) => {
+										if (e.key == "Enter") {
+											e.preventDefault();
+											onSendMessage();
+										}
+									}}
+									value={message}
+								/>
+								<button
+									type="button"
+									className="hover:cursor-pointer bg-white p-1 rounded-lg"
+									onClick={onSendMessage}
+								>
+									<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
+								</button>
 							</div>
+							{
+								//<kbd>o</kbd>
+							}
 						</div>
 					</section>
 				)}
