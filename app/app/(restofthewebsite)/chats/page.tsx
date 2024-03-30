@@ -269,7 +269,7 @@ export default function Chats() {
 	return (
 		<>
 			<section className="hidden lg:flex flex-row w-full h-full chat-height justify-center items-start px-8 py-4 z-50">
-				<section className="rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
+				<section className="flex flex-col rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
 					<div className="flex flex-row outline-black w-auto shadow rounded-lg h-fit px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center">
 						<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>
 						<form className="flex-1 h-auto ml-1">
@@ -283,30 +283,32 @@ export default function Chats() {
 							k
 						</kbd>
 					</div>
-					{chatsList.length == 0 && (
-						<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
-							<p className="text-[1rem] font-normal break-words w-[20rem]">
-								You don't have any chats yet! Start a new chat
-								today!
-							</p>
-						</div>
-					)}
-					{chatsList.length != 0 &&
-						chatsList.map((chat) => {
-							return (
-								<UserConversation
-									onChatClick={onChatClick}
-									chatID={chat.chatID}
-									profilePicture={chatsProfilePictures.get(
-										chat.chatID
-									)}
-									name={chat.name}
-									username={chat.username}
-									isPinned={false}
-									newMessages={0}
-								/>
-							);
-						})}
+					<div className="flex-1 overflow-y-scroll overflow-x-hidden">
+						{chatsList.length == 0 && (
+							<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
+								<p className="text-[1rem] font-normal break-words w-[20rem]">
+									You don't have any chats yet! Start a new
+									chat today!
+								</p>
+							</div>
+						)}
+						{chatsList.length != 0 &&
+							chatsList.map((chat) => {
+								return (
+									<UserConversation
+										onChatClick={onChatClick}
+										chatID={chat.chatID}
+										profilePicture={chatsProfilePictures.get(
+											chat.chatID
+										)}
+										name={chat.name}
+										username={chat.username}
+										isPinned={false}
+										newMessages={0}
+									/>
+								);
+							})}
+					</div>
 				</section>
 				<section className="hidden lg:flex flex-col items-start w-full rounded-lg shadow h-full bg-white ml-2">
 					<div className="max-h-[88%] px-4 py-2 p-4 h-full mb-0 w-full overflow-scroll">
@@ -444,31 +446,31 @@ export default function Chats() {
 							</kbd>
 						</div>
 						<div className="flex-1 overflow-y-scroll overflow-x-hidden">
-						{chatsList.length == 0 && (
-							<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
-								<p className="text-[1rem] font-normal break-words w-[20rem]">
-									You don't have any chats yet! Start a new
-									chat today!
-								</p>
-							</div>
-						)}
-						{chatsList.length != 0 &&
-							chatsList.map((chat) => {
-								return (
-									<UserConversation
-										onChatClick={onChatClick}
-										chatID={chat.chatID}
-										profilePicture={chatsProfilePictures.get(
-											chat.chatID
-										)}
-										name={chat.name}
-										username={chat.username}
-										isPinned={false}
-										newMessages={0}
-									/>
-								);
-							})}
-							</div>
+							{chatsList.length == 0 && (
+								<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
+									<p className="text-[1rem] font-normal break-words w-[20rem]">
+										You don't have any chats yet! Start a
+										new chat today!
+									</p>
+								</div>
+							)}
+							{chatsList.length != 0 &&
+								chatsList.map((chat) => {
+									return (
+										<UserConversation
+											onChatClick={onChatClick}
+											chatID={chat.chatID}
+											profilePicture={chatsProfilePictures.get(
+												chat.chatID
+											)}
+											name={chat.name}
+											username={chat.username}
+											isPinned={false}
+											newMessages={0}
+										/>
+									);
+								})}
+						</div>
 					</section>
 				)}
 				{chatID.current !== "" && (
