@@ -294,7 +294,7 @@ export default function Chats() {
           })}
       </section>
       <section className="hidden lg:flex flex-col items-start w-full rounded-lg shadow h-full bg-white ml-2">
-        <div className="flex-1 px-4 py-2 p-4 h-full mb-0 w-full">
+        <div className="max-h-[88%] px-4 py-2 p-4 h-full mb-0 w-full overflow-scroll">
           {chatID.current === "" && (
             <ImageCard
               imageSource={NoChatSelectedSVG}
