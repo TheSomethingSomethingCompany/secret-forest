@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+
+type Props = {
+	id: string;
+	inputName: string;
+	currentTags: string[];
+	setTags: Dispatch<SetStateAction<never[]>>;
+}
+
 function OccupationTags({
 	id,
 	inputName,
 	currentTags,
 	setTags,
-	inputFieldStyles,
-	textSize,
-	placeHolder,
-}) {
+}: Props) {
 	/* receive currentTags and setTags as props from CreateProfileForm */
 
 	const [inputValue, setInputValue] = useState("");
 
-	const addTag = (event) => {
+	const addTag = (event: any) => {
 		if (event.key === "Enter") {
 			event.preventDefault();
 			const value = inputValue.trim();
@@ -29,7 +34,7 @@ function OccupationTags({
 
 	const removeTag = function (event) {
 		let tagValue = event.target.getAttribute("tag-association");
-		setTags((prevTags) => prevTags.filter((tag) => tag !== tagValue));
+		setTags((prevTags) => prevTags.filter((tag: string) => tag !== tagValue));
 	};
 
 	const onInputChange = function (event) {
@@ -37,32 +42,32 @@ function OccupationTags({
 	};
 
 	return (
- 		<section className="max-w-[20rem] flex flex-col">
+		<section className="flex flex-col w-full">
 			<input
 				id={id}
 				type="text"
-				className={`w-full border-[1px] border-black text-black ${inputFieldStyles}`}
+				className={`w-full outline-none border-[1px] border-gray-800 rounded-lg font-normal text-xl p-1.5 block focus:outline-none focus:border-[#0085ff] focus:ring-1 focus:ring-[#0085ff]`}
 				onKeyDown={addTag}
 				value={inputValue}
 				onInput={onInputChange}
 				name={inputName}
-				placeholder={placeHolder}
+				placeholder={`Add new tags...`}
+			></input>{" "}
+			<div
+				id="tags-container"
+				className="tag flex flex-row justify-start item-center flex-wrap w-full my-1"
 			>
-			</input>
-			{" "}
-			 <div id="tags-container" className="tag flex flex-row justify-start item-center flex-wrap max-w-[20rem]"> 
-
-				 {currentTags.map((tag) => (
+				{currentTags.map((tag) => (
 					<div
 						key={tag}
-						className="p-2 m-2 rounded-lg flex justify-center items-center flex-nowrap bg-white border-[1px] border-black"
+						className="mr-2 my-1 p-2 rounded-lg flex justify-center items-center flex-nowrap bg-blue-500 text-white w-fit"
 					>
 						<p
 							id={tag.replace(/\s+/g, "")}
-							className={`whitespace-pre-wrap w-1/2 break-words ${textSize}`}
+							className={`whitespace-pre-wrap break-words pr-2 text-lg`}
 						>
 							{tag}
-						</p>{" "}
+						</p>
 						<button
 							tag-association={tag}
 							onClick={removeTag}
@@ -71,16 +76,10 @@ function OccupationTags({
 							x
 						</button>
 					</div>
-				))} 
-
-		</div>
-
+				))}
+			</div>
 		</section>
-
-
-	
 	);
-
 }
 
 export default OccupationTags;

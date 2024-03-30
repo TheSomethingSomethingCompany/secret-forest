@@ -4,7 +4,6 @@ const router = express.Router();
 const db = require("../db-connection.js");
 const cryptojs = require("crypto-js");
 const HmacSHA256 = cryptojs.HmacSHA256;
-const WebSocket = require("ws");
 
 const DOMPurify = require("isomorphic-dompurify");
 

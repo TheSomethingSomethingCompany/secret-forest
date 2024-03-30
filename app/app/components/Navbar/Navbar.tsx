@@ -15,14 +15,13 @@ import GetProfilePicture from "@/app/(restofthewebsite)/getProfilePicture/api/ge
 
 import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
-
 export default function Navbar() {
 	const router = useRouter();
 	const { userStatus } = useWebSocket();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isNavbarHidden, setIsNavbarHidden] = useState(false);
-	
-	let lastScrollY = 0; 
+
+	let lastScrollY = 0;
 
 	useEffect(() => {
 		let ticking = false;
@@ -58,15 +57,14 @@ export default function Navbar() {
 		console.log("RESPONSE FROM SERVER FOR User:");
 		console.log(res);
 		setUsername(res.data.username);
-		const pfpPath = await GetProfilePicture({username: res.data.username});
+		const pfpPath = await GetProfilePicture({
+			username: res.data.username,
+		});
 		setPfpInfo(pfpPath.data);
-
-
-	  }
+	}
 
 	if (userStatus === "signedIn") {
 		getUser();
-		
 	}
 
 	return (
@@ -79,10 +77,7 @@ export default function Navbar() {
 		>
 			{/* LOGO SECTION (LEFT) */}
 			<section>
-				<a
-					className="hover:cursor-pointer"
-					href="/"
-				>
+				<a className="hover:cursor-pointer" href="/">
 					<Image
 						src={Logo}
 						alt={"TheSomethingSomethingCompany"}
@@ -112,21 +107,26 @@ export default function Navbar() {
 				<section>
 					<section className="flex flex-row justify-end items-center text-[16px]">
 						<div
-							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-[#57606a] hover:bg-[#eaedf1] translate-y-1 border-[1px] rounded-sm transition-all duration-200 ease-in-out hover:cursor-pointer"
+							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-black hover:shadow-lg translate-y-1 border-[1px] rounded-lg transition-all duration-200 ease-in-out hover:cursor-pointer"
 							onClick={() => router.push("/search")}
 						>
-							 < i className="ri-search-2-fill text-[22px]"></i> 
+							<i className="ri-search-2-fill text-[22px]"></i>
 						</div>
 						<div
-							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-[#57606a] hover:bg-[#eaedf1] translate-y-1 border-[1px] rounded-sm transition-all duration-200 ease-in-out hover:cursor-pointer"
+							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-black hover:shadow-lg translate-y-1 border-[1px] rounded-lg transition-all duration-200 ease-in-out hover:cursor-pointer"
+							onClick={() => router.push("/requests")}
+						>
+							<i className="ri-git-pull-request-fill text-[22px]"></i>
+						</div>
+						<div
+							className="font-bold my-4 mx-[8px] px-[5.5px] py-[2px] shadow-sm border-[#d0d7de] text-black hover:shadow-lg translate-y-1 border-[1px] rounded-lg transition-all duration-200 ease-in-out hover:cursor-pointer"
 							onClick={() => router.push("/chats")}
 						>
-							 < i className="ri-at-line text-[22px]"></i> 
+							<i className="ri-threads-fill text-[22px]"></i>
 						</div>
 						<section
 							onMouseEnter={() => setIsOpen(true)}
 							onMouseLeave={() => setIsOpen(false)}
-
 						>
 							<div className="font-normal my-2 mx-[8px] border-b-4 border-transparent translate-y-1 transition-all duration-200 ease-in-out hover:cursor-pointer flex flex-row items-center justify-center">
 								<i className="ri-corner-left-down-line text-2xl translate-y-2 text-[#57606a]" />
@@ -136,11 +136,11 @@ export default function Navbar() {
 									className="w-12 h-12 rounded-full"
 								/>
 							</div>
-							{(
+							{
 								<div className="relative">
 									<DropMenu isOpen={isOpen} />
 								</div>
-							)}
+							}
 						</section>
 					</section>
 				</section>

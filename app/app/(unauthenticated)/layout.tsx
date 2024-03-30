@@ -6,12 +6,14 @@ interface LayoutProps {
 }
 
 export default function AuthLayout({ children }: LayoutProps) {
-	return <>
+	return (
+		<main className="flex flex-col h-full">
 			<section className="bg-white z-50 w-screen p-10 flex flex-row justify-between items-center text-[1rem]">
 				<a href="/">
 					<Image src={Logo} alt={"TheSomethingSomethingCompany"} />
 				</a>
 			</section>
-		{ children }
-	</>;
+			<div className="flex-1">{children}</div>
+		</main>
+	);
 }

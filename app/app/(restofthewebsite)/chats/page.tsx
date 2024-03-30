@@ -1,323 +1,624 @@
 "use client";
-import Image from "next/image";
-import ChatBubble from "@/app/components/conversations/ChatBubble";
-import Img from "@/app/images/ExamplePenguin.jpeg";
+import React from "react";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
 import { useRef, useEffect, useState, use } from "react";
 import GetProfilePicture from "../getProfilePicture/api/getPFP";
 
+import PenguinC from "@/app/images/PenguinC.jpeg";
+import ChatBubble from "../../components/conversations/ChatBubble";
 import { useWebSocket } from "../../contexts/WebSocketContext";
+import NoChatSelectedSVG from "@/public/noconversationSelected.svg";
+import NoMessagesSVG from "@/public/nomessages.svg";
+import UserConversation from "@/app/components/conversations/UserConversation";
+import ImageCard from "@/app/components/conversations/ImageCard";
+import Image from "next/image";
 
 export default function Chats() {
-  const { isConnected, sendMessage } = useWebSocket();
-  const [chatsList, setChatsList] = useState([]);
-  const [messagesList, setMessagesList] = useState([]);
-  const [message, setMessage] = useState("");
-  const [file, setFile] = useState(null);
-  const [shouldBlur, setShouldBlur] = useState(false);
+	const { sendMessage } = useWebSocket();
+	const [chatsList, setChatsList] = useState<
+		{
+			chatID: string;
+			profilePicture: string;
+			name: string;
+			username: string;
+		}[]
+	>([]);
+	const [messagesList, setMessagesList] = useState<
+		{
+			messageID: string;
+			message: string;
+			name: string;
+			fileExtension: string;
+			isYou: boolean;
+			signedURL: string;
+		}[]
+	>([]);
+	const [message, setMessage] = useState("");
+	const [file, setFile] = useState<any>(null);
+	const [shouldBlur, setShouldBlur] = useState(false);
+	const [showOptions, setShowOptions] = useState(false);
 
-  const [loggedInPfp, setLoggedInPfp] = useState(``);
-  const [chatsProfilePictures, setChatsProfilePictures] = useState([]);
-    
-  // Create a WebSocket connection to the server
-  
-  const ws = useRef(null);
-  const chatID = useRef("");
-  
+	const [loggedInPfp, setLoggedInPfp] = useState(``);
+	const [chatsProfilePictures, setChatsProfilePictures] = useState(new Map());
 
-  useEffect(() => {
-    ws.current = new WebSocket('ws://localhost:7979');
+	// Create a WebSocket connection to the server
 
-    ws.current.onopen = () => {
-      console.log('WebSocket connection opened');
-    };
+	const ws = useRef(null);
+	const inputRef = useRef(null);
+	const uploadRef = useRef(null);
+	const chatID = useRef("");
 
-    ws.current.onmessage = (event) => {
-      const response = JSON.parse(event.data);
-      console.log('Message from server: ', response);
-      if(response.broadcast){
-        if(response.chatID == chatID.current)
-          getMessages(chatID.current);
-      }
-      else{
-        switch(response.action){
-          case "retrieveMessages":
-            if(response.status == 201)
-            {
-              //sort the messages by messageID in ascending order
-              response.chatMessages.sort((a, b) => (a.messageID > b.messageID) ? 1 : -1);
-             
-              setMessagesList(response.chatMessages);
-            }
-            else if(response.status == 422)
-              setMessagesList([]);
-            break;
-          case "insertMessage":
-            if(response.status == 201)
-              console.log("Message inserted successfully!");
-            break;
-          case "deleteMessage":
-            if(response.status == 201)
-              console.log("Message deleted successfully!");
-            break;
-          case "editMessage":
-            if(response.status == 201)
-              console.log("Message edited successfully!");
-            break;
-        }
+	//  INFORMATION: QUICK NAVIGATE TO INPUT
 
-      }
-		sendMessage("signedIn", {});
-    }
-      
-    ws.current.onclose = () => {
-      console.log('WebSocket connection closed');
-    };
+	useEffect(() => {
+		const handleKeyDownConv = (event: any) => {
+			if (event.code === "KeyK") {
+				event.preventDefault();
+				inputRef.current?.focus();
+			}
+		};
 
-    ws.current.onerror = (event) => {
-      console.error('WebSocket error: ', event);
-    };
+		window.addEventListener("keydown", handleKeyDownConv);
 
+		return () => {
+			window.removeEventListener("keydown", handleKeyDownConv);
+		};
+	}, []);
 
-    // Clean up the WebSocket connection when the component unmounts
-    return () => {
-      if (ws.current) {
-        ws.current.close();
-      }
-    };
-  }, []);
-  
+	//  INFORMATION: WEBSOCKETS
 
-  async function getChats() {
-    let res = await retrieveChats();
-    console.log("RESPONSE FROM SERVER FOR CHATS:");
-    console.log(res);
-    if(res.data) {
-      setChatsList(res.data);
-      const loggedInUsername = res.data[0].loggedInUsername;
-      const pfpPath1 = await GetProfilePicture({username: loggedInUsername});
-      setLoggedInPfp(pfpPath1.data);
+	useEffect(() => {
+		ws.current = new WebSocket("ws://localhost:7979");
+		ws.current.onopen = () => {
+			console.log("WebSocket connection opened");
+		};
+		ws.current.onmessage = (event: any) => {
+			const response = JSON.parse(event.data);
+			console.log("Message from server: ", response);
+			if (response.broadcast) {
+				if (response.chatID == chatID.current)
+					getMessages(chatID.current);
+			} else {
+				switch (response.action) {
+					case "retrieveMessages":
+						if (response.status == 201) {
+							//sort the messages by messageID in ascending order
+							response.chatMessages.sort((a: any, b: any) =>
+								a.messageID > b.messageID ? 1 : -1
+							);
 
+							setMessagesList(response.chatMessages);
+						} else if (response.status == 422) setMessagesList([]);
+						break;
+					case "insertMessage":
+						if (response.status == 201)
+							console.log("Message inserted successfully!");
+						break;
+					case "deleteMessage":
+						if (response.status == 201)
+							console.log("Message deleted successfully!");
+						break;
+					case "editMessage":
+						if (response.status == 201)
+							console.log("Message edited successfully!");
+						break;
+				}
+			}
+			sendMessage("signedIn", {});
+		};
 
-      const chatsProfilePicturesContainer = [];
-      for(let i = 0; i < res.data.length; i++){
-        console.log("Username: " + res.data[i].username);
-        const pfpPath = await GetProfilePicture({username: res.data[i].username});
-        console.log("PFP: " + pfpPath.data);
-        chatsProfilePicturesContainer.push(pfpPath.data);
-      }
-      
-      setChatsProfilePictures(chatsProfilePicturesContainer);
-      console.log("Chats Images: " + chatsProfilePicturesContainer);
+		ws.current.onclose = () => {
+			console.log("WebSocket connection closed");
+		};
 
-      // Get the profile picture for each chat      
-    }   else setChatsList([]);
-  }
+		ws.current.onerror = (event) => {
+			console.error("WebSocket error: ", event);
+		};
 
-  async function getMessages(chatID: string) { // We need to specify the chatID since state variables are not updated immediately
-    const dataToSendToWSS = JSON.stringify({action: "retrieveMessages", body:{  chatID: chatID }});
-    ws.current.send(dataToSendToWSS);
-  }
+		// Clean up the WebSocket connection when the component unmounts
+		return () => {
+			if (ws.current) {
+				ws.current.close();
+			}
+		};
+	}, []);
 
-  async function onSendMessage() {
-    console.log("SENDING MESSAGE: " + message);
-    console.log("CURRENT CHAT ID: " + chatID.current);
-    const body = {
-      chatID: chatID.current,
-      message: message,
-      file: file,
-      shouldBlur: shouldBlur
-    };
-    const dataToSendToWSS = JSON.stringify({action: "insertMessage", body: body});
-    ws.current.send(dataToSendToWSS);
-    setMessage("");
-  }
+	async function getChats() {
+		let res = await retrieveChats();
+		console.log("RESPONSE FROM SERVER FOR CHATS:");
+		console.log(res);
+		if (res.data) {
+			setChatsList(res.data);
+			const loggedInUsername = res.data[0].loggedInUsername;
+			const pfpPath1 = await GetProfilePicture({
+				username: loggedInUsername,
+			});
+			setLoggedInPfp(pfpPath1.data);
 
-  useEffect(() => {
-    getChats();
-  }, []);
+			const chatsProfilePicturesContainer = new Map();
+			for (let i = 0; i < res.data.length; i++) {
+				console.log("Username: " + res.data[i].username);
+				const pfpPath = await GetProfilePicture({
+					username: res.data[i].username,
+				});
+				console.log("PFP: " + pfpPath.data);
+				chatsProfilePicturesContainer.set(
+					res.data[i].chatID,
+					pfpPath.data
+				);
+			}
 
-  
- function onChatClick(e) {
-    console.log("Clicked on chat with id: " + e.currentTarget.dataset.chatId); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
-    chatID.current = e.currentTarget.dataset.chatId;
-    getMessages(chatID.current);
-  }
+			setChatsProfilePictures(chatsProfilePicturesContainer);
+			console.log("Chats Images: " + chatsProfilePicturesContainer);
 
-  function onSendingMessage(e) {
-    setMessage(e.target.value);
-    console.log("MESSAGE: " + message);
-  }
+			// Get the profile picture for each chat
+		} else setChatsList([]);
+	}
 
-  function onDeleteButtonClick(e) {
-    console.log(
-      "Clicked on delete button with message id: " + e.currentTarget.dataset.messageId
-    );
-    // Now, we need to remove the message from the message list
-    let messageId = e.currentTarget.dataset.messageId;
-    /*
-    let newMessagesList = messagesList.filter(
-      (message) => message.messageID != messageId
-    );
-    */
-    // Next, we need to make an api call to delete the message from the server
-      const dataToSendToWSS = JSON.stringify({action: "deleteMessage", body:{  messageID: messageId, chatID: chatID.current }});
-      ws.current.send(dataToSendToWSS);
-  }
+	async function getMessages(chatID: string) {
+		// We need to specify the chatID since state variables are not updated immediately
+		const dataToSendToWSS = JSON.stringify({
+			action: "retrieveMessages",
+			body: { chatID: chatID },
+		});
+		ws.current.send(dataToSendToWSS);
+	}
 
-  function saveToDatabaseHandler(editedMessage: string, messageID: string) {
-    console.log("Saving message to database: " + editedMessage);
-    // Now, we need to make an api call to edit the message on the server
-    const dataToSendToWSS = JSON.stringify({action: "editMessage", body:{  messageID: messageID, message: editedMessage, chatID: chatID.current }});
-    ws.current.send(dataToSendToWSS);
-  }
+	async function onSendMessage() {
+		console.log("SENDING MESSAGE: " + message);
+		console.log("CURRENT CHAT ID: " + chatID.current);
+		const body = {
+			chatID: chatID.current,
+			message: message,
+			file: file,
+			shouldBlur: shouldBlur,
+		};
+		const dataToSendToWSS = JSON.stringify({
+			action: "insertMessage",
+			body: body,
+		});
+		ws.current.send(dataToSendToWSS);
+		setMessage("");
+	}
 
-  const prevMessagesListLength = useRef(messagesList.length);
-  useEffect(() => {
-    if (messagesList.length > prevMessagesListLength.current) {
-      const messagesDiv = document.getElementById("list-messages-div");
-      if (messagesDiv) {
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-      }
-    }
-    prevMessagesListLength.current = messagesList.length;
-  }, [messagesList]);
+	useEffect(() => {
+		getChats();
+	}, []);
 
-  function onFileChange(e){
-    const file = e.target.files[0];
-    toBase64(file).then(base64File => {
-      const fileObject = {
-        originalName: file.name,
-        mimetype: file.type,
-        fileData: base64File
-      };
-      setFile(fileObject);
-      console.log(fileObject);
-    });
-  }
+	function onChatClick(e: any) {
+		console.log(
+			"Clicked on chat with id: " + e.currentTarget.dataset.chatId
+		); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
+		chatID.current = e.currentTarget.dataset.chatId;
+		getMessages(chatID.current);
+	}
 
-  function toBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  }
+	function onSendingMessage(e: any) {
+		setMessage(e.target.value);
+		console.log("MESSAGE: " + message);
+	}
 
+	function onDeleteButtonClick(e: any) {
+		console.log(
+			"Clicked on delete button with message id: " +
+				e.currentTarget.dataset.messageId
+		);
+		// Now, we need to remove the message from the message list
+		let messageId = e.currentTarget.dataset.messageId;
+		/*
+		let newMessagesList = messagesList.filter(
+		  (message) => message.messageID != messageId
+		);
+		*/
+		// Next, we need to make an api call to delete the message from the server
+		const dataToSendToWSS = JSON.stringify({
+			action: "deleteMessage",
+			body: { messageID: messageId, chatID: chatID.current },
+		});
+		ws.current.send(dataToSendToWSS);
+	}
 
+	function saveToDatabaseHandler(editedMessage: string, messageID: string) {
+		console.log("Saving message to database: " + editedMessage);
+		// Now, we need to make an api call to edit the message on the server
+		const dataToSendToWSS = JSON.stringify({
+			action: "editMessage",
+			body: {
+				messageID: messageID,
+				message: editedMessage,
+				chatID: chatID.current,
+			},
+		});
+		ws.current.send(dataToSendToWSS);
+	}
 
-  return (
-    <section className="m-4 grid grid-cols-4 grid-rows-1 rounded-lg shadow-md drop-shadow-md w-screen h-[50rem] bg-gray-100">
-      {/* First, we need to make an api call to the RetrieveChats route */}
-      <div className = "flex flex-col itmes-center col-span-1 overflow-y-scroll">
+	const prevMessagesListLength = useRef(messagesList.length);
+	useEffect(() => {
+		if (messagesList.length > prevMessagesListLength.current) {
+			const messagesDiv = document.getElementById("list-messages-div");
+			if (messagesDiv) {
+				messagesDiv.scrollTop = messagesDiv.scrollHeight;
+			}
+		}
+		prevMessagesListLength.current = messagesList.length;
+	}, [messagesList]);
 
-        {
-            chatsList.length == 0 ? 
-            (<div className = "flex flex-col items-center justify-center h-full"> 
-              <h1 className = "text-2xl font-bold"> No chats yet! </h1> 
-              <h2 className = "text-xl font-normal"> Start a conversation with someone! </h2> 
-            </div>)
-            : 
-            (chatsList.map((chat, index) => {
-            return (
-              <div onClick = {onChatClick} data-chat-id = {chat.chatID} className="m-2 rounded-lg shadow-md drop-shadow-md flex flex-row justify-evenly bg-white h-fit w-full hover:cursor-pointer hover:bg-gray-200"> {/* A single chat */}
-                <div className="flex flex-row justify-between flex-1 p-4">
-                  <div className="p-2">
-                    <img
-                      src={chatsProfilePictures[index]}
-                      alt="Example"
-                      className="w-24 rounded-full object-scale-down"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 w-full items-start justify-center p-2"> 
-                    <span className="text-center">{chat.name}</span>
-                    <span className="text-center">@{chat.username}</span>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between p-2">
-                  <span className="p-1 rounded-full bg-pink-600 w-8 h-8 text-center text-white font-normal">
-                    2
-                  </span>
-                </div>
-              </div>
-            )
-          }))
+	function onFileChange(e: any) {
+		const file = e.target.files[0];
+		toBase64(file).then((base64File) => {
+			const fileObject = {
+				originalName: file.name,
+				mimetype: file.type,
+				fileData: base64File,
+			};
+			setFile(fileObject);
+			console.log(fileObject);
+		});
+	}
 
-        }
+	function toBase64(file: any) {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = () => resolve(reader.result);
+			reader.onerror = (error) => reject(error);
+		});
+	}
 
-      </div>
-
-      <section className="m-2 rounded-lg shadow-md drop-shadow-md col-span-3 flex flex-col justify-evenly ">
-        <div id = "list-messages-div" className="flex-1 p-2 overflow-y-auto">
-          {
-            messagesList.length == 0 ? 
-            (<div className = "flex flex-col items-center justify-center h-full"> 
-              <h1 className = "text-2xl font-bold"> No messages yet! </h1> 
-              <h2 className = "text-xl font-normal"> Start a conversation! </h2>
-              <h2 className = "text-xl font-normal"> Or, select a chat from the left! </h2>
-            </div>)
-            :(messagesList.map((message) => {
-              return (
-                <>
-                <ChatBubble
-                key = {message.messageID + message.message}
-                  id={message.messageID}
-                  name={message.name}
-                  message={message.message}
-                  profilePictureYou={loggedInPfp}
-                  profilePictureThem={chatImage}
-                  hasAttachment={false}
-                  attachmentExt= {message.fileExtension ? message.fileExtension : null}
-                  isYou={message.isYou}
-                  onDeleteButtonClick = {onDeleteButtonClick}
-                  saveToDatabaseHandler={saveToDatabaseHandler}
-                  signedURL={message.signedURL ? message.signedURL : null}
-                />
-                { /* <img src = {message.signedURL} alt = "Image" className = "w-[10rem] h-[10rem]"/> */ }
-                </>
-              )
-            }))
-          }
-         
-        </div>
-        <div className="p-2">
-          <div className="flex flex-row justify-between items-center p-2">
-            <div className = "grid grid-cols-2">
-              <input type="file"
-              onChange = {onFileChange}
-              className = "col-span-2 w-full h-12 rounded-lg shadow-md drop-shadow-md p-2 m-2"
-              />
-              <input
-              type="checkbox"
-              onChange = {(e) => setShouldBlur(e.target.checked)}
-              />
-              <p>Blur?</p>
-            </div>
-            <input
-              type="text"
-              className="w-full h-12 rounded-lg shadow-md drop-shadow-md p-2 m-2"
-              placeholder="Type a message..."
-              onChange={onSendingMessage}
-              onKeyDown={(e) => {
-                if (e.key == "Enter") {
-                  e.preventDefault();
-                  onSendMessage();
-                }
-              }}
-              value={message}
-            />
-            <button
-              id="sendButton"
-              className="w-12 h-12 rounded-lg shadow-md drop-shadow-md bg-blue-600 text-white m-2"
-              onClick={onSendMessage}
-            >
-              <i className="ri-send-plane-fill"></i>
-            </button>
-          </div>
-        </div>
-      </section>
-    </section>
-  );
+	return (
+		<>
+			<section className="hidden lg:flex flex-row w-full h-full chat-height justify-center items-start px-8 py-4 z-50">
+				<section className="flex flex-col rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
+					<div className="flex flex-row outline-black w-auto shadow rounded-lg h-fit px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center">
+						<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>
+						<form className="flex-1 h-auto ml-1">
+							<input
+								ref={inputRef}
+								className="w-full h-full px-2 outline-none"
+								placeholder="Search for user..."
+							/>
+						</form>
+						<kbd className="bg-black text-white p-2 rounded-lg">
+							k
+						</kbd>
+					</div>
+					<div className="flex-1 overflow-y-scroll overflow-x-hidden">
+						{chatsList.length == 0 && (
+							<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
+								<p className="text-[1rem] font-normal break-words w-[20rem]">
+									You don't have any chats yet! Start a new
+									chat today!
+								</p>
+							</div>
+						)}
+						{chatsList.length != 0 &&
+							chatsList.map((chat) => {
+								return (
+									<UserConversation
+										onChatClick={onChatClick}
+										chatID={chat.chatID}
+										profilePicture={chatsProfilePictures.get(
+											chat.chatID
+										)}
+										name={chat.name}
+										username={chat.username}
+										isPinned={false}
+										newMessages={0}
+									/>
+								);
+							})}
+					</div>
+				</section>
+				<section className="hidden lg:flex flex-col items-start w-full rounded-lg shadow h-full bg-white ml-2">
+					<div className="max-h-[88%] px-4 py-2 p-4 h-full mb-0 w-full overflow-scroll">
+						{chatID.current === "" && (
+							<ImageCard
+								imageSource={NoChatSelectedSVG}
+								alt="No Chats Selected"
+								title="No conversation selected"
+								description="Looks like you haven’t selected a conversation yet. Select one to start talking."
+							/>
+						)}
+						{chatID.current !== "" && messagesList.length === 0 && (
+							<ImageCard
+								imageSource={NoMessagesSVG}
+								alt="No messages"
+								title="No messages yet"
+								description="Looks like you haven’t started a conversation with Satanshu yet. Be the first to say hello 👋!"
+							/>
+						)}
+						{messagesList.map((message) => {
+							return (
+								<ChatBubble
+									key={message.messageID + message.message}
+									id={message.messageID}
+									name={message.name}
+									message={message.message}
+									profilePictureYou={loggedInPfp}
+									profilePictureThem={chatsProfilePictures.get(
+										parseInt(chatID.current)
+									)}
+									hasAttachment={false}
+									attachmentExt={
+										message.fileExtension
+											? message.fileExtension
+											: null
+									}
+									isYou={message.isYou}
+									onDeleteButtonClick={onDeleteButtonClick}
+									saveToDatabaseHandler={
+										saveToDatabaseHandler
+									}
+									signedURL={
+										message.signedURL
+											? message.signedURL
+											: null
+									}
+								/>
+							);
+						})}
+					</div>
+					{chatID.current !== "" && (
+						<div className="px-4 py-2 my-2 w-full bg-transparent">
+							<div className="flex flex-row outline-black shadow rounded-lg h-fit w-full px-4 py-2 items-center justify-center">
+								<div className="flex-1 flex flex-row h-auto ml-1 items-center">
+									<div
+										className="relative"
+										onMouseEnter={() => {
+											setShowOptions(true);
+										}}
+										onMouseLeave={() => {
+											setShowOptions(false);
+										}}
+									>
+										{showOptions && (
+											<div className="absolute p-4 shadow bg-white bottom-full rounded-lg right-[-100%]">
+												<div className="shadow rounded-lg bg-pink-500 hover:bg-pink-600 hover:cursor-pointer">
+													<label htmlFor="fileInput">
+														<i className="ri-file-upload-fill text-[1.7rem] mr-1 text-white p-4 hover:cursor-pointer"></i>
+													</label>
+													<input
+														type="file"
+														onChange={onFileChange}
+														className="hidden"
+														ref={uploadRef}
+														id="fileInput"
+													/>
+												</div>
+											</div>
+										)}
+										<i className="ri-layout-grid-fill text-[1.7rem] mr-1 hover:cursor-pointer"></i>
+									</div>
+									<div className="flex flex-col justify-start items-start px-4">
+										<p className="font-bold text-[1rem]">
+											Blur Video
+										</p>
+										<input
+											type="checkbox"
+											onChange={(e) =>
+												setShouldBlur(e.target.checked)
+											}
+										/>
+									</div>
+									<input
+										className="w-full h-auto px-2 outline-none flex-1"
+										placeholder="Send a message"
+										onChange={onSendingMessage}
+										onKeyDown={(e) => {
+											if (e.key == "Enter") {
+												e.preventDefault();
+												onSendMessage();
+											}
+										}}
+										value={message}
+									/>
+									<button
+										type="button"
+										className="hover:cursor-pointer bg-white p-1 rounded-lg"
+										onClick={onSendMessage}
+									>
+										<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
+									</button>
+								</div>
+								{
+									//<kbd>o</kbd>
+								}
+							</div>
+						</div>
+					)}
+				</section>
+			</section>
+			<section className="flex lg:hidden flex-row w-full h-full max-h-screen overflow-hidden chat-height justify-center items-start px-8 py-4 z-50 bg-white">
+				{chatID.current === "" && (
+					<section className="flex-1 flex flex-col rounded-lg shadow-lg w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full mr-2 bg-white">
+						<div className="flex flex-row outline-black w-auto shadow rounded-lg h-fit px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center">
+							<i className="ri-search-eye-fill text-[1.7rem] mr-1"></i>
+							<form className="flex-1 h-auto ml-1">
+								<input
+									ref={inputRef}
+									className="w-full h-full px-2 outline-none"
+									placeholder="Search for user..."
+								/>
+							</form>
+							<kbd className="bg-black text-white p-2 rounded-lg">
+								k
+							</kbd>
+						</div>
+						<div className="flex-1 overflow-y-scroll overflow-x-hidden">
+							{chatsList.length == 0 && (
+								<div className="flex flex-row justify-between items-center p-4 border-2 border-transparent rounded-lg h-full max-h-[8rem] m-4 shadow">
+									<p className="text-[1rem] font-normal break-words w-[20rem]">
+										You don't have any chats yet! Start a
+										new chat today!
+									</p>
+								</div>
+							)}
+							{chatsList.length != 0 &&
+								chatsList.map((chat) => {
+									return (
+										<UserConversation
+											onChatClick={onChatClick}
+											chatID={chat.chatID}
+											profilePicture={chatsProfilePictures.get(
+												chat.chatID
+											)}
+											name={chat.name}
+											username={chat.username}
+											isPinned={false}
+											newMessages={0}
+										/>
+									);
+								})}
+						</div>
+					</section>
+				)}
+				{chatID.current !== "" && (
+					<section className="flex flex-col rounded-lg shadow w-full lg:w-[30rem] min-w-[30rem] lg:max-w-[30rem] h-full max-h-full mr-2 bg-white">
+						<div className="flex-grow-0 flex-shrink-0 flex flex-row outline-black w-auto shadow rounded-lg px-4 py-2 m-4 lg:max-w-[28rem] items-center justify-center bg-white">
+							<div
+								className="p-2 shadow bg-black h-8 w-8 rounded flex flex-col justify-center items-center hover:cursor-pointer"
+								onClick={() => {
+									chatID.current = "";
+									setMessagesList([]);
+								}}
+							>
+								<i className="ri-arrow-left-line text-[1.2rem] text-white"></i>
+							</div>
+							<div className="flex-1 flex flex-row justify-center items-center">
+								<Image
+									src={chatsProfilePictures.get(
+										parseInt(chatID.current)
+									)}
+									alt="Profile Picture"
+									width={30}
+									height={30}
+								/>
+								<p className="text-lg font-normal text-black ml-2">
+									{
+										chatsList.find(
+											(chat) =>
+												chat.chatID ===
+												parseInt(chatID.current)
+										)?.name
+									}
+								</p>
+							</div>
+						</div>
+						<div className="flex-1  overflow-scroll px-2">
+							{chatID.current !== "" &&
+								messagesList.length === 0 && (
+									<ImageCard
+										imageSource={NoMessagesSVG}
+										alt="No messages"
+										title="No messages yet"
+										description="Looks like you haven’t started a conversation with Satanshu yet. Be the first to say hello 👋!"
+										mode="small"
+									/>
+								)}
+							{messagesList.map((message) => {
+								return (
+									<ChatBubble
+										key={
+											message.messageID + message.message
+										}
+										id={message.messageID}
+										name={message.name}
+										message={message.message}
+										profilePictureYou={loggedInPfp}
+										profilePictureThem={chatsProfilePictures.get(
+											parseInt(chatID.current)
+										)}
+										hasAttachment={false}
+										attachmentExt={
+											message.fileExtension
+												? message.fileExtension
+												: null
+										}
+										isYou={message.isYou}
+										onDeleteButtonClick={
+											onDeleteButtonClick
+										}
+										saveToDatabaseHandler={
+											saveToDatabaseHandler
+										}
+										signedURL={
+											message.signedURL
+												? message.signedURL
+												: null
+										}
+										mode="small"
+									/>
+								);
+							})}
+						</div>
+						<div className="flex-grow-0 flex-shrink-0 flex flex-row outline-black shadow rounded-lg w-auto px-4 py-2 m-4 items-center justify-center bg-white">
+							<div className="flex-1 flex flex-row h-auto ml-1 items-center">
+								<div
+									className="relative"
+									onMouseEnter={() => {
+										setShowOptions(true);
+									}}
+									onMouseLeave={() => {
+										setShowOptions(false);
+									}}
+								>
+									{showOptions && (
+										<div className="absolute p-4 shadow bg-white bottom-full rounded-lg right-[-100%]">
+											<div className="shadow rounded-lg bg-pink-500 hover:bg-pink-600 hover:cursor-pointer">
+												<label htmlFor="fileInput">
+													<i className="ri-file-upload-fill text-[1.7rem] mr-1 text-white p-4 hover:cursor-pointer"></i>
+												</label>
+												<input
+													type="file"
+													onChange={onFileChange}
+													className="hidden"
+													ref={uploadRef}
+													id="fileInput"
+												/>
+											</div>
+										</div>
+									)}
+									<i className="ri-layout-grid-fill text-[1.7rem] mr-1 hover:cursor-pointer"></i>
+								</div>
+								<div className="flex flex-col justify-start items-start px-4">
+									<p className="font-bold text-[1rem]">
+										Blur
+									</p>
+									<input
+										type="checkbox"
+										onChange={(e) =>
+											setShouldBlur(e.target.checked)
+										}
+									/>
+								</div>
+								<input
+									className="w-full h-auto outline-none flex-1 mr-2 border-[1px] border-black p-2 rounded-lg"
+									placeholder="Send a message"
+									onChange={onSendingMessage}
+									onKeyDown={(e) => {
+										if (e.key == "Enter") {
+											e.preventDefault();
+											onSendMessage();
+										}
+									}}
+									value={message}
+								/>
+								<button
+									type="button"
+									className="hover:cursor-pointer bg-white p-1 rounded-lg"
+									onClick={onSendMessage}
+								>
+									<i className="ri-send-plane-2-fill text-[1.7rem] ml-1 text-black"></i>
+								</button>
+							</div>
+							{
+								//<kbd>o</kbd>
+							}
+						</div>
+					</section>
+				)}
+			</section>
+		</>
+	);
 }
