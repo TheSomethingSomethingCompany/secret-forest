@@ -37,6 +37,14 @@ export default function UserAuthentication() {
 		}
 	}, []);
 
+	// SECURITY QUESTIONS FOR IF USER FORGETS PASSWORD IN THE FUTURE
+
+	const securityQuestions = [
+		{value: "childhoodPet", label: "What was the name of your first pet?"},
+		{value: "childhoodCareer", label: "When you were a kid, what did you want to be when you grew up?"},
+		{value: "childhoodHero", label: "Who was your childhood hero?"},
+	];
+
 	// FORMIK LOGIC
 
 	const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
@@ -48,12 +56,16 @@ export default function UserAuthentication() {
 			email: "e.g., example@email.com",
 			password: "",
 			confirmpassword: "",
+			securityQuestion: "",
+			securityAnswer: "",
 		},
 		onSubmit: (values: {
 			username: string;
 			email: string;
 			password: string;
 			confirmpassword: string;
+			securityQuestion: string;
+			securityAnswer: string;
 		}) => {
 			submitSignUpData(values);
 		},
@@ -76,7 +88,14 @@ export default function UserAuthentication() {
 				.required(
 					"You cannot leave this field empty! Please enter your password."
 				),
-			confirmpassword: Yup.string().required("You cannot leave this field empty! Please confirm your password.")
+			confirmpassword: Yup.string().required("You cannot leave this field empty! Please confirm your password."),
+
+			securityQuestion: Yup.string().required(
+				"Please select a security question"
+			  ),
+			  securityAnswer: Yup.string().required(
+				"Please provide an answer to your security question"
+			  ),
 		}),
 	});
 
@@ -116,6 +135,8 @@ export default function UserAuthentication() {
 		email: string;
 		password: string;
 		confirmpassword: string;
+		securityQuestion: string;
+		securityAnswer: string;
 	}) => {
 		try {
 			if (!terms) {
@@ -128,8 +149,11 @@ export default function UserAuthentication() {
 			const body: Member = {
 				username: values.username,
 				email: values.email,
-				password: values.password,	
+				password: values.password,
+				securityQuestion: values.securityQuestion,
+				securityAnswer: values.securityAnswer,	
 			};
+			console.log(body);
 			const response = await SignUp(body);
 			console.log(response);
 			if(response.status === 201)
@@ -270,6 +294,41 @@ export default function UserAuthentication() {
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 							/>
+							<div>
+								<label htmlFor="securityQuestion" className="block text-lg font-normal">
+									Security Question
+								</label>
+								<select 
+									name="securityQuestion" 
+									id="securityQuestion"
+									className="block p-2 rounded border border-gray-300"
+									{...formik.getFieldProps("securityQuestion")}
+									>
+										<option value="">Select a question</option>
+										{securityQuestions.map((question) => (
+      									<option key={question.value} value={question.value}>
+        								{question.label}
+										</option>
+										))}
+								</select>
+								{formik.touched.securityQuestion && formik.errors.securityQuestion ? (
+									<div className="text-red-500">{formik.errors.securityQuestion}</div>
+								) : null}
+							</div>
+							<Input
+								label={
+									formik.touched.securityAnswer && formik.errors.securityAnswer 
+										? formik.errors.securityAnswer 
+										: "Security Answer" 
+								}
+								type="text"
+								id="securityAnswer"
+								name="securityAnswer"
+								placeholder={formik.values.securityAnswer}
+								onChange={formik.handleChange}
+								onBlur={formik.handleBlur}
+							/>
+							
 							<div className="my-4 items-top flex  space-x-2">
 								<Checkbox
 									id="terms"
