@@ -623,6 +623,11 @@ Satanshu Mishra: `SatanshuMishra`
 - Implementing forget-password feature
 - Fixing connectivity of containers within AWS
 - Testing application on AWS
+- Overhaul UI (Design & Implementation)
+  - Chats
+  - Profile
+  - Requests
+- Add responsive behaviour to the designs
   
 ## Accomplishments
 - Add P2P payment feature on the website -- In-Progress
@@ -633,6 +638,11 @@ Satanshu Mishra: `SatanshuMishra`
 - Implementing forget-password feature -- In-Progress
 - Fixing connectivity of containers within AWS -- In-Progress
 - Testing application on AWS -- In-Progress
+  - Overhaul UI (Design & Implementation) - Completed
+  - Chats - Completed
+  - Profile - Completed
+  - Requests - Completed
+- Add responsive behaviour to the designs - Completed
 
 ## Test Report
 <img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
