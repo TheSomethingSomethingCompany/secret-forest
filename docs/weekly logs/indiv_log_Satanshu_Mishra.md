@@ -538,3 +538,42 @@ After conducting some research, I found that two of the most popular loggers use
 
 ## Peer Review
 <img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/d08495e6-b460-4c50-ab56-8fab6e0ebf80">
+
+**Week**: 25
+
+**Work Period**: 24 March 2024 - 31 March 2024
+
+## Individual Objectives
+
+- Complete Redesign and Overhaul of Chat's Page
+- Improve consistancy of Layouts across website.
+- Improve responsiveness of website layout.
+- Complete Redesign and Overhaul of Profile Page.
+- Complete Redesign and Overhaul of the Requests Page.
+- Add Testing for Back End function.
+
+## Active Tasks
+
+- Complete Redesign and Overhaul of Chat's Page
+- Improve consistancy of Layouts across website.
+- Improve responsiveness of website layout.
+- Complete Redesign and Overhaul of Profile Page.
+- Complete Redesign and Overhaul of the Requests Page.
+
+## Status of Tasks
+
+- Chats UI Update -- Completed
+- Complete Redesign and Overhaul of Chat's Page -- Completed
+- Improve consistancy of Layouts across website. -- Completed
+- Improve responsiveness of website layout. -- Completed
+- Complete Redesign and Overhaul of Profile Page. -- Completed
+- Complete Redesign and Overhaul of the Requests Page. -- In-Progress
+
+## Reason Behind OverHaul
+Our Website had a initial design that was function. However, this design lacked the modern touch we hoped for from our website. Furthermore, it lacked the responsiveness that our designs iniially promised. The new designs take into account both of these and user experience to help make the process of them exploring our website as easy as possible.
+
+
+## Peer Review
+<img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/e722a7b4-1f3a-4f9f-9030-5cae99e4468f">
+
+
