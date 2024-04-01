@@ -604,3 +604,39 @@ Satanshu Mishra: `SatanshuMishra`
 ### Burn-Up Chart
 ![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/e1cd676a-6d8b-4de8-9aa8-fbccf30b79a4)
 
+**Term 2 - Week 12 (Week 25)**: 25/03/2024 - 31/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+- Add P2P payment feature on the website
+- Implemented search for chats feature
+- Fixing bugs in profile picture retrieval
+- Research testing for the website
+  - Implement mock fetches for middleman functions
+- Implementing forget-password feature
+- Fixing connectivity of containers within AWS
+- Testing application on AWS
+  
+## Accomplishments
+- Add P2P payment feature on the website -- In-Progress
+- Implemented search for chats feature -- Completed
+- Fixing bugs in profile picture retrieval -- Completed
+- Research testing for the website -- In-Progress
+  - Implement mock fetches for middleman functions -- In-Progress
+- Implementing forget-password feature -- In-Progress
+- Fixing connectivity of containers within AWS -- In-Progress
+- Testing application on AWS -- In-Progress
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+<img width="567" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/0d5e7251-7a40-45bd-be05-b2004061724d">
