@@ -112,7 +112,10 @@ const getUserInfoRoutes = require("./app/routes/GetUserInfo");
 server.use("/getUserInfo", getUserInfoRoutes);
 
 const logoutRoutes = require("./app/routes/Logout");
-server.use("/logout", logoutRoutes)
+server.use("/logout", logoutRoutes);
+
+const getSecurityQuestionRoutes = require("./app/routes/GetSecurityQuestion");
+server.use("/getQuestion", getSecurityQuestionRoutes);
 
 
 server.listen(HTTP_PORT, () => {
