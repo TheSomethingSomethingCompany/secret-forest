@@ -87,8 +87,8 @@ router.post("/api", async (req, res) => {
 		await db.none(
 			`INSERT INTO security_question("memberID", "question", "answer")
 			 VALUES($1, $2, $3)`, 
-			 [memberData.memberID, pureSecurityQuestion, pureSecurityAnswer]
-		  );
+			 [memberData.memberID, pureSecurityQuestion, pureSecurityAnswer] 
+	   );
 
 		console.log("[SUCCESS]: SIGN-UP SUCCESSFUL");
 		console.log("[RESPONSE DATA]\n" + memberData);
