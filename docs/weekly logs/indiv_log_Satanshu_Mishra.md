@@ -572,6 +572,9 @@ After conducting some research, I found that two of the most popular loggers use
 ## Reason Behind OverHaul
 Our Website had a initial design that was function. However, this design lacked the modern touch we hoped for from our website. Furthermore, it lacked the responsiveness that our designs iniially promised. The new designs take into account both of these and user experience to help make the process of them exploring our website as easy as possible.
 
+Figma Designs:
+https://www.figma.com/file/ruYxLsM1z8Du6hOgbhWurW/COSC-499-%7C-Capstone?type=design&node-id=0%3A1&mode=design&t=9bc79avGG32LmjiS-1
+
 **I would like to apply for bonus marks for my contributions this week.**
 
 ## Peer Review
