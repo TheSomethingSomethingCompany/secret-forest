@@ -117,6 +117,9 @@ server.use("/logout", logoutRoutes);
 const getSecurityQuestionRoutes = require("./app/routes/GetSecurityQuestion");
 server.use("/getQuestion", getSecurityQuestionRoutes);
 
+const UpdatePasswordRoutes = require("./app/routes/UpdatePassword");
+server.use("/updatePassword", UpdatePasswordRoutes)
+
 
 server.listen(HTTP_PORT, () => {
 	console.log("Server started on http://localhost:6969");

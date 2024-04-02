@@ -21,10 +21,10 @@ router.post("/api", async (req, res) => {
 			});
 		}
 
-        let user = await db.one(
+    let user = await db.one(
 			isEmail
-				? 'SELECT "memberID" FROM member WHERE "email" = $1'
-				: 'SELECT "memberID" FROM member WHERE "username" = $1',
+				? 'SELECT "memberID", "username" FROM member WHERE "email" = $1'
+				: 'SELECT "memberID", "username" FROM member WHERE "username" = $1',
 			[pureIdentifier]
 		);
 
@@ -56,7 +56,7 @@ router.post("/api", async (req, res) => {
 
         console.log("Security Question Fetch : " + securityQuestion.question);
         res.json({
-            data: {question: securityQuestion.question, answer: securityQuestion.answer},
+            data: {question: securityQuestion.question, answer: securityQuestion.answer, username: user.username},
             status: 201,
             message: "User Fetch Successful",
             pgErrorObject: null,

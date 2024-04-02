@@ -217,6 +217,11 @@ export default function UserAuthentication() {
 								onChange={formikSignIn.handleChange}
 								onBlur={formikSignIn.handleBlur}
 							/>
+							<div className="w-full flex justify-end items-center">
+    							<a href="/forgotPassword" className="text-blue-500 underline text-sm mt-1">
+        							Forgot password?
+    							</a>
+							</div>
 							<div className="w-full flex flex-row justify-end items-center my-4">
 								<button
 									className="h-fit my-2 p-2 text-lg font-normal rounded-lg bg-black border-2 border-black hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
