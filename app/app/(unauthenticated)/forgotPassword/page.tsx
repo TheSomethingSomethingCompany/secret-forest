@@ -93,6 +93,7 @@ export default function ForgotPassword() {
 				setShowSignIn(false);
 				formikSignIn.resetForm();
 				formikChangePassword.resetForm(); 
+				formikSecurityQuestion.resetForm();
 			}
 
 		} catch (error) {
@@ -110,9 +111,7 @@ export default function ForgotPassword() {
 			if (values.securityAnswer == checkAnswer) {
 				setShowErrorMessage(false);
 				setShowChangePasswordForm(true);
-				formikSignIn.resetForm();
-				formikSecurityQuestion.resetForm();
-				formikChangePassword.resetForm();
+				
 				
 			} else {
 				setShowErrorMessage(true);
@@ -175,7 +174,7 @@ export default function ForgotPassword() {
 			const response = await updatePassword(body);
 			console.log(response)
 			if(response.status === 201) {
-				router.push("/auth");
+				router.push("/auth?signin=true");
 			}
 
 
