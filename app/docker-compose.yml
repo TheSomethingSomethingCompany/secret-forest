@@ -1,16 +1,16 @@
 version: "3.9"
 services:
-  db:
-    image: postgres
-    restart: always
-    environment:
-      - POSTGRES_PASSWORD=postgres
-    container_name: postgres
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-      - ./ddl:/docker-entrypoint-initdb.d
-    ports:
-      - "5432:5432"
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_PASSWORD=postgres
+  #   container_name: postgres
+  #   volumes:
+  #     - ./pgdata:/var/lib/postgresql/data
+  #     - ./ddl:/docker-entrypoint-initdb.d
+  #   ports:
+  #     - "5432:5432"
   nextjs:
     image: nextjs-docker-test
     build:
