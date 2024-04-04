@@ -649,3 +649,28 @@ This week i worked on testing out the new buckets and implementing them within t
 ## Peer Review
 ![week 24](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/2a8ffad0-c694-41c7-8106-8a17d24d930c)
 
+
+---------------------------
+
+**Week**: 25
+
+**Work Period**: 25 March 2024 - 31 March 2024
+
+## Individual Objectives
+
+This week has mainly been spent on fixing and working on the deployment side of the project. I had spent a lot of time in making sure that the containers are able to communicate with each other, similar to how they are able to do so locally through docker. This took a lot of time and effort to finally find a solution on how it is done and is still in progress as I am now working on getting the database container to work as well with its required volumes. Unfortunalty also due to the manner in which how deployment works, any update to the code takes some time until it is reflected on the deployed version which is also a partial reason as to why this has been taking a long time as well. The focus right now and for this final upcoming week is to try my hardest to make sure that the database container is running effectivley and is able to communicate with the other containers, and once all the AWS network configuration and set up has been complete, to deploy the final and most up to date version of the app, along with the completion of the report and associated documents. 
+
+
+## Active Tasks
+
+- Fixing container communications within Fargate task
+- Testing of the app in Fargate
+    
+## Status of Tasks
+
+- Fixing container communications within Fargate task -- In Progress
+- Testing of the app in Fargate -- In Progress
+
+## Peer Review
+![week 25](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/def18170-b842-46b0-9854-751617090098)
+

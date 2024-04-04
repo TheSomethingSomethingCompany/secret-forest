@@ -726,8 +726,10 @@
   - Decide task priorities with team
   - Ensure team moves forward to specifically working on AWS and Deployment
   
+  
+  
 ## Peer Review
-<img width="1067" alt="2024-02-19_00-49-30" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7aa933c9-ed34-4587-83f6-df4544436d95">
+<img width="905" alt="2024-03-12_12-16-49" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/446cd3ee-fd4d-4122-ac30-e5f8bcbfd5f6">
 
 **Work Period**: 03/03/2024 - 10/03/2024
 **GitHub Account**: `shaheershoaib`
@@ -746,6 +748,26 @@
   
 ## Peer Review
 <img width="905" alt="2024-03-12_12-16-49" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/446cd3ee-fd4d-4122-ac30-e5f8bcbfd5f6">
+
+
+**Work Period**: 03/24/2024 - 03/31/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Implement Search For Chats feature
+- BugFix Chats not displaying profile pictures for every user
+- Research ways to unit test given server uses session data
+      - Best way would be to mock fetch each middleman method to ensure each middleman returns the expected response
+- Discuss plan for this week regarding our team report and individual report
+  
+## Status of Tasks: `All Tasks Listed Completed`
+- Implement Search For Chats feature
+- BugFix Chats not displaying profile pictures for every user
+- Research ways to unit test given server uses session data
+- DIsucss plan for this week regarding our team report and individual report
+
+## Peer Review
+<img width="1067" alt="2024-02-19_00-49-30" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7aa933c9-ed34-4587-83f6-df4544436d95">
 
 
 

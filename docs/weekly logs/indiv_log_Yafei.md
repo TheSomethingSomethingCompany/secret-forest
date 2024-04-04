@@ -730,6 +730,50 @@ NOTES:
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/4666ab8d-3308-48e1-864d-53ed34c07b96)
 
 
+**Term 2 Week: 12** 
+**Work Period**: `25-03-2024` - `31-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For search bar
+- Work on forgot password functionality
+  - save security question and answer
+  - retrieve and display question for user to answer
+  - change password if user answers correctly
+- Work on Individual report and video 
+
+
+## Active Tasks
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For search bar
+- Work on forgot password functionality
+  - save security question and answer
+  - retrieve and display question for user to answer
+  - change password if user answers correctly 
+- Work on Individual report and video 
+
+## Status of Tasks
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For search bar
+- Work on forgot password functionality (In-Progress)
+  - save security question and answer (Completed)
+  - retrieve and display question for user to answer (In-Progress)
+  - change password if user answers correctly (In-Progress)
+- Work on Individual report and video (In-Progress) 
+
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/10202298-603d-4e96-a449-f3571bd7538d)
+
+
 
 
 

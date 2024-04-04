@@ -479,4 +479,22 @@
 ## Peer Review
 <img width="534" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f6658ee4-346b-4e81-b733-b83337b32748">
 
+# Personal Log - Arsh Bhat
+
+**Week**: 23
+**Week**: `25-03-2024` - `31-03-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Add P2P payment functionality
+  Add feature for user to pay money to another user using paypal api
+
+## Active Tasks
+- Add P2P payment functionality
+
+## Status of Tasks
+- Add P2P payment functionality - `IN-PROGRESS`
+
+## Peer Review
+![Screenshot 2024-03-31 204032](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/bb767898-807a-419a-b096-d36f22331fc4)
 
