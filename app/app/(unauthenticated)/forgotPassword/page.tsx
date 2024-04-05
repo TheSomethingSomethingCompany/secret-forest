@@ -8,6 +8,7 @@ import Input from "@/app/components/formComponents/Input";
 import { useWebSocket } from "../../contexts/WebSocketContext";
 import getQuestion from "../forgotPassword/api/getQuestion";
 import updatePassword from "../forgotPassword/api/updatePassword";
+import checkAnswer from "../forgotPassword/api/checkAnswer";
 
 
 
@@ -18,7 +19,6 @@ export default function ForgotPassword() {
     const router = useRouter();
 
 	const [question, SetQuestion] = useState("");
-	const [checkAnswer, SetCheckAnswer] = useState("");
 	const [userInfo, SetUserInfo] = useState("");
 
 	const [showSigninForm, setShowSignIn] = useState(true);
@@ -38,6 +38,7 @@ export default function ForgotPassword() {
 			identifier: "",
 		},
 		onSubmit: (values: { identifier: string;}) => {
+			
 			submitSignInData(values);
 		},
 
@@ -85,7 +86,6 @@ export default function ForgotPassword() {
 			else if (response.data.question == "childhoodHero") {
 				SetQuestion("Who was your childhood hero?");
 			}
-			SetCheckAnswer(response.data.answer);
 			SetUserInfo(response.data.username);
 
 			//Transition to the next stage if successful
@@ -93,7 +93,7 @@ export default function ForgotPassword() {
 				setShowSignIn(false);
 				formikSignIn.resetForm();
 				formikChangePassword.resetForm(); 
-				formikSecurityQuestion.resetForm();
+				formikCheckSecurityAnswer.resetForm();
 			}
 
 		} catch (error) {
@@ -103,19 +103,13 @@ export default function ForgotPassword() {
 
 	// FORMIK: SECURITY QUESTION FORM
 
-	const formikSecurityQuestion = useFormik({
+	const formikCheckSecurityAnswer = useFormik({
 		initialValues: {
 			securityAnswer: "",
 		},
 		onSubmit: (values: { securityAnswer: string;}) => {
-			if (values.securityAnswer == checkAnswer) {
-				setShowErrorMessage(false);
-				setShowChangePasswordForm(true);
-				
-				
-			} else {
-				setShowErrorMessage(true);
-			}
+			checkSecurityAnswer(values);
+
 		},
 
 		// SCHEMA VALIDATION
@@ -126,6 +120,35 @@ export default function ForgotPassword() {
 				)
 		}),
 	});
+
+	// Check answer form submit handler
+
+	const checkSecurityAnswer = async (values: {
+		securityAnswer: string;
+	
+	}) => {
+		try {
+
+			const body = {
+				username: userInfo,
+				securityAnswer: values.securityAnswer	
+			};
+			console.log(body);
+			const response = await checkAnswer(body);
+			console.log(response)
+			if(response.status === 201) {
+				setShowChangePasswordForm(true);
+				setShowErrorMessage(false);
+			} 
+			else if (response.status === 401) {
+				setShowErrorMessage(true);
+			} 
+
+
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	// FORMIK: CHANGE PASSWORD FORM
 
@@ -265,21 +288,21 @@ export default function ForgotPassword() {
 				) : (
 					<form
 						className="flex flex-col items-start my-4 w-full"
-						onSubmit={formikSecurityQuestion.handleSubmit}
+						onSubmit={formikCheckSecurityAnswer.handleSubmit}
 					>
 						<p className="mb-2"> {question} </p>
 						<Input
 							label={
-								formikSecurityQuestion.touched.securityAnswer && formikSecurityQuestion.errors.securityAnswer 
-									? formikSecurityQuestion.errors.securityAnswer 
+								formikCheckSecurityAnswer.touched.securityAnswer && formikCheckSecurityAnswer.errors.securityAnswer 
+									? formikCheckSecurityAnswer.errors.securityAnswer 
 									: "Enter Answer" 
 							}
 							type="text"
 							id="securityAnswer"
 							name="securityAnswer"
-							placeholder={formikSecurityQuestion.values.securityAnswer}
-							onChange={formikSecurityQuestion.handleChange}
-							onBlur={formikSecurityQuestion.handleBlur}
+							placeholder={formikCheckSecurityAnswer.values.securityAnswer}
+							onChange={formikCheckSecurityAnswer.handleChange}
+							onBlur={formikCheckSecurityAnswer.handleBlur}
 						/>
 						{showErrorMessage && (
     						<div className="text-red-500 mt-2">Incorrect Answer</div>

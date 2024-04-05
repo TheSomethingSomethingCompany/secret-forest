@@ -87,7 +87,13 @@ router.post("/api", async (req, res) => {
 		await db.none(
 			`INSERT INTO security_question("memberID", "question", "answer")
 			 VALUES($1, $2, $3)`, 
-			 [memberData.memberID, pureSecurityQuestion, pureSecurityAnswer] 
+			 [	memberData.memberID, 
+				pureSecurityQuestion,
+				HmacSHA256(
+					pureSecurityAnswer,
+					"230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"
+				).toString() 
+			] 
 	   );
 
 		console.log("[SUCCESS]: SIGN-UP SUCCESSFUL");

@@ -117,8 +117,11 @@ server.use("/logout", logoutRoutes);
 const getSecurityQuestionRoutes = require("./app/routes/GetSecurityQuestion");
 server.use("/getQuestion", getSecurityQuestionRoutes);
 
-const UpdatePasswordRoutes = require("./app/routes/UpdatePassword");
-server.use("/updatePassword", UpdatePasswordRoutes)
+const updatePasswordRoutes = require("./app/routes/UpdatePassword");
+server.use("/updatePassword", updatePasswordRoutes)
+
+const checkSecurityAnswerRoutes = require("./app/routes/CheckSecurityAnswer");
+server.use("/checkAnswer", checkSecurityAnswerRoutes);
 
 
 server.listen(HTTP_PORT, () => {

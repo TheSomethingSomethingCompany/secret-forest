@@ -29,7 +29,7 @@ router.post("/api", async (req, res) => {
 		);
 
     const securityQuestion = await db.one(
-        `SELECT "question", "answer"
+        `SELECT "question"
          FROM security_question
          WHERE "memberID" = $1`,
          [user.memberID]
@@ -56,7 +56,7 @@ router.post("/api", async (req, res) => {
 
         console.log("Security Question Fetch : " + securityQuestion.question);
         res.json({
-            data: {question: securityQuestion.question, answer: securityQuestion.answer, username: user.username},
+            data: {question: securityQuestion.question, username: user.username},
             status: 201,
             message: "User Fetch Successful",
             pgErrorObject: null,
