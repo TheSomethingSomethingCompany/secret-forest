@@ -21,14 +21,14 @@ router.post("/api", async (req, res) => {
 			});
 		}
 
-    let user = await db.one(
+    let user = await db.oneOrNone(
 			isEmail
 				? 'SELECT "memberID", "username" FROM member WHERE "email" = $1'
 				: 'SELECT "memberID", "username" FROM member WHERE "username" = $1',
 			[pureIdentifier]
 		);
 
-    const securityQuestion = await db.one(
+    const securityQuestion = await db.oneOrNone(
         `SELECT "question"
          FROM security_question
          WHERE "memberID" = $1`,
