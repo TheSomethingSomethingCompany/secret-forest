@@ -67,10 +67,19 @@ router.post("/api", async (req, res) => {
 				).toString(),
 			]
 		);
-		let memberData = await db.one(
+		let memberData = await db.oneOrNone(
 			'SELECT "memberID" FROM member WHERE "username" = $1',
 			[username]
 		);
+
+		if (!memberData) res.json({
+			data: null,
+			status: 404,
+			message: "No member returned. Member sign-up failed.",
+			pgErrorObject: null,
+		});
+
+
 		console.log("[SUCCESS]: SIGN-UP SUCCESSFUL");
 		console.log("[RESPONSE DATA]\n" + memberData);
 
@@ -87,14 +96,14 @@ router.post("/api", async (req, res) => {
 		console.log("[ERROR NAME]:\n" + error.name);
 		console.log(
 			"[LOG RESPONSE]:\n" +
-				JSON.stringify({
-					data: null,
-					status: 500,
-					message: "User SignUp Failed",
-					pgErrorObject: {
-						...error,
-					},
-				})
+			JSON.stringify({
+				data: null,
+				status: 500,
+				message: "User SignUp Failed",
+				pgErrorObject: {
+					...error,
+				},
+			})
 		);
 		res.json({
 			data: null,
