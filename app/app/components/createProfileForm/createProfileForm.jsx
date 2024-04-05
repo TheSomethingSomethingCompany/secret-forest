@@ -176,8 +176,8 @@ function FormLabelsAndInputs() {
 					onChangeFunction={onFullNameChange}
 					placeHolder="e.g., John Wilfred Doe"
 				/>
-				<div className="flex flex-row justify-evenly w-full">
-					<div className="pr-2 w-full">
+				<div className="flex flex-col md:flex-row justify-evenly w-full">
+					<div className="md:pr-2 w-full">
 						<FlexLabelAndTextInput
 							labelVal={countryLabelHTML}
 							inputName="country"
@@ -186,7 +186,7 @@ function FormLabelsAndInputs() {
 							placeHolder="e.g, Canada"
 						/>
 					</div>
-					<div className="pl-2 w-full">
+					<div className="md:pl-2 w-full">
 						<FlexLabelAndTextInput
 							labelVal={addressLabelHTML}
 							inputName="address"
@@ -207,7 +207,7 @@ function FormLabelsAndInputs() {
 					<OccupationTags
 						id="occupationTags"
 						inputName="occupationTags"
-						inputFieldStyles="rounded-sm p-2 text-lg"
+						inputFieldStyles="rounded-sm p-2 text-[1.1rem]"
 						placeHolder="e.g, Software Engineer"
 						currentTags={currentTags}
 						setTags={setTags}
@@ -217,7 +217,7 @@ function FormLabelsAndInputs() {
 					{" "}
 					<textarea
 						id="bio"
-						className="mobile:h-auto text-black w-3/4 rounded-md text-[1.25rem] resize-none p-2"
+						className="mobile:h-auto text-black w-full border-[1px] border-black rounded-md text-[1.1rem] resize-none p-2"
 						name="bio"
 						placeholder="e.g, I have a Bachelor's degree in computer science and am an avid learner. While I love working in software, when not at work, you can find me in the great outdoors."
 						onChange={onBioChange}

@@ -94,6 +94,10 @@ export default function Chats() {
 					case "insertMessage":
 						if (response.status == 201)
 							console.log("Message inserted successfully!");
+						if (response.status === 401)
+							console.log("Unauthorized Access Detected.");
+						if	(response.status === 404)
+							console.log("Message ID wasn't returned. Message wasn't inserted successfully!");
 						break;
 					case "deleteMessage":
 						if (response.status == 201)
