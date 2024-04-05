@@ -25,7 +25,9 @@ server.use(express.json()); // for parsing application/json
 
 // Specify mock session data
 const mockSessionData = {loggedInUserMemberID: "mockLoggedInUserMemberID"};
-// Mock the session data middleware
+
+// Mock the session data by setting req.session to mockSessionData
+// This is global middleware that will be called no matter what route is being accessed
 server.use((req, res, next) => {
   req.session = mockSessionData;
   next(); // Call the next middleware, which is the router, as seen below
@@ -34,8 +36,8 @@ server.use((req, res, next) => {
 // The next middleware being called. This is why it was important to call next() in the previous middleware, because otherwise this code would not have been executed.
 server.use('/sendRequest', router); // attach your router
 
-describe('Assuming that testMemberID and the memberID associated with testToUsername do not have a request with eachother, have not blocked eachother, and have no chat with eachother', () => {
-  it('should respond with a status code of 200', async () => {
+describe('Given that no request, chat, or block exists between 2 users, and request is created successfully', () => {
+  it('should respond with a status code of 201', async () => {
     const mockData = { username: 'testToUsername' }; // Mock request body received on the router endpoint
 
 
@@ -90,6 +92,10 @@ describe('Assuming that testMemberID and the memberID associated with testToUser
 
   });
 
+});
+
+describe("Given that the user does not exist", () => {
+
 
     it('should respond with a status code of 404', async () => {
         const mockData = { username: 'nonExistentUsername' }; // Mock request body received on the router endpoint. Not necessary here, since we're just enforcing the promise to return null, but it's here for completeness.
@@ -113,6 +119,9 @@ describe('Assuming that testMemberID and the memberID associated with testToUser
         expect(resBody.status).toBe(404);
     
     });
+});
+
+describe("Given that 2 users have blocked eachother and one is trying to send a request to the other", () => {
 
     it('should respond with a status code of 409', async () => {
         const mockData = { username: 'testToUsername' }; // Mock request body received on the router endpoint
@@ -138,6 +147,10 @@ describe('Assuming that testMemberID and the memberID associated with testToUser
         expect(resBody.status).toBe(409);
     
     });
+});
+
+
+describe("Given that a request already exists between 2 users and one is trying to send a request to the other", () => {
 
     it('should respond with a status code of 409', async () => {
         const mockData = { username: 'testToUsername' }; // Mock request body received on the router endpoint
@@ -166,6 +179,9 @@ describe('Assuming that testMemberID and the memberID associated with testToUser
         expect(resBody.status).toBe(409);
     
     });
+});
+
+describe("Assuming that a chat a;ready exists between 2 users and one is trying to send a request to the other", () => {
 
     it('should respond with a status code of 409', async () => { 
         const mockData = { username: 'testToUsername' }; // Mock request body received on the router endpoint
@@ -197,8 +213,11 @@ describe('Assuming that testMemberID and the memberID associated with testToUser
         expect(resBody.status).toBe(409);
     
     });
+});
 
 
+
+describe("Assuming that creating a request fails", () => {
     it('should respond with a status code of 500', async () => {
         const mockData = { username: 'testToUsername' }; // Mock request body received on the router endpoint
     
@@ -222,7 +241,6 @@ describe('Assuming that testMemberID and the memberID associated with testToUser
 
         db.none.mockImplementation((query, values) => {
             if(query.includes('INSERT INTO request("fromMemberID", "toMemberID") VALUES ($1, $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'testToMemberID') { // Mock the insert request query
-                console.log("HELLLLLOOOOOOOOOOOO");
                 return Promise.reject();
             }
 
