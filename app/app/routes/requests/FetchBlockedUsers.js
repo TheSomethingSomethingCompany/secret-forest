@@ -33,7 +33,8 @@ router.get('/api', async (req, res) => {
         JOIN profile ON blocked_user."blockedMemberID" = profile."memberID"
         WHERE "blockerMemberID" = $1 AND ${whereFilter} ILIKE $2
         `, [memberID, `${searchQ}%`]);
-        res.json({ status: 200, message: 'Retrieved blocked users successfully', data: requests});
+        
+        return res.json({ status: 200, message: 'Retrieved blocked users successfully', data: requests});
 
     }
         

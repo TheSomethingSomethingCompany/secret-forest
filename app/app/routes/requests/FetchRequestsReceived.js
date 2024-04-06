@@ -35,7 +35,8 @@ router.get('/api', async (req, res) => {
         JOIN profile ON request."fromMemberID" = profile."memberID"
         WHERE "toMemberID" = $1 AND ${whereFilter} ILIKE $2
         `, [memberID, `${searchQ}%`]);
-        res.json({ status: 200, message: 'Retrieved requests received successfully', data: requests});
+        
+        return res.json({ status: 200, message: 'Retrieved requests received successfully', data: requests});
 
     }
         

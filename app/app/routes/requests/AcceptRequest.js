@@ -44,7 +44,7 @@ router.post('/api', async (req, res) => {
             DELETE FROM request WHERE ("toMemberID" = $1 AND "fromMemberID" = $2)
             `, [toMemberID, fromMemberID]);
 
-            res.json({ status: 409, message: 'Chat already exists' });
+            return res.json({ status: 409, message: 'Chat already exists' });
         }
 
       

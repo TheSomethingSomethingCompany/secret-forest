@@ -24,6 +24,7 @@ router.post('/api', async (req, res) => {
         const blockExists = await db.oneOrNone(`
         SELECT * FROM blocked_user WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
         `, [blockerMemberID, blockedMemberID]);
+    
         if(blockExists != null)
            return res.json({ status: 409, message: 'User has already blocked you or has blocked you' });
         
