@@ -42,12 +42,15 @@ export default function Chats() {
 	const [loggedInPfp, setLoggedInPfp] = useState(``);
 	const [chatsProfilePictures, setChatsProfilePictures] = useState(new Map());
 
+
 	// Create a WebSocket connection to the server
 
 	const ws = useRef(null);
 	const inputRef = useRef(null);
 	const uploadRef = useRef(null);
 	const chatID = useRef("");
+
+	
 
 	//  INFORMATION: QUICK NAVIGATE TO INPUT
 
@@ -128,8 +131,8 @@ export default function Chats() {
 		};
 	}, []);
 
-	async function getChats() {
-		let res = await retrieveChats();
+	async function getChats(searchQuery: string) {
+		let res = await retrieveChats(searchQuery);
 		console.log("RESPONSE FROM SERVER FOR CHATS:");
 		console.log(res);
 		if (res.data) {
@@ -186,14 +189,19 @@ export default function Chats() {
 		setMessage("");
 	}
 
+	// On mount, get the chats
 	useEffect(() => {
-		getChats();
+		getChats("");
 	}, []);
 
+	// Anytime the search query changes, get the chats
+
+
+	// INFORMATION: CHAT FUNCTIONALITY
 	function onChatClick(e: any) {
 		console.log(
 			"Clicked on chat with id: " + e.currentTarget.dataset.chatId
-		); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element for which it is defined, not the child element directly.
+		); // currentTarget specifies that even if you click a child element, the event is triggered for the parent element which has the event attached, not the child element directly.
 		chatID.current = e.currentTarget.dataset.chatId;
 		getMessages(chatID.current);
 	}
@@ -248,6 +256,8 @@ export default function Chats() {
 		prevMessagesListLength.current = messagesList.length;
 	}, [messagesList]);
 
+
+	//  INFORMATION: FILE UPLOAD VIA WEBSOCKETS
 	function onFileChange(e: any) {
 		const file = e.target.files[0];
 		toBase64(file).then((base64File) => {
@@ -281,6 +291,15 @@ export default function Chats() {
 								ref={inputRef}
 								className="w-full h-full px-2 outline-none"
 								placeholder="Search for user..."
+								onKeyDown={(e) => {
+										if(e.key=== "Enter")
+										{
+											e.preventDefault();
+											getChats(e.currentTarget.value);
+										}
+								
+									}
+								}
 							/>
 						</form>
 						<kbd className="bg-black text-white p-2 rounded-lg">
