@@ -1,9 +1,7 @@
 export async function updateProfileInfo(data){
     const response = await fetch('http://localhost:6969/saveProfileData/api', {
         method: 'POST',
-        //headers: { 'Content-Type': 'application/json'},
         body: data,
-        //cache: "no-cache",
         credentials: "include",
     });
 

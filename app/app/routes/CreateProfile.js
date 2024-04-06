@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 	filename: function (req, file, cb) {
 		pfpName = req.session.signUpMemberID;
 		fileExt = path.extname(file.originalname); // Get the file extension of the uploaded file
-		cb(null, pfpName + fileExt); // Since file names are not guaranteed to be unique, we will use the current date and time in milliseconds as the file name, along with the file extension, such as .jpg or .png.                                                        // Also, cb is just a callback that takes in the first argument as null, and the second argument as the file name that we want to use for the uploaded file.
+		cb(null, pfpName + fileExt); // cb is just a callback that takes in the first argument as null, and the second argument as the file name that we want to use for the uploaded file.
 	},
 });
 

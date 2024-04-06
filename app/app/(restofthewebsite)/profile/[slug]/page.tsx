@@ -37,6 +37,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 	//pfp
 	const [pfpInfo, setPfpInfo] = useState(``);
 	const [tempPfp, setTempPfp] = useState(``);
+	const [tempPfpFile, setTempPfpFile] = useState(``);
 
 	const fetchData = async () => {
 		const memberData: MemberFetch = await fetchUserData({ ...params });
@@ -116,9 +117,14 @@ function EditProfile({ params }: { params: { slug: string } }) {
 
 	function formDataAsJSON() {
 		console.log("check data: ", tempProfile);
-		console.log("PFP: " + tempPfp);
+		console.log("PFP: ", tempPfpFile);
 		const formData = new FormData();
-		formData.append("pfp", tempPfp);
+		if (tempPfpFile) {
+			formData.append("pfp", tempPfpFile);
+		}
+		else {
+			formData.append("pfp", tempPfp);
+		}
 		formData.append("fullName", tempProfile.fullName);
 		formData.append("country", tempProfile.country);
 		formData.append("address", tempProfile.address);
@@ -133,7 +139,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 	async function handleSave(e: { preventDefault: () => void }) {
 		setIsEditing(false);
 		tempProfile.currentTags = currentTags;
-		console.log("PROFILE_IMAGE: ", tempPfp);
+		console.log("PROFILE_IMAGE: ", tempPfpFile);
 		if (
 			tempProfile.fullName != "" &&
 			tempProfile.country != "" &&
@@ -206,7 +212,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 
 	const handlePfpChange = (e) => {
 		const file = e.target.files[0];
-		setTempPfp(file);
+		setTempPfpFile(file);
 		if (file) {
 			const reader = new FileReader();
 			reader.onloadend = () => {
