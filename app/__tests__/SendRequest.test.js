@@ -1,8 +1,10 @@
+/*
 const { TextEncoder, TextDecoder } = require('util');
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 const { setImmediate } = require('timers');
 global.setImmediate = setImmediate;
+*/
 
 const request = require('supertest');
 const express = require('express');

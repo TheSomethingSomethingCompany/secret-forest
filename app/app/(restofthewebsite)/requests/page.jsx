@@ -11,6 +11,7 @@ import declineRequest from "./api/declineRequest";
 import fetchBlockedUsers from "./api/fetchBlockedUsers";
 import unblockUser from "./api/unblockUser";
 import React, { useEffect, useState, useRef} from 'react';
+import {toast} from 'react-toastify';
 
 export default function Home() {
    
@@ -35,22 +36,59 @@ export default function Home() {
         
         switch(mode.current)
         {
+            // Handle the response
             case "received":
                 fetchRequestsReceived({searchQ: searchQ, op: op}).then((res) => {
-                    results.current = res;
-                    setRerender(prev => !prev);
+
+                  // Handle the response
+                  switch(res.status){
+                    case 200:
+                      results.current = res;
+                      break;
+                    case 500:
+                      results.current = [];
+                      toast.error("Failed to retrieve received requests, please try again by refreshing the page.", {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      });
+                      break;
+                  }
+                  setRerender(prev => !prev);
                 });
                 break;
             case "sent":
                 fetchRequestsSent({searchQ: searchQ, op: op}).then((res) => {
-                    results.current = res;
+
+                  // Handle the response
+                  switch(res.status){
+                    case 200:
+                      results.current = res;
+                      break;
+                    case 500:
+                      results.current = [];
+                      toast.error("Failed to retrieve sent requests, please try again by refreshing the page.", {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      });
+                      break;
+                  }
                     setRerender(prev => !prev)
                 });
                 break;
             case "blocked":
                 fetchBlockedUsers({searchQ: searchQ, op: op}).then((res) => {
-                    results.current = res;
-                   setRerender(prev => !prev);
+
+                  // Handle the response
+                  switch(res.status){
+                    case 200:
+                      results.current = res;
+                      break;
+                    case 500:
+                      results.current = [];
+                      toast.error("Failed to retrieve blocked users, please try again by refreshing the page.", {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      });
+                      break;
+                  }
+                  setRerender(prev => !prev);
                 });
                 break;
         }

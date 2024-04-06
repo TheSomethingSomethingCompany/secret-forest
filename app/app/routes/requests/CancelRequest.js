@@ -45,7 +45,7 @@ router.post('/api', async (req, res) => {
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to cancel request'});
+        res.json({ status: 500, message: 'Failed to cancel request', pgErrorObject: {...error}});
     }
 });
 

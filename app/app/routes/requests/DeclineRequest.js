@@ -45,7 +45,7 @@ router.post('/api', async (req, res) => {
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to delete request'});
+        res.json({ status: 500, message: 'Failed to delete request', pgErrorObject: {...error});
     }
 });
 

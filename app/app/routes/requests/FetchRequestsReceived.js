@@ -5,17 +5,17 @@ const db = require("../../db-connection.js")
 router.get('/api', async (req, res) => {
     
     const searchQ = req.query.searchQ;
-    const op = parseInt(req.query.op);
+    const searchBy = parseInt(req.query.searchBy);
 
     var whereFilter = '';
-    switch(op){ 
-      case 0: // Search by name
+    switch(searchBy){ 
+      case 'name': // Search by name
         whereFilter = ` profile."name"`;
         break;
-      case 1: // Search by email
+      case 'email': // Search by email
         whereFilter = ` member."email"`;
         break;
-      case 2: // Search by username
+      case 'username': // Search by username
         whereFilter = ` member."username"`;
         break;
     }
@@ -41,7 +41,7 @@ router.get('/api', async (req, res) => {
         
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to retrieve received requests'});
+        res.json({ status: 500, message: 'Failed to retrieve received requests', error: error.message});
     }
 });
 

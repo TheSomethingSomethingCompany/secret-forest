@@ -45,7 +45,7 @@ router.get('/api', async (req, res) => {
         
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to retrieve sent requests'});
+        res.json({ status: 500, message: 'Failed to retrieve sent requests', error: error.message});
     }
 });
 
