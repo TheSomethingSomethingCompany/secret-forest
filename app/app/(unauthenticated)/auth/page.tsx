@@ -151,10 +151,10 @@ export default function UserAuthentication() {
 				isEmail: emailRegex.test(values.identifier),
 			};
 			const response = await SignIn(body);
-			console.log("Logged In Successfully!");
 			console.log(response);
 			if (response.status == 205) {
 				sendMessage("signedIn", {});
+				console.log("Logged In Successfully!");
 				router.push("/createProfile");
 			} else {
 				sendMessage("signedIn", {});

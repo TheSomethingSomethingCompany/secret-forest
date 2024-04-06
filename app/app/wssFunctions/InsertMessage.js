@@ -55,7 +55,10 @@ async function handleInsertingMessage(req, res) {
                 `, [chatID, memberID, message]);
 			const messageID = messageRes.messageID;
 
-			if (!messageRes) res.json({ status: 404, message: 'Message ID was not returned.', action: 'insertMessage' });
+			if (!messageRes) {
+				res.json({ status: 404, message: 'Message ID was not returned.', action: 'insertMessage' });
+				return;
+			}
 
 			if (file) {
 				console.log('[UPLOADED FILE]');

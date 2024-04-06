@@ -63,7 +63,7 @@ router.post("/api", async (req, res) => {
 			]
 		);
 
-		if (!member)
+		if (!member) {
 			res.json({
 				data: null,
 				status: 404,
@@ -72,6 +72,8 @@ router.post("/api", async (req, res) => {
 					...error,
 				},
 			});
+			return;
+		}
 
 		// We need to check if the user has actually created a profile yet. If not, we need to redirect them to the profile creation page.
 		const hasProfile = await db.any(
@@ -88,8 +90,8 @@ router.post("/api", async (req, res) => {
 			req.session.save(); // Save session data
 			console.log(
 				"[MEMBER ID]: " +
-					req.session.signUpMemberID +
-					" [STATUS CODE]: 205"
+				req.session.signUpMemberID +
+				" [STATUS CODE]: 205"
 			);
 
 			console.log("SUCCESS 205");
@@ -119,8 +121,8 @@ router.post("/api", async (req, res) => {
 
 			console.log(
 				"[MEMBER ID]: " +
-					req.session.loggedInUserMemberID +
-					" Is Logged In"
+				req.session.loggedInUserMemberID +
+				" Is Logged In"
 			);
 			console.log("SUCCESS 201");
 			res.json({

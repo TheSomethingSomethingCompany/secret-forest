@@ -72,12 +72,15 @@ router.post("/api", async (req, res) => {
 			[username]
 		);
 
-		if (!memberData) res.json({
-			data: null,
-			status: 404,
-			message: "No member returned. Member sign-up failed.",
-			pgErrorObject: null,
-		});
+		if (!memberData) {
+			res.json({
+				data: null,
+				status: 404,
+				message: "No member returned. Member sign-up failed.",
+				pgErrorObject: null,
+			});
+			return;
+		}
 
 
 		console.log("[SUCCESS]: SIGN-UP SUCCESSFUL");
