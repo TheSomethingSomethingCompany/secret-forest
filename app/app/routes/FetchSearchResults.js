@@ -90,9 +90,6 @@ router.post("/api", async (req, res) => {
             pgErrorObject: null,
           });
         }
-   
-
-   
 
    
   } catch (error) {

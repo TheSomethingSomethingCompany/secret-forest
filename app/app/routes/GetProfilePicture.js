@@ -33,25 +33,28 @@ router.post("/api", async (req, res) => {
         message: "User Not Found",
         pgErrorObject: null,
       });
-    } else {
+    } 
 
-        const imgName = pfpImg.pfpPath;
-        let imgPath = ``;
-        if (imgName.length <= 6) {
-            imgPath = `/profile-pictures/${imgName}`;
-        } else {
-            imgPath = `/pfp-uploads/${imgName}`;
-        }
 
-        console.log("User Fetch PFP Successful: " + imgPath);
-        res.json({
-            data: imgPath,
-            status: 200,
-            message: "User Fetch Successful",
-            pgErrorObject: null,
-          });
-
+    const imgName = pfpImg.pfpPath;
+    let imgPath = ``;
+    if (imgName.length <= 6) 
+    {
+        imgPath = `/profile-pictures/${imgName}`;
+    } else 
+    {
+        imgPath = `/pfp-uploads/${imgName}`;
     }
+
+    console.log("User Fetch PFP Successful: " + imgPath);
+    res.json({
+        data: imgPath,
+        status: 200,
+        message: "User Fetch Successful",
+        pgErrorObject: null,
+    });
+
+    
 
 } catch (error) {
     console.log("[ERROR NAME]:\n" + error.name);

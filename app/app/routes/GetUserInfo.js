@@ -14,12 +14,11 @@ router.get("/api", async (req, res) => {
         WHERE member."memberID" = $1
         `, [memberID]);
 
-        if (userInfo.length == 0) {
-            res.json({ status: 422, message: 'Cannot find user' });
-            return;
-        } else {
-            res.json({ status: 201, message: 'Fetch user successfully', data: userInfo });
-        }
+        if (userInfo.length == 0) 
+            return res.json({ status: 404, message: 'User does not exist' });
+            
+        return res.json({ status: 200, message: 'Fetched user successfully', data: userInfo });
+        
 
     
 } catch (error) {

@@ -8,11 +8,11 @@ router.post("/api", async (req, res) => {
 
   try {
     req.session.destroy((err) => {
-        if (err) {
-            res.json({ status: 422, message: 'Cannot Delete Session' });
-        } else {
-            res.json({ status: 202, message: 'User Logged Out' });
-        }
+        if (err) 
+            return res.json({ status: 422, message: 'Cannot Delete Session' });
+        
+        return res.json({ status: 202, message: 'User Logged Out' });
+        
     });
 
 
