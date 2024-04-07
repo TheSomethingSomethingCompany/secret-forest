@@ -130,6 +130,7 @@ export default function UserAuthentication() {
 				email: values.email,
 				password: values.password,	
 			};
+			console.log("GOOD TO GO!");
 			const response = await SignUp(body);
 			console.log(response);
 			if(response.status === 201)

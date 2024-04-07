@@ -33,14 +33,14 @@ router.post('/api', async (req, res) => {
         DELETE FROM request WHERE ("toMemberID" = $1 AND "fromMemberID" = $2)
         `, [toMemberID, fromMemberID]);
         
-        return es.json({ status: 201, message: 'Deleted request successfully'});
+        return res.json({ status: 201, message: 'Deleted request successfully'});
     
         
         
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to delete request', pgErrorObject: {...error});
+        res.json({ status: 500, message: 'Failed to delete request', pgErrorObject: {...error}});
     }
 });
 

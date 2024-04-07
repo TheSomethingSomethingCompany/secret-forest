@@ -56,7 +56,7 @@ router.post('/api', async (req, res) => {
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to block user', pgErrorObject: {...error});
+        res.json({ status: 500, message: 'Failed to block user', pgErrorObject: {...error}});
     }
 });
 

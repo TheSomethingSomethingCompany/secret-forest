@@ -517,8 +517,7 @@ export default function Chats() {
 									{
 										chatsList.find(
 											(chat) =>
-												chat.chatID ===
-												parseInt(chatID.current)
+												chat.chatID === parseInt(chatID.current)
 										)?.name
 									}
 								</p>

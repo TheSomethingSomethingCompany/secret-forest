@@ -65,7 +65,7 @@ router.post('/api', async (req, res) => {
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to accept request', pgErrorObject: {...error});
+        res.json({ status: 500, message: 'Failed to accept request', pgErrorObject: {...error}});
     }
 });
 

@@ -5,7 +5,7 @@ const db = require("../../db-connection.js")
 router.get('/api', async (req, res) => {
     
     const searchQ = req.query.searchQ;
-    const searchBy = parseInt(req.query.searchBy);
+    const searchBy = req.query.searchBy;
 
     var whereFilter = '';
     switch(searchBy){ 
@@ -20,6 +20,10 @@ router.get('/api', async (req, res) => {
         break;
     }
 
+    console.log(`[SEARCHQ]: ${searchQ}`);
+    console.log(`[SEARCH BY]: ${searchBy}`);
+    console.log(`[WHERE FILTER]: ${whereFilter}`);
+    console.log("FOR RECEIVED REQUESTS");
     try
     {
         
@@ -36,6 +40,7 @@ router.get('/api', async (req, res) => {
         WHERE "toMemberID" = $1 AND ${whereFilter} ILIKE $2
         `, [memberID, `${searchQ}%`]);
         
+        console.log("[RETRIEVED REQUESTS]: ", requests);
         return res.json({ status: 200, message: 'Retrieved requests received successfully', data: requests});
 
     }

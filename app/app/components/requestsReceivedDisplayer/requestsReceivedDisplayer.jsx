@@ -40,8 +40,8 @@ function requestsReceivedDisplayer({requestsReceivedResults, setRequestsReceived
             <p className = "text-lg font-bold">Country: {request.country}</p>
             </div>
             <div className = "flex items-center">
-                <button className = "bg-green-400 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {acceptRequestHandler}>Accept</button>
-                <button className = "bg-red-400 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {declineRequestHandler}>Decline</button>
+                <button className = "bg-green-400 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {acceptRequestHandler}><p>Accept</p></button>
+                <button className = "bg-red-400 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {declineRequestHandler}><p>Decline</p></button>
             </div>
           </div>
         );

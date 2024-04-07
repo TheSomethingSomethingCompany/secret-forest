@@ -5,7 +5,7 @@ const db = require("../../db-connection.js")
 router.get('/api', async (req, res) => {
     
     const searchQ = req.query.searchQ;
-    const searchBy = parseInt(req.query.searchBy);
+    const searchBy = req.query.searchBy;
 
     var whereFilter = '';
     switch(searchBy){ 
@@ -19,6 +19,11 @@ router.get('/api', async (req, res) => {
         whereFilter = ` member."username"`;
         break;
     }
+
+    console.log(`[SEARCHQ]: ${searchQ}`);
+    console.log(`[SEARCH BY]: ${searchBy}`);
+    console.log(`[WHERE FILTER]: ${whereFilter}`);
+    console.log("FOR BLOCKED USERS");
 
     try
     {
