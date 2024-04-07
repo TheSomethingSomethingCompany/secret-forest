@@ -36,7 +36,7 @@ router.get('/api', async (req, res) => {
         FROM blocked_user 
         JOIN member ON blocked_user."blockedMemberID" = member."memberID"
         JOIN profile ON blocked_user."blockedMemberID" = profile."memberID"
-        WHERE "blockerMemberID" = $1 AND ${whereFilter} ILIKE $2
+        WHERE "blockerMemberID" = $1 AND ${whereFilter} LIKE $2
         `, [memberID, `${searchQ}%`]);
         
         return res.json({ status: 200, message: 'Retrieved blocked users successfully', data: requests});
@@ -45,7 +45,8 @@ router.get('/api', async (req, res) => {
         
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to retrieve blocked users', pgErrorObject: {...error}});
+        console.log("[ERROR OBJECT]:\n" + JSON.stringify({...error}));
+        res.json({ status: 500, message: 'Failed to retrieve blocked users', error: error.message});
     }
 });
 

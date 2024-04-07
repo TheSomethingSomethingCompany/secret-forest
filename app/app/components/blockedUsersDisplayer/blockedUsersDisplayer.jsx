@@ -30,7 +30,7 @@ function BlockedUsersDisplayer({blockedUsersResults, setBlockedUsersResults, unb
             <p className = "text-lg font-bold">Country: {blockedUser.country}</p>
             </div>
             <div className = "flex items-center">
-                <button className = "bg-blue-400 p-2 rounded-md text-white font-bold" data-username = {blockedUser.username} onClick = {unblockUserHandler}>Unblock</button>
+                <button className = "bg-blue-500 p-2 rounded-md text-white font-bold" data-username = {blockedUser.username} onClick = {unblockUserHandler}>Unblock</button>
             </div>
           </div>
         );

@@ -26,21 +26,18 @@ export default function Home() {
     const[hasOnlyTags, setHasOnlyTags] = useState(false);
 
     function onSearch(){
-      let op= 0;
 
-      switch(searchBy){
-        case "name":
-          op = 0;
-          break;
-        case "email":
-          op = 1;
-          break;
-        case "username":
-          op = 2;
-          break;   
-      }
-        fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, op: op, hasOnlyTags}).then((res) => {
-          setSearchResults(res);
+        fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, searchBy: searchBy, hasOnlyTags}).then((res) => {
+
+          switch(res.status){
+            case 200:
+              setSearchResults(res.data); // Once the state is updated, the component will re-render, and the search results will be displayed
+              break;
+            case 500:
+              alert("Error in fetching search results. Please try again later.");
+              break;
+          }
+
         });
     }
 

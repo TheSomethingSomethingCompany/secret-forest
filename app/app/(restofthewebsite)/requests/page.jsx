@@ -1,8 +1,8 @@
 "use client"
-import RequestsSentDisplayer from "@/app/components/requestsSentDisplayer/RequestsSentDisplayer";
-import RequestsReceivedDisplayer from "@/app/components/requestsReceivedDisplayer/RequestsReceivedDisplayer";
-import BlockedUsersDisplayer from "@/app/components/blockedUsersDisplayer/BlockedUsersDisplayer";
-import SearchBar from "@/app/components/searchBar/SearchBar";
+import RequestsSentDisplayer from "../../components/requestsSentDisplayer/RequestsSentDisplayer";
+import RequestsReceivedDisplayer from "../../components/requestsReceivedDisplayer/RequestsReceivedDisplayer";
+import BlockedUsersDisplayer from "../../components/blockedUsersDisplayer/BlockedUsersDisplayer";
+import SearchBar from "../../components/searchBar/SearchBar";
 import fetchRequestsSent from "./api/fetchRequestsSent";
 import cancelRequest from "./api/cancelRequest";
 import fetchRequestsReceived from "./api/fetchRequestsReceived";
@@ -50,7 +50,7 @@ export default function Home() {
                       break;
                     case 500:
                       results.current = [];
-                      
+                      alert("Failed to retrieve received requests, please try again by refreshing the page.");
                       break;
                   }
                   setRerender(prev => !prev);
@@ -66,7 +66,7 @@ export default function Home() {
                       break;
                     case 500:
                       results.current = [];
-                    
+                      alert("Failed to retrieve sent requests, please try again by refreshing the page.")
                       break;
                   }
                     setRerender(prev => !prev)
@@ -82,9 +82,7 @@ export default function Home() {
                       break;
                     case 500:
                       results.current = [];
-                      toast.error("Failed to retrieve blocked users, please try again by refreshing the page.", {
-                        position: toast.POSITION.BOTTOM_LEFT
-                      });
+                      alert("Failed to retrieve blocked users, please try again by refreshing the page.");
                       break;
                   }
                   setRerender(prev => !prev);
@@ -120,7 +118,6 @@ export default function Home() {
     <main className = "w-full h-full flex flex-col items-center">
       <SearchBar searchQ = {searchQ} setSearchQ = {setSearchQ} searchBy = {searchBy} setSearchBy = {setSearchBy} onSearch = {onSearch} />
       <div className="flex mb-4">
-      <button className = "text-green-300">Hi</button>
       <button onClick={() => setModeHandler("received")} className={`ml-4 mr-4 ${mode === 'received' ? 'text-blue-500' : ''}`}>Received</button>
       <button onClick={() => setModeHandler("sent")} className={`mr-4 ${mode === 'sent' ? 'text-blue-500' : ''}`}>Sent</button>
       <button onClick={() => setModeHandler("blocked")} className={`mr-4 ${mode === 'blocked' ? 'text-blue-500' : ''}`}>Blocked</button>
