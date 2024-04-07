@@ -44,6 +44,7 @@ router.get('/api', async (req, res) => {
     } 
     catch(error)
     {
+        console.log("[ERROR OBJECT]:\n" + JSON.stringify({...error}));
         res.json({ status: 500, message: 'Failed to retrieve chats' });
     }
 });

@@ -105,7 +105,7 @@ async function handleRetrievingMessages(req, res){
                 }
                 const chatMessages = chatMessagesAndFileNames;
                 console.log(chatMessages);
-                res.json({ status: 201, message: 'Retrieved messages', chatMessages: chatMessages, action: 'retrieveMessages' });
+                res.json({ status: 200, message: 'Retrieved messages', chatMessages: chatMessages, action: 'retrieveMessages' });
             }
         }
 

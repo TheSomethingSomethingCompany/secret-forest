@@ -3,23 +3,26 @@ import React, { createContext, useContext, useEffect, useState, useRef } from "r
 
 
 const WebSocketContext = createContext({
-	isConnected: false,
 	sendMessage: () => {}, 
 	userStatus: "signedOut",
 });
 
 export const WebSocketProvider = ({ children }) => {
-	const [isConnected, setIsConnected] = useState(false);
-	const [userStatus, setUserStatus] = useState("signedOut");
+	const isConnected = useRef(false);
+	const userStatus = useRef("signedOut");
 	let ws = useRef(null);
 
 	useEffect(() => {
+		console.log("MOUNTING WEBSOCKET CONTEXT");
 		// CONNECT TO SESSION WEBSOCKET SERVER
 		ws.current = new WebSocket(`ws://localhost:8989`);
+		console.log("[Session | Client] Connecting to WebSocket Server");
 
-		// IF OPEN, UPDATE ISCONNECTED CONTEXT.
+		// IF OPEN, UPDATE userStatus CONTEXT.
 		ws.current.onopen = () => {
-			setIsConnected(true);
+			isConnected.current = true;
+			console.log("[Session | Client] Connection Opened");
+			console.log("isConnected right after open " + isConnected.current);
 		};
 
 		// WHEN RECEIVE A MESSAGE FROM THE SERVER, CHECK TYPE AND PERFORM APPROPRIATE ACTION
@@ -29,16 +32,21 @@ export const WebSocketProvider = ({ children }) => {
 			switch (message.type) {
 				case "userStatus":
 					console.log("STATUS: ", message.status);
-					setUserStatus(message.status);
+					userStatus.current = message.status;
 					break;
 				default:
 					break;
 			}
 		};
 
-		// ON CONNECTION CLOSE, UPDATE ISCONNECTED CONTEXT
-		ws.current.onclose = () => {
-			setIsConnected(false);
+		// ON CONNECTION CLOSE, UPDATE userStatus CONTEXT
+		ws.current.onclose = (event) => {
+			console.log("[Session | Client] Connection Closed " + event.code + " " + event.reason);
+			isConnected.current = false;
+		};
+
+		ws.current.onerror = (error) => {
+			console.log('[Session | Client] WebSocket error: ', error);
 		};
 
 		// CLOSE WEBSOCKET WHEN DONE
@@ -48,16 +56,29 @@ export const WebSocketProvider = ({ children }) => {
 	}, []);
 
 	// FUNCTION TO COMMUNICATE WITH THE SERVER
-	const sendMessage = (action, body) => {
+	const sendMessage = (action) => {
+		console.log("SENDING MESSAGE WITH ACTION: ", action);
 		console.log("WebSocketSendCond: ", ws.current && ws.current.readyState === WebSocket.OPEN);
 		if (ws.current && ws.current.readyState === WebSocket.OPEN) {
-			ws.current.send(JSON.stringify({ action, body }));
+			ws.current.send(JSON.stringify({ action }));
 		}
 	};
 
+	useEffect(() => {
+		console.log("isConnected value changed, which is now: ", isConnected.current);
+		if(!isConnected.current) 
+			userStatus.current = "signedOut";
+	}, [isConnected.current]);
+
+	useEffect(() => {
+		console.log("User Status: ", userStatus.current);
+	}
+	, [userStatus.current]);
+
+
 	return (
 		<WebSocketContext.Provider
-			value={{ isConnected, sendMessage, userStatus }}
+			value={{ sendMessage, userStatus: userStatus.current}}
 		>
 			{children}
 		</WebSocketContext.Provider>

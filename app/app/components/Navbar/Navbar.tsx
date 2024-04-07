@@ -11,7 +11,7 @@ import DropMenu from "./DropMenu";
 import Logo from "../../images/TheSomethingSomethingCompanyLogoV3.svg";
 import Penguin from "../../images/ExamplePenguin.jpeg";
 import fetchUserInfo from "./api/getUserInfo";
-import GetProfilePicture from "@/app/(restofthewebsite)/getProfilePicture/api/getPFP";
+import GetProfilePicture from "@/app/(restofthewebsite)/profile/api/getPFP";
 
 import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
@@ -20,8 +20,15 @@ export default function Navbar() {
 	const { userStatus } = useWebSocket();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isNavbarHidden, setIsNavbarHidden] = useState(false);
+	const [rerender, setRerender] = useState("signedOut");
 
 	let lastScrollY = 0;
+
+	useEffect(() => {
+		setRerender(userStatus);
+	}
+		, [userStatus]);
+
 
 	useEffect(() => {
 		let ticking = false;

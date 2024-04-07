@@ -3,7 +3,7 @@ import React from "react";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
 import { useRef, useEffect, useState, use } from "react";
-import GetProfilePicture from "../getProfilePicture/api/getPFP";
+import GetProfilePicture from "../profile/api/getPFP";
 
 import PenguinC from "@/app/images/PenguinC.jpeg";
 import ChatBubble from "../../components/conversations/ChatBubble";
@@ -13,9 +13,13 @@ import NoMessagesSVG from "@/public/nomessages.svg";
 import UserConversation from "@/app/components/conversations/UserConversation";
 import ImageCard from "@/app/components/conversations/ImageCard";
 import Image from "next/image";
+import { Router } from "lucide-react";
+import {useRouter} from "next/navigation";
 
 export default function Chats() {
-	const { sendMessage } = useWebSocket();
+	
+	const {userStatus, sendMessage } = useWebSocket();
+	const router = useRouter();
 	const [chatsList, setChatsList] = useState<
 		{
 			chatID: string;
@@ -117,6 +121,7 @@ export default function Chats() {
 								alert("Error in sending message. Please try again later.");
 								break;
 						}
+						break;
 					case "deleteMessage":
 						switch(response.status)
 						{
@@ -136,6 +141,7 @@ export default function Chats() {
 								alert("Error in deleting message. Please try again later.");
 								break;
 						}
+						break;
 					case "editMessage":
 						switch(response.status)
 						{
@@ -155,6 +161,7 @@ export default function Chats() {
 								alert("Error in editing message. Please try again later.");
 								break;
 						}
+						break;
 				}
 			}
 			sendMessage("signedIn", {});

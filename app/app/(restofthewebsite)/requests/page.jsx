@@ -11,32 +11,43 @@ import declineRequest from "./api/declineRequest";
 import fetchBlockedUsers from "./api/fetchBlockedUsers";
 import unblockUser from "./api/unblockUser";
 import React, { useEffect, useState, useRef} from 'react';
+import { useRouter } from "next/navigation";
+import { useWebSocket } from "@/app/contexts/WebSocketContext";
+
 
 export default function Home() {
    
-    useEffect(() => {
-      document.body.classList.add('h-full');
-      
-      // Clean up function
-      return () => {
-        document.body.classList.remove('your-class-name');
-      };
-    }, []);
+
 
     // We need to make an api call to fetch the requests sent by the user.
+    const {userStatus, sendMessage} = useWebSocket();
+    const router = useRouter();
     const results = useRef(null);
     const mode = useRef("received");
     const [searchQ, setSearchQ] = useState("");
     const [searchBy, setSearchBy] = useState("name");
     const [rerender, setRerender] = useState(false);
 
+
+    useEffect(() => {
+      sendMessage("sessionCheck")
+    }, []);
+
+    useEffect(() => {
+        if(userStatus === "signedOut")
+        {
+         // router.push("/");
+        }
+    }, [userStatus]);
+    
+
     function fetchResultsByMode({searchQ, searchBy})
     {
+
         
         switch(mode.current)
         {
           
-
             // Handle the response
             case "received":
                 fetchRequestsReceived({searchQ: searchQ, searchBy: searchBy}).then((res) => {
@@ -111,6 +122,35 @@ export default function Home() {
         results.current = data;
     }
 
+
+    function acceptRequestAndRefresh(data)
+    {
+        acceptRequest(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to accept request, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
+    function declineRequestAndRefresh(data)
+    {
+        declineRequest(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to decline request, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
   
 
   return (
@@ -123,7 +163,7 @@ export default function Home() {
       <button onClick={() => setModeHandler("blocked")} className={`mr-4 ${mode === 'blocked' ? 'text-blue-500' : ''}`}>Blocked</button>
     </div>
       {mode.current === 'sent' && results.current && <RequestsSentDisplayer requestsSentResults={results.current} setRequestsSentResults={setResults} cancelRequestAPI={cancelRequest} />}
-      {mode.current === 'received' && results.current && <RequestsReceivedDisplayer requestsReceivedResults={results.current} setRequestsReceivedResults={setResults} acceptRequestAPI={acceptRequest} declineRequestAPI={declineRequest} />}
+      {mode.current === 'received' && results.current && <RequestsReceivedDisplayer requestsReceivedResults={results.current} setRequestsReceivedResults={setResults} acceptRequestAPI={acceptRequestAndRefresh} declineRequestAPI={declineRequestAndRefresh} />}
       {mode.current === 'blocked' && results.current && <BlockedUsersDisplayer blockedUsersResults={results.current} setBlockedUsersResults={setResults} unblockUserAPI={unblockUser} />}
            
       </main>

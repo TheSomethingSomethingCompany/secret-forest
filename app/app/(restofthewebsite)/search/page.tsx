@@ -4,6 +4,7 @@ import OccupationTags from "@/app/components/occupationTags/OccupationTags";
 import fetchSearchResults from "./api/search";
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
 export default function Home() {
    
@@ -17,6 +18,7 @@ export default function Home() {
 
     }, []);
 
+    const { userStatus, sendMessage} = useWebSocket();
     const router = useRouter();
     const [currentTags, setTags] = useState([]);
     const [searchQ, setSearchQ] = useState("");
@@ -24,6 +26,10 @@ export default function Home() {
     const [searchResults, setSearchResults] = useState([]);
     // Boolean value used to track if all Tags must be present in search results or not.
     const[hasOnlyTags, setHasOnlyTags] = useState(false);
+
+    useEffect(() => {
+      sendMessage("sessionCheck");
+    }, []);
 
     function onSearch(){
 

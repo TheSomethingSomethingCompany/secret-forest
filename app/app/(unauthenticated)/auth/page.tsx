@@ -13,10 +13,14 @@ import Member from "@/app/types/Member";
 import { useSearchParams } from "next/navigation";
 import Logo from "@/app/images/TheSomethingSomethingCompanyLogoV3.svg";
 import { useWebSocket } from "../../contexts/WebSocketContext";
+import { send } from "process";
 
 export default function UserAuthentication() {
-	const { isConnected, sendMessage } = useWebSocket();
-	sendMessage("hideNavigation", {});
+	const { userStatus, sendMessage } = useWebSocket();
+
+	useEffect(() => {
+		sendMessage("sessionCheck");
+	}, []);
 
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -24,6 +28,9 @@ export default function UserAuthentication() {
 	const [showSignIn, setShowSignIn] = useState(true);
 	const [terms, setTerms] = useState(false);
 	const [highlightTerms, setHighlightTerms] = useState(false);
+
+	// It checks if the user is logged in on entering the page
+
 
 	// USE EFFECT TO DETERMINE IF SIGN-IN OR SIGN-UP IS SHOWN
 
@@ -146,6 +153,7 @@ export default function UserAuthentication() {
 		password: string;
 	}) => {
 		try {
+			console.log("Signing In!");
 			const body = {
 				identifier: values.identifier,
 				password: values.password,
@@ -154,17 +162,33 @@ export default function UserAuthentication() {
 			const response = await SignIn(body);
 			console.log("Logged In Successfully!");
 			console.log(response);
-			if (response.status == 205) {
-				sendMessage("signedIn", {});
-				router.push("/createProfile");
-			} else {
-				sendMessage("signedIn", {});
-				router.push("/chats");
+			switch(response.status){
+				case 200:
+					sendMessage("sessionCheck");
+					break;
+				case 205:
+					sendMessage("sessionCheck");
+					router.push("/createProfile");
+					break;
+				case 401:
+					alert("Invalid username or password. Please try again.");
+					break;
+				case 500:
+					alert("An error occurred signing in. Please try again later.");
+					break;	
 			}
+
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		if (userStatus == "signedIn") {
+			router.push("/chats");
+		}
+	
+	}, [userStatus]);
 
 	return (
 		<section style={{ "--translation": showSignIn ? "50%" : "0%", "--b-r": showSignIn ? "0" : "0.5rem", "--b-l": showSignIn ? "0.5rem" : "0" } as any} className="flex flex-col justify-center items-center mx-10">

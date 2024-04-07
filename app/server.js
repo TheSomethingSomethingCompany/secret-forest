@@ -39,6 +39,13 @@ const sessionMiddleWare = session({
 
 server.use(sessionMiddleWare);
 
+// Log responses indicating server got pinged
+server.use((req, res, next) => {
+	console.log("Server got pinged and session data is: " + req.session.loggedInUserMemberID);
+	next();
+});
+
+
 //Any Routes
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js
 server.use("/createAProfile", createProfileRoutes); // Any time /createAProfile is put within URL, you tell express to utilize the routes present in createProfileRoutes = './routes/Profile'
@@ -180,14 +187,23 @@ wssSession.on("connection", (ws, req) => {
 		console.log("[Session] Session Data: " + JSON.stringify(req.session));
 
 		// CHECK IF memberID SESSION VARIABLE EXISTS
+
+	});
+
+	ws.on('open', () => {
+		console.log('WebSocket opened');
 		if (req.session.loggedInUserMemberID)
+		{
+			console.log("SESSION DATA IS SET")
 			ws.send(
 				JSON.stringify({
 					type: "userStatus",
 					status: "signedIn",
 				})
 			);
-		else
+		}
+		
+			else
 			ws.send(
 				JSON.stringify({
 					type: "userStatus",
@@ -196,35 +212,49 @@ wssSession.on("connection", (ws, req) => {
 			);
 	});
 
-	// STORE THE DATA IN JSON OBJECT TO SEND TO ENDPOINTS
-	const res = {
-		json: (data) => {
-			ws.send(JSON.stringify(data));
-		},
-	};
+
+	
+	ws.on('close', (code, reason) => {
+        console.log(`WebSocket closed. Code: ${code}, Reason: ${reason}`);
+    });
+
+	ws.on('error', (error) => {
+		console.log('WebSocket error: ', error);
+	});
 
 	ws.on("message", (message) => {
 		console.log(`[Session] Received Message:\n ${message}`);
-		const { action, body } = JSON.parse(message);
+		console.log('SESSION DATA IN RECEIVED MESSAGE: ' + req.session.loggedInUserMemberID)
+		const { action } = JSON.parse(message);
 
-		req.body = body;
-		(async () => {
-			switch (action) {
-				case "signedIn":
-					console.log("[Session] Received Sign In Request.");
-					ws.send(
-						JSON.stringify({
-							type: "userStatus",
-							status: "signedIn",
-						})
-					);
-					break;
-				case "signedOut":
-					console.log("[Session] Received Sign Out Request.")
-				default:
-					console.log(`[Session] Unknown Action: ${action}`);
+		console.log("EXECUTING ASYNC, and ACTION IS: " + action);
+		if(action == "sessionCheck")
+		{
+			console.log("SESSION IN SESSION CHECK: " + req.session.loggedInUserMemberID);
+			if (req.session.loggedInUserMemberID)
+			{
+				ws.send(
+					JSON.stringify({
+						type: "userStatus",
+						status: "signedIn",
+					})
+				);
 			}
 
-		})();
+			else
+			{
+				console.log('SESSION DATA IS NOT SET');
+				ws.send(
+					JSON.stringify({
+						type: "userStatus",
+						status: "signedOut",
+					})
+				);
+			}
+			
+		}
+			
+
+
 	});
 });
