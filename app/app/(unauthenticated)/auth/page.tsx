@@ -140,8 +140,21 @@ export default function UserAuthentication() {
 			console.log("GOOD TO GO!");
 			const response = await SignUp(body);
 			console.log(response);
-			if(response.status === 201)
-				router.push("/createProfile");
+			switch(response.status){
+				case 201:
+					router.push("/createProfile");
+					break;
+				case 400:
+					alert("Please fill in all required fields and try again.");
+					break;
+				case 422:
+					alert(response.message);
+					break;
+				case 500:
+					alert("An error occurred signing up. Please try again later.");
+					break;
+			}
+			
 
 		} catch (error) {
 			console.log(error);
@@ -165,6 +178,7 @@ export default function UserAuthentication() {
 			switch(response.status){
 				case 200:
 					sendMessage("sessionCheck");
+					router.push("/chats");
 					break;
 				case 205:
 					sendMessage("sessionCheck");

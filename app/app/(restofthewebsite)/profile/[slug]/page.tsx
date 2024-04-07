@@ -198,6 +198,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 	function handleBlockUser() {
 		blockUser({ username: profile.userName }).then((res) => {
 			setHasRequest(3);
+			setHasChat(0);
 		});
 	}
 
