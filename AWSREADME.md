@@ -124,7 +124,7 @@ This is the end of setting up the pre-requisites to set up services needed for t
 
 9. In the app directory, run `aws configure sso` and follow the instructions and ensure that login is successful
 
-10. Select one of the repositories in ECR and select ‘view push commands’ which should be followed to upload an image to the repository. Do this for both repositories.
+10. Select one of the repositories in ECR and select ‘view push commands’ which should be followed to upload an image to the repository. Do this for both repositories. *Note*: if there is an issue with the first command (aws ecr login), make sure to specify your profile name as a variable (e.g.: --profile COSC499_CapstonePowerUserAccess-[ACCOUNT-NUMBER])
 
 11. Create task definition for the system. A task definition is a framework or skeleton on how the system will run.
    - a. Navigate to AWS ECS from the console menu
