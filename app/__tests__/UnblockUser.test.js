@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const router = require('../app/routes/requests/UnblockUser'); // replace with the path to your router
+const router = require('../app/routes/requests/unblockUser'); // replace with the path to your router
 const db = require('../app/db-connection');
 const server = express();
 global.setImmediate = (callback) => setTimeout(callback, 0);
