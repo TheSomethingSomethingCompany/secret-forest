@@ -97,6 +97,7 @@ describe('If the logged in user is attempting to cancel request with non-existen
 
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(404);
+        expect(resBody.message).toBe('User does not exist');
     });
 });
 
@@ -125,7 +126,8 @@ describe('If the logged in user is attempting to cancel request, but the request
         .post('/cancelRequest/api');
 
         const resBody = JSON.parse(res.text);
-        expect(resBody.status).toBe(409);
+        expect(resBody.status).toBe(404);
+        expect(resBody.message).toBe('Request does not exist');
     });
 });
 
@@ -159,6 +161,7 @@ describe('If cancelling the request fails', () => {
 
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(500);
+        expect(resBody.message).toBe('Failed to cancel request');
     });
 });
 

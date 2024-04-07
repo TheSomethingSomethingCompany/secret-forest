@@ -26,7 +26,7 @@ router.post('/api', async (req, res) => {
         `, [fromMemberID, toMemberID]); // The left side of the OR is if the logged in user has sent a request to the other user, and the right side is if the other user has sent a request to the logged in user
 
         if(requestExists == null)
-            return res.json({ status: 409, message: 'Request does not exist' });
+            return res.json({ status: 404, message: 'Request does not exist' });
         
         await db.none(`
         DELETE FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)

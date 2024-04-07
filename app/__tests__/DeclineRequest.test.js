@@ -2,6 +2,7 @@ const request = require('supertest');
 const express = require('express');
 const router = require('../app/routes/requests/DeclineRequest'); // replace with the path to your router
 const db = require('../app/db-connection');
+const exp = require('constants');
 const server = express();
 global.setImmediate = (callback) => setTimeout(callback, 0);
 
@@ -69,7 +70,7 @@ describe('If able to block user', () => {
         .post('/declineRequest/api'); // Specify the endpoint. In this current express app, it is the only router we added
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(201);
-        expect(resBody.message).toBe('Deleted request successfully');
+        expect(resBody.message).toBe('Declined request successfully');
     });
 });
 
@@ -98,9 +99,77 @@ describe('If the logged in user is attempting to decline request with non-existe
 
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(404);
+        expect(resBody.message).toBe('User does not exist');
     });
 });
 
+describe('If the logged in user is attempting to decline non-existent request', () => {
+    it('should return status 404', async () => {
+
+        db.oneOrNone.mockImplementation((query, values) => {
+            if(query.includes('SELECT "memberID" FROM member WHERE username = $1'))
+            {
+                return Promise.resolve({memberID: 'mockTestMemberID'});
+            }
+
+            else if(query.includes('SELECT * FROM request WHERE ("toMemberID" = $1 AND "fromMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
+            {
+                return Promise.resolve(null); // Implies that the request does not exist
+            }
+
+            else
+            {
+                return Promise.resolve(null);
+            }
+
+
+        });
+       
+        const res = await 
+        request(server)
+        .post('/declineRequest/api');
+
+        const resBody = JSON.parse(res.text);
+        expect(resBody.status).toBe(404);
+        expect(resBody.message).toBe('Request does not exist');
+    });
+});
+
+describe('If the logged in user is attempting to decline non-existent request', () => {
+    it('should return status 404', async () => {
+
+        db.oneOrNone.mockImplementation((query, values) => {
+            if(query.includes('SELECT "memberID" FROM member WHERE username = $1'))
+            {
+                return Promise.resolve({memberID: 'mockTestMemberID'});
+            }
+
+            else if(query.includes('SELECT * FROM request WHERE ("toMemberID" = $1 AND "fromMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
+            {
+                return Promise.resolve({}); // Implies that the request does exist
+            }
+
+            else
+            {
+                return Promise.resolve(null);
+            }
+
+
+        });
+
+        db.none.mockImplementationOnce(() => {
+            return Promise.reject(); // Ensure the query is unsuccessful
+        });
+       
+        const res = await 
+        request(server)
+        .post('/declineRequest/api');
+
+        const resBody = JSON.parse(res.text);
+        expect(resBody.status).toBe(500);
+        expect(resBody.message).toBe('Failed to delete request');
+    });
+});
 
 
         
