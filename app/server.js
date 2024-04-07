@@ -114,7 +114,16 @@ const getUserInfoRoutes = require("./app/routes/GetUserInfo");
 server.use("/getUserInfo", getUserInfoRoutes);
 
 const logoutRoutes = require("./app/routes/Logout");
-server.use("/logout", logoutRoutes)
+server.use("/logout", logoutRoutes);
+
+const getSecurityQuestionRoutes = require("./app/routes/GetSecurityQuestion");
+server.use("/getQuestion", getSecurityQuestionRoutes);
+
+const updatePasswordRoutes = require("./app/routes/UpdatePassword");
+server.use("/updatePassword", updatePasswordRoutes)
+
+const checkSecurityAnswerRoutes = require("./app/routes/CheckSecurityAnswer");
+server.use("/checkAnswer", checkSecurityAnswerRoutes);
 
 
 server.listen(HTTP_PORT, () => {

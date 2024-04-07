@@ -20,7 +20,7 @@ CREATE TABLE profile (
 );
 
 CREATE TABLE security_question (
-  "id" UUID PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "memberID" UUID NOT NULL,
   "question" TEXT NOT NULL,
   "answer" TEXT NOT NULL,
