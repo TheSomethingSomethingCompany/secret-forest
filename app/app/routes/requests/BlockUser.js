@@ -26,7 +26,7 @@ router.post('/api', async (req, res) => {
         `, [blockerMemberID, blockedMemberID]);
     
         if(blockExists != null)
-           return res.json({ status: 409, message: 'User has already blocked you or has blocked you' });
+           return res.json({ status: 404, message: 'User has already blocked you or has blocked you' });
         
 
         await db.tx(async t => {
@@ -56,7 +56,7 @@ router.post('/api', async (req, res) => {
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to block user', pgErrorObject: {...error});
+        res.json({ status: 500, message: 'Failed to block user', pgErrorObject: {...error}});
     }
 });
 

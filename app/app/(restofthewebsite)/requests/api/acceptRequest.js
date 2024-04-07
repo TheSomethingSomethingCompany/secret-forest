@@ -10,7 +10,7 @@ export async function acceptRequest(data){
 
     let resBody = await response.json(); // Retrieve response body and turn into JSON object
     console.log(resBody);
-    return resBody.data;
+    return resBody;
    }
 
-   export default acceptRequest;;
+   export default acceptRequest;

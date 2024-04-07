@@ -39,6 +39,13 @@ const sessionMiddleWare = session({
 
 server.use(sessionMiddleWare);
 
+// Log responses indicating server got pinged
+server.use((req, res, next) => {
+	console.log("Server got pinged and session data is: " + req.session.loggedInUserMemberID);
+	next();
+});
+
+
 //Any Routes
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js
 server.use("/createAProfile", createProfileRoutes); // Any time /createAProfile is put within URL, you tell express to utilize the routes present in createProfileRoutes = './routes/Profile'
@@ -72,11 +79,6 @@ server.use("/sessionCheck", sessionCheck);
 const saveProfileDatsRoutes = require("./app/routes/SaveProfileData");
 server.use("/saveProfileData", saveProfileDatsRoutes);
 
-const uploads3Routes = require("./app/routes/S3upload");
-server.use("/S3upload", uploads3Routes);
-
-const s3GetRoutes = require("./app/routes/S3get");
-server.use("/S3get", s3GetRoutes);
 
 const fetchRequestsReceivedRoutes = require("./app/routes/requests/FetchRequestsReceived");
 server.use("/fetchRequestsReceived", fetchRequestsReceivedRoutes);
@@ -158,6 +160,7 @@ wss.on("connection", (ws, req) => {
 					console.log(`Unknown action: ${action}`);
 			}
 
+			// Broadcast to all clients on the WSS to refresh messages if their current chatID is the same as the chatID of the message that was inserted, edited, or deleted.
 			if (
 				action === "insertMessage" ||
 				action === "editMessage" ||
@@ -166,7 +169,7 @@ wss.on("connection", (ws, req) => {
 				wss.clients.forEach((client) => {
 					if (client.readyState === WebSocket.OPEN) {
 						client.send(
-							JSON.stringify({ chatID: chatID, broadcast: true })
+							JSON.stringify({ chatID: chatID, broadcast: true }) // Any message with broadcast set to true will prompt every client to check if their current chatID is the same as the chatID of the message that was inserted, edited, or deleted. If so, they will refresh their messages.
 						);
 					}
 				});

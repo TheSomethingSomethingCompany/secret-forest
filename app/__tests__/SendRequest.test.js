@@ -183,7 +183,7 @@ describe("Given that a request already exists between 2 users and one is trying 
     });
 });
 
-describe("Assuming that a chat a;ready exists between 2 users and one is trying to send a request to the other", () => {
+describe("Assuming that a chat already exists between 2 users and one is trying to send a request to the other", () => {
 
     it('should respond with a status code of 409', async () => { 
         const mockData = { username: 'testToUsername' }; // Mock request body received on the router endpoint

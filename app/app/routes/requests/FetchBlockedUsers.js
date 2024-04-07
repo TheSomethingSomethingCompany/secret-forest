@@ -5,20 +5,25 @@ const db = require("../../db-connection.js")
 router.get('/api', async (req, res) => {
     
     const searchQ = req.query.searchQ;
-    const searchBy = parseInt(req.query.searchBy);
+    const searchBy = req.query.searchBy;
 
     var whereFilter = '';
     switch(searchBy){ 
       case 'name': // Search by name
-        whereFilter = ` profile."name"`;
+        whereFilter = `profile."name"`;
         break;
       case 'email': // Search by email
-        whereFilter = ` member."email"`;
+        whereFilter = `member."email"`;
         break;
       case 'username': // Search by username
-        whereFilter = ` member."username"`;
+        whereFilter = `member."username"`;
         break;
     }
+
+    console.log(`[SEARCHQ]: ${searchQ}`);
+    console.log(`[SEARCH BY]: ${searchBy}`);
+    console.log(`[WHERE FILTER]: ${whereFilter}`);
+    console.log("FOR BLOCKED USERS");
 
     try
     {
@@ -40,7 +45,8 @@ router.get('/api', async (req, res) => {
         
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to retrieve blocked users', pgErrorObject: {...error}});
+        console.log("[ERROR OBJECT]:\n" + JSON.stringify({...error}));
+        res.json({ status: 500, message: 'Failed to retrieve blocked users', error: error.message});
     }
 });
 

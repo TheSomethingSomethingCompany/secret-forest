@@ -6,18 +6,24 @@ import fetchUserData from "../api/fetchUserData";
 import MemberFetch from "@/app/types/MemberFetch";
 import updateProfileInfo from "../api/saveProfileData";
 import sendRequest from "../api/sendRequest";
-import acceptRequest from "../../requestsReceived/api/acceptRequest";
-import declineRequest from "../../requestsReceived/api/declineRequest";
-import cancelRequest from "../../requestsSent/api/cancelRequest";
-import GetProfilePicture from "../../getProfilePicture/api/getPFP";
+import acceptRequest from "../../requests/api/acceptRequest";
+import declineRequest from "../../requests/api/declineRequest";
+import cancelRequest from "../../requests/api/cancelRequest";
+import GetProfilePicture from "../api/getPFP";
 import blockUser from "../api/blockUser";
-import unblockUser from "../../blockedUsers/api/unblockUser";
+import unblockUser from "../../requests/api/unblockUser";
 import getRandomProfilePicture from "@/app/scripts/getRandomProfilePicture";
 import "remixicon/fonts/remixicon.css";
 import Image from "next/image";
+import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
 function EditProfile({ params }: { params: { slug: string } }) {
+	const {sendMessage} = useWebSocket();
+	
+
+	const router = useRouter();
 	const [currentTags, setTags] = useState([]);
+	
 
 	const [profile, setProfile] = useState({
 		fullName: "Loading",
@@ -37,6 +43,10 @@ function EditProfile({ params }: { params: { slug: string } }) {
 	//pfp
 	const [pfpInfo, setPfpInfo] = useState(``);
 	const [tempPfp, setTempPfp] = useState(``);
+
+	useEffect(() => {
+		sendMessage("sessionCheck");
+	}, []);
 
 	const fetchData = async () => {
 		const memberData: MemberFetch = await fetchUserData({ ...params });
@@ -80,7 +90,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 		setTags(memberData.data.tags);
 	};
 
-	const router = useRouter();
+
 
 	useEffect(() => {
 		fetchData();
@@ -188,6 +198,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 	function handleBlockUser() {
 		blockUser({ username: profile.userName }).then((res) => {
 			setHasRequest(3);
+			setHasChat(0);
 		});
 	}
 

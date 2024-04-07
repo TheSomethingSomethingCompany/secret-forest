@@ -28,7 +28,7 @@ router.post('/api', async (req, res) => {
 
         if(requestExists == null)
         {
-           return res.json({ status: 409, message: 'Request does not exist' });
+           return res.json({ status: 404, message: 'Request does not exist' });
         }
 
         // Next, we need to insert the two memberIDs into the chat table.
@@ -65,7 +65,7 @@ router.post('/api', async (req, res) => {
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to accept request', pgErrorObject: {...error});
+        res.json({ status: 500, message: 'Failed to accept request', pgErrorObject: {...error}});
     }
 });
 

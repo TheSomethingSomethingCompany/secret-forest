@@ -1,5 +1,5 @@
-export async function fetchBlockedUsers({searchQ, op}){
-    const response = await fetch(`http://localhost:6969/fetchBlockedUsers/api?searchQ=${encodeURIComponent(searchQ)}&op=${encodeURIComponent(op)}`, {
+export async function fetchBlockedUsers({searchQ, searchBy}){
+    const response = await fetch(`http://localhost:6969/fetchBlockedUsers/api?searchQ=${encodeURIComponent(searchQ)}&searchBy=${encodeURIComponent(searchBy)}`, {
         credentials: "include",
     });
 
@@ -7,12 +7,7 @@ export async function fetchBlockedUsers({searchQ, op}){
     console.log("[RESPONSE BODY BLOCKED USERS RESULTS]:") 
     console.log(resBody);
    
-    if(resBody.status === 200){
-       return resBody.data;
-   }
-    else{
-         return null;
-    }
+    return resBody;
 }
 
 export default fetchBlockedUsers 

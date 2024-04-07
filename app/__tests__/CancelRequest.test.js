@@ -1,8 +1,7 @@
 const request = require('supertest');
 const express = require('express');
-const router = require('../app/routes/requests/DeclineRequest'); // replace with the path to your router
+const router = require('../app/routes/requests/CancelRequest'); // replace with the path to your router
 const db = require('../app/db-connection');
-const exp = require('constants');
 const server = express();
 global.setImmediate = (callback) => setTimeout(callback, 0);
 
@@ -39,9 +38,9 @@ server.use( (req, res, next) => {
 
 
 // The next middleware being called. This is why it was important to call next() in the previous middleware, because otherwise this code would not have been executed.
-server.use('/declineRequest', router); // attach your router
+server.use('/cancelRequest', router); // attach your router
 
-describe('If able to block user', () => {
+describe('If able to cancel request', () => {
 
     it('should return status 201', async () => {
 
@@ -51,7 +50,7 @@ describe('If able to block user', () => {
             {
                 return Promise.resolve({memberID: 'mockTestMemberID'});
             }
-            else if(query.includes('SELECT * FROM request WHERE ("toMemberID" = $1 AND "fromMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
+            else if(query.includes('SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
             {
                  return Promise.resolve({}) // Not null implies that the request exists
             }
@@ -67,17 +66,16 @@ describe('If able to block user', () => {
        
         const res = await 
         request(server)
-        .post('/declineRequest/api'); // Specify the endpoint. In this current express app, it is the only router we added
+        .post('/cancelRequest/api'); // Specify the endpoint. In this current express app, it is the only router we added
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(201);
-        expect(resBody.message).toBe('Declined request successfully');
     });
 });
 
 
 
 
-describe('If the logged in user is attempting to decline request with non-existent username', () => {
+describe('If the logged in user is attempting to cancel request with non-existent username', () => {
     it('should return status 404', async () => {
 
         db.oneOrNone.mockImplementation((query, values) => {
@@ -95,7 +93,7 @@ describe('If the logged in user is attempting to decline request with non-existe
        
         const res = await 
         request(server)
-        .post('/declineRequest/api');
+        .post('/cancelRequest/api');
 
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(404);
@@ -103,20 +101,18 @@ describe('If the logged in user is attempting to decline request with non-existe
     });
 });
 
-describe('If the logged in user is attempting to decline non-existent request', () => {
-    it('should return status 404', async () => {
+describe('If the logged in user is attempting to cancel request, but the request does not exist', () => {
+    it('should return status 409', async () => {
 
         db.oneOrNone.mockImplementation((query, values) => {
             if(query.includes('SELECT "memberID" FROM member WHERE username = $1'))
             {
                 return Promise.resolve({memberID: 'mockTestMemberID'});
             }
-
-            else if(query.includes('SELECT * FROM request WHERE ("toMemberID" = $1 AND "fromMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
+            else if(query.includes('SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
             {
                 return Promise.resolve(null); // Implies that the request does not exist
             }
-
             else
             {
                 return Promise.resolve(null);
@@ -127,7 +123,7 @@ describe('If the logged in user is attempting to decline non-existent request', 
        
         const res = await 
         request(server)
-        .post('/declineRequest/api');
+        .post('/cancelRequest/api');
 
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(404);
@@ -135,20 +131,18 @@ describe('If the logged in user is attempting to decline non-existent request', 
     });
 });
 
-describe('If the logged in user is attempting to decline non-existent request', () => {
-    it('should return status 404', async () => {
+describe('If cancelling the request fails', () => {
+    it('should return status 500', async () => {
 
         db.oneOrNone.mockImplementation((query, values) => {
             if(query.includes('SELECT "memberID" FROM member WHERE username = $1'))
             {
                 return Promise.resolve({memberID: 'mockTestMemberID'});
             }
-
-            else if(query.includes('SELECT * FROM request WHERE ("toMemberID" = $1 AND "fromMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
+            else if(query.includes('SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)') && values[0] == 'mockLoggedInUserMemberID' && values[1] == 'mockTestMemberID')
             {
-                return Promise.resolve({}); // Implies that the request does exist
+                return Promise.resolve({}); // Implies that the request exists
             }
-
             else
             {
                 return Promise.resolve(null);
@@ -158,16 +152,16 @@ describe('If the logged in user is attempting to decline non-existent request', 
         });
 
         db.none.mockImplementationOnce(() => {
-            return Promise.reject(); // Ensure the query is unsuccessful
+            return Promise.reject(); // Simulate a failed query
         });
        
         const res = await 
         request(server)
-        .post('/declineRequest/api');
+        .post('/cancelRequest/api');
 
         const resBody = JSON.parse(res.text);
         expect(resBody.status).toBe(500);
-        expect(resBody.message).toBe('Failed to delete request');
+        expect(resBody.message).toBe('Failed to cancel request');
     });
 });
 

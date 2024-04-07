@@ -3,7 +3,7 @@ import React from "react";
 import retrieveChats from "./api/retrieveChatsFromServer";
 import { get } from "http";
 import { useRef, useEffect, useState, use } from "react";
-import GetProfilePicture from "../getProfilePicture/api/getPFP";
+import GetProfilePicture from "../profile/api/getPFP";
 
 import PenguinC from "@/app/images/PenguinC.jpeg";
 import ChatBubble from "../../components/conversations/ChatBubble";
@@ -13,9 +13,13 @@ import NoMessagesSVG from "@/public/nomessages.svg";
 import UserConversation from "@/app/components/conversations/UserConversation";
 import ImageCard from "@/app/components/conversations/ImageCard";
 import Image from "next/image";
+import { Router } from "lucide-react";
+import {useRouter} from "next/navigation";
 
 export default function Chats() {
-	const { sendMessage } = useWebSocket();
+	
+	const {userStatus, sendMessage } = useWebSocket();
+	const router = useRouter();
 	const [chatsList, setChatsList] = useState<
 		{
 			chatID: string;
@@ -85,26 +89,78 @@ export default function Chats() {
 			} else {
 				switch (response.action) {
 					case "retrieveMessages":
-						if (response.status == 201) {
-							//sort the messages by messageID in ascending order
-							response.chatMessages.sort((a: any, b: any) =>
+						switch(response.status)
+						{
+							case 200:
+								response.chatMessages.sort((a: any, b: any) =>
 								a.messageID > b.messageID ? 1 : -1
-							);
-
-							setMessagesList(response.chatMessages);
-						} else if (response.status == 422) setMessagesList([]);
+								);
+								setMessagesList(response.chatMessages);
+								break;
+							case 404:
+								setMessagesList([]);
+								break;
+							case 500:
+								alert("Error in fetching messages. Please try again later.");
+								setMessagesList([]);
+								break;
+						}
 						break;
 					case "insertMessage":
-						if (response.status == 201)
-							console.log("Message inserted successfully!");
+						switch(response.status)
+						{
+							case 201:
+								console.log("Message sent successfully!");
+								break;
+							case 401:
+								console.log("Unauthorized: Sending message to a chat logged in user is not a part of.");
+								alert("Unauthorized to send message to this chat.");
+								break;
+							case 500:
+								console.log("Error in sending message.");
+								alert("Error in sending message. Please try again later.");
+								break;
+						}
 						break;
 					case "deleteMessage":
-						if (response.status == 201)
-							console.log("Message deleted successfully!");
+						switch(response.status)
+						{
+							case 201:
+								console.log("Message deleted successfully!");
+								break;
+							case 401:
+								console.log("Unauthorized: Deleting message logged in user is not a part of.");
+								alert("Unauthorized to delete a message in this chat.");
+								break;
+							case 403:
+								console.log("Forbidden: Deleting message that is not sent by the logged in user.");
+								alert("Forbidden to delete this message, as it is not sent by you.");
+								break;
+							case 500:
+								console.log("Error in deleting message.");
+								alert("Error in deleting message. Please try again later.");
+								break;
+						}
 						break;
 					case "editMessage":
-						if (response.status == 201)
-							console.log("Message edited successfully!");
+						switch(response.status)
+						{
+							case 201:
+								console.log("Message edited successfully!");
+								break;
+							case 401:
+								console.log("Unauthorized: Editing message logged in user is not a part of.");
+								alert("Unauthorized to edit a message in this chat.");
+								break;
+							case 403:
+								console.log("Forbidden: Editing message that is not sent by the logged in user.");
+								alert("Forbidden to edit this message, as it is not sent by you.");
+								break;
+							case 500:
+								console.log("Error in editing message.");
+								alert("Error in editing message. Please try again later.");
+								break;
+						}
 						break;
 				}
 			}
@@ -131,36 +187,46 @@ export default function Chats() {
 		let res = await retrieveChats(searchQuery);
 		console.log("RESPONSE FROM SERVER FOR CHATS:");
 		console.log(res);
-		if (res.data) {
-			setChatsList(res.data);
-			const loggedInUsername = res.data[0].loggedInUsername;
-			const pfpPath1 = await GetProfilePicture({
-				username: loggedInUsername,
-			});
-			setLoggedInPfp(pfpPath1.data);
 
-			const chatsProfilePicturesContainer = new Map();
-			for (let i = 0; i < res.data.length; i++) {
-				console.log("Username: " + res.data[i].username);
-				const pfpPath = await GetProfilePicture({
-					username: res.data[i].username,
+		switch(res.status)
+		{
+			case 200:
+				setChatsList(res.data);
+				const loggedInUsername = res.data[0].loggedInUsername;
+				const pfpPath1 = await GetProfilePicture({
+					username: loggedInUsername,
 				});
-				console.log("PFP: " + pfpPath.data);
-				chatsProfilePicturesContainer.set(
-					res.data[i].chatID,
-					pfpPath.data
-				);
-			}
+				setLoggedInPfp(pfpPath1.data);
+	
+				const chatsProfilePicturesContainer = new Map();
+				for (let i = 0; i < res.data.length; i++) {
+					console.log("Username: " + res.data[i].username);
+					const pfpPath = await GetProfilePicture({
+						username: res.data[i].username,
+					});
+					console.log("PFP: " + pfpPath.data);
+					chatsProfilePicturesContainer.set(
+						res.data[i].chatID,
+						pfpPath.data
+					);
+				}
+	
+				setChatsProfilePictures(chatsProfilePicturesContainer);
+				console.log("Chats Images: " + chatsProfilePicturesContainer);
+				break;
+			case 404:
+				setChatsList([]);
+				break;
+			case 500:
+				alert("Error in fetching chats. Please try again later.");
+				setChatsList([]);
+				break;
 
-			setChatsProfilePictures(chatsProfilePicturesContainer);
-			console.log("Chats Images: " + chatsProfilePicturesContainer);
+		}
 
-			// Get the profile picture for each chat
-		} else setChatsList([]);
 	}
 
 	async function getMessages(chatID: string) {
-		// We need to specify the chatID since state variables are not updated immediately
 		const dataToSendToWSS = JSON.stringify({
 			action: "retrieveMessages",
 			body: { chatID: chatID },
@@ -190,7 +256,6 @@ export default function Chats() {
 		getChats("");
 	}, []);
 
-	// Anytime the search query changes, get the chats
 
 
 	// INFORMATION: CHAT FUNCTIONALITY
@@ -517,8 +582,7 @@ export default function Chats() {
 									{
 										chatsList.find(
 											(chat) =>
-												chat.chatID ===
-												parseInt(chatID.current)
+												chat.chatID === parseInt(chatID.current)
 										)?.name
 									}
 								</p>
