@@ -58,7 +58,7 @@ async function handleRetrievingMessages(req, res){
 
             if (chatMessagesAndFileNames.length === 0)
             {
-                res.json({ status: 422, message: 'No messages found', action: 'retrieveMessages'});
+                res.json({ status: 404, message: 'No messages found', action: 'retrieveMessages'});
                 return;
             }
             else 

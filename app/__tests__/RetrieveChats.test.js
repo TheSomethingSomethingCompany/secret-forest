@@ -58,7 +58,7 @@ describe('If able to cancel request', () => {
         request(server)
         .get('/retrieveChats/api'); // Specify the endpoint. In this current express app, it is the only router we added
         const resBody = JSON.parse(res.text);
-        expect(resBody.status).toBe(201);
+        expect(resBody.status).toBe(200);
     });
 });
 

@@ -153,6 +153,7 @@ wss.on("connection", (ws, req) => {
 					console.log(`Unknown action: ${action}`);
 			}
 
+			// Broadcast to all clients on the WSS to refresh messages if their current chatID is the same as the chatID of the message that was inserted, edited, or deleted.
 			if (
 				action === "insertMessage" ||
 				action === "editMessage" ||
@@ -161,7 +162,7 @@ wss.on("connection", (ws, req) => {
 				wss.clients.forEach((client) => {
 					if (client.readyState === WebSocket.OPEN) {
 						client.send(
-							JSON.stringify({ chatID: chatID, broadcast: true })
+							JSON.stringify({ chatID: chatID, broadcast: true }) // Any message with broadcast set to true will prompt every client to check if their current chatID is the same as the chatID of the message that was inserted, edited, or deleted. If so, they will refresh their messages.
 						);
 					}
 				});

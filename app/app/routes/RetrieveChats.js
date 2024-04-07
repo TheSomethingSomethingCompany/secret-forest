@@ -38,7 +38,7 @@ router.get('/api', async (req, res) => {
             chat.loggedInUsername = loggedInUsername;
         });
         
-        return res.json({ status: 201, message: 'Retrieved chats successfully', data: chatsWithUsers });
+        return res.json({ status: 200, message: 'Retrieved chats successfully', data: chatsWithUsers });
     
 
     } 
