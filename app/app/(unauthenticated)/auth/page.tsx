@@ -16,11 +16,10 @@ import { useWebSocket } from "../../contexts/WebSocketContext";
 import { send } from "process";
 
 export default function UserAuthentication() {
-	const { userStatus, sendMessage } = useWebSocket();
 
-	useEffect(() => {
-		sendMessage("sessionCheck");
-	}, []);
+	const { isConnected, sendMessage } = useWebSocket();
+	sendMessage("hideNavigation", {});
+
 
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -177,11 +176,11 @@ export default function UserAuthentication() {
 			console.log(response);
 			switch(response.status){
 				case 200:
-					sendMessage("sessionCheck");
+					sendMessage("signedIn", {});
 					router.push("/chats");
 					break;
 				case 205:
-					sendMessage("sessionCheck");
+					sendMessage("signedIn", {});
 					router.push("/createProfile");
 					break;
 				case 401:
@@ -197,12 +196,6 @@ export default function UserAuthentication() {
 		}
 	};
 
-	useEffect(() => {
-		if (userStatus == "signedIn") {
-			router.push("/chats");
-		}
-	
-	}, [userStatus]);
 
 	return (
 		<section style={{ "--translation": showSignIn ? "50%" : "0%", "--b-r": showSignIn ? "0" : "0.5rem", "--b-l": showSignIn ? "0.5rem" : "0" } as any} className="flex flex-col justify-center items-center mx-10">

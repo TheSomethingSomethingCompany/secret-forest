@@ -20,15 +20,8 @@ export default function Navbar() {
 	const { userStatus } = useWebSocket();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isNavbarHidden, setIsNavbarHidden] = useState(false);
-	const [rerender, setRerender] = useState("signedOut");
 
 	let lastScrollY = 0;
-
-	useEffect(() => {
-		setRerender(userStatus);
-	}
-		, [userStatus]);
-
 
 	useEffect(() => {
 		let ticking = false;
