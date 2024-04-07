@@ -10,13 +10,13 @@ router.get('/api', async (req, res) => {
     var whereFilter = '';
     switch(searchBy){ 
       case 'name': // Search by name
-        whereFilter = ` profile."name"`;
+        whereFilter = `profile."name"`;
         break;
       case 'email': // Search by email
-        whereFilter = ` member."email"`;
+        whereFilter = `member."email"`;
         break;
       case 'username': // Search by username
-        whereFilter = ` member."username"`;
+        whereFilter = `member."username"`;
         break;
     }
 
@@ -36,7 +36,7 @@ router.get('/api', async (req, res) => {
         FROM blocked_user 
         JOIN member ON blocked_user."blockedMemberID" = member."memberID"
         JOIN profile ON blocked_user."blockedMemberID" = profile."memberID"
-        WHERE "blockerMemberID" = $1 AND ${whereFilter} LIKE $2
+        WHERE "blockerMemberID" = $1 AND ${whereFilter} ILIKE $2
         `, [memberID, `${searchQ}%`]);
         
         return res.json({ status: 200, message: 'Retrieved blocked users successfully', data: requests});

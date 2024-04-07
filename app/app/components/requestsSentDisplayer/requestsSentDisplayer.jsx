@@ -12,8 +12,8 @@ function requestsSentDisplayer({requestsSentResults, setRequestsSentResults, can
         cancelRequestAPI({username: username});
 
         //Next, remove the request from the list of requests sent
-        const newRequestsSentResults = requestsSentResults.filter((request) => request.username != username);
-        setRequestsSentResults(newRequestsSentResults);
+        //const newRequestsSentResults = requestsSentResults.filter((request) => request.username != username);
+        //setRequestsSentResults(newRequestsSentResults);
     }
 
   return (

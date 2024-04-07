@@ -151,6 +151,36 @@ export default function Home() {
         });
     }
 
+    function cancelRequestAndRefresh(data)
+    {
+        cancelRequest(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to cancel request, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
+    function unblockUserAndRefresh(data)
+    {
+        unblockUser(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to unblock user, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
+
+
   
 
   return (
@@ -162,9 +192,9 @@ export default function Home() {
       <button onClick={() => setModeHandler("sent")} className={`mr-4 ${mode === 'sent' ? 'text-blue-500' : ''}`}>Sent</button>
       <button onClick={() => setModeHandler("blocked")} className={`mr-4 ${mode === 'blocked' ? 'text-blue-500' : ''}`}>Blocked</button>
     </div>
-      {mode.current === 'sent' && results.current && <RequestsSentDisplayer requestsSentResults={results.current} setRequestsSentResults={setResults} cancelRequestAPI={cancelRequest} />}
+      {mode.current === 'sent' && results.current && <RequestsSentDisplayer requestsSentResults={results.current} setRequestsSentResults={setResults} cancelRequestAPI={cancelRequestAndRefresh} />}
       {mode.current === 'received' && results.current && <RequestsReceivedDisplayer requestsReceivedResults={results.current} setRequestsReceivedResults={setResults} acceptRequestAPI={acceptRequestAndRefresh} declineRequestAPI={declineRequestAndRefresh} />}
-      {mode.current === 'blocked' && results.current && <BlockedUsersDisplayer blockedUsersResults={results.current} setBlockedUsersResults={setResults} unblockUserAPI={unblockUser} />}
+      {mode.current === 'blocked' && results.current && <BlockedUsersDisplayer blockedUsersResults={results.current} setBlockedUsersResults={setResults} unblockUserAPI={unblockUserAndRefresh} />}
            
       </main>
     

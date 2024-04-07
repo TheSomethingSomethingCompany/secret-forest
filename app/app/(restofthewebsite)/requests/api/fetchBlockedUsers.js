@@ -1,5 +1,5 @@
 export async function fetchBlockedUsers({searchQ, searchBy}){
-    const response = await fetch(`http://localhost:6969/fetchBlockedUsers/api?searchQ=${encodeURIComponent(searchQ)}&op=${encodeURIComponent(searchBy)}`, {
+    const response = await fetch(`http://localhost:6969/fetchBlockedUsers/api?searchQ=${encodeURIComponent(searchQ)}&searchBy=${encodeURIComponent(searchBy)}`, {
         credentials: "include",
     });
 

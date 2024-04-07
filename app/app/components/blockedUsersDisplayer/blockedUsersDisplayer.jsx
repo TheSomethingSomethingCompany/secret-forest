@@ -11,8 +11,8 @@ function BlockedUsersDisplayer({blockedUsersResults, setBlockedUsersResults, unb
         const username = event.currentTarget.dataset.username;
         unblockUserAPI({username: username});
 
-        const newBlockedUsersResults = blockedUsersResults.filter((blockedUser) => blockedUser.username != username);
-        setBlockedUsersResults(newBlockedUsersResults);
+        //const newBlockedUsersResults = blockedUsersResults.filter((blockedUser) => blockedUser.username != username);
+        //setBlockedUsersResults(newBlockedUsersResults);
     }
 
     
