@@ -63,7 +63,7 @@ function DropMenu({ isOpen }: DropMenuProps) {
 						</div>
 					</div>
 					<div
-						onClick={() => router.push("/requestsReceived")}
+						onClick={() => router.push("/requests")}
 						className="flex flex-row justify-between items-start hover:bg-gray-50 p-2 rounded-sm select-none hover:cursor-pointer"
 					>
 						<i className="ri-rfid-line text-2xl m-0 p-0"></i>

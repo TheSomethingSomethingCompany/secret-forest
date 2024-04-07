@@ -15,7 +15,7 @@ import { useWebSocket } from "../../contexts/WebSocketContext";
 
 
 function CreateProfileForm() {
-	const { isConnected, sendMessage } = useWebSocket();
+	const { userStatus, sendMessage } = useWebSocket();
 	return (
 		<>	
 			<form method="POST" className="mx-6">

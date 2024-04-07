@@ -89,7 +89,7 @@ async function handleInsertingMessage (req, res){
             }
 
             // If message is inserted successfully, and if a file is uploaded and it too is inserted successfully, then return a status 200.
-            res.json({ status: 200, message: 'Message inserted successfully', action: 'insertMessage' });
+            res.json({ status: 201, message: 'Message inserted successfully', action: 'insertMessage' });
 
         }
 

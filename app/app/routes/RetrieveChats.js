@@ -4,9 +4,10 @@ const db = require("../db-connection.js")
 
 router.get('/api', async (req, res) => {
     const memberID = req.session.loggedInUserMemberID;
+    const searchQ = req.query.searchQ;
     try
     {
-        console.log("REQUEST FOR RETRIEVE CHATS WITH MEMBERID: " + memberID + "");
+        console.log("REQUEST FOR RETRIEVE CHATS WITH MEMBERID: " + memberID +" AND SEARCHQ: " + searchQ);
         const chatsWithUsers = await db.any(`
         SELECT chats."chatID" as "chatID", member."username" as "username", chats."name" as "name"
         FROM(
@@ -18,34 +19,32 @@ router.get('/api', async (req, res) => {
             FROM (SELECT * from chat where "memberID1" = $1 or "memberID2" = $1) as chatsWithLoggedInUser JOIN profile ON chatsWithLoggedInUser."memberID2" = profile."memberID"
             WHERE chatsWithLoggedInUser."memberID2" != $1
         ) as chats JOIN member USING("memberID")
-            `, [memberID]);
+        WHERE chats."name" ILIKE $2 OR member."username" ILIKE $2
+            `, [memberID, searchQ + '%']);
 
-        const urUsername = await db.one (`
+        const loggedInUsernameQuery = await db.one (`
         SELECT username
         FROM member
         WHERE "memberID" = $1`, [memberID]);
 
 
-        
+        console.log("CHATS WITH USERS: " + JSON.stringify(chatsWithUsers));
         if(chatsWithUsers.length == 0)
-        {
-            res.json({ status: 422, message: 'No chats found' });
-            return;
-        }
+            return res.json({ status: 404, message: 'No chats found' });
+        
+        const loggedInUsername = loggedInUsernameQuery.username;
 
-        else{
-            const loggedInUsername = urUsername.username;
-
-            chatsWithUsers.forEach(chat => {
-                chat.loggedInUsername = loggedInUsername;
-            });
-            
-            res.json({ status: 201, message: 'Retrieved chats successfully', data: chatsWithUsers });
-        } 
+        chatsWithUsers.forEach(chat => {
+            chat.loggedInUsername = loggedInUsername;
+        });
+        
+        return res.json({ status: 200, message: 'Retrieved chats successfully', data: chatsWithUsers });
+    
 
     } 
     catch(error)
     {
+        console.log("[ERROR OBJECT]:\n" + JSON.stringify({...error}));
         res.json({ status: 500, message: 'Failed to retrieve chats' });
     }
 });

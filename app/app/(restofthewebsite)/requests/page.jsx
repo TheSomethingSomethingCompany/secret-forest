@@ -1,8 +1,8 @@
 "use client"
-import RequestsSentDisplayer from "@/app/components/requestsSentDisplayer/RequestsSentDisplayer";
-import RequestsReceivedDisplayer from "@/app/components/requestsReceivedDisplayer/RequestsReceivedDisplayer";
-import BlockedUsersDisplayer from "@/app/components/blockedUsersDisplayer/BlockedUsersDisplayer";
-import SearchBar from "@/app/components/searchBar/SearchBar";
+import RequestsSentDisplayer from "../../components/requestsSentDisplayer/RequestsSentDisplayer";
+import RequestsReceivedDisplayer from "../../components/requestsReceivedDisplayer/RequestsReceivedDisplayer";
+import BlockedUsersDisplayer from "../../components/blockedUsersDisplayer/BlockedUsersDisplayer";
+import SearchBar from "../../components/searchBar/SearchBar";
 import fetchRequestsSent from "./api/fetchRequestsSent";
 import cancelRequest from "./api/cancelRequest";
 import fetchRequestsReceived from "./api/fetchRequestsReceived";
@@ -11,46 +11,92 @@ import declineRequest from "./api/declineRequest";
 import fetchBlockedUsers from "./api/fetchBlockedUsers";
 import unblockUser from "./api/unblockUser";
 import React, { useEffect, useState, useRef} from 'react';
+import { useRouter } from "next/navigation";
+import { useWebSocket } from "@/app/contexts/WebSocketContext";
+
 
 export default function Home() {
    
-    useEffect(() => {
-      document.body.classList.add('h-full');
-      
-      // Clean up function
-      return () => {
-        document.body.classList.remove('your-class-name');
-      };
-    }, []);
+
 
     // We need to make an api call to fetch the requests sent by the user.
+    const {userStatus, sendMessage} = useWebSocket();
+    const router = useRouter();
     const results = useRef(null);
-    const mode = useRef("sent");
+    const mode = useRef("received");
     const [searchQ, setSearchQ] = useState("");
     const [searchBy, setSearchBy] = useState("name");
     const [rerender, setRerender] = useState(false);
 
-    function fetchResultsByMode({searchQ: searchQ, op: op})
+
+    useEffect(() => {
+      sendMessage("sessionCheck")
+    }, []);
+
+    useEffect(() => {
+        if(userStatus === "signedOut")
+        {
+         // router.push("/");
+        }
+    }, [userStatus]);
+    
+
+    function fetchResultsByMode({searchQ, searchBy})
     {
+
         
         switch(mode.current)
         {
+          
+            // Handle the response
             case "received":
-                fetchRequestsReceived({searchQ: searchQ, op: op}).then((res) => {
-                    results.current = res;
-                    setRerender(prev => !prev);
+                fetchRequestsReceived({searchQ: searchQ, searchBy: searchBy}).then((res) => {
+                  
+                  // Handle the response
+                  console.log("[RESPONSE BODY RECEIVED REQUESTS RESULTS]: "+ JSON.stringify(res));
+                  switch(res.status){
+                    case 200:
+                      results.current = res.data;
+                      console.log("[RECEIVED REQUESTS RESULTS IN RESULTS.CURRENT]: "+ JSON.stringify(results.current));
+                      break;
+                    case 500:
+                      results.current = [];
+                      alert("Failed to retrieve received requests, please try again by refreshing the page.");
+                      break;
+                  }
+                  setRerender(prev => !prev);
                 });
                 break;
             case "sent":
-                fetchRequestsSent({searchQ: searchQ, op: op}).then((res) => {
-                    results.current = res;
+                fetchRequestsSent({searchQ: searchQ, searchBy: searchBy}).then((res) => {
+
+                  // Handle the response
+                  switch(res.status){
+                    case 200:
+                      results.current = res.data;
+                      break;
+                    case 500:
+                      results.current = [];
+                      alert("Failed to retrieve sent requests, please try again by refreshing the page.")
+                      break;
+                  }
                     setRerender(prev => !prev)
                 });
                 break;
             case "blocked":
-                fetchBlockedUsers({searchQ: searchQ, op: op}).then((res) => {
-                    results.current = res;
-                   setRerender(prev => !prev);
+                fetchBlockedUsers({searchQ: searchQ, searchBy: searchBy}).then((res) => {
+
+                  // Handle the response
+                  switch(res.status){
+                    case 200:
+                      results.current = res.data;
+                      break;
+                    case 500:
+                      results.current = [];
+                      alert("Failed to retrieve blocked users, please try again by refreshing the page.");
+                      break;
+                  }
+                  setRerender(prev => !prev);
                 });
                 break;
         }
@@ -58,31 +104,82 @@ export default function Home() {
     }
 
     useEffect(() => {
-        fetchResultsByMode({searchQ: "", op: 0});
+        fetchResultsByMode({searchQ: "", searchBy: "name"});
     }, []);
 
 
     function onSearch(){
-      let op = 0;
-      if(searchBy === "name"){
-        op = 0;
-      } else if(searchBy === "email"){
-        op = 1;
-      } else if(searchBy === "username"){
-        op = 2;
-      }
-      fetchResultsByMode({searchQ: searchQ, op: op});
+      fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
     }
      
     function setModeHandler(newMode){
       results.current = null; // Clear the results and show a loading spinner or something
       mode.current = newMode;
-      fetchResultsByMode({searchQ: "", op: 0});
+      fetchResultsByMode({searchQ: "",  searchBy: "name"});
     }
 
     function setResults(data){
         results.current = data;
     }
+
+
+    function acceptRequestAndRefresh(data)
+    {
+        acceptRequest(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to accept request, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
+    function declineRequestAndRefresh(data)
+    {
+        declineRequest(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to decline request, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
+    function cancelRequestAndRefresh(data)
+    {
+        cancelRequest(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to cancel request, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
+    function unblockUserAndRefresh(data)
+    {
+        unblockUser(data).then((res) => {
+          switch(res.status){
+            case 201:
+              fetchResultsByMode({searchQ: searchQ, searchBy: searchBy});
+              break;
+            case 500:
+              alert("Failed to unblock user, please try again by refreshing the page.");
+              break;
+          }
+        });
+    }
+
+
 
   
 
@@ -95,9 +192,9 @@ export default function Home() {
       <button onClick={() => setModeHandler("sent")} className={`mr-4 ${mode === 'sent' ? 'text-blue-500' : ''}`}>Sent</button>
       <button onClick={() => setModeHandler("blocked")} className={`mr-4 ${mode === 'blocked' ? 'text-blue-500' : ''}`}>Blocked</button>
     </div>
-      {mode.current === 'sent' && results.current && <RequestsSentDisplayer requestsSentResults={results.current} setRequestsSentResults={setResults} cancelRequestAPI={cancelRequest} />}
-      {mode.current === 'received' && results.current && <RequestsReceivedDisplayer requestsReceivedResults={results.current} setRequestsReceivedResults={setResults} acceptRequestAPI={acceptRequest} declineRequestAPI={declineRequest} />}
-      {mode.current === 'blocked' && results.current && <BlockedUsersDisplayer blockedUsersResults={results.current} setBlockedUsersResults={setResults} unblockUserAPI={unblockUser} />}
+      {mode.current === 'sent' && results.current && <RequestsSentDisplayer requestsSentResults={results.current} setRequestsSentResults={setResults} cancelRequestAPI={cancelRequestAndRefresh} />}
+      {mode.current === 'received' && results.current && <RequestsReceivedDisplayer requestsReceivedResults={results.current} setRequestsReceivedResults={setResults} acceptRequestAPI={acceptRequestAndRefresh} declineRequestAPI={declineRequestAndRefresh} />}
+      {mode.current === 'blocked' && results.current && <BlockedUsersDisplayer blockedUsersResults={results.current} setBlockedUsersResults={setResults} unblockUserAPI={unblockUserAndRefresh} />}
            
       </main>
     

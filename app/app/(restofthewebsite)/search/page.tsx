@@ -4,6 +4,7 @@ import OccupationTags from "@/app/components/occupationTags/OccupationTags";
 import fetchSearchResults from "./api/search";
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
 export default function Home() {
    
@@ -17,6 +18,7 @@ export default function Home() {
 
     }, []);
 
+    const { userStatus, sendMessage} = useWebSocket();
     const router = useRouter();
     const [currentTags, setTags] = useState([]);
     const [searchQ, setSearchQ] = useState("");
@@ -25,22 +27,23 @@ export default function Home() {
     // Boolean value used to track if all Tags must be present in search results or not.
     const[hasOnlyTags, setHasOnlyTags] = useState(false);
 
-    function onSearch(){
-      let op= 0;
+    useEffect(() => {
+      sendMessage("sessionCheck");
+    }, []);
 
-      switch(searchBy){
-        case "name":
-          op = 0;
-          break;
-        case "email":
-          op = 1;
-          break;
-        case "username":
-          op = 2;
-          break;   
-      }
-        fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, op: op, hasOnlyTags}).then((res) => {
-          setSearchResults(res);
+    function onSearch(){
+
+        fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, searchBy: searchBy, hasOnlyTags}).then((res) => {
+
+          switch(res.status){
+            case 200:
+              setSearchResults(res.data); // Once the state is updated, the component will re-render, and the search results will be displayed
+              break;
+            case 500:
+              alert("Error in fetching search results. Please try again later.");
+              break;
+          }
+
         });
     }
 

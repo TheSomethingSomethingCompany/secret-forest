@@ -11,8 +11,9 @@ function requestsReceivedDisplayer({requestsReceivedResults, setRequestsReceived
 
         acceptRequestAPI({username: username});
 
-        const newRequestsReceivedResults = requestsReceivedResults.filter((request) => request.username != username);
-        setRequestsReceivedResults(newRequestsReceivedResults);
+     //   const newRequestsReceivedResults = requestsReceivedResults.filter((request) => request.username != username);
+      //  console.log("NEW REQUESTS RECEIVED RESULTS: ", newRequestsReceivedResults);
+       // setRequestsReceivedResults(newRequestsReceivedResults);
     }
 
     function declineRequestHandler(event){
@@ -21,8 +22,8 @@ function requestsReceivedDisplayer({requestsReceivedResults, setRequestsReceived
         const username = event.currentTarget.dataset.username;
         declineRequestAPI({username: username});
 
-        const newRequestsReceivedResults = requestsReceivedResults.filter((request) => request.username != username);
-        setRequestsReceivedResults(newRequestsReceivedResults);
+        //const newRequestsReceivedResults = requestsReceivedResults.filter((request) => request.username != username);
+        //setRequestsReceivedResults(newRequestsReceivedResults);
     }
 
     
@@ -40,11 +41,11 @@ function requestsReceivedDisplayer({requestsReceivedResults, setRequestsReceived
             <p className = "text-lg font-bold">Country: {request.country}</p>
             </div>
             <div className = "flex items-center">
-                <button className = "bg-green-400 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {acceptRequestHandler}>Accept</button>
-                <button className = "bg-red-400 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {declineRequestHandler}>Decline</button>
+                <button className = "bg-green-500 p-2 mr-2 rounded-lg text-white font-bold" data-username = {request.username} onClick = {acceptRequestHandler}>Accept</button>
+                <button className = "bg-red-500 p-2 mr-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {declineRequestHandler}>Decline</button>
             </div>
           </div>
-        );
+        );        
       })}
       </div>
     </div>

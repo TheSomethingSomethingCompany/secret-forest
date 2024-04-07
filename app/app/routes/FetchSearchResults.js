@@ -5,17 +5,17 @@ const db = require("../db-connection.js");
 router.post("/api", async (req, res) => {
   console.log(req.body);
 
-  const {searchQ, occupationTags, op, hasOnlyTags} = req.body; //If op is 0, then we are searching by name. If op is 1, then we are searching by email. If op is 2, then we are searching by username.
+  const {searchQ, occupationTags, searchBy, hasOnlyTags} = req.body; 
 
   var whereFilter = '';
-  switch(op){ 
-    case 0: // Search by name
+  switch(searchBy){ 
+    case 'name': // Search by name
       whereFilter = ` profile."name"`;
       break;
-    case 1: // Search by email
+    case 'email': // Search by email
       whereFilter = ` member."email"`;
       break;
-    case 2: // Search by username
+    case 'username': // Search by username
       whereFilter = ` member."username"`;
       break;
   }
@@ -65,7 +65,7 @@ router.post("/api", async (req, res) => {
         console.log(profiles);
         res.json({
             data: profiles,
-            status: 202,
+            status: 200,
             message: "Search Query Fetch Successful",
             pgErrorObject: null,
           });
@@ -85,14 +85,11 @@ router.post("/api", async (req, res) => {
         console.log(profiles);
         res.json({
             data: profiles,
-            status: 202,
+            status: 200,
             message: "Search Query Fetch Successful",
             pgErrorObject: null,
           });
         }
-   
-
-   
 
    
   } catch (error) {

@@ -12,8 +12,8 @@ function requestsSentDisplayer({requestsSentResults, setRequestsSentResults, can
         cancelRequestAPI({username: username});
 
         //Next, remove the request from the list of requests sent
-        const newRequestsSentResults = requestsSentResults.filter((request) => request.username != username);
-        setRequestsSentResults(newRequestsSentResults);
+        //const newRequestsSentResults = requestsSentResults.filter((request) => request.username != username);
+        //setRequestsSentResults(newRequestsSentResults);
     }
 
   return (
@@ -30,7 +30,7 @@ function requestsSentDisplayer({requestsSentResults, setRequestsSentResults, can
             <p className = "text-lg font-bold">Country: {request.country}</p>
             </div>
             <div className = "flex items-center">
-              <button className = "bg-red-400 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {cancelRequestHandler}>Cancel</button>
+              <button className = "bg-red-500 p-2 rounded-md text-white font-bold" data-username = {request.username} onClick = {cancelRequestHandler}>Cancel</button>
             </div>
           </div>
         );

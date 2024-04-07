@@ -14,6 +14,7 @@ CREATE TABLE profile (
     "country" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "bio" TEXT,
+    "pfpPath" TEXT,
     FOREIGN KEY ("memberID") REFERENCES member("memberID")
         ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -100,7 +101,7 @@ VALUES ('071a7c3d-f38b-4be6-a39e-03b18985ca95', 'satanshumishra@outlook.com', 'S
 
 INSERT into profile ("memberID", name, country, address, bio, "pfpPath") values ('071a7c3d-f38b-4be6-a39e-03b18985ca95', 'Satanshu Mishra', 'Canada', 'Somthing St.', 'I am the Satanshu ;)!', '17.svg');
 
-insert into tag ("tagID", "tagName") values (1, "Engineer");
+insert into tag ("tagID", "tagName") values (1, 'Engineer');
 
 insert into user_tag ("memberID", "tagID") values ('071a7c3d-f38b-4be6-a39e-03b18985ca95', 1);
 

@@ -35,35 +35,38 @@ router.post("/api", upload.single("pfp"), async (req, res) => {
   try {
 
     // Check if the username is unique, except for the user's own username by excluding the logged in user's memberID in the query
-    const uniqueUserName = await db.any(`SELECT * FROM member WHERE "username" = $1 AND "memberID"!=$2`, [username, id]);
+    const isUniqueUsernameQuery = await db.oneOrNone(`SELECT * FROM member WHERE "username" = $1 AND "memberID"!=$2`, [username, id]);
     
 
-    if (uniqueUserName.length > 1){
-      res.json({ status: 404, message: 'This username is already being used' });
+    
+    if (isUniqueUsernameQuery != null)
+    {
+      return res.json({ status: 409, message: 'This username is already being used' });
     }
 
-    else if (uniqueUserName.length === 1 && uniqueUserName[0].memberID !== id) {
-      res.json({ status: 404, message: 'This username is already being used'});
+
+
+
+    // Setting the pfpPath for the profile relation
+    console.log("[FILE] | " + pfp); //DEBUG LINE
+    if (req.file == null){
+      const parts = pfp.split('/');
+      const imgName = parts[parts.length - 1];
+      pfpPath = imgName;
+      console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
+    } else {
+      pfpPath = id + fileExt;
+      console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
     }
-
-    else {
-
-      // Setting the pfpPath for the profile relation
-      console.log("[FILE] | " + pfp); //DEBUG LINE
-      if (req.file == null){
-        const parts = pfp.split('/');
-        const imgName = parts[parts.length - 1];
-        pfpPath = imgName;
-        console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
-      } else {
-        pfpPath = id + fileExt;
-        console.log("[pfpPath] | " + pfpPath); //DEBUG LINE
-      }
     await db.tx(async t => {
+
+      // Update profile with edited user data
       await t.none(
         `UPDATE profile SET "name" = $1, "country" = $2, "address" = $3, "bio" = $4, "pfpPath" = $5 WHERE "memberID" = $6`, 
         [fullName, country, address, bio, pfpPath, id]
       );
+
+      // Update member with edited username and email
       await t.none(
         `UPDATE member SET "email" = $1, "username" = $2 WHERE "memberID" = $3`, [email, username, id]
       );
@@ -73,26 +76,27 @@ router.post("/api", upload.single("pfp"), async (req, res) => {
       }
 
 
+      // Remove all previous tags associated with the user
       await t.none(`DELETE FROM user_tag WHERE "memberID" = $1`,[id]);
 
       const tagIDs = await t.any(`SELECT "tagID" FROM tag WHERE "tagName" = any($1)`, [occupationTagsAsArray]); 
-      console.log("[TAG IDS]: " + tagIDs);
+      console.log("[TAG IDS FOR UPDATED TAGS]: " + tagIDs);
       for (let tagIDsRow of tagIDs) {
-          await t.none(`INSERT INTO user_tag("memberID", "tagID") VALUES($1, $2)`, [id, tagIDsRow.tagID]);
+        await t.none(`INSERT INTO user_tag("memberID", "tagID") VALUES($1, $2)`, [id, tagIDsRow.tagID]);
       }
 
   });
 
 
-    console.log("[SUCCESS]: USER INFO UPDATED");
+  console.log("[SUCCESS]: USER INFO UPDATED");
 
-    res.json({
-      //data: { ...t }, 
-      status: 202,
-      message: "User Info Successfully Updated",
-      pgErrorObject: null,
-    });
-      }
+  return res.json({
+    //data: { ...t }, 
+    status: 202,
+    message: "User Info Successfully Updated",
+    pgErrorObject: null,
+  });
+    
 
   } catch (error) {
     console.log("[ERROR NAME]:\n" + error.name);
