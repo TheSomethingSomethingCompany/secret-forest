@@ -136,6 +136,7 @@ export default function ForgotPassword() {
 			console.log(body);
 			const response = await checkAnswer(body);
 			console.log(response)
+
 			if(response.status === 201) {
 				setShowChangePasswordForm(true);
 				setShowErrorMessage(false);
@@ -198,6 +199,7 @@ export default function ForgotPassword() {
 			console.log(response)
 			if(response.status === 201) {
 				router.push("/auth?signin=true");
+				setShowChangePasswordForm(false);
 			}
 
 
@@ -205,6 +207,12 @@ export default function ForgotPassword() {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => { // Trying to reset the change password form values so that the form is empty when user first sees it
+		if (showChangePasswordForm) {
+		  formikChangePassword.resetForm();
+		}
+	  }, [showChangePasswordForm]);
 
 
     return (
