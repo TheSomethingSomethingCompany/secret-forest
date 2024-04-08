@@ -1,5 +1,8 @@
 export async function acceptRequest(data){
-    const response = await fetch('http://localhost:6969/acceptRequest/api', {
+const dotenv = require("dotenv");
+dotenv.config();
+
+    const response = await fetch(`http://${process.env.NEXT_PUBLIC_DNS}:6969/acceptRequest/api`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

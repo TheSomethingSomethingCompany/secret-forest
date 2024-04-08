@@ -9,13 +9,16 @@ const WebSocketContext = createContext({
 });
 
 export const WebSocketProvider = ({ children }) => {
+const dotenv = require("dotenv");
+dotenv.config();
+
 	const [isConnected, setIsConnected] = useState(false);
 	const [userStatus, setUserStatus] = useState("signedOut");
 	let ws = useRef(null);
 
 	useEffect(() => {
 		// CONNECT TO SESSION WEBSOCKET SERVER
-		ws.current = new WebSocket(`ws://localhost:8989`);
+		ws.current = new WebSocket(`ws://${process.env.NEXT_PUBLIC_DNS}:8989`);
 
 		// IF OPEN, UPDATE ISCONNECTED CONTEXT.
 		ws.current.onopen = () => {

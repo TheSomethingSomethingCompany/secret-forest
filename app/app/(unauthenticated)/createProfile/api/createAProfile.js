@@ -1,5 +1,8 @@
 export async function createAProfile(data){
-    const response = await fetch('http://localhost:6969/createAProfile/api', {
+const dotenv = require("dotenv");
+dotenv.config();
+
+    const response = await fetch(`http://${process.env.NEXT_PUBLIC_DNS}:6969/createAProfile/api`, {
         method: 'POST',
         body: data,
         credentials: "include",

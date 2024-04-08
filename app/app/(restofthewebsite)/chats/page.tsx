@@ -16,6 +16,9 @@ import Image from "next/image";
 import { Router } from "lucide-react";
 import {useRouter} from "next/navigation";
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 export default function Chats() {
 	
 	const {userStatus, sendMessage } = useWebSocket();
@@ -76,7 +79,7 @@ export default function Chats() {
 	//  INFORMATION: WEBSOCKETS
 
 	useEffect(() => {
-		ws.current = new WebSocket("ws://localhost:7979");
+		ws.current = new WebSocket(`ws://${process.env.NEXT_PUBLIC_DNS}:7979`);
 		ws.current.onopen = () => {
 			console.log("WebSocket connection opened");
 		};

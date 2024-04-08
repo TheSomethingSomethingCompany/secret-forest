@@ -1,6 +1,8 @@
 export async function fetchRequestsReceived({searchQ, searchBy}){
-
-    const response = await fetch(`http://localhost:6969/fetchRequestsReceived/api?searchQ=${encodeURIComponent(searchQ)}&searchBy=${encodeURIComponent(searchBy)}`, {
+const dotenv = require("dotenv");
+dotenv.config();
+    
+    const response = await fetch(`http://${process.env.NEXT_PUBLIC_DNS}:6969/fetchRequestsReceived/api?searchQ=${encodeURIComponent(searchQ)}&searchBy=${encodeURIComponent(searchBy)}`, {
         credentials: "include",
     });
 
