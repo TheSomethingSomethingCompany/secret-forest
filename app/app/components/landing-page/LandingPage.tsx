@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import PlaceHolderWebsite from "@/public/PlaceholderWebsite.svg";
+import placeholder from "@/public/placeholder.png"
 import Greetings from "@/public/Greetings.svg";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -154,7 +155,7 @@ export default function LandingPage() {
 					className="w-full flex flex-row justify-center items-center border-[2px] border-transparent"
 				>
 					<img
-						src={PlaceHolderWebsite.src}
+						src={placeholder.src}
 						className="w-[80%] h-auto"
 						alt="Placeholder Website"
 					/>
