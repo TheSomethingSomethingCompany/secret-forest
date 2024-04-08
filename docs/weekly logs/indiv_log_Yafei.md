@@ -513,6 +513,267 @@ advise.
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/01874812-f6b2-496f-8f9b-e79fcdafab4f)
 
 
+**Term 2 Week: 6** 
+**Work Period**: `12-02-2024` - `18-02-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Finish Edit Page
+- Explore options for storing profile images
+- Exploring idea to add loading screen 
+
+
+## Active Tasks
+
+- Finish Edit Page
+  - complete the backend functionality for customizing tags
+- Explore options for storing profile images
+  - Implment and use a file system to help store images and reduce workload for the database
+  - Or, wait until we have AWS and S3 and use S3 to help store images
+    - I think waiting to have S3 running for videos and images would be better but I will first discuss with the team
+- Exploring idea to add loading screen
+  - Deciding if its worth implmenting
+    - can be good to have in regards to user experience. (if loading is taking a while for the user than it's a good idea to show that the site is loading instead of the user staring at a blank screen)
+    - I will get the rest of the teams input   
+
+
+## Status of Tasks
+
+- Finish Edit Page (Completed)
+  - complete the backend functionality for customizing tags
+- Explore options for storing profile images (In-progress)
+  - Implment and use a file system to help store images and reduce workload for the database
+  - Or, wait until we have AWS and S3 and use S3 to help store images
+    - I think waiting to have S3 running for videos and images would be better but I will first discuss with the team
+- Exploring idea to add loading screen (In-progress)
+  - Deciding if its worth implmenting
+    - can be good to have in regards to user experience. (if loading is taking a while for the user than it's a good idea to show that the site is loading instead of the user staring at a blank screen)
+    - I will get the rest of the teams input  
+
+
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/f82ccbbe-b8f5-4fc3-a202-228622fcdda1)
+
+**Term 2 Week: 8** 
+**Work Period**: `26-02-2024` - `03-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Check if user is using a default image or are uploading their own image
+  - Upload image to file system
+  - Get and view correct profile image
+    - For nav bar
+    - For edit profile page
+    - For chats 
+  - Be able to change the profile image in the edit profile page   
+
+
+## Active Tasks
+
+- Work on profile image functionality 
+  - Check if user is using a default image or are uploading their own image 
+  - Upload image to file system 
+  - Get and view correct profile image
+    - For nav bar
+    - For edit profile page
+    - For chats 
+  - Be able to change the profile image in the edit profile page   
+- Explore options for storing profile images
+  - Use the file system to help store images and reduce workload for the database
+- Exploring idea to add loading screen
+   
+
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Check if user is using a default image or are uploading their own image (Completed)
+  - Upload image to file system (Completed)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (In-Progress)
+    - For edit profile page (Completed)
+    - For chats (In-Progress)
+  - Be able to change the profile image in the edit profile page (In-Progress)   
+- Explore options for storing profile images (Completed)
+  - Use the file system to help store images and reduce workload for the database
+- Exploring idea to add loading screen (Completed)
+
+NOTE: I synced my branch with the branch Satanshu was working on as he already had the updated UI for the pages I will working on. So on the draft pull
+request I made, there is code that is there that is Satanshu's. I only wrote the code that facilitates the profile image uploading and viewing. 
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/2e0ecc77-553b-4907-9149-597a95b4df4d)
+
+
+**Term 2 Week: 9** 
+**Work Period**: `04-02-2024` - `10-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Check if user is using a default image or are uploading their own image
+  - Upload image to file system
+  - Get and view correct profile image
+    - For nav bar
+    - For edit profile page
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+  - Modify Nav bar so that it shows the currently signed in user's info   
+
+
+## Active Tasks
+
+- Work on profile image functionality 
+  - Get and view correct profile image
+    - For nav bar
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+    - Works with the default images but not with new personal images    
+
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (In-Progress)
+    - For chats (In-Progress)
+  - Be able to change the profile image in the edit profile page (In-Progress)   
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/2e0ecc77-553b-4907-9149-597a95b4df4d)
+
+
+
+**Term 2 Week: 10** 
+**Work Period**: `10-03-2024` - `17-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For nav bar
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+- Modify Nav bar so that it shows the currently signed in user's info   
+
+
+## Active Tasks
+
+- Work on profile image functionality 
+  - Get and view correct profile image
+    - For nav bar
+    - For chats 
+  - Be able to change the profile image in the edit profile page
+    - Works with the default images but not with new personal images
+- Modify Nav bar so that it shows the currently signed in user's info
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (In-Progress)
+    - For chats (Completed)
+  - Be able to change the profile image in the edit profile page (In-Progress)
+- Modify Nav bar so that it shows the currently signed in user's info (In-Progress)   
+
+NOTES:
+- I have been having a issue with uploading new, personal pfp on the edit page that I have been struggling with so my new plan
+  is to finish the other tasks I want to do then go back to fixing that issue.
+- The minimum I wanted to get done this week was the pfps for chats and next week I want to get at least the nav bar showing the logged in users info and pfp.
+- Another task I might be doing soon is a forget password feature
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/cde957e8-57b0-4ea2-967a-ce3202996810)
+
+**Term 2 Week: 11** 
+**Work Period**: `18-03-2024` - `24-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For nav bar
+    - For search bar
+  - Be able to change the profile image in the edit profile page
+- Modify Nav bar so that it shows the currently signed in user's info
+- Implement logout feature 
+
+
+## Active Tasks
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For nav bar
+    - For search bar
+  - Be able to change the profile image in the edit profile page
+- Modify Nav bar so that it shows the currently signed in user's info
+- Implement logout feature 
+
+## Status of Tasks
+
+- Work on profile image functionality (In-Progress)
+  - Get and view correct profile image (In-Progress)
+    - For nav bar (Completed)
+    - For search bar (In-Progress)
+  - Be able to change the profile image in the edit profile page (Handed off to Shaheer to finish)
+- Modify Nav bar so that it shows the currently signed in user's info (Completed)
+- Implement logout feature (Completed)  
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/4666ab8d-3308-48e1-864d-53ed34c07b96)
+
+
+**Term 2 Week: 12** 
+**Work Period**: `25-03-2024` - `31-03-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For search bar
+- Work on forgot password functionality
+  - save security question and answer
+  - retrieve and display question for user to answer
+  - change password if user answers correctly
+- Work on Individual report and video 
+
+
+## Active Tasks
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For search bar
+- Work on forgot password functionality
+  - save security question and answer
+  - retrieve and display question for user to answer
+  - change password if user answers correctly 
+- Work on Individual report and video 
+
+## Status of Tasks
+
+- Work on profile image functionality
+  - Get and view correct profile image
+    - For search bar
+- Work on forgot password functionality (In-Progress)
+  - save security question and answer (Completed)
+  - retrieve and display question for user to answer (In-Progress)
+  - change password if user answers correctly (In-Progress)
+- Work on Individual report and video (In-Progress) 
+
+
+
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/10202298-603d-4e96-a449-f3571bd7538d)
+
+
 
 
 

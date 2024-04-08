@@ -650,6 +650,7 @@
 **GitHub Account**: `shaheershoaib`
 
 ## Individual Objectives
+
 - Implement storing occupaton tags specified in create profile page to the database
 - Implement storing profile picture specified in create page in the database, and locally on express server via multer
 - Implement creating a chat with a user from a search result via the UI
@@ -690,7 +691,6 @@
   - Specifically, requests received component has buttons for accepting and declining requests with the appropriate middleman methods attached, and requests sent component has a cancel button with the appropriate middleman method attached, as well.
   
 ## Status of Tasks: `All Tasks Listed Completed`
-
 - Fully complete backend functionality of the "Request For Chat" feature, along with all appropriate security checks 
       - Sending Request
       - Accepting Request
@@ -704,6 +704,72 @@
   
 ## Peer Review
 <img width="1065" alt="2024-02-05_04-44-22" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/f94fc06b-1c56-4a02-b530-e3f905dad9af">
+
+**Work Period**: 11/02/2024 - 18/02/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Improve security of Edit Profile page
+  - Ensure memberIDs aren't being stored anywhere in the frontend
+  - Combine 2 separate routes into one route that utilizes session data specifically
+- Implement Send Request feature, completing request for chat feature of website
+- Discuss next steps with team
+  - Decide task priorities with team
+  - Ensure team moves forward to specifically working on AWS and Deployment
+  
+## Status of Tasks: `All Tasks Listed Completed`
+- Improve security of Edit Profile page
+  - Ensure memberIDs aren't being stored anywhere in the frontend
+  - Combine 2 separate routes into one route that utilizes session data specifically
+- Implement Send Request feature, completing request for chat feature of website
+- Discuss next steps with team
+  - Decide task priorities with team
+  - Ensure team moves forward to specifically working on AWS and Deployment
+  
+  
+  
+## Peer Review
+<img width="905" alt="2024-03-12_12-16-49" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/446cd3ee-fd4d-4122-ac30-e5f8bcbfd5f6">
+
+**Work Period**: 03/03/2024 - 10/03/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Fix issue in requests page that did not show the updated data after switching modes (received, sent, blocked)
+- Integrate sending files and retrieving (viewing) files in Live Chats through WebSocket Server
+- Fix issues with configuration files preventing our website from not functioning properly
+- Fix issues pertaining to the general functionality of the website
+  
+## Status of Tasks: `All Tasks Listed Completed`
+- Fix issue in requests page that did not show the updated data after switching modes (received, sent, blocked)
+- Integrate sending files and retrieving (viewing) files in Live Chats through WebSocket Server
+- Fix issues with configuration files preventing our website from not functioning properly
+- Fix issues pertaining to the general functionality of the website
+  
+## Peer Review
+<img width="905" alt="2024-03-12_12-16-49" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/446cd3ee-fd4d-4122-ac30-e5f8bcbfd5f6">
+
+
+**Work Period**: 03/24/2024 - 03/31/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Implement Search For Chats feature
+- BugFix Chats not displaying profile pictures for every user
+- Research ways to unit test given server uses session data
+      - Best way would be to mock fetch each middleman method to ensure each middleman returns the expected response
+- Discuss plan for this week regarding our team report and individual report
+  
+## Status of Tasks: `All Tasks Listed Completed`
+- Implement Search For Chats feature
+- BugFix Chats not displaying profile pictures for every user
+- Research ways to unit test given server uses session data
+- DIsucss plan for this week regarding our team report and individual report
+
+## Peer Review
+<img width="1067" alt="2024-02-19_00-49-30" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7aa933c9-ed34-4587-83f6-df4544436d95">
+
+
 
 
 

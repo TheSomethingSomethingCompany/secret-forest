@@ -452,3 +452,132 @@ Please see issues [#150](https://github.com/COSC-499-W2023/year-long-project-tea
 ## Peer Review
 <img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/8c07b581-c233-481a-b815-3e8b4d67c82d">
 
+
+**Week**: 18
+
+**Work Period**: 11 February 2024 - 19 February 2024
+
+## Individual Objectives
+
+- Establish a secondary WebScoket server to handle non-chat related requests.
+- Establish a Web Socket Context that may be used in any page or component to access Web Scoket functionality.
+- Re-organize page routes using Next.js Route Groupings to faciliate easier file navigation and layout specilization.
+- Generalize Root Layout and Initialize two Child Layouts for the newly organized route grouping.
+- Begin implementaion of form input purification scripts.
+    - Auth Pages
+      - Sign Up
+      - Sign In
+      - Create Profile   
+- Research and implement a logging system to better keep track of system statistics and montor system failures.
+    - Pino: https://github.com/pinojs/pino
+    - Winston: https://github.com/winstonjs/winston
+
+## Active Tasks
+
+- Establish a secondary WebScoket server to handle non-chat related requests.
+- Establish a Web Socket Context that may be used in any page or component to access Web Scoket functionality.
+- Re-organize page routes using Next.js Route Groupings to faciliate easier file navigation and layout specilization.
+- Generalize Root Layout and Initialize two Child Layouts for the newly organized route grouping.
+- Begin implementaion of form input purification scripts.
+    - Auth Pages
+      - Sign Up
+      - Sign In
+      - Create Profile   
+- Research and implement a logging system to better keep track of system statistics and montor system failures.
+    - Pino: https://github.com/pinojs/pino
+    - Winston: https://github.com/winstonjs/winston
+
+## Status of Tasks
+
+- Establish a secondary WebScoket server to handle non-chat related requests - `Completed | Fine Tuning In-Progress`
+- Establish a Web Socket Context that may be used in any page or component to access Web Scoket functionality - `Completed`
+- Re-organize page routes using Next.js Route Groupings to faciliate easier file navigation and layout specilization `In-Progress`
+- Generalize Root Layout and Initialize two Child Layouts for the newly organized route grouping - `Completed`
+- Begin implementaion of form input purification scripts.
+    - Auth Pages
+      - Sign Up - `Completed`
+      - Sign In - `Completed`
+      - Create Profile - `In-Progress`
+- Research and implement a logging system to better keep track of system statistics and montor system failures -`In-Progress`
+    - Pino: https://github.com/pinojs/pino
+    - Winston: https://github.com/winstonjs/winston
+
+## Further Explanations of Design Choices
+
+**Secondary WebSocket Server and Context**:
+Currently, we already have a websocket server initialized and running to facilitate live chat's. Initially, I was using this server to implement and create the context. However, since this websocket instance is used to load and notify all users of chat changes, it would have of overhead when the server were used for other non-chat operations. Thus, to optimize performance, the decision was made to create separate WebSocket servers for chat and non-chat operations.
+
+The second websocket server is linked to a single websocket context. This context is declared in the layout and can be accessed from any page or component in the website. This allows any page or component to use WebSocket functionality without having to initialize their own context - Saving on resources and other potential conflicts.
+
+**Logging System: Design Choices**
+The decision to implement a Logging System was one taken recently as I implemented the purification script. Currently, to observe data flow and changes in our app, we utilize `console.log` place strategically to find potential errors in the app. Once the new feature is working as intended, these `console.log`'s are removed and the code is cleaned. This strategy has worked well for us thus far. However, it consumes a lot of time and effort. Due to this, the decision was made to research and implement a logging system that strategically logs data changes and app functionality allows us to focus in on the specific parts of the app that are not working and use console.logs for more precise debugging.
+
+After conducting some research, I found that two of the most popular loggers used include Winston and Pino. However, after further research, the decision was made to use Pino. While both offer similar feature sets, the difference lays in performance. Adding a logging system can severly slow down a system. Pino is by-far the most optimized logger compared to Winston which can be resouce intensive. In the coming week(s), I will endevour to implement Pino in select parts of the app to develop a robust logging system before implementing it in the remainder of the website.
+
+
+## Peer Review
+<img width="1076" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/95500887-1e96-495c-a9ac-d02a24f33ec5">
+
+**Week**: 24
+
+**Work Period**: 18 March 2024 - 24 March 2024
+
+## Individual Objectives
+
+- Complete Chats UI Update.
+
+## Active Tasks
+
+- Complete Chats UI Update
+
+
+## Status of Tasks
+
+- Chats UI Update -- Completed
+
+
+## Peer Review
+<img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/d08495e6-b460-4c50-ab56-8fab6e0ebf80">
+
+**Week**: 25
+
+**Work Period**: 24 March 2024 - 31 March 2024
+
+## Individual Objectives
+
+- Complete Redesign and Overhaul of Chat's Page
+- Improve consistancy of Layouts across website.
+- Improve responsiveness of website layout.
+- Complete Redesign and Overhaul of Profile Page.
+- Complete Redesign and Overhaul of the Requests Page.
+- Add Testing for Back End function.
+
+## Active Tasks
+
+- Complete Redesign and Overhaul of Chat's Page
+- Improve consistancy of Layouts across website.
+- Improve responsiveness of website layout.
+- Complete Redesign and Overhaul of Profile Page.
+- Complete Redesign and Overhaul of the Requests Page.
+
+## Status of Tasks
+
+- Chats UI Update -- Completed
+- Complete Redesign and Overhaul of Chat's Page -- Completed
+- Improve consistancy of Layouts across website. -- Completed
+- Improve responsiveness of website layout. -- Completed
+- Complete Redesign and Overhaul of Profile Page. -- Completed
+- Complete Redesign and Overhaul of the Requests Page. -- In-Progress
+
+## Reason Behind OverHaul
+Our Website had a initial design that was function. However, this design lacked the modern touch we hoped for from our website. Furthermore, it lacked the responsiveness that our designs iniially promised. The new designs take into account both of these and user experience to help make the process of them exploring our website as easy as possible.
+
+Figma Designs:
+https://www.figma.com/file/ruYxLsM1z8Du6hOgbhWurW/COSC-499-%7C-Capstone?type=design&node-id=0%3A1&mode=design&t=9bc79avGG32LmjiS-1
+
+**I would like to apply for bonus marks for my contributions this week.**
+
+## Peer Review
+<img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/e722a7b4-1f3a-4f9f-9030-5cae99e4468f">
+
+

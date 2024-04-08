@@ -354,3 +354,307 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 ![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/51e35d2a-439f-4794-b4ef-29c1aee6c2cc)
+
+
+**Term 2 - Week 6 (Week 19)**: 12/02/2024 - 18/02/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Research PFP Image Storage Options
+- Look into Loading Screen Feature
+- Edit Profile Refactoring and Security Improvements
+    - Removed MemberID from Frontend
+    - Change Routing for Enhanced Security
+    - General Refactoring and Code Clean-up
+- Send a Request Implemented
+- Research Rekognition Video Blurring and Editing (AWS startVideoDetection)
+- Code Lambda Function to Trigger on S3 Upload
+- Restart implementation process
+    - Set up correct ECS cluster
+    - Set up correct VPC and Security groups
+- Understand and Fix issue regarding Load Balancer Target Groups and Health Check pings
+- Reorganize Directories to Organize Routes in a Structured Manner
+- Generalize Root Layout and Initialize 2 Child Layouts for Specific Groups
+- Begin Implementing Purification of Form Inputs in Backend Scripts
+- Look into Implementing a Standardized Logging System to Monitor App Functions
+    - Research AWS Cloudwatch
+    - Research Pine
+  
+## Accomplishments
+
+- Research PFP Image Storage Options - `In Progress`
+- Look into Loading Screen Feature - `In Progress`
+- Edit Profile Refactoring and Security Improvements - `Complete`
+    - Removed MemberID from Frontend
+    - Change Routing for Enhanced Security
+    - General Refactoring and Code Clean-up
+- Send a Request Implemented - `Complete`
+- Research Rekognition Video Blurring and Editing (AWS startVideoDetection) - `Complete`
+- Code Lambda Function to Trigger on S3 Upload - `In Progress`
+- Restart implementation process - `In Progress`
+    - Set up correct ECS cluster
+    - Set up correct VPC and Security groups
+- Understand and Fix issue regarding Load Balancer Target Groups and Health Check pings - `Complete`
+- Reorganize Directories to Organize Routes in a Structured Manner - `In Progress`
+- Generalize Root Layout and Initialize 2 Child Layouts for Specific Groups - `Complete`
+- Begin Implementing Purification of Form Inputs in Backend Scripts - `In Progress`
+- Look into Implementing a Standardized Logging System to Monitor App Functions - `In Progress`
+    - Research AWS Cloudwatch
+    - Research Pine
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/ebbc1fac-2dbc-4ca6-9907-ce80dd085c63)
+
+
+
+**Term 2 - Week 7 & 8 (Week 20 & 21)**: 19/02/2024 - 03/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Implemented Blocking and Unblocking of Users
+    - Blocks both users from sending requests to each other and deletes any chats between them
+- Implemented Request Sent, Recieve and Blocking in One Page
+- Improved Security of the Requests Functionality
+- Integrated File Upload and Retrieval to S3 Through Web Socket Server
+- Research Face Detection on Stored Videos in S3
+- Set Up Facial Blurring Using AWS Rekognition + Lambda
+    - Research AWS CDK
+    - Set Up All Required Services
+    - Deploy Assets
+- Implemented PFP Functionality
+    - Uploading Chosen Image to the File System
+    - Retrieval of PFP from the File System
+    - Edit/Change PFP from the Edit Profile Page
+- Completed First Wave of Deployemt
+    - Set Up All Necessary Services
+    - Deploy Latest Version of the App
+    - Testing All Services in Deployment Environment
+- Completed Redesign of Create Profile Page
+- Completed Redesign of Home Page
+
+  
+  
+## Accomplishments
+
+- Implemented Blocking and Unblocking of Users -- Complete 
+    - Blocks both users from sending requests to each other and deletes any chats between them
+- Implemented Request Sent, Recieve and Blocking in One Page -- Complete
+- Improved Security of the Requests Functionality -- Complete
+- Integrated File Upload and Retrieval to S3 Through Web Socket Server -- Complete
+- Research Face Detection on Stored Videos in S3 -- Complete
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- In Progress
+    - Research AWS CDK -- Complete
+    - Set Up All Required Services -- Complete
+    - Deploy Assets -- In Progress
+- Implemented PFP Functionality -- In Progress
+    - Uploading Chosen Image to the File System -- Complete
+    - Retrieval of PFP from the File System -- In Progress
+    - Edit/Change PFP from the Edit Profile Page -- In Progress
+- Completed First Wave of Deployemt -- In Progress
+    - Set Up All Necessary Services -- Complete
+    - Deploy Latest Version of the App -- Complete
+    - Testing All Services in Deployment Environment -- In Progress
+- Completed Redesign of Create Profile Page -- Complete
+- Completed Redesign of Home Page -- In Progress
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/3dc83c3e-bf05-4e75-8876-eed719d41761)
+
+**Term 2 - Week 9 (Week 22)**: 04/03/2024 - 10/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Complete Peer Testing 2
+  - Present Project to other teams
+  - Test other teams' project
+- Set Up Facial Blurring Using AWS Rekognition + Lambda
+    - Deploy Assets
+- Implemented PFP Functionality
+  - Retrieval of PFP from the File System
+  - Edit/Change PFP from the Edit Profile Page
+- Display User Info In Nav Bar
+- Fix Requests page displaying incorrect information
+- Fix issues related to the functionality of our website present after Peer Testing 2
+
+  
+## Accomplishments
+
+- Complete Peer Testing 2 -- Complete
+  - Present Project to other teams -- Complete
+  - Test other teams' project -- Complete
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- In Progress
+    - Deploy Assets -- In Progress
+- Implemented PFP Functionality -- In Progress
+  - Retrieval of PFP from the File System -- In Progress
+  - Edit/Change PFP from the Edit Profile Page -- In Progress
+- Display User Info In Nav Bar -- In Progress
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+
+
+**Term 2 - Week 10 (Week 23)**: 11/03/2024 - 17/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Set Up Facial Blurring Using AWS Rekognition + Lambda
+    - Deploy Assets
+    - Integrate and Test
+- Implemented PFP Functionality
+  - Retrieval of PFP from the File System
+  - Edit/Change PFP from the Edit Profile Page
+  - Retrieval of PFPs in Chats
+- Forgot Password Functionality 
+- Display User Info In Nav Bar
+- Fix Requests page displaying incorrect information
+- Fix issues related to the functionality of our website present after Peer Testing 2
+
+  
+## Accomplishments
+
+- Set Up Facial Blurring Using AWS Rekognition + Lambda -- Compleyed
+    - Deploy Assets -- Completed
+    - Integrate and Test -- In Progress
+- Implemented PFP Functionality
+  - Retrieval of PFP from the File System -- Completed
+  - Edit/Change PFP from the Edit Profile Page -- In Progress
+  - Retrieval of PFPs in Chats -- Completed
+- Forgot Password Functionality -- In progress
+- Display User Info In Nav Bar -- In Progress
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/01f5d84c-b3a5-48cd-8e7a-f97db68e128d)
+
+
+**Term 2 - Week 11 (Week 24)**: 18/03/2024 - 24/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+
+- Integrate Rekognition buckets within chats page
+- Testing of deployment environment on Fargate
+- Implement the viewing of images and videos from within the chats
+- Implement editing of PFP
+- Display logged-in user info in the navbar
+- Implement log out functionality
+- Update Chats UI
+
+  
+## Accomplishments
+- Integrate Rekognition buckets within chats page -- Completed
+- Testing of deployment environment on Fargate -- In Progress
+- Implement the viewing of images and videos from within the chats -- Completed
+- Implement editing of PFP -- In Progress
+- Display logged-in user info in the navbar -- Completed
+- Implement log out functionality -- Completed
+- Update chats UI -- Completed
+
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/e1cd676a-6d8b-4de8-9aa8-fbccf30b79a4)
+
+**Term 2 - Week 12 (Week 25)**: 25/03/2024 - 31/03/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+- Add P2P payment feature on the website
+- Implemented search for chats feature
+- Fixing bugs in profile picture retrieval
+- Research testing for the website
+  - Implement mock fetches for middleman functions
+- Implementing forget-password feature
+- Fixing connectivity of containers within AWS
+- Testing application on AWS
+- Overhaul UI (Design & Implementation)
+  - Chats
+  - Profile
+  - Requests
+- Add responsive behaviour to the designs
+  
+## Accomplishments
+- Add P2P payment feature on the website -- In-Progress
+- Implemented search for chats feature -- Completed
+- Fixing bugs in profile picture retrieval -- Completed
+- Research testing for the website -- In-Progress
+  - Implement mock fetches for middleman functions -- In-Progress
+- Implementing forget-password feature -- In-Progress
+- Fixing connectivity of containers within AWS -- In-Progress
+- Testing application on AWS -- In-Progress
+  - Overhaul UI (Design & Implementation) - Completed
+  - Chats - Completed
+  - Profile - Completed
+  - Requests - Completed
+- Add responsive behaviour to the designs - Completed
+
+## Test Report
+<img width="632" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f04a1418-6fb7-4190-afad-4ebe15e20a0d">
+<img width="1008" alt="2023-11-05_22-29-52" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/8c898032-bc09-4550-9297-761c72a8435a">
+
+### Burn-Up Chart
+<img width="567" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/0d5e7251-7a40-45bd-be05-b2004061724d">

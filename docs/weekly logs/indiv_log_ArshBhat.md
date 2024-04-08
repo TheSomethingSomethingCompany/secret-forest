@@ -414,3 +414,87 @@
 
 ## Peer Review
 ![Screenshot (44)](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/9c9e9137-6e3c-4474-bbb1-e80947fca667)
+
+# Personal Log - Arsh Bhat
+
+**Week**: 21
+**Week**: `26-02-2024` - `03-03-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Research how to detect faces on stored videos in S3
+  - Research startFaceDetection
+  - Configuring AWS services and permissions
+- Setup facial blurring using aws
+  - research aws cdk
+  - research docker containers
+  - setup all the required services
+  - deploy assets for blurring
+  - Testing of application
+
+## Active Tasks
+- Research how to detect faces on stored videos in S3
+- Setup facial blurring using aws
+
+## Status of Tasks
+- Research how to detect faces on stored videos in S3 - `COMPLETED`
+  - Research startFaceDetection - `COMPLETED`
+  - Configuring AWS services and permissions - `COMPLETED`
+- Setup facial blurring using aws
+  - research AWS CDK - `COMPLETED`
+  - research docker containers - `COMPLETED`
+  - setup all the required services - `COMPLETED`
+  - deploy assets for blurring - `IN-PROGRESS`
+  - Testing of application - `IN-PROGRESS`
+
+## Peer Review
+<img width="537" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/1f267b12-56d2-45b2-94c6-40f5c4a97fe8">
+
+# Personal Log - Arsh Bhat
+
+**Week**: 22
+**Week**: `04-03-2024` - `10-03-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Setup facial blurring using aws
+  - deploy assets for blurring
+  - Testing of application
+- Peer Testing 2
+  - Present project to members from 3 other teams
+  - Watch other team's project presentation
+
+## Active Tasks
+- Setup facial blurring using aws
+- Peer Testing 2
+
+## Status of Tasks
+- Setup facial blurring using aws
+  - deploy assets for blurring - `IN-PROGRESS`
+  - Testing of application - `IN-PROGRESS`
+- Peer Testing 2
+  - Present project to members from 3 other teams - `Complete`
+  - Watch other team's project presentation - `Complete`
+
+## Peer Review
+<img width="534" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/f6658ee4-346b-4e81-b733-b83337b32748">
+
+# Personal Log - Arsh Bhat
+
+**Week**: 23
+**Week**: `25-03-2024` - `31-03-2024`
+**GitHub Account**: `ArshBhat`
+
+## Individual Objectives
+- Add P2P payment functionality
+  Add feature for user to pay money to another user using paypal api
+
+## Active Tasks
+- Add P2P payment functionality
+
+## Status of Tasks
+- Add P2P payment functionality - `IN-PROGRESS`
+
+## Peer Review
+![Screenshot 2024-03-31 204032](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/bb767898-807a-419a-b096-d36f22331fc4)
+

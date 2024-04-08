@@ -500,3 +500,177 @@ This week was mostly spent on troubleshooting and trying to understand various e
 
 ## Peer Review
 ![week 18](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/0f6d0f4b-06ca-4e5f-bebc-bd6a0dd4704f)
+
+
+---------------------------
+
+**Week**: 19
+
+**Work Period**: 12 February 2024 - 18 February 2024
+
+## Individual Objectives
+
+This week i have restarted work on the deployment process. However all the work i have done previously seems to have been invalidated/ not working as it should be so i have had to reinitialize all the AWS components that i have previously worked on. New errors have also arisen regarding the deployment process, specificaly network, VPC, subnent and load balancer issues which i have spent some time researching in order to find a solution for properly. most have been solved but there are a few that need some more understanding of the aws fargate deployment architecture to know how to solve properly. the target by the end of reading break is to have deployment complete, even if there are issues with connectivity and app functionality, since i have midterms after reading break and that may be all i can work on. furthermore, the rest of the features for our project are almost complete so the rest of the team will also hopefuly be transitioning to aws work soon to take some load off regarding deployment and get it done faster and in a more complete manner. 
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+- Research VPC and its purpose
+- Troubleshoot Load Balance error
+- Troubleshoot ECR issue
+- Troubleshoot target group issue
+    
+## Status of Tasks
+
+- App deployment to ECS with Fargate - In Progress
+- Research VPC and its purpose - Complete
+- Troubleshoot Load Balance error - Complete
+- Troubleshoot ECR issue - Complete
+- Troubleshoot target group issue - In Progress
+
+
+## Peer Review
+![week 19](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/4c602cf8-7418-4949-9618-66d70bfa4da4)
+
+---------------------------
+
+**Week**: 20-21
+
+**Work Period**: 19 February 2024 - 3 March 2024
+
+## Individual Objectives
+
+This includes both the reading break and the current week. in the reading break i worked on finalizing all the neccessary conditions to set up the deployment environment. i encountered a lot of network errors which i eventually resolved and was able to successfuly deploy a version of our app on AWS: http://499-new-lb-420614602.ca-central-1.elb.amazonaws.com/home. As of writing, it does not work as i have mistakingly uploaded an image of our server which had a very simple error so the server is not running and almost all functionality is not present. although the error is resolved locally, i have withheld the fixed version from being deployed based on the fact that this week we have gotten a lot of progress doen, so i dont want to build and deploy a version that will be expired in a day or two. either on monday or tuesday when we have gotten the features we are currently working on finished, i will make sure to deploy the most up to date version. this hesitation also stems from the fact that we dont have a steady delivery path to AWS and it entails me having to do docker builds and a manual deployment each time. we can look at getting this process streamlined at a future date but it is not our priority at the moment. 
+
+This week I worked closley with Shaheer to bring him up to speed with all things AWS especially S3 and how it works and how we intend to use it. I aided him in getting the S3 upload in which he then integrated that into the chats page. I then further coded the server code needed to retrieve files from S3 and have provided it for him so that he can integrate that too. I have also assisted Arsh in his research and deployment of the AWS Lambda function which uses Rekognition to blur our videos. currently both he and i and facing some difficulity in getting the code to run which we should be able to solve by the end of next week. this would then unlock our ability to blurr videos and bring us very close to the completion of the app. 
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+	- Completed First Wave of Deployment
+- Troubleshoot Load Balance error
+- Explain and Assist Shaheer with S3 Upload and Retrieve
+- Coded S3 Retrieve Backend
+- Assist in Research and Deployment of Lambda and Recognition with Arsh
+
+    
+## Status of Tasks
+
+- App deployment to ECS with Fargate -- Complete
+	- Completed First Wave of Deployment
+- Troubleshoot Load Balance error -- Complete
+- Explain and Assist Shaheer with S3 Upload and Retrieve -- Complete
+- Coded S3 Retrieve Backend -- Complete
+- Assist in Research and Deployment of Lambda and Recognition with Arsh -- In Progress
+
+
+## Peer Review
+![week 21](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/adb9b50f-e171-48d9-b29b-b6521eefee35)
+
+---------------------------
+
+**Week**: 22
+
+**Work Period**: 4 March 2024 - 10 March 2024
+
+## Individual Objectives
+
+This week i helped in the presentation aspect of our application. i helped in finding any errors and making sure that application was running prior to the peer testing session. i was also involved with troubleshooting an issue with the requests recieved and sent page which then shaheer got to fixing after we discovered what was causing the issue. i have then done some research into lambda and rekognition in order to assist arsh with setting up the video blurring aspect of the app. lastly i have redeployed the latest version of the app to aws. 
+
+## Active Tasks
+
+- App deployment to ECS with Fargate
+- Troubleshoot request page issue
+- Research and understand lambda and rekognition
+
+    
+## Status of Tasks
+
+- App deployment to ECS with Fargate -- Completed
+- Manual testing of the deployed app -- In Progress
+- Troubleshoot request page issue -- Completed
+- Research and understand lambda and rekognition -- In Progress
+
+
+## Peer Review
+![week 22](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/bf2b5725-d7dc-412c-bbe4-4c5b57de3ee6)
+
+---------------------------
+
+**Week**: 23
+
+**Work Period**: 11 March 2024 - 17 March 2024
+
+## Individual Objectives
+
+This week was mostly spent on getting the blurring feature implemented and deployed. i encountered quite a few errors and issues with the configuration of the demo repository that had the rekognition blurring functionality. after fixing the runtime configuration, i had to fix the errors that were occuring on the aws side while deploying the services. eventually i was able to launch all the associated services. now a video uploaded to a bucket will be processed by aws rekogntion to blur any faces in the video. unfortunatly i was unable to fully integrate this within the app and test it out to make sure all is in working order (right now i was able to test it through the aws console). the target for next week is to integrate this within the app and make sure all runs smoothly. 
+
+## Active Tasks
+
+- Troubleshoot blur repo deployment
+- Deploy blur repo
+- Integrate functions within our app
+- Manual testing of the deployed app
+
+    
+## Status of Tasks
+
+- Troubleshoot blur repo deployment -- Completed
+- Deploy blur repo -- Completed
+- Integrate functions within our app -- In Progress
+- Manual testing of the deployed app -- In Progress
+
+
+## Peer Review
+![week 23](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/91888460-3f77-4b70-8767-51b67d62c867)
+
+---------------------------
+
+**Week**: 24
+
+**Work Period**: 18 March 2024 - 24 March 2024
+
+## Individual Objectives
+
+This week i worked on testing out the new buckets and implementing them within the chats page. i initially had some issues with sending and getting from the newly created buckets that are connected with the lambdas and rekognition blurring functions but they were eventually solved. next i had to find a way to isolate the file type from the signed url that is provided from aws in order to properly view the file depending on if it is a video or a photo. shaheer then took over from this point by integrating this logic within the chats page. further, there has been some testing on the fargate deployment but unfortunatley due to a surprise midterm (was announced on tuesday for friday) i did not get as much done as i had hoped. 
+
+## Active Tasks
+
+- Integrate functions within our app
+- Manual testing of the deployed app
+
+    
+## Status of Tasks
+
+- Integrate functions within our app -- Completed
+- Manual testing of the deployed app -- In Progress
+
+
+## Peer Review
+![week 24](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/2a8ffad0-c694-41c7-8106-8a17d24d930c)
+
+
+---------------------------
+
+**Week**: 25
+
+**Work Period**: 25 March 2024 - 31 March 2024
+
+## Individual Objectives
+
+This week has mainly been spent on fixing and working on the deployment side of the project. I had spent a lot of time in making sure that the containers are able to communicate with each other, similar to how they are able to do so locally through docker. This took a lot of time and effort to finally find a solution on how it is done and is still in progress as I am now working on getting the database container to work as well with its required volumes. Unfortunalty also due to the manner in which how deployment works, any update to the code takes some time until it is reflected on the deployed version which is also a partial reason as to why this has been taking a long time as well. The focus right now and for this final upcoming week is to try my hardest to make sure that the database container is running effectivley and is able to communicate with the other containers, and once all the AWS network configuration and set up has been complete, to deploy the final and most up to date version of the app, along with the completion of the report and associated documents. 
+
+
+## Active Tasks
+
+- Fixing container communications within Fargate task
+- Testing of the app in Fargate
+    
+## Status of Tasks
+
+- Fixing container communications within Fargate task -- In Progress
+- Testing of the app in Fargate -- In Progress
+
+## Peer Review
+![week 25](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/def18170-b842-46b0-9854-751617090098)
+
