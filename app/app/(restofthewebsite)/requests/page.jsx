@@ -14,6 +14,8 @@ import unblockUser from "./api/unblockUser";
 import React, { useEffect, useState, useRef} from 'react';
 import { useRouter } from "next/navigation";
 import { useWebSocket } from "@/app/contexts/WebSocketContext";
+import SearchPeople from "../../../public/SearchPeople.svg";
+import Image from 'next/image';
 
 
 export default function Home() {
