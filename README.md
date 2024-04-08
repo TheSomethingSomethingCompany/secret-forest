@@ -50,8 +50,4 @@ docker-compose up [-d]
 
 4. The system will be live @ `localhost:3000`
 
-# Things to Do
-- [ ] Explain AWS Setup and Initialization
-- [ ] Explain Supabase Setup and Initialization
-- [ ] Explain setup of `.env` & `.env.local` files.
-- [ ] Explain same login-details.
+5. Lets Setup Supabase. Go to https://supabase.com/ and create an account. Then create a new Oranization and then under that organization Create a new project. Give this project a name and password. Remember this password as it will be important in the future. Once the project has been setup, go to SQL Editor in the left menu. Here copy and paste the database schema found under DDL in out project Root direcory. This will initialize the database. Next, create a file called .env.local in the Root of the project. Here create 5 variables called PASS_HASH, HOST, PORT, DATABASE, USER and DBPASSWORD. Initialize PASS_HASH to a strong key. This will be used to encrypt your passwords. Going back to Supabase, go to Project Settings in the left menu and select Database. Here initialize the values of the aforementioned vairables to the values of the same name on the right. Finally, create an .env file in the root of the website. Here create a variable named DATABASE_URL and set its value to the connection string found in the same page as above replacing the missing value in the string as needed. The database has now been setup and conencted!
