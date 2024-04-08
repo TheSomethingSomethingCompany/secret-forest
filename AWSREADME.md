@@ -113,8 +113,12 @@ There are a few services that need to be set up as a pre-requisite to the deploy
 
 This is the end of setting up the pre-requisites to set up services needed for the deployment. The following steps are directly related to the deployment of the app.
 
-7. Modify the code slightly such that the code is set to use the newly created load balancer
-    a. In the .env file, change the DNS to the DNS of the load balancer
+7. Modify the code slightly such that the code is set to use the newly created load balancer (the following steps are for VScode IDE, replicate the same steps if using a different IDE)
+    - a. In VScode, press ctrl+shift+F to search for all instance of a term. search for `${process.env.NEXT_PUBLIC_DNS}`
+    - b. Replace every instance of this variable. press ctrl+shift+H to bring up the replacement field. enter the DNS of the load balancer `http://499-new-lb-420614602.ca-central-1.elb.amazonaws.com`
+    - c. in the `server.js` file, ensure that the origin trait in the `corsOption` option variable is set to be the dns of the load balancer only without the port extension of `:3000`
+    - d. in the second app directory, make a new directory to store the dockerfiles. within that directory, have another 2 directories, as each will house the dockerfiles for express and next respectivley.
+    - e. place the express and next dockerfiles into that directory
 
 8. Create 2 image repositories in AWS ECR (one for Next.js and Express.js)
    - a. Navigate to ECR from the console menu
