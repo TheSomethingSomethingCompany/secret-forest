@@ -43,6 +43,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 	//pfp
 	const [pfpInfo, setPfpInfo] = useState(``);
 	const [tempPfp, setTempPfp] = useState(``);
+	const [tempPfpFile, setTempPfpFile] = useState(``);
 
 	useEffect(() => {
 		sendMessage("sessionCheck");
@@ -126,22 +127,29 @@ function EditProfile({ params }: { params: { slug: string } }) {
 
 	function formDataAsJSON() {
 		console.log("check data: ", tempProfile);
-		return {
-			fullName: tempProfile.fullName,
-			country: tempProfile.country,
-			address: tempProfile.address,
-			bio: tempProfile.biography,
-			username: tempProfile.userName,
-			email: tempProfile.email,
-			tags: JSON.stringify(currentTags),
-			pfp: tempPfp,
-		};
+		console.log("PFP: ", tempPfpFile);
+		const formData = new FormData();
+		if (tempPfpFile) {
+			formData.append("pfp", tempPfpFile);
+		}
+		else {
+			formData.append("pfp", tempPfp);
+		}
+		formData.append("fullName", tempProfile.fullName);
+		formData.append("country", tempProfile.country);
+		formData.append("address", tempProfile.address);
+		formData.append("bio", tempProfile.biography);
+		formData.append("username", tempProfile.userName);
+		formData.append("email", tempProfile.email);
+		formData.append("tags", JSON.stringify(currentTags));
+		return formData;
 	}
 
 	// Handler for the Save Changes button
 	async function handleSave(e: { preventDefault: () => void }) {
 		setIsEditing(false);
 		tempProfile.currentTags = currentTags;
+		console.log("PROFILE_IMAGE: ", tempPfpFile);
 		if (
 			tempProfile.fullName != "" &&
 			tempProfile.country != "" &&
@@ -215,7 +223,7 @@ function EditProfile({ params }: { params: { slug: string } }) {
 
 	const handlePfpChange = (e) => {
 		const file = e.target.files[0];
-		setTempPfp(file);
+		setTempPfpFile(file);
 		if (file) {
 			const reader = new FileReader();
 			reader.onloadend = () => {

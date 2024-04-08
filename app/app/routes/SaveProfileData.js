@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db-connection.js");
+const path = require("path");
 const multer = require("multer");
-const fs = require("fs");
 
 
 var pfpName = null;
@@ -10,18 +10,13 @@ var fileExt = null;
 const storage = multer.diskStorage({
 	destination: "./public/pfp-uploads", // Store the file in this directory
 	filename: function (req, file, cb) {
-		pfpName = req.session.signUpMemberID;
+		pfpName = req.session.loggedInUserMemberID;
 		fileExt = path.extname(file.originalname); // Get the file extension of the uploaded file
-    const filePath = `./public/pfp-uploads/${pfpName}${fileExt}`;
-
-    if (fs.existsSync(filePath)) { // if on existing/ older file is already save, remove it to make room for the new one
-      fs.unlinkSync(filePath)
-    }
-		cb(null, pfpName + fileExt);
+		cb(null, pfpName + fileExt); // cb is just a callback that takes in the first argument as null, and the second argument as the file name that we want to use for the uploaded file.
 	},
 });
 
-const upload = multer({ storage: storage, limits: { fileSize: 1000 * 1024 * 1024 }}); 
+const upload = multer({ storage: storage });
 
 
 router.post("/api", upload.single("pfp"), async (req, res) => {
@@ -31,6 +26,8 @@ router.post("/api", upload.single("pfp"), async (req, res) => {
   const occupationTagsAsArray = JSON.parse(tags);
   console.log("TAGS: " + occupationTagsAsArray);
   const id = req.session.loggedInUserMemberID;
+
+  console.log("CHECK FILE EXISITS: " + req.file); // DEBUG
 
   try {
 
