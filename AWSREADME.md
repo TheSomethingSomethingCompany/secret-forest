@@ -1,3 +1,4 @@
+Application available through [this link](http://499-new-lb-420614602.ca-central-1.elb.amazonaws.com)
 # AWS configuration from scratch
 This tutorial document is heavily influenced by [this video](https://www.youtube.com/watch?v=esISkPlnxL0) which was used as a tutorial when deploying this app. If there is any confusion regarding the steps provided, please refer to the video as it may provide some more context.  
 
