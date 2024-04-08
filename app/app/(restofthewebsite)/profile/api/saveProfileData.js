@@ -4,9 +4,7 @@ dotenv.config();
 
     const response = await fetch(`http://${process.env.NEXT_PUBLIC_DNS}:6969/saveProfileData/api`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(data),
-        cache: "no-cache",
+        body: data,
         credentials: "include",
     });
 
