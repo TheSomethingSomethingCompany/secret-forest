@@ -16,36 +16,30 @@ router.post('/api', async (req, res) => {
         `, [toUsername]);
 
         if(toUsernameQuery==null)
-        {
-            res.json({ status: 404, message: 'User does not exist' });
-        }
-        else
-        {
-            const toMemberID = toUsernameQuery.memberID; // An array of rows is returned, which each row being an object with a memberID property. The first row is the only row, so we can access it with [0], and then access the memberID property with .memberID
-            
-            // Check if request actually exists, where the logged in user is the one that sent the request
-            const requestExists = await db.oneOrNone(`
-            SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)
-            `, [fromMemberID, toMemberID]); // The left side of the OR is if the logged in user has sent a request to the other user, and the right side is if the other user has sent a request to the logged in user
+            return res.json({ status: 404, message: 'User does not exist' });
+        
+        const toMemberID = toUsernameQuery.memberID; 
+        
+        // Check if request actually exists, where the logged in user is the one that sent the request
+        const requestExists = await db.oneOrNone(`
+        SELECT * FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)
+        `, [fromMemberID, toMemberID]); // The left side of the OR is if the logged in user has sent a request to the other user, and the right side is if the other user has sent a request to the logged in user
 
-            if(requestExists == null)
-            {
-                res.json({ status: 409, message: 'Request does not exist' });
-            }
-
-            else
-            {
-                await db.none(`
-                DELETE FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)
-                `, [fromMemberID, toMemberID]);
-                res.json({ status: 201, message: 'Cancelled request successfully'});
-            }
-        }
+        if(requestExists == null)
+            return res.json({ status: 404, message: 'Request does not exist' });
+        
+        await db.none(`
+        DELETE FROM request WHERE ("fromMemberID" = $1 AND "toMemberID" = $2)
+        `, [fromMemberID, toMemberID]);
+       
+        return res.json({ status: 201, message: 'Cancelled request successfully'});
+        
+        
         
     } 
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to cancel request'});
+        res.json({ status: 500, message: 'Failed to cancel request', pgErrorObject: {...error}});
     }
 });
 

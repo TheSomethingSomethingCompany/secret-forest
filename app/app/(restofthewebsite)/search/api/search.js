@@ -1,5 +1,8 @@
 export async function fetchSearchResults(data){
-    const response = await fetch('http://localhost:6969/fetchSearchResults/api', {
+const dotenv = require("dotenv");
+dotenv.config();
+
+    const response = await fetch(`http://${process.env.NEXT_PUBLIC_DNS}:6969/fetchSearchResults/api`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -9,9 +12,9 @@ export async function fetchSearchResults(data){
     });
 
     let resBody = await response.json(); // Retrieve response body and turn into JSON object
-    console.log("[RESPONSE BODY SEARCH RESULTS]:") 
+    console.log("[RESPONSE BODY SEARCH RESULTS]: ") 
     console.log(resBody);
-    return resBody.data;
+    return resBody;
    }
 
    export default fetchSearchResults;

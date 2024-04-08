@@ -4,5 +4,4 @@ export default interface AuthResponse {
   } | null;
   status: number;
   message: string;
-  pgErrorObject: any;
 }

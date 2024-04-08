@@ -19,9 +19,11 @@ const wssSession = new WebSocket.Server({ port: WEBSOCKET_PORT_SESSION }); // SE
 
 //Middleware to parse JSON requests
 server.use(express.json());
+const dotenv = require("dotenv");
+dotenv.config();
 
 const corsOptions = {
-	origin: "http://localhost:3000",
+	origin: `http://${process.env.NEXT_PUBLIC_DNS}:3000`,
 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 	credentials: true,
 	optionsSuccessStatus: 200,
@@ -38,6 +40,13 @@ const sessionMiddleWare = session({
 });
 
 server.use(sessionMiddleWare);
+
+// Log responses indicating server got pinged
+server.use((req, res, next) => {
+	console.log("Server got pinged and session data is: " + req.session.loggedInUserMemberID);
+	next();
+});
+
 
 //Any Routes
 const createProfileRoutes = require("./app/routes/CreateProfile"); // profileRoute will equal to the "router" object exported from routes/Profile.js
@@ -72,6 +81,7 @@ server.use("/sessionCheck", sessionCheck);
 const saveProfileDatsRoutes = require("./app/routes/SaveProfileData");
 server.use("/saveProfileData", saveProfileDatsRoutes);
 
+
 const fetchRequestsReceivedRoutes = require("./app/routes/requests/FetchRequestsReceived");
 server.use("/fetchRequestsReceived", fetchRequestsReceivedRoutes);
 
@@ -90,8 +100,36 @@ server.use("/cancelRequest", cancelRequestRoutes);
 const acceptRequestRoutes = require("./app/routes/requests/AcceptRequest");
 server.use("/acceptRequest", acceptRequestRoutes);
 
+const getProfilePictureRoutes = require("./app/routes/GetProfilePicture");
+server.use("/getPFP", getProfilePictureRoutes);
+
+const blockUserRoutes = require("./app/routes/requests/BlockUser");
+server.use("/blockUser", blockUserRoutes);
+
+const unblockUserRoutes = require("./app/routes/requests/UnblockUser");
+server.use("/unblockUser", unblockUserRoutes);
+
+const fetchBlockedUsersRoutes = require("./app/routes/requests/FetchBlockedUsers");
+server.use("/fetchBlockedUsers", fetchBlockedUsersRoutes);
+
+const getUserInfoRoutes = require("./app/routes/GetUserInfo");
+server.use("/getUserInfo", getUserInfoRoutes);
+
+const logoutRoutes = require("./app/routes/Logout");
+server.use("/logout", logoutRoutes);
+
+const getSecurityQuestionRoutes = require("./app/routes/GetSecurityQuestion");
+server.use("/getQuestion", getSecurityQuestionRoutes);
+
+const updatePasswordRoutes = require("./app/routes/UpdatePassword");
+server.use("/updatePassword", updatePasswordRoutes)
+
+const checkSecurityAnswerRoutes = require("./app/routes/CheckSecurityAnswer");
+server.use("/checkAnswer", checkSecurityAnswerRoutes);
+
+
 server.listen(HTTP_PORT, () => {
-	console.log("Server started on http://localhost:6969");
+	console.log(`Server started on http://${process.env.NEXT_PUBLIC_DNS}:6969`);
 });
 
 
@@ -133,6 +171,7 @@ wss.on("connection", (ws, req) => {
 					console.log(`Unknown action: ${action}`);
 			}
 
+			// Broadcast to all clients on the WSS to refresh messages if their current chatID is the same as the chatID of the message that was inserted, edited, or deleted.
 			if (
 				action === "insertMessage" ||
 				action === "editMessage" ||
@@ -141,7 +180,7 @@ wss.on("connection", (ws, req) => {
 				wss.clients.forEach((client) => {
 					if (client.readyState === WebSocket.OPEN) {
 						client.send(
-							JSON.stringify({ chatID: chatID, broadcast: true })
+							JSON.stringify({ chatID: chatID, broadcast: true }) // Any message with broadcast set to true will prompt every client to check if their current chatID is the same as the chatID of the message that was inserted, edited, or deleted. If so, they will refresh their messages.
 						);
 					}
 				});

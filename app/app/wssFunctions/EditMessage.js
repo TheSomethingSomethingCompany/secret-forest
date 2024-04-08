@@ -41,9 +41,13 @@ async function handleEditingMessage(req, res) {
             `, [messageID, memberID]);
 
 
-            if(isMember.length == 0 ||isSender.length == 0)
+            if(isMember.length == 0)
             {
                 res.json({ status: 401, message: 'Unauthorized access', action: 'editMessage' });
+            }
+            else if(isSender.length == 0)
+            {
+                res.json({ status: 403, message: 'Forbidden access', action: 'editMessage' });
             }
 
             else

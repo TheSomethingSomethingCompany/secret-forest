@@ -8,10 +8,10 @@ const DOMPurify = require("isomorphic-dompurify");
 router.post("/api", async (req, res) => {
 	console.log(req.body);
 
-	const { username, email, password } = req.body;
+	const { username, email, password, securityQuestion, securityAnswer} = req.body;
 	try {
 		// CHECK IF INPUTS ARE EMPTY. IF SO, THROW ERROR.
-		if (username === "" || email === "" || password === "") {
+		if (username === "" || email === "" || password === "" || securityQuestion === "" || securityAnswer === "") {
 			return res.json({
 				data: null,
 				status: 400,
@@ -26,6 +26,8 @@ router.post("/api", async (req, res) => {
 		const pureUsername = DOMPurify.sanitize(username, sanitizationConfig);
 		const pureEmail = DOMPurify.sanitize(email, sanitizationConfig);
 		const purePassword = DOMPurify.sanitize(password, sanitizationConfig);
+		const pureSecurityQuestion = DOMPurify.sanitize(securityQuestion, sanitizationConfig);
+		const pureSecurityAnswer = DOMPurify.sanitize(securityAnswer, sanitizationConfig);
 
 		if (pureUsername === "") {
 			return res.json({
@@ -54,6 +56,15 @@ router.post("/api", async (req, res) => {
 			});
 		}
 
+		if (pureSecurityAnswer === "") {
+			return res.json({
+				data: null,
+				status: 422,
+				message: "Your input for 'Security Answer' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				pgErrorObject: null,
+			});
+		}
+
 		console.log(process.env.PASS_HASH);
 
 		await db.none(
@@ -67,10 +78,35 @@ router.post("/api", async (req, res) => {
 				).toString(),
 			]
 		);
-		let memberData = await db.one(
+		let memberData = await db.oneOrNone(
 			'SELECT "memberID" FROM member WHERE "username" = $1',
 			[username]
 		);
+
+
+		if (!memberData) {
+			res.json({
+				data: null,
+				status: 404,
+				message: "No member returned. Member sign-up failed.",
+				pgErrorObject: null,
+			});
+			return;
+		}
+
+
+		await db.none(
+			`INSERT INTO security_question("memberID", "question", "answer")
+			 VALUES($1, $2, $3)`, 
+			 [	memberData.memberID, 
+				pureSecurityQuestion,
+				HmacSHA256(
+					pureSecurityAnswer,
+					"230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"
+				).toString() 
+			] 
+	   );
+
 		console.log("[SUCCESS]: SIGN-UP SUCCESSFUL");
 		console.log("[RESPONSE DATA]\n" + memberData);
 
@@ -87,14 +123,14 @@ router.post("/api", async (req, res) => {
 		console.log("[ERROR NAME]:\n" + error.name);
 		console.log(
 			"[LOG RESPONSE]:\n" +
-				JSON.stringify({
-					data: null,
-					status: 500,
-					message: "User SignUp Failed",
-					pgErrorObject: {
-						...error,
-					},
-				})
+			JSON.stringify({
+				data: null,
+				status: 500,
+				message: "User SignUp Failed",
+				pgErrorObject: {
+					...error,
+				},
+			})
 		);
 		res.json({
 			data: null,

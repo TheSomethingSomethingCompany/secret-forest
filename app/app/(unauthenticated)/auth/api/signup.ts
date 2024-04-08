@@ -4,7 +4,10 @@ export default async function SignUp(values: {
 	email: string;
 	password: string;
 }) {
-	const response = await fetch(`http://localhost:6969/signup/api`, {
+const dotenv = require("dotenv");
+dotenv.config();
+
+	const response = await fetch(`http://${process.env.NEXT_PUBLIC_DNS}:6969/signup/api`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(values),

@@ -17,17 +17,14 @@ router.post('/api', async (req, res) => {
         `, [chatID, memberID]);
 
         if(isMember.length == 0)
-        {
-            res.json({ status: 401, message: 'Unauthorized access' });
-        }
-
-        else
-        {
-            await db.none(`
-            DELETE FROM chat WHERE "chatID" = $1
-            `, [chatID]);
-            res.json({ status: 201, message: 'Deleted chat successfully' });
-        }
+            return res.json({ status: 401, message: 'Unauthorized access' });
+        
+        await db.none(`
+        DELETE FROM chat WHERE "chatID" = $1
+        `, [chatID]);
+        
+        return res.json({ status: 201, message: 'Deleted chat successfully' });
+        
         
     } 
     catch(error)
