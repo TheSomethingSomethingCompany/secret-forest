@@ -21,18 +21,21 @@ router.post("/api", async (req, res) => {
 					"Looks like you missed a few spots. Please double-check the form.",
 				pgErrorObject: null,
 			});
-
 		}
 
 		const sanitizationConfig = { ALLOWED_TAGS: [], KEEP_CONTENT: false };
-		const pureIdentifier = DOMPurify.sanitize(identifier, sanitizationConfig);
+		const pureIdentifier = DOMPurify.sanitize(
+			identifier,
+			sanitizationConfig
+		);
 		const purePassword = DOMPurify.sanitize(password, sanitizationConfig);
 
 		if (pureIdentifier === "") {
 			return res.json({
 				data: null,
 				status: 422,
-				message: "Your input for 'Username or Email' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				message:
+					"Your input for 'Username or Email' could not be processed due to security concerns. Please simplify your entries and resubmit.",
 				pgErrorObject: null,
 			});
 		}
@@ -41,7 +44,8 @@ router.post("/api", async (req, res) => {
 			return res.json({
 				data: null,
 				status: 422,
-				message: "Your input for 'Password' could not be processed due to security concerns. Please simplify your entries and resubmit.",
+				message:
+					"Your input for 'Password' could not be processed due to security concerns. Please simplify your entries and resubmit.",
 				pgErrorObject: null,
 			});
 		}
@@ -54,10 +58,11 @@ router.post("/api", async (req, res) => {
 				pureIdentifier,
 				HmacSHA256(
 					purePassword,
-					"230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"	
+					"230e6fc32123b6164d3aaf26271bb1843c67193132c78137135d0d8f2160d1d3"
 				).toString(),
 			]
 		);
+
 
 		if(member == null)
 		{
@@ -85,8 +90,8 @@ router.post("/api", async (req, res) => {
 			req.session.save(); // Save session data
 			console.log(
 				"[MEMBER ID]: " +
-					req.session.signUpMemberID +
-					" [STATUS CODE]: 205"
+				req.session.signUpMemberID +
+				" [STATUS CODE]: 205"
 			);
 
 			console.log("SUCCESS 205");
@@ -97,15 +102,15 @@ router.post("/api", async (req, res) => {
 				pgErrorObject: null,
 			});
 		} // If the user has created a profile, we will store their memberID in the session data, and redirect them to the search page.
-		else {
+		else 
+    {
 			req.session.loggedInUserMemberID = member.memberID; // Store memberID in session data
 			req.session.save(); // Save session data
 
-
 			console.log(
 				"[MEMBER ID]: " +
-					req.session.loggedInUserMemberID +
-					" Is Logged In"
+				req.session.loggedInUserMemberID +
+				" Is Logged In"
 			);
 			console.log("SUCCESSFUL LOGIN 200 FOR MEMBER ID: " + member.memberID);
 			res.json({
@@ -115,19 +120,9 @@ router.post("/api", async (req, res) => {
 				pgErrorObject: null,
 			});
 		}
-	} catch (error) {
-		console.log(typeof error.received);
-		if (error.name === "QueryResultError") {
-			console.log("[SIGN-IN]: INVALID CREDENTIALS");
-			return res.json({
-				data: null,
-				status: 401,
-				message: "Invalid Credentials",
-				pgErrorObject: {
-					...error,
-				},
-			});
-		}
+	} 
+  catch (error) 
+  {
 
 		console.log("[SIGN-IN ERROR, PG ERROR]: " + error);
 		res.json({

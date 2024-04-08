@@ -53,9 +53,19 @@ export default function Navbar() {
 	const [pfpInfo, setPfpInfo] = useState(``);
 
 	async function getUser() {
-		const res = await fetchUserInfo();
-		console.log("RESPONSE FROM SERVER FOR User:");
-		console.log(res);
+		const res: {
+			data: any;
+			status: number;
+			message: string;
+			pgErrorObject: any;
+		} = await fetchUserInfo();
+
+		if (res.status === 404)
+			alert("Failed to fetch user information.");
+	
+		if (res.status === 500)
+			alert("Something went horribly wrong 👀!");
+
 		setUsername(res.data.username);
 		const pfpPath = await GetProfilePicture({
 			username: res.data.username,

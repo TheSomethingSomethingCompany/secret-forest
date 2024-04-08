@@ -3,16 +3,17 @@ const router = express.Router();
 const db = require("../db-connection.js");
 
 router.get("/api", async (req, res) => {
-    console.log("body: " + req.body);
-    const memberID = req.session.loggedInUserMemberID;
-    try {
+	console.log("body: " + req.body);
+	const memberID = req.session.loggedInUserMemberID;
+	try {
 
-        const userInfo = await db.one(`
+		const userInfo = await db.oneOrNone(`
         SELECT member."username" AS "username", profile."name" AS "name"
         FROM member
         INNER JOIN profile ON member."memberID" = profile."memberID"
         WHERE member."memberID" = $1
         `, [memberID]);
+
 
         if (userInfo.length == 0) 
             return res.json({ status: 404, message: 'User does not exist' });

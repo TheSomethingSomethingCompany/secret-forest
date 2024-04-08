@@ -43,16 +43,19 @@ function OccupationTags({
 
 	return (
 		<section className="flex flex-col w-full">
+			<p className="pb-2">Please remember to hit <span className="bg-black text-white p-1.5 text-sm rounded-md">ENTER</span> each tag to add it.</p>
+
 			<input
 				id={id}
 				type="text"
-				className={`w-full outline-none border-[1px] border-gray-800 rounded-lg font-normal text-xl p-1.5 block focus:outline-none focus:border-[#0085ff] focus:ring-1 focus:ring-[#0085ff]`}
+				className={`w-full outline-none border-[1px] border-gray-800 rounded-lg font-normal text-lg p-1.5 block focus:outline-none focus:border-[#0085ff] focus:ring-1 focus:ring-[#0085ff]`}
 				onKeyDown={addTag}
 				value={inputValue}
 				onInput={onInputChange}
 				name={inputName}
 				placeholder={`Add new tags...`}
-			></input>{" "}
+			></input>
+
 			<div
 				id="tags-container"
 				className="tag flex flex-row justify-start item-center flex-wrap w-full my-1"

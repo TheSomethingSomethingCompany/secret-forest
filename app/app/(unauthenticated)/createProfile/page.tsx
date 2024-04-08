@@ -20,7 +20,7 @@ export default function CreateProfile() {
 
 
 return (
-    <main className="bg-[#fbfcff] p-10"> 
+    <main className="bg-[#fbfcff] p-10 max-h-[80vh] overflow-y-scroll"> 
 			<CreateProfileForm />
 	</main>
   );

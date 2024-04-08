@@ -197,7 +197,6 @@ export default function UserAuthentication() {
 				isEmail: emailRegex.test(values.identifier),
 			};
 			const response = await SignIn(body);
-			console.log("Logged In Successfully!");
 			console.log(response);
 			switch(response.status){
 				case 200:
