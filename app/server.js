@@ -19,9 +19,11 @@ const wssSession = new WebSocket.Server({ port: WEBSOCKET_PORT_SESSION }); // SE
 
 //Middleware to parse JSON requests
 server.use(express.json());
+const dotenv = require("dotenv");
+dotenv.config();
 
 const corsOptions = {
-	origin: "http://localhost:3000",
+	origin: `http://${process.env.NEXT_PUBLIC_DNS}:3000`,
 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 	credentials: true,
 	optionsSuccessStatus: 200,
@@ -127,7 +129,7 @@ server.use("/checkAnswer", checkSecurityAnswerRoutes);
 
 
 server.listen(HTTP_PORT, () => {
-	console.log("Server started on http://localhost:6969");
+	console.log(`Server started on http://${process.env.NEXT_PUBLIC_DNS}:6969`);
 });
 
 
