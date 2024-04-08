@@ -5,6 +5,7 @@ import fetchSearchResults from "./api/search";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/app/components/ui/checkbox";
+import { useWebSocket } from "@/app/contexts/WebSocketContext";
 
 
 export default function Home() {
