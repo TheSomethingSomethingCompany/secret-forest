@@ -1,37 +1,33 @@
 "use client";
 
-function requestsReceivedDisplayer({
-	requestsReceivedResults,
-	setRequestsReceivedResults,
-	acceptRequestAPI,
-	declineRequestAPI,
-}) {
-	/* Data is expected to be received as an array of JSON objects containing the usernames */
 
-	function acceptRequestHandler(event) {
-		event.preventDefault();
-		// Get the username of the user who sent the request
-		const username = event.currentTarget.dataset.username;
+function requestsReceivedDisplayer({requestsReceivedResults, setRequestsReceivedResults, acceptRequestAPI, declineRequestAPI}){
+/* Data is expected to be received as an array of JSON objects containing the usernames */
 
-		acceptRequestAPI({ username: username });
+    function acceptRequestHandler(event){
+        event.preventDefault();
+        // Get the username of the user who sent the request
+        const username = event.currentTarget.dataset.username;
 
-		const newRequestsReceivedResults = requestsReceivedResults.filter(
-			(request) => request.username != username
-		);
-		setRequestsReceivedResults(newRequestsReceivedResults);
-	}
+        acceptRequestAPI({username: username});
 
-	function declineRequestHandler(event) {
-		event.preventDefault();
-		// Get the username of the user who sent the request
-		const username = event.currentTarget.dataset.username;
-		declineRequestAPI({ username: username });
+     //   const newRequestsReceivedResults = requestsReceivedResults.filter((request) => request.username != username);
+      //  console.log("NEW REQUESTS RECEIVED RESULTS: ", newRequestsReceivedResults);
+       // setRequestsReceivedResults(newRequestsReceivedResults);
+    }
 
-		const newRequestsReceivedResults = requestsReceivedResults.filter(
-			(request) => request.username != username
-		);
-		setRequestsReceivedResults(newRequestsReceivedResults);
-	}
+    function declineRequestHandler(event){
+        event.preventDefault();
+        // Get the username of the user who sent the request
+        const username = event.currentTarget.dataset.username;
+        declineRequestAPI({username: username});
+
+        //const newRequestsReceivedResults = requestsReceivedResults.filter((request) => request.username != username);
+        //setRequestsReceivedResults(newRequestsReceivedResults);
+    }
+
+    
+
 
 	return (
 		<div className="flex w-full flex-col items-center overflow-y-scroll ">
@@ -73,7 +69,7 @@ function requestsReceivedDisplayer({
 			})}
 		</div>
 	);
-}
+};
 
 export default requestsReceivedDisplayer;
 

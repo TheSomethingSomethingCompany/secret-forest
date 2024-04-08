@@ -4,23 +4,23 @@ const db = require("../../db-connection.js")
 
 router.get('/api', async (req, res) => {
     const searchQ = req.query.searchQ;
-    const op = parseInt(req.query.op);
+    const searchBy = req.query.searchBy;
 
     var whereFilter = '';
-    switch(op){ 
-      case 0: // Search by name
+    switch(searchBy){ 
+      case 'name': // Search by name
         whereFilter = ` profile."name"`;
         break;
-      case 1: // Search by email
+      case 'email': // Search by email
         whereFilter = ` member."email"`;
         break;
-      case 2: // Search by username
+      case 'username': // Search by username
         whereFilter = ` member."username"`;
         break;
     }
 
     console.log(`[SEARCHQ]: ${searchQ}`);
-    console.log(`[OP]: ${op}`);
+    console.log(`[SEARCH BY]: ${searchBy}`);
     console.log(`[WHERE FILTER]: ${whereFilter}`);
     console.log("FOR SENT REQUESTS");
 
@@ -39,13 +39,13 @@ router.get('/api', async (req, res) => {
         JOIN profile ON request."toMemberID" = profile."memberID"
         WHERE "fromMemberID" = $1 AND ${whereFilter} ILIKE $2
         `, [memberID, `${searchQ}%`]);
-        res.json({ status: 200, message: 'Retrieved requests sent successfully', data: requests});
+        return res.json({ status: 200, message: 'Retrieved requests sent successfully', data: requests});
 
     }
         
     catch(error)
     {
-        res.json({ status: 500, message: 'Failed to retrieve sent requests'});
+        res.json({ status: 500, message: 'Failed to retrieve sent requests', error: error.message});
     }
 });
 

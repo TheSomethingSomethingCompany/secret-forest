@@ -41,6 +41,11 @@ async function handleDeletingMessage (req, res) {
                 res.json({status: 401, message: 'Unauthorized access'});
             }
 
+            else if(isSender.length == 0)
+            {
+                res.json({status: 403, message: 'Forbidden access'});
+            }
+
             else
             {
                 await db.none(`

@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/app/components/ui/checkbox";
 
+
 export default function Home() {
 	useEffect(() => {
 		document.body.classList.add("h-full");
@@ -16,39 +17,35 @@ export default function Home() {
 		};
 	}, []);
 
-	const router = useRouter();
-	const [currentTags, setTags] = useState([]);
-	const [searchQ, setSearchQ] = useState("");
-	const [searchBy, setSearchBy] = useState("name");
-	const [searchResults, setSearchResults] = useState<
-		{ username: string; name: string; email: string; tags: string[] }[]
-	>([]);
-	// Boolean value used to track if all Tags must be present in search results or not.
-	const [hasOnlyTags, setHasOnlyTags] = useState(false);
 
-	function onSearch() {
-		let op = 0;
+    const { userStatus, sendMessage} = useWebSocket();
+    const router = useRouter();
+    const [currentTags, setTags] = useState([]);
+    const [searchQ, setSearchQ] = useState("");
+    const [searchBy, setSearchBy] = useState("name");
+    const [searchResults, setSearchResults] = useState([]);
+    // Boolean value used to track if all Tags must be present in search results or not.
+    const[hasOnlyTags, setHasOnlyTags] = useState(false);
 
-		switch (searchBy) {
-			case "name":
-				op = 0;
-				break;
-			case "email":
-				op = 1;
-				break;
-			case "username":
-				op = 2;
-				break;
-		}
-		fetchSearchResults({
-			searchQ: searchQ,
-			occupationTags: currentTags,
-			op: op,
-			hasOnlyTags,
-		}).then((res) => {
-			setSearchResults(res);
-		});
-	}
+    useEffect(() => {
+      sendMessage("sessionCheck");
+    }, []);
+
+    function onSearch(){
+
+        fetchSearchResults({searchQ: searchQ, occupationTags: currentTags, searchBy: searchBy, hasOnlyTags}).then((res) => {
+
+          switch(res.status){
+            case 200:
+              setSearchResults(res.data); // Once the state is updated, the component will re-render, and the search results will be displayed
+              break;
+            case 500:
+              alert("Error in fetching search results. Please try again later.");
+              break;
+          }
+
+        });
+    }
 
 	function onCheckBoxChange() {
 		setHasOnlyTags(!hasOnlyTags);

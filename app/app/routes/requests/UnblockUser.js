@@ -15,36 +15,29 @@ router.post('/api', async (req, res) => {
         `, [blockedUsername]);
 
         if(blockedMemberIDQuery==null)
-        {
-            res.json({ status: 404, message: 'User does not exist' });
-        }
-        else
-        {
-            const blockedMemberID = blockedMemberIDQuery.memberID; 
+           return res.json({ status: 404, message: 'User does not exist' });
+        
+    
+        const blockedMemberID = blockedMemberIDQuery.memberID; 
 
-            // Check if the two users have already blocked each other
-            const blockExists = await db.oneOrNone(`
-            SELECT * FROM blocked_user WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
-            `, [blockerMemberID, blockedMemberID]);
+        // Check if the two users have already blocked each other
+        const blockExists = await db.oneOrNone(`
+        SELECT * FROM blocked_user WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
+        `, [blockerMemberID, blockedMemberID]);
 
-            if(blockExists == null)
-            {
-                res.json({ status: 409, message: 'No block exists' });
-            }
-
-            else
-            {
-                // Remove the block between the users to unblock them
-                await db.none(`
-                DELETE FROM blocked_user WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
-                `, [blockerMemberID, blockedMemberID]);
+        if(blockExists == null)
+            return res.json({ status: 409, message: 'No block exists' });
+        
+        // Remove the block between the users to unblock them
+        await db.none(`
+        DELETE FROM blocked_user WHERE ("blockerMemberID" = $1 AND "blockedMemberID" = $2) OR ("blockerMemberID" = $2 AND "blockedMemberID" = $1)
+        `, [blockerMemberID, blockedMemberID]);
 
 
-                res.json({ status: 201, message: 'Unblocked user successfully' });
-            }
+        return res.json({ status: 201, message: 'Unblocked user successfully' });
 
             
-        }
+        
         
     } 
     catch(error)

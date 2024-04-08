@@ -29,38 +29,39 @@ router.get("/api", async (req, res) => {
       [memberID, searchQ + "%"]
     );
 
-    const urUsername = await db.oneOrNone(
-      `
+
+        const loggedInUsernameQuery = await db.oneOrNone (`
         SELECT username
         FROM member
         WHERE "memberID" = $1`,
       [memberID]
     );
 
-    if (!urUsername) {
-      res.json({ status: 404, message: "No Username Retrieved!" });
-      return;
+    if (loggedInUsernameQuery == null) {
+      return res.json({ status: 404, message: "User does not exist. may need to reauthenticate" });
+      
     }
 
-    if (chatsWithUsers.length == 0) {
-      res.json({ status: 404, message: "No chats found" });
-      return;
-    } else {
-      const loggedInUsername = urUsername.username;
+        console.log("CHATS WITH USERS: " + JSON.stringify(chatsWithUsers));
+        if(chatsWithUsers.length == 0)
+            return res.json({ status: 404, message: 'No chats found' });
+        
+        const loggedInUsername = loggedInUsernameQuery.username;
 
-      chatsWithUsers.forEach((chat) => {
-        chat.loggedInUsername = loggedInUsername;
-      });
+        chatsWithUsers.forEach(chat => {
+            chat.loggedInUsername = loggedInUsername;
+        });
+        
+        return res.json({ status: 200, message: 'Retrieved chats successfully', data: chatsWithUsers });
+    
 
-      res.json({
-        status: 201,
-        message: "Retrieved chats successfully",
-        data: chatsWithUsers,
-      });
+    } 
+    catch(error)
+    {
+        console.log("[ERROR OBJECT]:\n" + JSON.stringify({...error}));
+        res.json({ status: 500, message: 'Failed to retrieve chats' });
     }
-  } catch (error) {
-    res.json({ status: 500, message: "Failed to retrieve chats" });
-  }
+
 });
 
 module.exports = router;

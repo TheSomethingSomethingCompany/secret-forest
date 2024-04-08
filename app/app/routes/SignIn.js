@@ -63,17 +63,17 @@ router.post("/api", async (req, res) => {
 			]
 		);
 
-		if (!member) {
-			res.json({
+
+		if(member == null)
+		{
+			return res.json({
 				data: null,
-				status: 404,
-				message: "User not found. Sign-In Failed.",
-				pgErrorObject: {
-					...error,
-				},
+				status: 401,
+				message: "Invalid Credentials",
+				pgErrorObject: null,
 			});
-			return;
 		}
+
 
 		// We need to check if the user has actually created a profile yet. If not, we need to redirect them to the profile creation page.
 		const hasProfile = await db.any(
@@ -98,62 +98,33 @@ router.post("/api", async (req, res) => {
 			res.json({
 				data: { id: member.memberID },
 				status: 205,
-				message: "User Sign-Up Successful.",
+				message: "User Sign-In Successful, but no profile found. Redirecting to profile creation page.",
 				pgErrorObject: null,
 			});
 		} // If the user has created a profile, we will store their memberID in the session data, and redirect them to the search page.
-		else {
+		else 
+    {
 			req.session.loggedInUserMemberID = member.memberID; // Store memberID in session data
 			req.session.save(); // Save session data
-
-			// ESTABILISH CONNECTION WITH SESSION WEBSOCKET SERVER
-			// const ws = new WebSocket("ws://localhost:8989");
-			//
-			// ws.on("open", () => {
-			// 	console.log("[Sign-In] Connected to Session WebSocket server.");
-			// 	ws.send(JSON.stringify({action: "signedIn", body:{}}));
-			// 	ws.close();
-			// });
-			//
-			// ws.on("close", () => {
-			// 	console.log("[Sign-In] Disconnected from Session WebSocket server.");
-			// });
 
 			console.log(
 				"[MEMBER ID]: " +
 				req.session.loggedInUserMemberID +
 				" Is Logged In"
 			);
-			console.log("SUCCESS 201");
+			console.log("SUCCESSFUL LOGIN 200 FOR MEMBER ID: " + member.memberID);
 			res.json({
 				data: { id: member.memberID },
-				status: 201,
+				status: 200,
 				message: "User SignIn Successful",
 				pgErrorObject: null,
 			});
 		}
-	} catch (error) {
-		console.log(typeof error.received);
-		if (error.name === "QueryResultError") {
-			console.log("[SIGN-IN]: INVALID CREDENTIALS");
-			console.log({
-				data: null,
-				status: 404,
-				message: "Invalid Credentials",
-				pgErrorObject: {
-					...error,
-				},
-			});
-			return res.json({
-				data: null,
-				status: 404,
-				message: "Invalid Credentials",
-				pgErrorObject: {
-					...error,
-				},
-			});
-		}
-		console.log("[SIGN-IN]: SERVER ERROR");
+	} 
+  catch (error) 
+  {
+
+		console.log("[SIGN-IN ERROR, PG ERROR]: " + error);
 		res.json({
 			data: null,
 			status: 500,

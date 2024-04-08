@@ -14,36 +14,36 @@ router.get("/api", async (req, res) => {
         WHERE member."memberID" = $1
         `, [memberID]);
 
-		if (!userInfo) {
-			res.json({ data: null, status: 404, message: 'Cannot find user. Failed to retrieve information.', pgErrorObject: null });
-			return;
-		} else {
-			res.json({ data: userInfo, status: 201, message: 'Fetch user successfully', pgErrorObject: null });
-		}
 
+        if (userInfo.length == 0) 
+            return res.json({ status: 404, message: 'User does not exist' });
+            
+        return res.json({ status: 200, message: 'Fetched user successfully', data: userInfo });
+        
 
-	} catch (error) {
-		console.log("[ERROR NAME]:\n" + error.name);
-		console.log(
-			"[LOG RESPONSE]:\n" +
-			JSON.stringify({
-				data: null,
-				status: 500,
-				message: "Fetch User Info Failed",
-				pgErrorObject: {
-					...error,
-				},
-			})
-		);
-		res.json({
-			data: null,
-			status: 500,
-			message: "Fetch User Info Failed",
-			pgErrorObject: {
-				...error,
-			},
-		});
-	}
+    
+} catch (error) {
+    console.log("[ERROR NAME]:\n" + error.name);
+    console.log(
+      "[LOG RESPONSE]:\n" +
+        JSON.stringify({
+          data: null,
+          status: 500,
+          message: "Fetch User Info Failed",
+          pgErrorObject: {
+            ...error,
+          },
+        })
+    );
+    res.json({
+      data: null,
+      status: 500,
+      message: "Fetch User Info Failed",
+      pgErrorObject: {
+        ...error,
+      },
+    });
+  }
 
 
 });

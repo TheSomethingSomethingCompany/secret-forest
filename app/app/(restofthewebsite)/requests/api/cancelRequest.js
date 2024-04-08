@@ -10,7 +10,7 @@ export async function cancelRequest(data){
 
     let resBody = await response.json(); // Retrieve response body and turn into JSON object
     console.log(resBody);
-    return resBody.data;
+    return resBody;
    }
 
    export default cancelRequest;

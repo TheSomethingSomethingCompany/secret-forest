@@ -41,10 +41,10 @@ async function handleInsertingMessage(req, res) {
             `, [chatID, memberID]);
 
 		if (isMember.length === 0) {
-			res.json({ status: 401, message: 'Unauthorized access', action: 'insertMessage' });
+			return res.json({ status: 401, message: 'Unauthorized access', action: 'insertMessage' });
 		}
 
-		else {
+
 
 
 			// Insert the message into the database, and return the messageID of the inserted message.
@@ -55,48 +55,52 @@ async function handleInsertingMessage(req, res) {
                 `, [chatID, memberID, message]);
 			const messageID = messageRes.messageID;
 
-			if (!messageRes) {
+			if (!messageRes) 
+      {
 				res.json({ status: 404, message: 'Message ID was not returned.', action: 'insertMessage' });
 				return;
 			}
+      
+       if(file)
+        {
+            console.log('[UPLOADED FILE]');
+            const uniqueFilename = `${uuidv4()}_${file.originalName}`; //creates a unique filename for the image
+            const mimeType = file.mimetype;
+            const base64File = file.fileData;
+            const base64Data = base64File.replace(/^data:\w+\/\w+;base64,/, '');
+            const buffer = Buffer.from(base64Data, 'base64');
+            const params = {
+                Bucket: shouldBlur ? inputBucketName: outputBucketName, //upload will happen to this s3 bucket
+                Key: uniqueFilename, //name of the file that is on the user's computer
+                Body: buffer,  //buffer contains the actual binary data of the file
+                ContentType: mimeType, //the type of the file in question
+            }
+            const command = new PutObjectCommand(params)
 
-			if (file) {
-				console.log('[UPLOADED FILE]');
-				const uniqueFilename = `${uuidv4()}_${file.originalName}`; //creates a unique filename for the image
-				const mimeType = file.mimetype;
-				const base64File = file.fileData;
-				const base64Data = base64File.replace(/^data:\w+\/\w+;base64,/, '');
-				const buffer = Buffer.from(base64Data, 'base64');
-				const params = {
-					Bucket: shouldBlur ? inputBucketName : outputBucketName, //upload will happen to this s3 bucket
-					Key: uniqueFilename, //name of the file that is on the user's computer
-					Body: buffer,  //buffer contains the actual binary data of the file
-					ContentType: mimeType, //the type of the file in question
-				}
-				const command = new PutObjectCommand(params)
+            // await s3Object.send(command);
+            try 
+            {
+                await s3Object.send(command);
+            } 
+            catch (error) 
+            {
+                console.error("Error uploading image to S3:", error);
+                res.status(500).json({status: 500, message: "Failed to save image."});
+            }
+            // Insert the fileName into the "file" table in the database.
+            await db.none('INSERT INTO file("messageID", "fileName") VALUES ($1, $2)', [messageID, uniqueFilename]); 
+        }
 
-				// await s3Object.send(command);
-				try {
-					await s3Object.send(command);
-				}
-				catch (error) {
-					console.error("Error uploading image to S3:", error);
-					res.status(500).json({ status: 500, message: "Failed to save image." });
-				}
-				// Insert the fileName into the "file" table in the database.
-				await db.none('INSERT INTO file("messageID", "fileName") VALUES ($1, $2)', [messageID, uniqueFilename]);
-			}
+        // If message is inserted successfully, and if a file is uploaded and it too is inserted successfully, then return a status 200.
+        res.json({ status: 201, message: 'Message inserted successfully', action: 'insertMessage' });
 
-			// If message is inserted successfully, and if a file is uploaded and it too is inserted successfully, then return a status 200.
-			res.json({ status: 200, message: 'Message inserted successfully', action: 'insertMessage' });
-
-		}
-
-	}
-	catch (error) {
-		console.error("Error inserting message:", error);
-		res.json({ status: 500, message: 'Failed to insert message', action: 'insertMessage' });
-	}
+            
+    } 
+    catch(error)
+    {
+        console.error("Error inserting message:", error); 
+        res.json({ status: 500, message: 'Failed to insert message',  action: 'insertMessage'});
+    }
 
 }
 

@@ -1,24 +1,22 @@
 "use client";
 
-function BlockedUsersDisplayer({
-	blockedUsersResults,
-	setBlockedUsersResults,
-	unblockUserAPI,
-}) {
-	/* Data is expected to be received as an array of JSON objects containing the usernames */
 
-	function unblockUserHandler(event) {
-		event.preventDefault();
-		// Get the username of the user who sent the blockedUser
-		const username = event.currentTarget.dataset.username;
-		unblockUserAPI({ username: username });
 
-		const newBlockedUsersResults = blockedUsersResults.filter(
-			(blockedUser) => blockedUser.username != username
-		);
-		setBlockedUsersResults(newBlockedUsersResults);
-	}
+function BlockedUsersDisplayer({blockedUsersResults, setBlockedUsersResults, unblockUserAPI}){
+/* Data is expected to be received as an array of JSON objects containing the usernames */
 
+
+    function unblockUserHandler(event){
+        event.preventDefault();
+        // Get the username of the user who sent the request
+        const username = event.currentTarget.dataset.username;
+        unblockUserAPI({username: username});
+
+        //const newBlockedUsersResults = blockedUsersResults.filter((blockedUser) => blockedUser.username != username);
+        //setBlockedUsersResults(newBlockedUsersResults);
+    }
+
+    
 	return (
 		<div className="flex w-full flex-col items-center overflow-y-scroll">
 			{blockedUsersResults.map((blockedUser) => {
@@ -52,7 +50,7 @@ function BlockedUsersDisplayer({
 			})}
 		</div>
 	);
-}
+};
 
 export default BlockedUsersDisplayer;
 

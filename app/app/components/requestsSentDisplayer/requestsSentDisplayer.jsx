@@ -1,25 +1,20 @@
 "use client";
 
-function requestsSentDisplayer({
-	requestsSentResults,
-	setRequestsSentResults,
-	cancelRequestAPI,
-}) {
-	/* Data is expected to be received as an array of JSON objects containing the usernames */
 
-	function cancelRequestHandler(event) {
-		event.preventDefault();
-		// Get the username of the user who sent the request
-		const username = event.currentTarget.dataset.username;
-		// Send the username to the server to cancel the request
-		cancelRequestAPI({ username: username });
+function requestsSentDisplayer({requestsSentResults, setRequestsSentResults, cancelRequestAPI}){
+/* Data is expected to be received as an array of JSON objects containing the usernames */
 
-		//Next, remove the request from the list of requests sent
-		const newRequestsSentResults = requestsSentResults.filter(
-			(request) => request.username != username
-		);
-		setRequestsSentResults(newRequestsSentResults);
-	}
+    function cancelRequestHandler(event){
+        event.preventDefault();
+        // Get the username of the user who sent the request
+        const username = event.currentTarget.dataset.username;
+        // Send the username to the server to cancel the request
+        cancelRequestAPI({username: username});
+
+        //Next, remove the request from the list of requests sent
+        //const newRequestsSentResults = requestsSentResults.filter((request) => request.username != username);
+        //setRequestsSentResults(newRequestsSentResults);
+    }
 
 	return (
 		<div className="flex w-full flex-col items-center overflow-y-scroll ">
@@ -49,14 +44,14 @@ function requestsSentDisplayer({
 							data-username={request.username}
 							onClick={cancelRequestHandler}
 						>
-							Withdraw Request	
+							Cancel Request	
 						</button>
 					</div>
 				);
 			})}
 		</div>
 	);
-}
+};
 
 export default requestsSentDisplayer;
 
