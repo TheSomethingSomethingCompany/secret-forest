@@ -774,9 +774,50 @@ NOTES:
 ![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/10202298-603d-4e96-a449-f3571bd7538d)
 
 
+**Term 2 Week: 13** 
+**Work Period**: `01-03-2024` - `07-04-2024`
+**GitHub Account**: `YaffyTaffy`
+
+## Individual Objectives
+
+- Work on profile image functionality
+  - Fix file upload in edit profile   
+- Work on forgot password functionality
+  - save security question and answer
+  - retrieve and display question for user to answer
+  - change password if user answers correctly
+  - fix security concern
+- Work on Individual report and video
+- Attend meetings and try to help finalize project
+- Help organize the task list  
+
+
+## Active Tasks
+
+- Work on profile image functionality
+  - Fix file upload in edit profile   
+- Work on forgot password functionality
+  - save security question and answer
+  - retrieve and display question for user to answer
+  - change password if user answers correctly
+  - fix security concern
+- Work on Individual report and video
+
+## Status of Tasks
+
+- Work on profile image functionality (Completed)
+  - Fix file upload in edit profile   
+- Work on forgot password functionality (Completed)
+  - save security question and answer
+  - retrieve and display question for user to answer
+  - change password if user answers correctly
+  - fix security concern
+- Work on Individual report and video (Completed)
 
 
 
+## Peer Review
+![image](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77651873/f73ea2fe-2309-466b-ac3b-f2f6c8a0b6d5)
 
 
 

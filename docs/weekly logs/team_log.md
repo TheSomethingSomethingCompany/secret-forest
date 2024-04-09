@@ -658,3 +658,39 @@ Satanshu Mishra: `SatanshuMishra`
 
 ### Burn-Up Chart
 <img width="567" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/78169976/0d5e7251-7a40-45bd-be05-b2004061724d">
+
+
+**Term 2 - Week 13 (Week 26)**: 1/04/2024 - 7/04/2024
+
+## GitHub Accounts
+
+Ahmed Al Rubaii: `AhmedAlRubaii`
+Shaheer Shoaib: `shaheershoaib`
+Yafei Sedlacek: `YaffyTaffy`
+Arsh Bhat: `ArshBhat`
+Satanshu Mishra: `SatanshuMishra`
+
+## Objectives
+- Finalize deployment environment
+- Manual testing of deployment environment
+- Making features list
+- Makind DFD diagrams
+- Implementation of testing of the app
+- Final bug fixes and UI updates
+
+  
+## Accomplishments
+- Finalize deployment environment -- Complete
+- Manual testing of deployment environment -- Complete
+- Making features list -- Complete
+- Makind DFD diagrams -- Complete
+- Implementation of testing of the app -- Complete
+- Final bug fixes and UI updates -- Complete
+- Refactor, document, and standardize all Express.js routes for cleanliness, explanations, and ensure appropriate web status codes are returned on success/failure
+- Ensure every frontend page handles all possible responses from the corresponding Express.js route or WebSocket function it is utilizing
+
+## Test Report
+<img width="566" alt="2024-04-09_14-34-23" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/e0fabdc5-1bae-4612-b489-9abfa3a6361d">
+
+### Burn-Up Chart
+![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/6b464523-81f6-4dde-9a2f-598d11112939)

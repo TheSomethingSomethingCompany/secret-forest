@@ -580,4 +580,35 @@ https://www.figma.com/file/ruYxLsM1z8Du6hOgbhWurW/COSC-499-%7C-Capstone?type=des
 ## Peer Review
 <img width="1083" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/e722a7b4-1f3a-4f9f-9030-5cae99e4468f">
 
+**Week**: 26
+
+**Work Period**: 31 March 2024 - 7 April 2024
+
+## Individual Objectives
+
+- Complete Redesign and Overhaul of Search Page
+- Improve consistancy of Layouts across website.
+- Complete UI improvements for the landing page.
+- Add Toast Messages
+
+## Active Tasks
+
+- Complete Redesign and Overhaul of Search Page
+- Improve consistancy of Layouts across website.
+- Complete UI improvements for the landing page.
+- Add Toast Messages
+
+## Status of Tasks
+
+- Complete Redesign and Overhaul of Search Page -- Complete
+- Improve consistancy of Layouts across website. -- Complete
+- Complete UI improvements for the landing page. -- Not Complete
+- Add Toast Messages -- Complete
+
+
+Figma Designs:
+https://www.figma.com/file/ruYxLsM1z8Du6hOgbhWurW/COSC-499-%7C-Capstone?type=design&node-id=0%3A1&mode=design&t=9bc79avGG32LmjiS-1
+
+## Peer Review
+<img width="1063" alt="image" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/63601536/f215a49b-be18-48d9-9b62-8a2d4a290336">
 
