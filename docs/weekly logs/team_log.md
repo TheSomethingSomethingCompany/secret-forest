@@ -678,6 +678,8 @@ Satanshu Mishra: `SatanshuMishra`
 - Makind DFD diagrams -- Complete
 - Implementation of testing of the app -- Complete
 - Final bug fixes and UI updates -- Complete
+- Refactor, document, and standardize all Express.js routes for cleanliness, explanations, and ensure appropriate web status codes are returned on success/failure
+- Ensure every frontend page handles all possible responses from the corresponding Express.js route or WebSocket function it is utilizing
 
 ## Test Report
 <img width="566" alt="2024-04-09_14-34-23" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/e0fabdc5-1bae-4612-b489-9abfa3a6361d">
