@@ -1,4 +1,4 @@
-# Personal Log - Shaheer Shoaib
+c# Personal Log - Shaheer Shoaib
 **Week**: 4
 **Work Period**: `25-09-2023` - `01-10-2023`
 **GitHub Account**: `shaheershoaib`
@@ -746,6 +746,31 @@
 
 ## Peer Review
 <img width="1067" alt="2024-02-19_00-49-30" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7aa933c9-ed34-4587-83f6-df4544436d95">
+
+**Work Period**: 03/31/2024 - 04/07/2024
+**GitHub Account**: `shaheershoaib`
+
+## Individual Objectives
+- Complete setup, integration, and implementation of backend unit testing
+- Refactor, document, and standardize every Express.js route for security and ensuring that the appropriate web status codes and messages are returned to the client based on the route and success/failure
+- Ensure every frontend page handles every response appropriately based on what can be returned from the corresponding Express.js route it is utilizing via its middleman
+- BugFix most of the bugs found when going through every Express.js route and Next.js page
+- Merge branches together into development and fix all merge conflicts to form our finalized website
+- Manual test and unit test the website before and after merging
+- Work on DFD, Individual Report, Video Demo, and Features List
+  
+## Status of Tasks: `All Tasks Listed Completed`
+- Complete setup, integration, and implementation of backend unit testing
+- Refactor, document, and standardize every Express.js route for security and ensuring that the appropriate web status codes and messages are returned to the client based on the route and success/failure
+- Ensure every frontend page handles every response appropriately based on what can be returned from the corresponding Express.js route it is utilizing via its middleman
+- BugFix most of the bugs found when going through every Express.js route and Next.js page
+- Merge branches together into development and fix all merge conflicts to form our finalized website
+- Manual test and unit test the website before and after merging
+- Work on DFD, Individual Report, Video Demo, and Features List
+
+## Peer Review
+<img width="1073" alt="2024-04-09_14-47-15" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/7a36e04f-ba47-4ced-9387-91a5e69f31db">
+
 
 
 
