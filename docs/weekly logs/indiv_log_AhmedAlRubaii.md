@@ -675,3 +675,35 @@ This week has mainly been spent on fixing and working on the deployment side of 
 ## Peer Review
 ![week 25](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/def18170-b842-46b0-9854-751617090098)
 
+---------------------------
+
+**Week**: 26
+
+**Work Period**: 1 April 2024 - 7 April 2024
+
+## Individual Objectives
+
+This week was about the final delivery of the project. I was able to complete my objectives from last week and was able to get a stable working deployment running and all was configured well and have tested to make sure it is working. The following days of the week was spent working on report objectives such as working on the DFD diagram as well as coming up with and finalizing our feature list. As i was in charge of deployment, i had the last step in regards to the finalization of the project. once all development was complete and merged into our development branch, i refactored the code such that it works with the development environment and deployed it. unfortunatley however there was a lot of issues with the current version, mainly stemming from a package that was installed with a new feature (toasts) and the use of environment variables from the `.env` file not registering in the deployment environment. due to that and the lack of time remaining until the due date, i advised the team to do their demo videos on local version out of caution that i may not be able to troubleshoot and fix these issues in time. a few minutes before the deadline i was finally able to fix the deployed version, and it is now currently running and hosted on [this link](http://499-new-lb-420614602.ca-central-1.elb.amazonaws.com)
+
+
+## Active Tasks
+
+- Fixing container communications within Fargate task
+- Manual testing of the app in Fargate
+- Completion of DFD diagram
+- Writing of final report
+- Recording final demo video
+- Refactoring, debugging and deploying the latest version of the app
+    
+## Status of Tasks
+
+- Fixing container communications within Fargate task
+- Manual testing of the app in Fargate
+- Completion of DFD diagram
+- Writing of final report
+- Recording final demo video
+- Refactoring, debugging and deploying the latest version of the app
+  
+## Peer Review
+![week 26](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/c2385f0d-1730-4533-ac75-a4d7ff00f17c)
+
