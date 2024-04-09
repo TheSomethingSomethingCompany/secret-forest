@@ -680,6 +680,7 @@ Satanshu Mishra: `SatanshuMishra`
 - Final bug fixes and UI updates -- Complete
 
 ## Test Report
+<img width="566" alt="2024-04-09_14-34-23" src="https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77290024/e0fabdc5-1bae-4612-b489-9abfa3a6361d">
 
 ### Burn-Up Chart
 ![burn up](https://github.com/COSC-499-W2023/year-long-project-team-10/assets/77289951/6b464523-81f6-4dde-9a2f-598d11112939)
